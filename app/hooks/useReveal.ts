@@ -37,6 +37,8 @@ export const REVEAL_SELECTOR = [
 
 const STAGGER_MS = 120;
 const MAX_DELAY_MS = 600;
+/** 페이지 첫 화면(처음 보이는 요소들)은 더 천천히: 시작 전 여유 + 긴 시간 + 넓은 간격 */
+const FIRST = { baseMs: 200, staggerMs: 180, maxDelayMs: 1100, durationMs: 1200 };
 
 /** 페이지의 REVEAL_SELECTOR 요소를 화면 진입 시 한 번씩 나타나게 한다 */
 export function useReveal() {
@@ -47,6 +49,7 @@ export function useReveal() {
       return;
     }
 
+    let firstBatch = true;
     const observer = new IntersectionObserver(
       (entries) => {
         // 같은 순간 들어온 요소들은 위→아래, 왼→오른 순서로 조금씩 늦게
@@ -58,8 +61,14 @@ export function useReveal() {
             const rb = b.getBoundingClientRect();
             return ra.top - rb.top || ra.left - rb.left;
           });
+        const first = firstBatch;
+        firstBatch = false;
         entering.forEach((el, i) => {
-          el.style.setProperty("--reveal-delay", `${Math.min(i * STAGGER_MS, MAX_DELAY_MS)}ms`);
+          const delay = first
+            ? FIRST.baseMs + Math.min(i * FIRST.staggerMs, FIRST.maxDelayMs)
+            : Math.min(i * STAGGER_MS, MAX_DELAY_MS);
+          el.style.setProperty("--reveal-delay", `${delay}ms`);
+          if (first) el.style.setProperty("--reveal-duration", `${FIRST.durationMs}ms`);
           el.classList.add("is-revealed");
           observer.unobserve(el);
         });

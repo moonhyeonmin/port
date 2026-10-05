@@ -132,7 +132,7 @@ Figma 파일 `2wduPMxRCf5SwSUCNYqvbl`, 캔버스 **"framer 이전용"** (node `1
 
 과하지 않게, 화면에 들어올 때 한 번만 짧게 움직인다. `prefers-reduced-motion: reduce`이면 모두 끈다.
 
-- **등장(Reveal)**: `app/hooks/useReveal.ts`의 `REVEAL_SELECTOR` 요소가 화면 진입 시 16px 아래에서 나타난다. 0.85초 동안 나타나고, 같이 들어온 요소는 120ms 간격(최대 600ms)으로 순서대로 나타난다.
+- **등장(Reveal)**: `app/hooks/useReveal.ts`의 `REVEAL_SELECTOR` 요소가 화면 진입 시 16px 아래에서 나타난다. 0.85초 동안 나타나고, 같이 들어온 요소는 120ms 간격(최대 600ms)으로 순서대로 나타난다. 페이지 첫 화면(처음 보이는 요소)만 더 천천히: 200ms 뒤 시작, 1.2초 동안, 180ms 간격(`useReveal.ts`의 `FIRST`).
   - 첫 페인트 전에 숨기려고 `root.tsx`의 `<head>` 스크립트가 `<html>`에 `.js`를 붙이고, `global.css` "Reveal" 블록이 같은 선택자로 숨긴다. **선택자를 바꾸면 두 곳을 함께 수정한다.**
   - 홈(`home.tsx`)과 케이스 스터디(`case-study.tsx`)에서 `useReveal()`을 호출한다.
 - **숫자 카운트업**: `app/components/CountUp.tsx` (기본 1.6초). 미리 렌더링된 HTML에는 최종 숫자가 들어가고, 최종 숫자 폭으로 자리를 고정해 옆 글자가 흔들리지 않는다.

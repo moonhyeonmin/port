@@ -1121,12 +1121,16 @@ img, video { display: block; max-width: 100%; }
   ) {
     opacity: 0;
     transform: translateY(16px);
-    transition:
-      opacity 0.85s cubic-bezier(0.2, 0.8, 0.2, 1) var(--reveal-delay, 0ms),
-      transform 0.85s cubic-bezier(0.2, 0.8, 0.2, 1) var(--reveal-delay, 0ms);
   }
-  /* 위 숨김 규칙(.js + :is 최대 0,3,0)보다 우선하도록 클래스 반복 */
-  html.js .is-revealed.is-revealed.is-revealed { opacity: 1; transform: none; }
+  /* 위 숨김 규칙(.js + :is 최대 0,3,0)보다 우선하도록 클래스 반복.
+     전환은 나타날 때만 건다 (숨김 단계가 애니메이션되면 깜빡임) */
+  html.js .is-revealed.is-revealed.is-revealed {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity var(--reveal-duration, 0.85s) cubic-bezier(0.2, 0.8, 0.2, 1) var(--reveal-delay, 0ms),
+      transform var(--reveal-duration, 0.85s) cubic-bezier(0.2, 0.8, 0.2, 1) var(--reveal-delay, 0ms);
+  }
 }
 
 /* ─── Simple pages ─── */
