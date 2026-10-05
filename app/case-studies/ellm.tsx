@@ -1,6 +1,7 @@
 import { CaseHero } from "~/components/case-study/CaseHero";
 import { CaseOverview } from "~/components/case-study/CaseOverview";
 import { CaseSummary } from "~/components/case-study/CaseSummary";
+import { CaseWhyHow } from "~/components/case-study/CaseWhyHow";
 import type { CaseStudyProps } from "./index";
 
 // Figma: 2wduPMxRCf5SwSUCNYqvbl / "framer 이전용" (125:55403)
@@ -98,6 +99,27 @@ export default function EllmCaseStudy({ index }: CaseStudyProps) {
             detail: ["베타 사용자 신뢰도", "(98명)"],
           },
         ]}
+      />
+
+      {/* Ellm_04_ why and how (126:56068) */}
+      <CaseWhyHow
+        title="선례도, 신뢰도 없이 시작했습니다"
+        bullets={[
+          "사명 변경과 함께 출시한 보안 기업 최초의 사내 sLLM",
+          "관리자, 사용자 화면 모두 벤치마킹할 선례 부족",
+          "‘보안 데이터를 다루는 AI’가 핵심 과제",
+        ]}
+        stats={[
+          { value: "4차례", label: "사용자 리서치" },
+          { value: "3회", label: "프로토타입 검증" },
+          { value: "3→1", label: "depth 단순화" },
+        ]}
+        figure={{
+          src: "/projects/ellm/ia-diagram.png",
+          width: 1564,
+          height: 1005,
+          alt: "Ellm IA Diagram: 채팅(K-Master + Librarian)과 보고서 생성(Scribe)의 화면 구조도",
+        }}
       />
     </>
   );

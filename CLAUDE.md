@@ -96,7 +96,7 @@ Figma 섹션 프레임은 **2160px 원본**이고, 옆에 있는 **1280px 프레
 - 반응형:
   - 태블릿(810–1279px): `--u` 하한 0.6px, 좌우 여백 48px, 가로로 긴 배치(Overview 열, Summary 카드)는 2열
   - 모바일(~809px): 읽기 좋은 고정 px 값, 세로 배치, `word-break: keep-all`
-- 공통 컴포넌트: `CaseEyebrow`(별 아이콘 + 라벨), `CaseHero`, `CaseOverview`, `CaseSummary`
+- 공통: `CaseEyebrow`(별 아이콘 + 라벨), 섹션 제목 `.case-h2`(70px), `CaseHero`, `CaseOverview`, `CaseSummary`, `CaseWhyHow`
 
 ## 현재 작업: Ellm 케이스 스터디 (`/case-studies/ellm`)
 
@@ -107,7 +107,7 @@ Figma 파일 `2wduPMxRCf5SwSUCNYqvbl`, 캔버스 **"framer 이전용"** (node `1
 | 01 | Hero | `126:55427` | 없음 | 완료 |
 | 02 | Overview | `126:62652` | `126:62655` | 완료 |
 | 03 | Summary | `126:57665` | `126:62671` | 완료 |
-| 04 | Why and How | `126:56068` | `126:62729` | |
+| 04 | Why and How | `126:56068` | `126:62729` | 완료 |
 | 05 | UserJourney | `126:57609` | `126:63358` | |
 | 06 | DeepDive01 프로젝트 탐색 | `126:56301` | `126:63419` | |
 | 06 | DeepDive02 문서 생성 | `126:57131` | `126:75473` | |

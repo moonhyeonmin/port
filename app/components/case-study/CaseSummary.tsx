@@ -24,7 +24,7 @@ export function CaseSummary({ title, rows, cards }: CaseSummaryProps) {
           <span className="case-eyebrow__point">Summary</span>
         </CaseEyebrow>
         <div className="case-summary__heading">
-          <h2 className="case-summary__title">{title}</h2>
+          <h2 className="case-h2">{title}</h2>
           <dl className="case-summary__rows">
             {rows.map(({ label, text }) => (
               <div key={label} className="case-summary__row">
