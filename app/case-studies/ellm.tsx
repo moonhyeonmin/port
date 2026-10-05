@@ -1,3 +1,4 @@
+import { CaseDeepDive } from "~/components/case-study/CaseDeepDive";
 import { CaseHero } from "~/components/case-study/CaseHero";
 import { CaseJourney } from "~/components/case-study/CaseJourney";
 import { CaseOverview } from "~/components/case-study/CaseOverview";
@@ -150,6 +151,37 @@ export default function EllmCaseStudy({ index }: CaseStudyProps) {
           },
         ]}
         background={{ src: "/projects/ellm/journey-bg.jpg", width: 2160, height: 1244 }}
+      />
+
+      {/* Ellm_06_DeepDive01_프로젝트 탐색 (126:56301) */}
+      <CaseDeepDive
+        title="프로젝트 탐색"
+        subtitle="반복되는 카드 리스트 →  테이블 + 검색, 필터"
+        blocks={[
+          {
+            label: "AS IS",
+            text: ["프로젝트 카드가 같은 형태로 나열되어 있어, 원하는 프로젝트를 찾기 어려웠습니다."],
+            figure: {
+              src: "/projects/ellm/explore-asis.png",
+              width: 1564,
+              height: 893,
+              alt: "개선 전: 같은 형태의 문서 카드가 4열로 반복 나열된 목록 화면",
+            },
+          },
+          {
+            label: "TO BE",
+            text: [
+              "테이블로 리스트를 구성하고, 검색 필터를 추가하며",
+              "원하는 항목과 생성 버튼이 한눈에 보이도록 정보의 강약을 재설계했습니다.",
+            ],
+            figure: {
+              src: "/projects/ellm/explore-tobe.png",
+              width: 1564,
+              height: 893,
+              alt: "개선 후: 상단 문서 생성 카드와 검색이 있는 문서 테이블 화면",
+            },
+          },
+        ]}
       />
     </>
   );

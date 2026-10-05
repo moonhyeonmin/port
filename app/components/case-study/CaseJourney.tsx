@@ -50,7 +50,7 @@ export function CaseJourney({ title, description, steps, background }: CaseJourn
             <span className="case-eyebrow__point">User Journey</span>
           </CaseEyebrow>
           <div className="case-journey__heading">
-            <h2 className="case-h2 case-journey__title">
+            <h2 className="case-h2 is-tight">
               {title.map((line) => (
                 <span key={line}>{line}</span>
               ))}

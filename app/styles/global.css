@@ -268,6 +268,9 @@ img, video { display: block; max-width: 100%; }
   font-weight: 600;
   line-height: calc(var(--u) * 126);
 }
+/* 줄 높이 100 (여러 줄 제목, Deep Dive 제목) */
+.case-h2.is-tight { line-height: calc(var(--u) * 100); }
+.case-h2 > span { display: block; }
 
 /* 01 Hero (126:55427) */
 .case-hero {
@@ -487,8 +490,6 @@ img, video { display: block; max-width: 100%; }
 }
 .case-journey__text { display: flex; flex-direction: column; align-items: flex-start; gap: calc(var(--u) * 40); }
 .case-journey__heading { display: flex; flex-direction: column; gap: calc(var(--u) * 20); }
-.case-journey__title { line-height: calc(var(--u) * 100); }
-.case-journey__title span { display: block; }
 .case-journey__desc {
   font-size: calc(var(--u) * 30);
   font-weight: 400;
@@ -555,6 +556,38 @@ img, video { display: block; max-width: 100%; }
 /* 행 안의 Pain/Fix 라벨은 모바일에서만 */
 .case-journey__row .case-journey__tag { display: none; }
 
+/* 06~07 Deep Dive (126:56301 등): AS IS / TO BE 설명 + 화면 */
+.case-deep {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 113);
+  padding-block: calc(var(--u) * 120);
+}
+.case-deep__text { display: flex; flex-direction: column; align-items: flex-start; gap: calc(var(--u) * 40); }
+.case-deep__heading { display: flex; flex-direction: column; gap: calc(var(--u) * 20); }
+.case-deep__subtitle {
+  font-size: calc(var(--u) * 48);
+  font-weight: 600;
+  line-height: calc(var(--u) * 50);
+  color: #3182f6;
+}
+.case-deep__blocks { display: flex; flex-direction: column; gap: calc(var(--u) * 44); }
+.case-deep__block { display: flex; flex-direction: column; gap: calc(var(--u) * 44); }
+.case-deep__row {
+  display: flex;
+  align-items: center;
+  max-width: calc(var(--u) * 1448);
+  font-size: calc(var(--u) * 30);
+  line-height: calc(var(--u) * 50);
+}
+.case-deep__label { flex-shrink: 0; width: calc(var(--u) * 235); font-weight: 600; }
+.case-deep__label.is-asis { color: #474238; }
+.case-deep__label.is-tobe { color: #3182f6; }
+.case-deep__desc { font-weight: 400; color: var(--color-gray); }
+.case-deep__desc span { display: block; }
+.case-deep__figure { margin: 0; }
+.case-deep__figure img { width: 100%; height: auto; }
+
 /* 태블릿: 여백을 줄이고 가로로 긴 배치를 2열로 */
 @media (max-width: 1279.98px) {
   .case-sec { padding-inline: 48px; }
@@ -620,10 +653,20 @@ img, video { display: block; max-width: 100%; }
   .case-why__figure { margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); overflow-x: auto; }
   .case-why__figure img { width: 760px; max-width: none; }
 
+  .case-deep { gap: 32px; padding-block: 56px; }
+  .case-deep__text { gap: 16px; }
+  .case-deep__heading { gap: 10px; }
+  .case-deep__subtitle { font-size: 18px; line-height: 1.5; }
+  .case-deep__blocks { gap: 32px; }
+  .case-deep__block { gap: 14px; }
+  .case-deep__row { flex-direction: column; align-items: flex-start; gap: 2px; font-size: 15px; line-height: 1.6; }
+  .case-deep__label { width: auto; }
+  .case-deep__desc span { display: inline; }
+  .case-deep__desc span + span::before { content: " "; }
+
   .case-journey__inner { gap: 32px; padding-block: 56px 72px; }
   .case-journey__text { gap: 16px; }
   .case-journey__heading { gap: 12px; }
-  .case-journey__title { line-height: 1.4; }
   .case-journey__desc { font-size: 15px; line-height: 1.6; }
   .case-journey__bg { top: 40%; height: 60%; }
   .case-journey__head { display: none; }

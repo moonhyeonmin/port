@@ -96,7 +96,7 @@ Figma 섹션 프레임은 **2160px 원본**이고, 옆에 있는 **1280px 프레
 - 반응형:
   - 태블릿(810–1279px): `--u` 하한 0.6px, 좌우 여백 48px, 가로로 긴 배치(Overview 열, Summary 카드)는 2열
   - 모바일(~809px): 읽기 좋은 고정 px 값, 세로 배치, `word-break: keep-all`
-- 공통: `CaseEyebrow`(별 아이콘 + 라벨), 섹션 제목 `.case-h2`(70px), `CaseHero`, `CaseOverview`, `CaseSummary`, `CaseWhyHow`, `CaseJourney`
+- 공통: `CaseEyebrow`(별 아이콘 + 라벨), 섹션 제목 `.case-h2`(70px), `CaseHero`, `CaseOverview`, `CaseSummary`, `CaseWhyHow`, `CaseJourney`, `CaseDeepDive`(AS IS / TO BE + 화면), 줄 높이 100 제목 `.case-h2.is-tight`
 
 ## 현재 작업: Ellm 케이스 스터디 (`/case-studies/ellm`)
 
@@ -109,12 +109,17 @@ Figma 파일 `2wduPMxRCf5SwSUCNYqvbl`, 캔버스 **"framer 이전용"** (node `1
 | 03 | Summary | `126:57665` | `126:62671` | 완료 |
 | 04 | Why and How | `126:56068` | `126:62729` | 완료 |
 | 05 | UserJourney | `126:57609` | `126:63358` | 완료 |
-| 06 | DeepDive01 프로젝트 탐색 | `126:56301` | `126:63419` | |
+| 06 | DeepDive01 프로젝트 탐색 | `126:56301` | `126:63419` | 완료 |
 | 06 | DeepDive02 문서 생성 | `126:57131` | `126:75473` | |
 | 07 | DeepDive03 답변 생성 대기 | `126:56943` | `126:78288` | |
 | 08 | 관리자 페이지 | `126:56374` | `126:79038` | |
 | 09 | 회고 및 정리 (Next Project 포함) | `126:56881` | `126:80618` | |
 
+- **Figma MCP는 Starter 플랜 한도(월 20회)를 다 써서, 06부터는 Figma REST API를 쓴다.**
+  - 토큰: `~/.config/figma/token` (권한 600, 저장소 밖에 둔다). 헤더 `X-Figma-Token: $(cat ~/.config/figma/token)`
+  - 노드: `GET https://api.figma.com/v1/files/<fileKey>/nodes?ids=<id,id>`
+  - 이미지: `GET https://api.figma.com/v1/images/<fileKey>?ids=<id>&scale=2&format=png`
+  - 토큰 권한이 file_content:read라서 `/v1/me`는 403이 나지만 정상이다.
 - 섹션 프레임 하나를 통째로 `get_design_context`하면 결과가 너무 커서 메타데이터만 돌아온다. 하위 frame 단위로 나눠서 호출한다.
 - 섹션 컴포넌트는 `app/components/case-study/Case*.tsx`, 프로젝트별 내용은 `app/case-studies/<slug>.tsx`, slug 등록은 `app/case-studies/index.ts`에 한다.
 - 복잡한 UI 목업은 Figma에서 2배(`defaultScale: 2`) PNG로 내보내 `public/projects/<slug>/`에 둔다. 예: Hero 커버 3128×2010
