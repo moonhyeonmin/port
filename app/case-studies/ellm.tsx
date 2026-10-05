@@ -1,4 +1,9 @@
-import { CaseDeepDive } from "~/components/case-study/CaseDeepDive";
+import {
+  CaseDeepDive,
+  DeepDiveCompare,
+  DeepDivePriority,
+  DeepDiveStat,
+} from "~/components/case-study/CaseDeepDive";
 import { CaseHero } from "~/components/case-study/CaseHero";
 import { CaseJourney } from "~/components/case-study/CaseJourney";
 import { CaseOverview } from "~/components/case-study/CaseOverview";
@@ -154,35 +159,78 @@ export default function EllmCaseStudy({ index }: CaseStudyProps) {
       />
 
       {/* Ellm_06_DeepDive01_프로젝트 탐색 (126:56301) */}
+      <CaseDeepDive title="프로젝트 탐색" subtitle="반복되는 카드 리스트 →  테이블 + 검색, 필터">
+        <DeepDiveCompare
+          label="AS IS"
+          text={["프로젝트 카드가 같은 형태로 나열되어 있어, 원하는 프로젝트를 찾기 어려웠습니다."]}
+          figure={{
+            src: "/projects/ellm/explore-asis.png",
+            width: 1564,
+            height: 893,
+            alt: "개선 전: 같은 형태의 문서 카드가 4열로 반복 나열된 목록 화면",
+          }}
+        />
+        <DeepDiveCompare
+          label="TO BE"
+          text={[
+            "테이블로 리스트를 구성하고, 검색 필터를 추가하며",
+            "원하는 항목과 생성 버튼이 한눈에 보이도록 정보의 강약을 재설계했습니다.",
+          ]}
+          figure={{
+            src: "/projects/ellm/explore-tobe.png",
+            width: 1564,
+            height: 893,
+            alt: "개선 후: 상단 문서 생성 카드와 검색이 있는 문서 테이블 화면",
+          }}
+        />
+      </CaseDeepDive>
+
+      {/* Ellm_06_DeepDive02_문서 생성 (126:57131) */}
       <CaseDeepDive
-        title="프로젝트 탐색"
-        subtitle="반복되는 카드 리스트 →  테이블 + 검색, 필터"
-        blocks={[
-          {
-            label: "AS IS",
-            text: ["프로젝트 카드가 같은 형태로 나열되어 있어, 원하는 프로젝트를 찾기 어려웠습니다."],
-            figure: {
-              src: "/projects/ellm/explore-asis.png",
-              width: 1564,
-              height: 893,
-              alt: "개선 전: 같은 형태의 문서 카드가 4열로 반복 나열된 목록 화면",
+        title="문서 생성"
+        subtitle="입력 항목이 아닌 입력 ‘순서’를 재설계"
+        tint
+        gap={90}
+      >
+        <DeepDiveCompare
+          label="AS IS"
+          text={[
+            "모든 항목을 한 화면에 늘어 놓자 무엇부터 채워야 하는지 알 수 없었고, 생성 시작 단계에서 사용자 이탈과 불만이 늘었습니다.",
+          ]}
+          figure={{
+            src: "/projects/ellm/docgen-asis.png",
+            width: 1564,
+            height: 893,
+            alt: "개선 전: 주제, 구성, 추가 지침, 논문 가져오기가 한 화면에 모두 놓인 문서 생성 화면",
+          }}
+        />
+        <DeepDivePriority
+          title="답변 정확도 기준으로 분류했습니다."
+          rows={[
+            { badge: "필수 1", required: true, items: "제목, 키워드", note: "답변 방향을 정합니다." },
+            { badge: "필수 2", required: true, items: "기반 파일, URL", note: "답변 근거를 정합니다." },
+            {
+              badge: "선택",
+              items: "분량, 추가 지침, 참고 논문",
+              note: "필수 아닌 문항으로, 생성 후 조정 가능합니다.",
             },
-          },
-          {
-            label: "TO BE",
-            text: [
-              "테이블로 리스트를 구성하고, 검색 필터를 추가하며",
-              "원하는 항목과 생성 버튼이 한눈에 보이도록 정보의 강약을 재설계했습니다.",
-            ],
-            figure: {
-              src: "/projects/ellm/explore-tobe.png",
-              width: 1564,
-              height: 893,
-              alt: "개선 후: 상단 문서 생성 카드와 검색이 있는 문서 테이블 화면",
-            },
-          },
-        ]}
-      />
+          ]}
+        />
+        <DeepDiveCompare
+          label="TO BE"
+          lead={<DeepDiveStat value="42%" caption="문서 생성 리드타임 단축, 답변 품질 향상" />}
+          text={[
+            "3단계 Wizard 형태를 도입하여 필수가 아닌 항목은 뒤에서 건너뛸 수 있도록 구성했습니다.",
+            "흩어져 있던 인력 과정을 구조화해 속도와 답변 품질을 함께 높혔습니다. (사내 QA 기준)",
+          ]}
+          figure={{
+            src: "/projects/ellm/docgen-tobe.png",
+            width: 1564,
+            height: 893,
+            alt: "개선 후: 문서 제목·키워드, 기반 파일 업로드, 추가 지침 3단계 Wizard 화면",
+          }}
+        />
+      </CaseDeepDive>
     </>
   );
 }

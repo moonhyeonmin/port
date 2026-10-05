@@ -558,6 +558,8 @@ img, video { display: block; max-width: 100%; }
 
 /* 06~07 Deep Dive (126:56301 등): AS IS / TO BE 설명 + 화면 */
 .case-deep {
+  position: relative;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
   gap: calc(var(--u) * 113);
@@ -571,7 +573,59 @@ img, video { display: block; max-width: 100%; }
   line-height: calc(var(--u) * 50);
   color: #3182f6;
 }
-.case-deep__blocks { display: flex; flex-direction: column; gap: calc(var(--u) * 44); }
+.case-deep__blocks { display: flex; flex-direction: column; gap: calc(var(--u) * var(--gap)); }
+/* 상단 연파랑 그라디언트 (페이지 전체 너비, 높이 508) */
+.case-deep.has-tint::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 50%;
+  width: 100cqw;
+  height: calc(var(--u) * 508);
+  transform: translateX(-50%);
+  background: linear-gradient(to top, rgb(220 234 255 / 0), #ebf3ff);
+}
+.case-deep__lead { display: flex; flex-direction: column; gap: calc(var(--u) * 60); }
+.case-deep__stat { display: flex; flex-direction: column; align-items: flex-start; gap: calc(var(--u) * 31); }
+.case-deep__stat-value {
+  font-size: calc(var(--u) * 110);
+  font-weight: 400;
+  line-height: calc(var(--u) * 110);
+  letter-spacing: calc(var(--u) * -1.2);
+  background: linear-gradient(to bottom, #1658ff, #3182f6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.case-deep__stat-caption { font-size: calc(var(--u) * 48); font-weight: 600; line-height: calc(var(--u) * 50); }
+.case-deep__priority { display: flex; flex-direction: column; gap: calc(var(--u) * 23); }
+.case-deep__priority-title { font-size: calc(var(--u) * 30); font-weight: 600; line-height: calc(var(--u) * 50); }
+.case-deep__priority-rows {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 23);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.case-deep__priority-row {
+  display: grid;
+  grid-template-columns: calc(var(--u) * 333) calc(var(--u) * 333) 1fr;
+  column-gap: calc(var(--u) * 160);
+  align-items: center;
+  height: calc(var(--u) * 137);
+  padding-inline: calc(var(--u) * 20) calc(var(--u) * 98);
+  font-size: calc(var(--u) * 28);
+  background: #f6f8fa;
+  border-radius: calc(var(--u) * 24);
+}
+.case-deep__priority-row.is-required { background: #e8f3ff; }
+.case-deep__priority-badge { font-weight: 700; line-height: calc(var(--u) * 44); text-align: center; }
+.case-deep__priority-row.is-required .case-deep__priority-badge { color: #3182f6; }
+.case-deep__priority-items { font-weight: 700; line-height: calc(var(--u) * 44); }
+/* Figma에서 오른쪽 여백까지 넘쳐 한 줄로 보임 */
+.case-deep__priority-note { font-weight: 500; line-height: calc(var(--u) * 60); white-space: nowrap; }
 .case-deep__block { display: flex; flex-direction: column; gap: calc(var(--u) * 44); }
 .case-deep__row {
   display: flex;
@@ -601,6 +655,8 @@ img, video { display: block; max-width: 100%; }
   .case-summary__card { width: auto; }
   .case-journey__head,
   .case-journey__row { grid-template-columns: 1fr 1.3fr 1fr; column-gap: 32px; padding-inline: 24px; }
+  .case-deep__priority-row { grid-template-columns: 0.6fr 1fr 1.6fr; column-gap: 32px; padding-inline: 24px; }
+  .case-deep__priority-note { white-space: normal; }
   .case-journey__head > * { margin-left: 0 !important; width: auto !important; text-align: left !important; }
   .case-journey__head > :nth-child(1) { padding-left: 3px; }
   .case-journey__step { padding-left: 0; }
@@ -657,7 +713,28 @@ img, video { display: block; max-width: 100%; }
   .case-deep__text { gap: 16px; }
   .case-deep__heading { gap: 10px; }
   .case-deep__subtitle { font-size: 18px; line-height: 1.5; }
-  .case-deep__blocks { gap: 32px; }
+  .case-deep__blocks { gap: 40px; }
+  .case-deep.has-tint::before { height: 260px; }
+  .case-deep__lead { gap: 24px; }
+  .case-deep__stat { gap: 6px; }
+  .case-deep__stat-value { font-size: 52px; line-height: 1.1; letter-spacing: -0.01em; }
+  .case-deep__stat-caption { font-size: 18px; line-height: 1.4; }
+  .case-deep__priority { gap: 12px; }
+  .case-deep__priority-title { font-size: 16px; line-height: 1.5; }
+  .case-deep__priority-rows { gap: 8px; }
+  .case-deep__priority-row {
+    grid-template-columns: 56px 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 12px;
+    row-gap: 2px;
+    height: auto;
+    padding: 14px 16px;
+    font-size: 15px;
+    border-radius: 12px;
+  }
+  .case-deep__priority-badge { grid-row: span 2; text-align: left; line-height: 1.5; }
+  .case-deep__priority-items { line-height: 1.5; }
+  .case-deep__priority-note { line-height: 1.5; color: #57606f; }
   .case-deep__block { gap: 14px; }
   .case-deep__row { flex-direction: column; align-items: flex-start; gap: 2px; font-size: 15px; line-height: 1.6; }
   .case-deep__label { width: auto; }
