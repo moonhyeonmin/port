@@ -2,6 +2,7 @@ import type { CSSProperties, ReactNode } from "react";
 import { CaseEyebrow } from "./CaseEyebrow";
 
 interface CaseDeepDiveProps {
+  id?: string;
   title: string;
   subtitle: string;
   /** 상단 배경: tint = 연파랑 그라디언트, glow = 보라·하늘 원형 그라디언트 */
@@ -11,9 +12,10 @@ interface CaseDeepDiveProps {
   children: ReactNode;
 }
 
-export function CaseDeepDive({ title, subtitle, tint, gap = 44, children }: CaseDeepDiveProps) {
+export function CaseDeepDive({ id, title, subtitle, tint, gap = 44, children }: CaseDeepDiveProps) {
   return (
     <section
+      id={id}
       className={`case-sec case-deep${tint ? ` has-${tint}` : ""}`}
       aria-label={`Deep Dive: ${title}`}
     >

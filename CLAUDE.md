@@ -123,6 +123,9 @@ Figma 파일 `2wduPMxRCf5SwSUCNYqvbl`, 캔버스 **"framer 이전용"** (node `1
 - 섹션 프레임 하나를 통째로 `get_design_context`하면 결과가 너무 커서 메타데이터만 돌아온다. 하위 frame 단위로 나눠서 호출한다.
 - 섹션 컴포넌트는 `app/components/case-study/Case*.tsx`, 프로젝트별 내용은 `app/case-studies/<slug>.tsx`, slug 등록은 `app/case-studies/index.ts`에 한다.
 - 복잡한 UI 목업은 Figma에서 2배(`defaultScale: 2`) PNG로 내보내 `public/projects/<slug>/`에 둔다. 예: Hero 커버 3128×2010
+- **상단 섹션 내비게이션 `CaseNav`**: 디자인이 있는 케이스 스터디에서는 기본 탭(Projects/About/Resume) 대신 표시한다. 스타일은 https://josuyeon.framer.website/case-studies/ellm 헤더를 참고했다.
+  - 항목은 `app/case-studies/<slug>.tsx`의 nav 배열(예: `ellmNav`)에서 `{ id, label, also? }`로 정의하고, 섹션 컴포넌트에 같은 `id`를 넘긴다. 새 섹션을 만들면 여기에 항목도 추가한다.
+  - 스크롤 위치에 따라 현재 섹션을 강조한다. `.case-page`가 `container-type`이라 fixed 기준이 바뀌므로 `CaseNav`는 `.case-page` 바깥에 렌더링한다.
 - 디자인이 있는 페이지는 라우트에서 TOC나 Next 카드를 덧붙이지 않는다. Next Project도 09 섹션 디자인대로 그린다.
 
 ## 컨벤션

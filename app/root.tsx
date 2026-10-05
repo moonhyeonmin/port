@@ -5,10 +5,12 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLocation,
 } from "react-router";
 import type { Route } from "./+types/root";
 import { TabNav } from "~/components/TabNav";
 import { Footer } from "~/components/Footer";
+import { getCaseStudy } from "~/case-studies";
 import "~/styles/global.css";
 
 export const links: Route.LinksFunction = () => [
@@ -44,9 +46,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  const { pathname } = useLocation();
+  // 디자인이 있는 케이스 스터디는 자체 섹션 내비게이션(CaseNav)을 쓴다
+  const slug = pathname.match(/^\/case-studies\/([^/]+)/)?.[1];
+  const hasCaseNav = Boolean(getCaseStudy(slug));
+
   return (
     <div className="page">
-      <TabNav />
+      {!hasCaseNav && <TabNav />}
       <main>
         <Outlet />
       </main>

@@ -10,7 +10,17 @@ import { CaseJourney } from "~/components/case-study/CaseJourney";
 import { CaseOverview } from "~/components/case-study/CaseOverview";
 import { CaseSummary } from "~/components/case-study/CaseSummary";
 import { CaseWhyHow } from "~/components/case-study/CaseWhyHow";
+import type { CaseNavItem } from "~/components/case-study/CaseNav";
 import type { CaseStudyProps } from "./index";
+
+/** 상단 내비게이션 항목 (섹션 id와 연결) */
+export const ellmNav: CaseNavItem[] = [
+  { id: "project", label: "Project" },
+  { id: "summary", label: "Summary" },
+  { id: "why-how", label: "Why & How" },
+  { id: "user-journey", label: "User Journey" },
+  { id: "deep-dive", label: "Deep Dive", also: ["deep-dive-docgen", "deep-dive-wait"] },
+];
 
 // Figma: 2wduPMxRCf5SwSUCNYqvbl / "framer 이전용" (125:55403)
 export default function EllmCaseStudy({ index }: CaseStudyProps) {
@@ -18,6 +28,7 @@ export default function EllmCaseStudy({ index }: CaseStudyProps) {
     <>
       {/* Ellm_01_Hero (126:55427) */}
       <CaseHero
+        id="project"
         index={index}
         label="기업용 Private LLM"
         title={["보안 기업의 첫 LLM,", "UI로 신뢰를 증명하다"]}
@@ -65,6 +76,7 @@ export default function EllmCaseStudy({ index }: CaseStudyProps) {
 
       {/* Ellm_03_Summary 1 (126:57665) */}
       <CaseSummary
+        id="summary"
         title="파일럿 데모 후, 6개 고객사 수주"
         rows={[
           {
@@ -111,6 +123,7 @@ export default function EllmCaseStudy({ index }: CaseStudyProps) {
 
       {/* Ellm_04_ why and how (126:56068) */}
       <CaseWhyHow
+        id="why-how"
         title="선례도, 신뢰도 없이 시작했습니다"
         bullets={[
           "사명 변경과 함께 출시한 보안 기업 최초의 사내 sLLM",
@@ -132,6 +145,7 @@ export default function EllmCaseStudy({ index }: CaseStudyProps) {
 
       {/* Ellm_05_UserJourney 1 (126:57609) */}
       <CaseJourney
+        id="user-journey"
         title={["문제는 4개였지만,", "전부 연결되어 있었습니다."]}
         description="사용자가 문서를 만들고 관리자가 운영하는 흐름을 따라, 단계마다 막히는 지점을 찾았습니다."
         steps={[
@@ -160,7 +174,11 @@ export default function EllmCaseStudy({ index }: CaseStudyProps) {
       />
 
       {/* Ellm_06_DeepDive01_프로젝트 탐색 (126:56301) */}
-      <CaseDeepDive title="프로젝트 탐색" subtitle="반복되는 카드 리스트 →  테이블 + 검색, 필터">
+      <CaseDeepDive
+        id="deep-dive"
+        title="프로젝트 탐색"
+        subtitle="반복되는 카드 리스트 →  테이블 + 검색, 필터"
+      >
         <DeepDiveCompare
           label="AS IS"
           text={["프로젝트 카드가 같은 형태로 나열되어 있어, 원하는 프로젝트를 찾기 어려웠습니다."]}
@@ -188,6 +206,7 @@ export default function EllmCaseStudy({ index }: CaseStudyProps) {
 
       {/* Ellm_06_DeepDive02_문서 생성 (126:57131) */}
       <CaseDeepDive
+        id="deep-dive-docgen"
         title="문서 생성"
         subtitle="입력 항목이 아닌 입력 ‘순서’를 재설계"
         tint="tint"
@@ -235,6 +254,7 @@ export default function EllmCaseStudy({ index }: CaseStudyProps) {
 
       {/* Ellm_07_DeepDive03_답변 생성 대기 (126:56943) */}
       <CaseDeepDive
+        id="deep-dive-wait"
         title="답변 생성 대기"
         subtitle="세번의 시도 끝에 기다림을 ‘진행 중인 작업’으로 변경"
         tint="glow"

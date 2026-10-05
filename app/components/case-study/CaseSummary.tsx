@@ -10,15 +10,16 @@ interface SummaryCard {
 }
 
 interface CaseSummaryProps {
+  id?: string;
   title: string;
   /** Problem / Solution / Impact 등. text의 강조 부분은 <strong> */
   rows: { label: string; text: ReactNode }[];
   cards: SummaryCard[];
 }
 
-export function CaseSummary({ title, rows, cards }: CaseSummaryProps) {
+export function CaseSummary({ id, title, rows, cards }: CaseSummaryProps) {
   return (
-    <section className="case-sec case-summary" aria-label="Summary">
+    <section id={id} className="case-sec case-summary" aria-label="Summary">
       <div className="case-summary__text">
         <CaseEyebrow>
           <span className="case-eyebrow__point">Summary</span>

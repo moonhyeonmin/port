@@ -2,7 +2,8 @@ import { data, Link } from "react-router";
 import type { Route } from "./+types/case-study";
 import { pageMeta } from "~/data/meta";
 import { getProject, projects } from "~/data/projects";
-import { caseStudies } from "~/case-studies";
+import { getCaseStudy } from "~/case-studies";
+import { CaseNav } from "~/components/case-study/CaseNav";
 
 // 템플릿의 케이스 스터디 목차
 const sections = ["Overview", "Problem", "Research", "Ideation", "Designs", "Lessons"];
@@ -27,14 +28,19 @@ export const meta: Route.MetaFunction = ({ loaderData }) =>
 export default function CaseStudy({ loaderData }: Route.ComponentProps) {
   const { project, next } = loaderData;
   const index = projects.findIndex((p) => p.slug === project.slug) + 1;
-  const Content = caseStudies[project.slug];
+  const caseStudy = getCaseStudy(project.slug);
 
-  if (Content) {
+  if (caseStudy) {
+    const { Content, nav } = caseStudy;
     return (
-      // Next Project 등 모든 요소는 Figma 디자인대로 Content 안에서 그린다
-      <article className="case-page">
-        <Content index={index} />
-      </article>
+      <>
+        {/* .case-page는 container-type이라 fixed 기준이 바뀌므로 바깥에 둔다 */}
+        <CaseNav items={nav} />
+        {/* Next Project 등 모든 요소는 Figma 디자인대로 Content 안에서 그린다 */}
+        <article className="case-page">
+          <Content index={index} />
+        </article>
+      </>
     );
   }
 

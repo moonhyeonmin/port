@@ -2,6 +2,8 @@ import type { CSSProperties } from "react";
 import { CaseEyebrow } from "./CaseEyebrow";
 
 interface CaseHeroProps {
+  /** 섹션 id (상단 내비게이션 이동용) */
+  id?: string;
   /** "Project N"의 N */
   index: number;
   label: string;
@@ -14,9 +16,9 @@ interface CaseHeroProps {
   cover: { src: string; width: number; height: number; alt: string };
 }
 
-export function CaseHero({ index, label, title, description, tags, cover }: CaseHeroProps) {
+export function CaseHero({ id, index, label, title, description, tags, cover }: CaseHeroProps) {
   return (
-    <header className="case-sec case-hero">
+    <header id={id} className="case-sec case-hero">
       <div className="case-hero__text">
         <CaseEyebrow>
           <span className="case-eyebrow__point">Project {index}</span> - {label}

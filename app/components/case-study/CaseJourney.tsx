@@ -8,6 +8,7 @@ interface JourneyStep {
 }
 
 interface CaseJourneyProps {
+  id?: string;
   /** 줄 단위로 나눈 제목 */
   title: string[];
   description: string;
@@ -33,9 +34,9 @@ function FixTag() {
   );
 }
 
-export function CaseJourney({ title, description, steps, background }: CaseJourneyProps) {
+export function CaseJourney({ id, title, description, steps, background }: CaseJourneyProps) {
   return (
-    <section className="case-journey" aria-label="User Journey">
+    <section id={id} className="case-journey" aria-label="User Journey">
       <img
         className="case-journey__bg"
         src={background.src}

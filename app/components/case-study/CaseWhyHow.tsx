@@ -1,15 +1,16 @@
 import { CaseEyebrow } from "./CaseEyebrow";
 
 interface CaseWhyHowProps {
+  id?: string;
   title: string;
   bullets: string[];
   stats: { value: string; label: string }[];
   figure: { src: string; width: number; height: number; alt: string };
 }
 
-export function CaseWhyHow({ title, bullets, stats, figure }: CaseWhyHowProps) {
+export function CaseWhyHow({ id, title, bullets, stats, figure }: CaseWhyHowProps) {
   return (
-    <section className="case-sec case-why" aria-label="Why & How">
+    <section id={id} className="case-sec case-why" aria-label="Why & How">
       <div className="case-why__text">
         <CaseEyebrow>
           <span className="case-eyebrow__point">Why &amp; How</span>
