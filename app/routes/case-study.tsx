@@ -31,14 +31,9 @@ export default function CaseStudy({ loaderData }: Route.ComponentProps) {
 
   if (Content) {
     return (
+      // Next Project 등 모든 요소는 Figma 디자인대로 Content 안에서 그린다
       <article className="case-page">
         <Content index={index} />
-        <div className="container">
-          <Link to={`/case-studies/${next.slug}`} className="case__next">
-            <span className="eyebrow">Next Project</span>
-            <span>{next.title} →</span>
-          </Link>
-        </div>
       </article>
     );
   }
