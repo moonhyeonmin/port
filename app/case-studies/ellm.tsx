@@ -9,6 +9,7 @@ import {
 import { CaseHero } from "~/components/case-study/CaseHero";
 import { CaseJourney } from "~/components/case-study/CaseJourney";
 import { CaseOverview } from "~/components/case-study/CaseOverview";
+import { CaseRetro } from "~/components/case-study/CaseRetro";
 import { CaseSummary } from "~/components/case-study/CaseSummary";
 import { CaseWhyHow } from "~/components/case-study/CaseWhyHow";
 import type { CaseNavItem } from "~/components/case-study/CaseNav";
@@ -25,10 +26,11 @@ export const ellmNav: CaseNavItem[] = [
     label: "Deep Dive",
     also: ["deep-dive-docgen", "deep-dive-wait", "deep-dive-admin"],
   },
+  { id: "retrospective", label: "Retrospective" },
 ];
 
 // Figma: 2wduPMxRCf5SwSUCNYqvbl / "framer 이전용" (125:55403)
-export default function EllmCaseStudy({ index }: CaseStudyProps) {
+export default function EllmCaseStudy({ index, nextSlug }: CaseStudyProps) {
   return (
     <>
       {/* Ellm_01_Hero (126:55427) */}
@@ -365,6 +367,35 @@ export default function EllmCaseStudy({ index }: CaseStudyProps) {
           }}
         />
       </CaseDeepDive>
+
+      {/* Ellm_09_회고 및 정리 (126:56881) */}
+      <CaseRetro
+        id="retrospective"
+        title="결과 및 회고"
+        stats={[
+          { value: "6개사", caption: ["파일럿 데모 후", "신규 고객사 수주"] },
+          { value: "42%", caption: ["Wizard 적용 후 문서 생성", "리드타임 단축"] },
+          {
+            value: (
+              <>
+                4.2<small>/5.0</small>
+              </>
+            ),
+            caption: ["AI 응답 시각화 후", "베타 신뢰도 (98명 대상)"],
+          },
+          { value: "90%", caption: ["영업 데모 시", "고객 반응 성공률"] },
+        ]}
+        retro={{
+          label: "회고",
+          lines: [
+            "대화형 UI를 과신했다가, 보안 도메인의 ‘검증 가능성’ 요구를 뒤늦게 깨달았습니다.",
+            "다음 제품에서는 착수 전에 신뢰 요구 수준부터 정의하기로 했습니다.",
+            "",
+          ],
+          highlight: "→ 이 다짐이 다음 프로젝트인 멀티 AI 워크스페이스 신제품의 출발점이 됩니다.",
+        }}
+        next={{ to: `/case-studies/${nextSlug}`, title: "멀티 AI 워크스페이스 신제품 설계" }}
+      />
     </>
   );
 }

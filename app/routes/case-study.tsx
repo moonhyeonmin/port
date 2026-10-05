@@ -38,7 +38,7 @@ export default function CaseStudy({ loaderData }: Route.ComponentProps) {
         <CaseNav items={nav} />
         {/* Next Project 등 모든 요소는 Figma 디자인대로 Content 안에서 그린다 */}
         <article className="case-page">
-          <Content index={index} />
+          <Content index={index} nextSlug={next.slug} />
         </article>
       </>
     );

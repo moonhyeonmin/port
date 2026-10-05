@@ -5,6 +5,8 @@ import EllmCaseStudy, { ellmNav } from "./ellm";
 export interface CaseStudyProps {
   /** "Project N"의 N (1부터 시작) */
   index: number;
+  /** 다음 프로젝트 slug (Next Project 링크) */
+  nextSlug: string;
 }
 
 export interface CaseStudyEntry {
