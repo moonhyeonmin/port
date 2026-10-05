@@ -1,3 +1,4 @@
+import { CountUp } from "~/components/CountUp";
 import {
   CaseDeepDive,
   DeepDiveCompare,
@@ -114,13 +115,36 @@ export default function EllmCaseStudy({ index, nextSlug }: CaseStudyProps) {
           },
         ]}
         cards={[
-          { value: "6개사", detail: ["파일럿 데모 후", "신규 고개사 수주"], accent: true },
-          { value: "68%↓", detail: ["답변 대기 중", "이탈률"] },
-          { value: "42%↓", detail: ["문서 생성", "리드타임 (사내 QA)"] },
           {
             value: (
               <>
-                4.2<small>/5.0</small>
+                <CountUp to={6} />개사
+              </>
+            ),
+            detail: ["파일럿 데모 후", "신규 고개사 수주"],
+            accent: true,
+          },
+          {
+            value: (
+              <>
+                <CountUp to={68} />%↓
+              </>
+            ),
+            detail: ["답변 대기 중", "이탈률"],
+          },
+          {
+            value: (
+              <>
+                <CountUp to={42} />%↓
+              </>
+            ),
+            detail: ["문서 생성", "리드타임 (사내 QA)"],
+          },
+          {
+            value: (
+              <>
+                <CountUp to={4.2} decimals={1} />
+                <small>/5.0</small>
               </>
             ),
             detail: ["베타 사용자 신뢰도", "(98명)"],
@@ -245,7 +269,14 @@ export default function EllmCaseStudy({ index, nextSlug }: CaseStudyProps) {
         />
         <DeepDiveCompare
           label="TO BE"
-          lead={<DeepDiveStat value="42%" caption="문서 생성 리드타임 단축, 답변 품질 향상" />}
+          lead={<DeepDiveStat
+              value={
+                <>
+                  <CountUp to={42} />%
+                </>
+              }
+              caption="문서 생성 리드타임 단축, 답변 품질 향상"
+            />}
           text={[
             "3단계 Wizard 형태를 도입하여 필수가 아닌 항목은 뒤에서 건너뛸 수 있도록 구성했습니다.",
             "흩어져 있던 인력 과정을 구조화해 속도와 답변 품질을 함께 높혔습니다. (사내 QA 기준)",
@@ -307,7 +338,7 @@ export default function EllmCaseStudy({ index, nextSlug }: CaseStudyProps) {
             <DeepDiveStat
               value={
                 <>
-                  68%<span className="case-deep__stat-arrow">↓</span>
+                  <CountUp to={68} />%<span className="case-deep__stat-arrow">↓</span>
                 </>
               }
               caption="답변 대기 중 이탈률 하락"
@@ -373,17 +404,39 @@ export default function EllmCaseStudy({ index, nextSlug }: CaseStudyProps) {
         id="retrospective"
         title="결과 및 회고"
         stats={[
-          { value: "6개사", caption: ["파일럿 데모 후", "신규 고객사 수주"] },
-          { value: "42%", caption: ["Wizard 적용 후 문서 생성", "리드타임 단축"] },
           {
             value: (
               <>
-                4.2<small>/5.0</small>
+                <CountUp to={6} />개사
+              </>
+            ),
+            caption: ["파일럿 데모 후", "신규 고객사 수주"],
+          },
+          {
+            value: (
+              <>
+                <CountUp to={42} />%
+              </>
+            ),
+            caption: ["Wizard 적용 후 문서 생성", "리드타임 단축"],
+          },
+          {
+            value: (
+              <>
+                <CountUp to={4.2} decimals={1} />
+                <small>/5.0</small>
               </>
             ),
             caption: ["AI 응답 시각화 후", "베타 신뢰도 (98명 대상)"],
           },
-          { value: "90%", caption: ["영업 데모 시", "고객 반응 성공률"] },
+          {
+            value: (
+              <>
+                <CountUp to={90} />%
+              </>
+            ),
+            caption: ["영업 데모 시", "고객 반응 성공률"],
+          },
         ]}
         retro={{
           label: "회고",

@@ -128,6 +128,17 @@ Figma 파일 `2wduPMxRCf5SwSUCNYqvbl`, 캔버스 **"framer 이전용"** (node `1
   - 스크롤 위치에 따라 현재 섹션을 강조한다. `.case-page`가 `container-type`이라 fixed 기준이 바뀌므로 `CaseNav`는 `.case-page` 바깥에 렌더링한다.
 - 디자인이 있는 페이지는 라우트에서 TOC나 Next 카드를 덧붙이지 않는다. Next Project도 09 섹션 디자인대로 그린다.
 
+## 인터랙션
+
+과하지 않게, 화면에 들어올 때 한 번만 짧게 움직인다. `prefers-reduced-motion: reduce`이면 모두 끈다.
+
+- **등장(Reveal)**: `app/hooks/useReveal.ts`의 `REVEAL_SELECTOR` 요소가 화면 진입 시 16px 아래에서 나타난다. 같이 들어온 요소는 80ms 간격(최대 400ms)으로 순서대로 나타난다.
+  - 첫 페인트 전에 숨기려고 `root.tsx`의 `<head>` 스크립트가 `<html>`에 `.js`를 붙이고, `global.css` "Reveal" 블록이 같은 선택자로 숨긴다. **선택자를 바꾸면 두 곳을 함께 수정한다.**
+  - 홈(`home.tsx`)과 케이스 스터디(`case-study.tsx`)에서 `useReveal()`을 호출한다.
+- **숫자 카운트업**: `app/components/CountUp.tsx`. 미리 렌더링된 HTML에는 최종 숫자가 들어가고, 최종 숫자 폭으로 자리를 고정해 옆 글자가 흔들리지 않는다.
+- **상단 내비 알약**: `CaseNav`의 `.case-nav__indicator`가 현재 항목으로 미끄러지듯 이동한다.
+- **홈 카드 호버**: 카드 테두리는 그대로 두고 안의 이미지만 1.03배 확대한다.
+
 ## 컨벤션
 
 - UI 텍스트와 코드 주석은 한국어로 쓴다.

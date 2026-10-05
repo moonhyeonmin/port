@@ -3,10 +3,12 @@ import { ProjectCard } from "~/components/ProjectCard";
 import { pageMeta } from "~/data/meta";
 import { projects } from "~/data/projects";
 import { site } from "~/data/site";
+import { useReveal } from "~/hooks/useReveal";
 
 export const meta: Route.MetaFunction = () => pageMeta({});
 
 export default function Home() {
+  useReveal();
   return (
     <>
       <section className="hero">

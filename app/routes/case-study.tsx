@@ -4,6 +4,7 @@ import { pageMeta } from "~/data/meta";
 import { getProject, projects } from "~/data/projects";
 import { getCaseStudy } from "~/case-studies";
 import { CaseNav } from "~/components/case-study/CaseNav";
+import { useReveal } from "~/hooks/useReveal";
 
 // 템플릿의 케이스 스터디 목차
 const sections = ["Overview", "Problem", "Research", "Ideation", "Designs", "Lessons"];
@@ -29,6 +30,7 @@ export default function CaseStudy({ loaderData }: Route.ComponentProps) {
   const { project, next } = loaderData;
   const index = projects.findIndex((p) => p.slug === project.slug) + 1;
   const caseStudy = getCaseStudy(project.slug);
+  useReveal();
 
   if (caseStudy) {
     const { Content, nav } = caseStudy;

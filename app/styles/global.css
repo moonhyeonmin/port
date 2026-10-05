@@ -152,8 +152,14 @@ img, video { display: block; max-width: 100%; }
   overflow: hidden;
   transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-.card:hover .card__media { transform: scale(0.985); }
-.card__media img, .card__media video { width: 100%; height: 100%; object-fit: cover; }
+.card__media img, .card__media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+/* 카드 테두리는 그대로, 안의 이미지만 살짝 확대 */
+.card:hover .card__media img, .card:hover .card__media video { transform: scale(1.03); }
 .card__meta { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
 .card__title { font-size: var(--fs-lg); }
 
@@ -268,7 +274,20 @@ img, video { display: block; max-width: 100%; }
   transition: color 0.2s, background-color 0.2s;
 }
 .case-nav__link:hover { color: var(--color-text); }
-.case-nav__link.is-active { color: var(--color-text); background: #fafafa; }
+.case-nav__link.is-active { color: var(--color-text); }
+/* 현재 섹션 알약: JS 전에는 링크 배경, JS 후에는 항목 사이를 미끄러지는 indicator */
+.case-nav__list { position: relative; }
+.case-nav__list:not(.has-indicator) .case-nav__link.is-active { background: #fafafa; }
+.case-nav__link { position: relative; z-index: 1; }
+.case-nav__indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: #fafafa;
+  border-radius: 16px;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), width 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
 /* 떠 있는 헤더(top 40 + 높이 45)와 첫 섹션이 붙지 않도록 */
 .case-page { padding-top: 40px; }
 .case-page [id] { scroll-margin-top: 40px; }
@@ -1080,6 +1099,34 @@ img, video { display: block; max-width: 100%; }
   .case-journey__pain { font-size: 15px; line-height: 1.6; text-align: left; }
   .case-journey__fix { font-size: 15px; line-height: 1.6; }
   .case-journey__fix strong { display: block; font-size: 20px; line-height: 1.4; }
+}
+
+/* ─── 숫자 카운트업: 최종 숫자 폭으로 자리를 고정 ─── */
+.countup { display: inline-grid; }
+.countup > * { grid-area: 1 / 1; }
+.countup__ghost { visibility: hidden; }
+.countup__live { justify-self: end; }
+
+/* ─── Reveal: 화면 진입 시 한 번 올라오며 나타남 (app/hooks/useReveal.ts와 선택자 동기화) ─── */
+@media (prefers-reduced-motion: no-preference) {
+  .js :is(
+    .cases .card,
+    .case-page .case-eyebrow, .case-page .case-h2, .case-hero__heading > *, .case-hero__tags, .case-hero__cover,
+    .case-overview__item, .case-summary__row, .case-summary__card, .case-deep__subtitle,
+    .case-why__bullets, .case-why__stat, .case-why__figure,
+    .case-journey__desc, .case-journey__head, .case-journey__row,
+    .case-deep__plain, .case-deep__row, .case-deep__stat, .case-deep__trial,
+    .case-deep__priority-title, .case-deep__priority-row, .case-deep__figure,
+    .case-retro__stat, .case-retro__note, .case-retro__next
+  ) {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) var(--reveal-delay, 0ms),
+      transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) var(--reveal-delay, 0ms);
+  }
+  /* 위 숨김 규칙(.js + :is 최대 0,3,0)보다 우선하도록 클래스 반복 */
+  html.js .is-revealed.is-revealed.is-revealed { opacity: 1; transform: none; }
 }
 
 /* ─── Simple pages ─── */

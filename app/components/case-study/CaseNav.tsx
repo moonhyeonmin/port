@@ -13,6 +13,7 @@ export interface CaseNavItem {
 export function CaseNav({ items }: { items: CaseNavItem[] }) {
   const [active, setActive] = useState(items[0]?.id);
   const listRef = useRef<HTMLDivElement>(null);
+  const indicatorRef = useRef<HTMLSpanElement>(null);
 
   // 스크롤 위치로 현재 섹션 찾기: 화면 위쪽 35% 지점을 지난 마지막 섹션
   useEffect(() => {
@@ -42,6 +43,33 @@ export function CaseNav({ items }: { items: CaseNavItem[] }) {
     };
   }, [items]);
 
+  // 현재 항목 아래로 알약(indicator)을 미끄러지듯 이동
+  useEffect(() => {
+    const list = listRef.current;
+    const indicator = indicatorRef.current;
+    if (!list || !indicator) return;
+    const place = () => {
+      const el = list.querySelector<HTMLElement>(`[data-id="${active}"]`);
+      if (!el) return;
+      indicator.style.width = `${el.offsetWidth}px`;
+      indicator.style.transform = `translateX(${el.offsetLeft}px)`;
+    };
+    // 첫 배치는 애니메이션 없이 바로 제자리에
+    if (!list.classList.contains("has-indicator")) {
+      indicator.style.transition = "none";
+      place();
+      void indicator.offsetWidth;
+      indicator.style.transition = "";
+      list.classList.add("has-indicator");
+    } else {
+      place();
+    }
+    // 웹폰트가 늦게 적용되면 항목 폭이 바뀌므로 다시 계산
+    document.fonts?.ready.then(place);
+    window.addEventListener("resize", place);
+    return () => window.removeEventListener("resize", place);
+  }, [active]);
+
   // 모바일 가로 스크롤 목록에서 현재 항목이 보이도록
   useEffect(() => {
     const list = listRef.current;
@@ -66,6 +94,7 @@ export function CaseNav({ items }: { items: CaseNavItem[] }) {
       </Link>
       <span className="case-nav__divider" aria-hidden />
       <div className="case-nav__list" ref={listRef}>
+        <span className="case-nav__indicator" ref={indicatorRef} aria-hidden />
         {items.map(({ id, label }) => (
           <a
             key={id}
