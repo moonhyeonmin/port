@@ -35,10 +35,11 @@ export const REVEAL_SELECTOR = [
   ".case-retro__next",
 ].join(", ");
 
-const STAGGER_MS = 120;
-const MAX_DELAY_MS = 600;
-/** 페이지 첫 화면(처음 보이는 요소들)은 더 천천히: 시작 전 여유 + 긴 시간 + 넓은 간격 */
-const FIRST = { baseMs: 200, staggerMs: 180, maxDelayMs: 1100, durationMs: 1200 };
+/** 등장 시간은 global.css의 --reveal-duration 기본값(1.2s)과 같게 유지 */
+const STAGGER_MS = 180;
+const MAX_DELAY_MS = 1100;
+/** 페이지 첫 화면(처음 보이는 요소들)은 시작 전에 잠깐 여유를 둔다 */
+const FIRST_LEAD_MS = 200;
 
 /** 페이지의 REVEAL_SELECTOR 요소를 화면 진입 시 한 번씩 나타나게 한다 */
 export function useReveal() {
@@ -64,11 +65,8 @@ export function useReveal() {
         const first = firstBatch;
         firstBatch = false;
         entering.forEach((el, i) => {
-          const delay = first
-            ? FIRST.baseMs + Math.min(i * FIRST.staggerMs, FIRST.maxDelayMs)
-            : Math.min(i * STAGGER_MS, MAX_DELAY_MS);
+          const delay = (first ? FIRST_LEAD_MS : 0) + Math.min(i * STAGGER_MS, MAX_DELAY_MS);
           el.style.setProperty("--reveal-delay", `${delay}ms`);
-          if (first) el.style.setProperty("--reveal-duration", `${FIRST.durationMs}ms`);
           el.classList.add("is-revealed");
           observer.unobserve(el);
         });

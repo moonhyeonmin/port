@@ -15,7 +15,7 @@ const format = (n: number, decimals: number) => n.toFixed(decimals);
  * 화면에 들어오면 0에서 to까지 올라가는 숫자.
  * 미리 렌더링된 HTML에는 최종 숫자가 들어가고, 폭은 최종 숫자 기준으로 고정해 옆 글자가 흔들리지 않는다.
  */
-export function CountUp({ to, decimals = 0, duration = 1600 }: CountUpProps) {
+export function CountUp({ to, decimals = 0, duration = 2000 }: CountUpProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const [value, setValue] = useState(to);
 
