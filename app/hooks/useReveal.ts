@@ -35,8 +35,8 @@ export const REVEAL_SELECTOR = [
   ".case-retro__next",
 ].join(", ");
 
-const STAGGER_MS = 80;
-const MAX_DELAY_MS = 400;
+const STAGGER_MS = 120;
+const MAX_DELAY_MS = 600;
 
 /** 페이지의 REVEAL_SELECTOR 요소를 화면 진입 시 한 번씩 나타나게 한다 */
 export function useReveal() {
