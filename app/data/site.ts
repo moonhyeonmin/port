@@ -7,5 +7,5 @@ export const site = {
   heroTitle: ["복잡한 AI를", "믿고 쓰는 경험으로."],
   email: "hello@example.com",
   callUrl: "https://cal.com",
-  url: "https://josuyeon.vercel.app",
+  url: "https://port-five-peach-95.vercel.app",
 };
