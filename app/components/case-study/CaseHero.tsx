@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import { CaseEyebrow } from "./CaseEyebrow";
 
 interface CaseHeroProps {
   /** "Project N"의 N */
@@ -17,14 +18,9 @@ export function CaseHero({ index, label, title, description, tags, cover }: Case
   return (
     <header className="case-sec case-hero">
       <div className="case-hero__text">
-        <p className="case-hero__label">
-          <span className="case-hero__icon" aria-hidden>
-            <img src="/icons/star.svg" alt="" width={29.682} height={29.669} />
-          </span>
-          <span>
-            <span className="case-hero__index">Project {index}</span> - {label}
-          </span>
-        </p>
+        <CaseEyebrow>
+          <span className="case-eyebrow__point">Project {index}</span> - {label}
+        </CaseEyebrow>
 
         <div className="case-hero__heading">
           <h1 className="case-hero__title">

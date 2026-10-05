@@ -218,9 +218,9 @@ img, video { display: block; max-width: 100%; }
 
 /* ─── Case study: 디자인이 있는 프로젝트 ─── */
 /*
- * Figma 섹션 프레임은 2160px 기준 (1280px 프레임은 정확히 1280/2160 축소본).
- * --u = 디자인 1px. 화면 너비에 비례하고 2160px 이상에서는 1px로 고정.
- * 값은 Figma 수치를 그대로 곱해서 쓴다: calc(var(--u) * 90)
+ * 데스크톱은 Figma 2160px 프레임 비율 그대로 (1280px 프레임은 정확히 1280/2160 축소본).
+ * --u = 디자인 1px. 값은 Figma 2160 기준 수치를 곱해서 쓴다: calc(var(--u) * 90)
+ * 태블릿/모바일은 Figma 시안이 없어 크기·배치를 읽기 좋게 조정 (글자·이미지·색은 그대로).
  */
 .case-page {
   container-type: inline-size;
@@ -228,12 +228,39 @@ img, video { display: block; max-width: 100%; }
   font-family: var(--font-kr);
   color: var(--color-ink);
 }
-.case-page > * { --u: min(100cqw / 2160, 1px); }
+/* 태블릿에서 글자가 너무 작아지지 않도록 0.6px 하한 */
+.case-page > * { --u: clamp(0.6px, 100cqw / 2160, 1px); }
 .case-sec {
   max-width: 2160px;
   margin-inline: auto;
   padding-inline: calc(var(--u) * 298);
 }
+.case-page h1, .case-page h2, .case-page h3 { letter-spacing: 0; }
+.case-page strong { font-weight: 600; }
+
+/* 섹션 라벨: 별 아이콘 + 텍스트 */
+.case-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--u) * 8);
+  font-size: calc(var(--u) * 32);
+  font-weight: 400;
+  line-height: normal;
+}
+.case-eyebrow__icon {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: calc(var(--u) * 40);
+  height: calc(var(--u) * 40);
+}
+.case-eyebrow__icon img {
+  width: calc(var(--u) * 29.682);
+  height: calc(var(--u) * 29.669);
+  transform: rotate(-62.6deg);
+}
+.case-eyebrow__point { color: var(--color-point); }
 
 /* 01 Hero (126:55427) */
 .case-hero {
@@ -243,34 +270,11 @@ img, video { display: block; max-width: 100%; }
   padding-block: calc(var(--u) * 168) calc(var(--u) * 33);
 }
 .case-hero__text { display: flex; flex-direction: column; align-items: flex-start; gap: calc(var(--u) * 40); }
-.case-hero__label {
-  display: flex;
-  align-items: center;
-  gap: calc(var(--u) * 8);
-  font-size: calc(var(--u) * 32);
-  font-weight: 400;
-  line-height: normal;
-}
-.case-hero__icon {
-  display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  width: calc(var(--u) * 40);
-  height: calc(var(--u) * 40);
-}
-.case-hero__icon img {
-  width: calc(var(--u) * 29.682);
-  height: calc(var(--u) * 29.669);
-  transform: rotate(-62.6deg);
-}
-.case-hero__index { color: var(--color-point); }
 .case-hero__heading { display: flex; flex-direction: column; gap: calc(var(--u) * 20); }
 .case-hero__title {
   font-size: calc(var(--u) * 90);
   font-weight: 600;
   line-height: calc(var(--u) * 126);
-  letter-spacing: 0;
 }
 .case-hero__title span, .case-hero__desc span { display: block; }
 .case-hero__desc {
@@ -329,19 +333,109 @@ img, video { display: block; max-width: 100%; }
   gap: calc(var(--u) * var(--gap));
   width: calc(var(--u) * var(--w));
 }
-.case-overview__title { font-size: calc(var(--u) * 30); font-weight: 600; letter-spacing: 0; }
+.case-overview__title { font-size: calc(var(--u) * 30); font-weight: 600; }
 .case-overview__body { color: var(--color-gray); }
 .case-overview__body span { display: block; }
 
-/* 모바일: Figma 시안 없음. 임시 레이아웃 */
+/* 03 Summary (126:57665) */
+.case-summary {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 103);
+  padding-block: calc(var(--u) * 120);
+}
+.case-summary__text { display: flex; flex-direction: column; align-items: flex-start; gap: calc(var(--u) * 40); }
+.case-summary__heading { display: flex; flex-direction: column; gap: calc(var(--u) * 20); }
+.case-summary__title {
+  font-size: calc(var(--u) * 70);
+  font-weight: 600;
+  line-height: calc(var(--u) * 126);
+}
+.case-summary__rows {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 20);
+  margin: 0;
+  font-size: calc(var(--u) * 30);
+  line-height: calc(var(--u) * 50);
+}
+.case-summary__row { display: flex; align-items: flex-end; }
+.case-summary__row dt { flex-shrink: 0; width: calc(var(--u) * 235); font-weight: 600; color: #3182f6; }
+.case-summary__row dd { margin: 0; max-width: calc(var(--u) * 1213); font-weight: 400; color: var(--color-gray); }
+.case-summary__row strong { color: #181818; }
+.case-summary__cards {
+  display: flex;
+  gap: calc(var(--u) * 39);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.case-summary__card {
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  justify-content: center;
+  width: calc(var(--u) * 362);
+  height: calc(var(--u) * 282);
+  padding: calc(var(--u) * 60) calc(var(--u) * 40) calc(var(--u) * 40);
+  overflow: hidden;
+  border-radius: calc(var(--u) * 8);
+  background-image: linear-gradient(139.485deg, rgb(245, 246, 248) 29.497%, rgb(218, 221, 227) 25.615%, rgb(245, 246, 248) 30.031%, rgb(255, 255, 255) 78.139%, rgb(245, 246, 248) 99.912%);
+}
+.case-summary__card:nth-child(2) {
+  background-image: linear-gradient(135.626deg, rgb(245, 246, 248) 0%, rgb(218, 221, 227) 3%, rgb(245, 246, 248) 46%, rgb(255, 255, 255) 55%, rgb(245, 246, 248) 100%);
+}
+.case-summary__card.is-accent {
+  padding-top: calc(var(--u) * 54);
+  background-image: linear-gradient(150.812deg, rgb(12, 108, 255) 0%, rgb(83, 172, 254) 46.635%, rgb(193, 222, 255) 66.686%);
+}
+.case-summary__value {
+  display: flex;
+  align-items: center;
+  height: calc(var(--u) * 78);
+  margin-bottom: calc(var(--u) * 20);
+  font-size: calc(var(--u) * 70);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: calc(var(--u) * -0.96);
+  color: #191919;
+}
+.case-summary__value small { font-size: 0.5em; }
+.case-summary__detail {
+  font-size: calc(var(--u) * 28);
+  font-weight: 600;
+  line-height: calc(var(--u) * 40);
+  letter-spacing: calc(var(--u) * -0.2);
+  white-space: nowrap;
+  color: #6d6d6d;
+}
+.case-summary__detail span { display: block; }
+.case-summary__card.is-accent .case-summary__value,
+.case-summary__card.is-accent .case-summary__detail { color: #fff; }
+
+/* 태블릿: 여백을 줄이고 가로로 긴 배치를 2열로 */
+@media (max-width: 1279.98px) {
+  .case-sec { padding-inline: 48px; }
+  .case-overview {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 40px 48px;
+  }
+  .case-overview__item { width: auto; }
+  .case-summary__cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+  .case-summary__card { width: auto; }
+}
+
+/* 모바일 */
 @media (max-width: 809.98px) {
   .case-page { word-break: keep-all; }
   .case-sec { padding-inline: var(--gutter); }
+  .case-eyebrow { gap: 6px; font-size: 16px; }
+  .case-eyebrow__icon { width: 22px; height: 22px; }
+  .case-eyebrow__icon img { width: 16px; height: 16px; }
+
   .case-hero { gap: 40px; padding-block: 48px 24px; }
   .case-hero__text { gap: 20px; }
-  .case-hero__label { gap: 6px; font-size: 16px; }
-  .case-hero__icon { width: 22px; height: 22px; }
-  .case-hero__icon img { width: 16px; height: 16px; }
   .case-hero__heading { gap: 12px; }
   .case-hero__title { font-size: 34px; line-height: 1.4; }
   .case-hero__desc { font-size: 16px; line-height: 1.6; }
@@ -350,16 +444,22 @@ img, video { display: block; max-width: 100%; }
   .case-hero__tags { gap: 8px; }
   .case-hero__tags li { width: auto; height: auto; padding-top: 0; }
   .case-hero__tag { width: auto; height: 34px; padding-inline: 16px; font-size: 13px; line-height: 1; box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.15); border-radius: 50px; }
-  .case-overview {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 32px 16px;
-    padding-block: 40px;
-    font-size: 15px;
-    line-height: 1.7;
-  }
-  .case-overview__item { gap: 8px; width: auto; }
+
+  .case-overview { gap: 32px 16px; padding-block: 40px; font-size: 15px; line-height: 1.7; }
+  .case-overview__item { gap: 8px; }
   .case-overview__title { font-size: 17px; }
+
+  .case-summary { gap: 40px; padding-block: 56px; }
+  .case-summary__text { gap: 16px; }
+  .case-summary__heading { gap: 16px; }
+  .case-summary__title { font-size: 26px; line-height: 1.4; }
+  .case-summary__rows { gap: 14px; font-size: 15px; line-height: 1.6; }
+  .case-summary__row { flex-direction: column; align-items: flex-start; gap: 2px; }
+  .case-summary__row dt { width: auto; }
+  .case-summary__cards { gap: 12px; }
+  .case-summary__card, .case-summary__card.is-accent { height: auto; min-height: 150px; padding: 24px 18px; border-radius: 8px; }
+  .case-summary__value { height: auto; margin-bottom: 10px; font-size: 34px; letter-spacing: -0.02em; }
+  .case-summary__detail { font-size: 14px; line-height: 1.5; letter-spacing: 0; white-space: normal; }
 }
 
 /* ─── Simple pages ─── */
