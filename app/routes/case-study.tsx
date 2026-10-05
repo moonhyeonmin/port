@@ -2,6 +2,7 @@ import { data, Link } from "react-router";
 import type { Route } from "./+types/case-study";
 import { pageMeta } from "~/data/meta";
 import { getProject, projects } from "~/data/projects";
+import { caseStudies } from "~/case-studies";
 
 // 템플릿의 케이스 스터디 목차
 const sections = ["Overview", "Problem", "Research", "Ideation", "Designs", "Lessons"];
@@ -25,6 +26,22 @@ export const meta: Route.MetaFunction = ({ loaderData }) =>
 
 export default function CaseStudy({ loaderData }: Route.ComponentProps) {
   const { project, next } = loaderData;
+  const index = projects.findIndex((p) => p.slug === project.slug) + 1;
+  const Content = caseStudies[project.slug];
+
+  if (Content) {
+    return (
+      <article className="case-page">
+        <Content index={index} />
+        <div className="container">
+          <Link to={`/case-studies/${next.slug}`} className="case__next">
+            <span className="eyebrow">Next Project</span>
+            <span>{next.title} →</span>
+          </Link>
+        </div>
+      </article>
+    );
+  }
 
   return (
     <article className="container case">
@@ -38,7 +55,7 @@ export default function CaseStudy({ loaderData }: Route.ComponentProps) {
 
       <div className="case__body">
         <header className="case__header">
-          <p className="eyebrow">Project {projects.indexOf(project) + 1}</p>
+          <p className="eyebrow">Project {index}</p>
           <h1 className="case__title">{project.title}</h1>
           <p className="muted">{project.summary}</p>
           <div className="tags">
