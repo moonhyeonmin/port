@@ -1,0 +1,32 @@
+import type { Route } from "./+types/home";
+import { ProjectCard } from "~/components/ProjectCard";
+import { pageMeta } from "~/data/meta";
+import { projects } from "~/data/projects";
+import { site } from "~/data/site";
+
+export const meta: Route.MetaFunction = () => pageMeta({});
+
+export default function Home() {
+  return (
+    <>
+      <section className="hero">
+        <div className="hero__sky" aria-hidden />
+        <div className="container hero__inner">
+          <div className="hero__photo" aria-hidden />
+          <h1 className="hero__title">
+            {site.heroTitle.map((line) => (
+              <span key={line}>{line}</span>
+            ))}
+          </h1>
+          <p className="hero__desc muted">{site.intro}</p>
+        </div>
+      </section>
+
+      <section className="container cases" aria-label="Case Studies">
+        {projects.map((project) => (
+          <ProjectCard key={project.slug} project={project} />
+        ))}
+      </section>
+    </>
+  );
+}
