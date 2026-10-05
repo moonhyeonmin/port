@@ -481,9 +481,7 @@ img, video { display: block; max-width: 100%; }
   padding: calc(var(--u) * 60) calc(var(--u) * 40) calc(var(--u) * 40);
   overflow: hidden;
   border-radius: calc(var(--u) * 8);
-  background-image: linear-gradient(139.485deg, rgb(245, 246, 248) 29.497%, rgb(218, 221, 227) 25.615%, rgb(245, 246, 248) 30.031%, rgb(255, 255, 255) 78.139%, rgb(245, 246, 248) 99.912%);
-}
-.case-summary__card:nth-child(2) {
+  /* 회색 카드는 모두 두 번째 카드(68%↓) 그라디언트로 통일 (사용자 요청, Figma 3·4번 카드 값과 다름) */
   background-image: linear-gradient(135.626deg, rgb(245, 246, 248) 0%, rgb(218, 221, 227) 3%, rgb(245, 246, 248) 46%, rgb(255, 255, 255) 55%, rgb(245, 246, 248) 100%);
 }
 .case-summary__card.is-accent {
@@ -1040,6 +1038,13 @@ img, video { display: block; max-width: 100%; }
   .case-deep__trial { border-radius: 12px; }
   .case-deep.has-glow::before { height: 260px; }
   .case-deep__figure.has-overlay { display: flex; flex-direction: column; gap: 12px; }
+  /* 가로로 긴 그림은 모바일에서 핵심 부분만 잘라 크게 (mobileCrop) */
+  .case-deep__figure.has-mobile-crop img {
+    aspect-ratio: var(--m-aspect);
+    object-fit: cover;
+    object-position: var(--m-pos) center;
+    border-radius: 12px;
+  }
 
   .case-retro__inner { padding-block: 56px 64px; }
   .case-retro__text { gap: 16px; }

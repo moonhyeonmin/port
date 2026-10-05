@@ -374,6 +374,8 @@ export default function EllmCaseStudy({ index, nextSlug }: CaseStudyProps) {
             height: 441,
             alt: "개선 전: 정리되지 않은 vllm 지표 이름이 길게 나열된 목록",
           }}
+          // 왼쪽은 사양서 카드가 겹치는 빈 영역이라 모바일에서는 지표 목록 부분만
+          mobileCrop={{ aspect: "1 / 1", x: "69.5%" }}
           overlay={
             <DeepDiveSpecCard
               title="[개발 사양서]"

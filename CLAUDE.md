@@ -126,6 +126,8 @@ Figma 파일 `2wduPMxRCf5SwSUCNYqvbl`, 캔버스 **"framer 이전용"** (node `1
 - **상단 섹션 내비게이션 `CaseNav`**: 디자인이 있는 케이스 스터디에서는 기본 탭(Projects/About/Resume) 대신 표시한다. 스타일은 https://josuyeon.framer.website/case-studies/ellm 헤더를 참고했다.
   - 항목은 `app/case-studies/<slug>.tsx`의 nav 배열(예: `ellmNav`)에서 `{ id, label, also? }`로 정의하고, 섹션 컴포넌트에 같은 `id`를 넘긴다. 새 섹션을 만들면 여기에 항목도 추가한다.
   - 스크롤 위치에 따라 현재 섹션을 강조한다. `.case-page`가 `container-type`이라 fixed 기준이 바뀌므로 `CaseNav`는 `.case-page` 바깥에 렌더링한다.
+- 가로로 아주 긴 그림은 모바일에서 `DeepDiveCompare`의 `mobileCrop={{ aspect, x }}`로 핵심 부분만 잘라 크게 보여 준다 (예: 관리자 AS IS 지표 목록).
+- 사용자 요청으로 Figma와 다르게 바꾼 것: Summary 회색 카드 3개는 모두 두 번째 카드(68%↓) 그라디언트를 쓴다 (Figma 3·4번 카드 그라디언트는 색 지점이 뒤섞여 대각선 줄무늬가 생김).
 - 디자인이 있는 페이지는 라우트에서 TOC나 Next 카드를 덧붙이지 않는다. Next Project도 09 섹션 디자인대로 그린다.
 
 ## 인터랙션

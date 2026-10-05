@@ -60,6 +60,8 @@ interface DeepDiveCompareProps {
   labelGap?: number;
   /** 그림 위에 겹치는 요소 (예: DeepDiveSpecCard) */
   overlay?: ReactNode;
+  /** 모바일에서 그림을 잘라 보여줄 비율과 가로 위치 (예: { aspect: "1 / 1", x: "72%" }) */
+  mobileCrop?: { aspect: string; x: string };
 }
 
 /** AS IS / TO BE 설명 한 줄 + 화면 그림 */
@@ -71,6 +73,7 @@ export function DeepDiveCompare({
   labelNode,
   labelGap = 0,
   overlay,
+  mobileCrop,
 }: DeepDiveCompareProps) {
   const row = (
     <p className="case-deep__row" style={{ "--label-gap": labelGap } as CSSProperties}>
@@ -95,7 +98,14 @@ export function DeepDiveCompare({
       ) : (
         row
       )}
-      <figure className={`case-deep__figure${overlay ? " has-overlay" : ""}`}>
+      <figure
+        className={`case-deep__figure${overlay ? " has-overlay" : ""}${mobileCrop ? " has-mobile-crop" : ""}`}
+        style={
+          mobileCrop
+            ? ({ "--m-aspect": mobileCrop.aspect, "--m-pos": mobileCrop.x } as CSSProperties)
+            : undefined
+        }
+      >
         <img
           src={figure.src}
           width={figure.width}
