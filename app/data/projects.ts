@@ -20,7 +20,7 @@ export const projects: Project[] = [
     summary:
       "보안 기업 최초의 사내 sLLM, 참고할 선례 없이 사용자와 관리자 경험을 처음부터 설계했습니다.",
     tone: "violet",
-    // 케이스 스터디 Hero 커버(cover.png)의 가운데를 4:3으로 자른 썸네일
+    // Figma "framer 이전용" > Ellm_cover image (129:103052), 4:3
     thumbnail: "/projects/ellm/thumb.jpg",
   },
   {
