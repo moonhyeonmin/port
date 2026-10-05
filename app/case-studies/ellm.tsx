@@ -2,6 +2,7 @@ import {
   CaseDeepDive,
   DeepDiveCompare,
   DeepDivePriority,
+  DeepDiveSpecCard,
   DeepDiveStat,
   DeepDiveTrials,
 } from "~/components/case-study/CaseDeepDive";
@@ -19,7 +20,11 @@ export const ellmNav: CaseNavItem[] = [
   { id: "summary", label: "Summary" },
   { id: "why-how", label: "Why & How" },
   { id: "user-journey", label: "User Journey" },
-  { id: "deep-dive", label: "Deep Dive", also: ["deep-dive-docgen", "deep-dive-wait"] },
+  {
+    id: "deep-dive",
+    label: "Deep Dive",
+    also: ["deep-dive-docgen", "deep-dive-wait", "deep-dive-admin"],
+  },
 ];
 
 // Figma: 2wduPMxRCf5SwSUCNYqvbl / "framer 이전용" (125:55403)
@@ -315,6 +320,48 @@ export default function EllmCaseStudy({ index }: CaseStudyProps) {
             width: 1564,
             height: 893,
             alt: "개선 후: 답변 위에 '답변을 생각하고 있습니다' 진행 단계가 표시되는 Ellm 채팅 화면",
+          }}
+        />
+      </CaseDeepDive>
+
+      {/* Ellm_08_관리자 페이지 (126:56374) */}
+      <CaseDeepDive
+        id="deep-dive-admin"
+        title="관리자 대시보드 페이지"
+        subtitle="38개의 지표 → 유형별로 3개의 그래프 타입으로 정의"
+        tint="tint"
+        tintHeight={363}
+      >
+        <DeepDiveCompare
+          label="AS IS"
+          text={["5줄의 개발 사양서와 정리되지 않은 38개의 지표들이 존재했습니다."]}
+          figure={{
+            src: "/projects/ellm/admin-asis.png",
+            width: 1564.5,
+            height: 441,
+            alt: "개선 전: 정리되지 않은 vllm 지표 이름이 길게 나열된 목록",
+          }}
+          overlay={
+            <DeepDiveSpecCard
+              title="[개발 사양서]"
+              subtitle="(UI) 모니터링 메뉴 조회 데이터"
+              lines={[
+                "CPU 사용률/ Memory 사용량/ Disk 사용량",
+                "GPU 사용량 , GPU 사용률, 사용 가능한 프레임 버퍼 메모리 양 (MiB), 사용 중인 프레임 버퍼 메모리 양 (MiB)",
+                "DB 커넥션, 트랙잭션, 쿼리 성능, Lock 상태, WAL 관련",
+                "모델건전성",
+              ]}
+            />
+          }
+        />
+        <DeepDiveCompare
+          label="TO BE"
+          text={["지표를 그래프 유형별로 묶고, 중요도 ・위험도・시선 흐름 순으로 배치했습니다."]}
+          figure={{
+            src: "/projects/ellm/admin-tobe.png",
+            width: 1564.5,
+            height: 1217,
+            alt: "개선 후: Gauge·Histogram·Counter 세 유형으로 묶은 지표와 모니터링 대시보드 화면",
           }}
         />
       </CaseDeepDive>

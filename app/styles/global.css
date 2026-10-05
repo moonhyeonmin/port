@@ -658,7 +658,7 @@ img, video { display: block; max-width: 100%; }
   top: 0;
   left: 50%;
   width: 100cqw;
-  height: calc(var(--u) * 508);
+  height: calc(var(--u) * var(--tint-h, 508));
   transform: translateX(-50%);
   background: linear-gradient(to top, rgb(220 234 255 / 0), #ebf3ff);
 }
@@ -794,6 +794,34 @@ img, video { display: block; max-width: 100%; }
 .case-deep__desc span { display: block; }
 .case-deep__figure { margin: 0; }
 .case-deep__figure img { width: 100%; height: auto; }
+/* 그림 위 겹침 요소는 그림 너비(1564.5) 기준 단위 */
+.case-deep__figure.has-overlay { position: relative; container-type: inline-size; }
+.case-deep__spec {
+  --fu: calc(100cqw / 1564.5);
+  position: absolute;
+  bottom: 0;
+  left: calc(var(--fu) * 118.5);
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--fu) * 7);
+  width: calc(var(--fu) * 517);
+  height: calc(var(--fu) * 359);
+  padding: calc(var(--fu) * 30) calc(var(--fu) * 20);
+  color: #343434;
+  background: #fff;
+  box-shadow: 0 calc(var(--fu) * 4) calc(var(--fu) * 20) rgb(0 0 0 / 0.04);
+}
+.case-deep__spec-title,
+.case-deep__spec-subtitle { font-size: calc(var(--fu) * 22); font-weight: 600; line-height: calc(var(--fu) * 31); }
+/* 부제-본문 간격은 1 (카드 gap 7을 상쇄) */
+.case-deep__spec-subtitle { padding: calc(var(--fu) * 10); margin-bottom: calc(var(--fu) * -6); }
+.case-deep__spec-body {
+  width: calc(var(--fu) * 466);
+  font-size: calc(var(--fu) * 18);
+  font-weight: 400;
+  line-height: calc(var(--fu) * 30);
+}
+.case-deep__spec-body span { display: block; }
 
 /* 태블릿: 여백을 줄이고 가로로 긴 배치를 2열로 */
 @media (max-width: 1279.98px) {
@@ -898,6 +926,20 @@ img, video { display: block; max-width: 100%; }
   .case-deep__trials { grid-template-columns: 1fr; gap: 12px; }
   .case-deep__trial { border-radius: 12px; }
   .case-deep.has-glow::before { height: 260px; }
+  .case-deep__figure.has-overlay { display: flex; flex-direction: column; gap: 12px; }
+  .case-deep__spec {
+    position: static;
+    gap: 4px;
+    width: auto;
+    height: auto;
+    padding: 18px 16px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgb(0 0 0 / 0.04);
+    background: #f5f6f8;
+  }
+  .case-deep__spec-title, .case-deep__spec-subtitle { font-size: 15px; line-height: 1.5; }
+  .case-deep__spec-subtitle { padding: 0; margin-bottom: 4px; }
+  .case-deep__spec-body { width: auto; font-size: 14px; line-height: 1.6; }
   .case-deep__desc span { display: inline; }
   .case-deep__desc span + span::before { content: " "; }
 

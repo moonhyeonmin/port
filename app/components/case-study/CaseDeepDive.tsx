@@ -7,16 +7,27 @@ interface CaseDeepDiveProps {
   subtitle: string;
   /** 상단 배경: tint = 연파랑 그라디언트, glow = 보라·하늘 원형 그라디언트 */
   tint?: "tint" | "glow";
+  /** tint 배경 높이 (디자인 px, 기본 508) */
+  tintHeight?: number;
   /** 본문 블록 사이 간격 (디자인 px) */
   gap?: number;
   children: ReactNode;
 }
 
-export function CaseDeepDive({ id, title, subtitle, tint, gap = 44, children }: CaseDeepDiveProps) {
+export function CaseDeepDive({
+  id,
+  title,
+  subtitle,
+  tint,
+  tintHeight,
+  gap = 44,
+  children,
+}: CaseDeepDiveProps) {
   return (
     <section
       id={id}
       className={`case-sec case-deep${tint ? ` has-${tint}` : ""}`}
+      style={tintHeight ? ({ "--tint-h": tintHeight } as CSSProperties) : undefined}
       aria-label={`Deep Dive: ${title}`}
     >
       <div className="case-deep__text">
@@ -47,6 +58,8 @@ interface DeepDiveCompareProps {
   labelNode?: ReactNode;
   /** 라벨과 설명 사이 간격 (디자인 px) */
   labelGap?: number;
+  /** 그림 위에 겹치는 요소 (예: DeepDiveSpecCard) */
+  overlay?: ReactNode;
 }
 
 /** AS IS / TO BE 설명 한 줄 + 화면 그림 */
@@ -57,6 +70,7 @@ export function DeepDiveCompare({
   lead,
   labelNode,
   labelGap = 0,
+  overlay,
 }: DeepDiveCompareProps) {
   const row = (
     <p className="case-deep__row" style={{ "--label-gap": labelGap } as CSSProperties}>
@@ -81,7 +95,7 @@ export function DeepDiveCompare({
       ) : (
         row
       )}
-      <figure className="case-deep__figure">
+      <figure className={`case-deep__figure${overlay ? " has-overlay" : ""}`}>
         <img
           src={figure.src}
           width={figure.width}
@@ -89,6 +103,7 @@ export function DeepDiveCompare({
           alt={figure.alt}
           loading="lazy"
         />
+        {overlay}
       </figure>
     </div>
   );
@@ -170,6 +185,29 @@ export function DeepDiveTrials({ text, trials }: { text: string; trials: Trial[]
           </li>
         ))}
       </ul>
+    </div>
+  );
+}
+
+/** 그림 위에 겹치는 문서 카드 (예: 개발 사양서). 줄 단위로 나눈 본문 */
+export function DeepDiveSpecCard({
+  title,
+  subtitle,
+  lines,
+}: {
+  title: string;
+  subtitle: string;
+  lines: string[];
+}) {
+  return (
+    <div className="case-deep__spec">
+      <p className="case-deep__spec-title">{title}</p>
+      <p className="case-deep__spec-subtitle">{subtitle}</p>
+      <p className="case-deep__spec-body">
+        {lines.map((line) => (
+          <span key={line}>{line}</span>
+        ))}
+      </p>
     </div>
   );
 }
