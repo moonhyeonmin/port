@@ -1,4 +1,5 @@
 import { CaseHero } from "~/components/case-study/CaseHero";
+import { CaseJourney } from "~/components/case-study/CaseJourney";
 import { CaseOverview } from "~/components/case-study/CaseOverview";
 import { CaseSummary } from "~/components/case-study/CaseSummary";
 import { CaseWhyHow } from "~/components/case-study/CaseWhyHow";
@@ -120,6 +121,35 @@ export default function EllmCaseStudy({ index }: CaseStudyProps) {
           height: 1005,
           alt: "Ellm IA Diagram: 채팅(K-Master + Librarian)과 보고서 생성(Scribe)의 화면 구조도",
         }}
+      />
+
+      {/* Ellm_05_UserJourney 1 (126:57609) */}
+      <CaseJourney
+        title={["문제는 4개였지만,", "전부 연결되어 있었습니다."]}
+        description="사용자가 문서를 만들고 관리자가 운영하는 흐름을 따라, 단계마다 막히는 지점을 찾았습니다."
+        steps={[
+          {
+            step: "프로젝트 탐색",
+            pain: ["반복 카드 리스트로 원하는", "항목, 생성 버튼을 찾기 어려움"],
+            fix: { action: "테이블 + 검색, 필터", result: "정보 강약 재설계" },
+          },
+          {
+            step: "문서 생성",
+            pain: ["우선 순위 없는 입력 폼", "고객사 불만 요청 증가"],
+            fix: { action: "Wizard로 필수 데이터 분리", result: "리드 타임 42%↓" },
+          },
+          {
+            step: "답변 생성 대기",
+            pain: ["10초 넘는 대기", "외부 이탈률 54% 증가"],
+            fix: { action: "생각하는 과정 표시", result: "이탈률 63%↓" },
+          },
+          {
+            step: "관리자 페이지",
+            pain: ["5줄 사양서, 38개의 그래프", "우선순위 기준 없음"],
+            fix: { action: "지표 유형별 그룹화", result: "3개 그룹으로 정리" },
+          },
+        ]}
+        background={{ src: "/projects/ellm/journey-bg.jpg", width: 2160, height: 1244 }}
       />
     </>
   );

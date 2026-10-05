@@ -461,6 +461,100 @@ img, video { display: block; max-width: 100%; }
 .case-why__figure { margin: 0; }
 .case-why__figure img { width: 100%; height: auto; }
 
+/* 05 User Journey (126:57609) */
+.case-journey {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+/* Figma 배경 그래픽: 섹션 y=630부터 하단까지 (섹션이 길어지면 늘어남) */
+.case-journey__bg {
+  position: absolute;
+  z-index: -1;
+  top: calc(var(--u) * 630);
+  left: 0;
+  width: 100%;
+  height: calc(100% - var(--u) * 630);
+  object-fit: cover;
+  object-position: center top;
+  pointer-events: none;
+}
+.case-journey__inner {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 100);
+  padding-block: calc(var(--u) * 120) calc(var(--u) * 256);
+}
+.case-journey__text { display: flex; flex-direction: column; align-items: flex-start; gap: calc(var(--u) * 40); }
+.case-journey__heading { display: flex; flex-direction: column; gap: calc(var(--u) * 20); }
+.case-journey__title { line-height: calc(var(--u) * 100); }
+.case-journey__title span { display: block; }
+.case-journey__desc {
+  font-size: calc(var(--u) * 30);
+  font-weight: 400;
+  line-height: calc(var(--u) * 50);
+  color: var(--color-gray);
+}
+.case-journey__table { display: flex; flex-direction: column; gap: calc(var(--u) * 33); }
+/* 행과 같은 3열 그리드. 데스크톱은 Figma 위치에 맞춘 오프셋 */
+.case-journey__head,
+.case-journey__row {
+  display: grid;
+  grid-template-columns: repeat(3, calc(var(--u) * 333));
+  column-gap: calc(var(--u) * 224);
+  padding-inline: calc(var(--u) * 23) calc(var(--u) * 101);
+}
+.case-journey__head {
+  align-items: center;
+  font-size: calc(var(--u) * 30);
+  font-weight: 400;
+  line-height: calc(var(--u) * 50);
+}
+.case-journey__head > :nth-child(1) { width: calc(var(--u) * 337); margin-left: calc(var(--u) * -23); text-align: center; }
+.case-journey__head > :nth-child(2) { margin-left: calc(var(--u) * 113); }
+.case-journey__head > :nth-child(3) { margin-left: calc(var(--u) * 76); }
+.case-journey__tag { display: flex; align-items: center; }
+.case-journey__tag img { width: calc(var(--u) * 26); height: calc(var(--u) * 26); }
+.case-journey__tag span { padding-inline: calc(var(--u) * 10); }
+.case-journey__tag.is-pain { color: #ef5e4b; }
+.case-journey__tag.is-fix { color: #3182f6; }
+.case-journey__rows {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 23);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.case-journey__row {
+  align-items: center;
+  height: calc(var(--u) * 224);
+  background: #fff;
+  border: calc(var(--u) * 3) solid #e3e8f0;
+  border-radius: calc(var(--u) * 24);
+}
+.case-journey__step {
+  padding-left: calc(var(--u) * 12);
+  font-size: calc(var(--u) * 40);
+  font-weight: 600;
+  line-height: calc(var(--u) * 60);
+}
+.case-journey__pain {
+  font-size: calc(var(--u) * 28);
+  font-weight: 500;
+  line-height: calc(var(--u) * 44);
+  text-align: center;
+}
+.case-journey__pain span, .case-journey__fix span { display: block; }
+.case-journey__fix {
+  font-size: calc(var(--u) * 28);
+  font-weight: 500;
+  line-height: calc(var(--u) * 60);
+}
+.case-journey__fix strong { display: block; font-size: calc(var(--u) * 40); font-weight: 700; color: #3182f6; }
+/* 행 안의 Pain/Fix 라벨은 모바일에서만 */
+.case-journey__row .case-journey__tag { display: none; }
+
 /* 태블릿: 여백을 줄이고 가로로 긴 배치를 2열로 */
 @media (max-width: 1279.98px) {
   .case-sec { padding-inline: 48px; }
@@ -472,6 +566,12 @@ img, video { display: block; max-width: 100%; }
   .case-overview__item { width: auto; }
   .case-summary__cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
   .case-summary__card { width: auto; }
+  .case-journey__head,
+  .case-journey__row { grid-template-columns: 1fr 1.3fr 1fr; column-gap: 32px; padding-inline: 24px; }
+  .case-journey__head > * { margin-left: 0 !important; width: auto !important; text-align: left !important; }
+  .case-journey__head > :nth-child(1) { padding-left: 3px; }
+  .case-journey__step { padding-left: 0; }
+  .case-journey__row { height: auto; min-height: calc(var(--u) * 224); padding-block: 24px; }
 }
 
 /* 모바일 */
@@ -519,6 +619,29 @@ img, video { display: block; max-width: 100%; }
   /* 도표가 작아 읽기 어려우므로 가로 스크롤 */
   .case-why__figure { margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); overflow-x: auto; }
   .case-why__figure img { width: 760px; max-width: none; }
+
+  .case-journey__inner { gap: 32px; padding-block: 56px 72px; }
+  .case-journey__text { gap: 16px; }
+  .case-journey__heading { gap: 12px; }
+  .case-journey__title { line-height: 1.4; }
+  .case-journey__desc { font-size: 15px; line-height: 1.6; }
+  .case-journey__bg { top: 40%; height: 60%; }
+  .case-journey__head { display: none; }
+  .case-journey__rows { gap: 12px; }
+  .case-journey__row {
+    grid-template-columns: 1fr;
+    row-gap: 14px;
+    padding: 20px;
+    border-width: 2px;
+    border-radius: 16px;
+  }
+  .case-journey__step { font-size: 19px; line-height: 1.4; }
+  .case-journey__row .case-journey__tag { display: flex; margin-bottom: 4px; font-size: 13px; font-weight: 400; line-height: 1.4; }
+  .case-journey__tag img { width: 14px; height: 14px; }
+  .case-journey__tag span { padding-inline: 5px; }
+  .case-journey__pain { font-size: 15px; line-height: 1.6; text-align: left; }
+  .case-journey__fix { font-size: 15px; line-height: 1.6; }
+  .case-journey__fix strong { display: block; font-size: 20px; line-height: 1.4; }
 }
 
 /* ─── Simple pages ─── */
