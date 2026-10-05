@@ -96,7 +96,7 @@ Figma 섹션 프레임은 **2160px 원본**이고, 옆에 있는 **1280px 프레
 - 반응형:
   - 태블릿(810–1279px): `--u` 하한 0.6px, 좌우 여백 48px, 가로로 긴 배치(Overview 열, Summary 카드)는 2열
   - 모바일(~809px): 읽기 좋은 고정 px 값, 세로 배치, `word-break: keep-all`
-- 공통: `CaseEyebrow`(별 아이콘 + 라벨), 섹션 제목 `.case-h2`(70px), `CaseHero`, `CaseOverview`, `CaseSummary`, `CaseWhyHow`, `CaseJourney`, `CaseDeepDive` + `DeepDiveCompare`(AS IS / TO BE + 화면) / `DeepDiveStat`(그라디언트 수치) / `DeepDivePriority`(우선순위 표), 줄 높이 100 제목 `.case-h2.is-tight`
+- 공통: `CaseEyebrow`(별 아이콘 + 라벨), 섹션 제목 `.case-h2`(70px), `CaseHero`, `CaseOverview`, `CaseSummary`, `CaseWhyHow`, `CaseJourney`, `CaseDeepDive` + `DeepDiveCompare`(AS IS / TO BE + 화면) / `DeepDiveStat`(그라디언트 수치) / `DeepDivePriority`(우선순위 표) / `DeepDiveTrials`(실패한 시도 카드, 카드 너비 기준 단위), 줄 높이 100 제목 `.case-h2.is-tight`
 
 ## 현재 작업: Ellm 케이스 스터디 (`/case-studies/ellm`)
 
@@ -111,7 +111,7 @@ Figma 파일 `2wduPMxRCf5SwSUCNYqvbl`, 캔버스 **"framer 이전용"** (node `1
 | 05 | UserJourney | `126:57609` | `126:63358` | 완료 |
 | 06 | DeepDive01 프로젝트 탐색 | `126:56301` | `126:63419` | 완료 |
 | 06 | DeepDive02 문서 생성 | `126:57131` | `126:75473` | 완료 |
-| 07 | DeepDive03 답변 생성 대기 | `126:56943` | `126:78288` | |
+| 07 | DeepDive03 답변 생성 대기 | `126:56943` | `126:78288` | 완료 |
 | 08 | 관리자 페이지 | `126:56374` | `126:79038` | |
 | 09 | 회고 및 정리 (Next Project 포함) | `126:56881` | `126:80618` | |
 

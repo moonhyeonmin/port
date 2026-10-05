@@ -3,6 +3,7 @@ import {
   DeepDiveCompare,
   DeepDivePriority,
   DeepDiveStat,
+  DeepDiveTrials,
 } from "~/components/case-study/CaseDeepDive";
 import { CaseHero } from "~/components/case-study/CaseHero";
 import { CaseJourney } from "~/components/case-study/CaseJourney";
@@ -189,7 +190,7 @@ export default function EllmCaseStudy({ index }: CaseStudyProps) {
       <CaseDeepDive
         title="문서 생성"
         subtitle="입력 항목이 아닌 입력 ‘순서’를 재설계"
-        tint
+        tint="tint"
         gap={90}
       >
         <DeepDiveCompare
@@ -228,6 +229,72 @@ export default function EllmCaseStudy({ index }: CaseStudyProps) {
             width: 1564,
             height: 893,
             alt: "개선 후: 문서 제목·키워드, 기반 파일 업로드, 추가 지침 3단계 Wizard 화면",
+          }}
+        />
+      </CaseDeepDive>
+
+      {/* Ellm_07_DeepDive03_답변 생성 대기 (126:56943) */}
+      <CaseDeepDive
+        title="답변 생성 대기"
+        subtitle="세번의 시도 끝에 기다림을 ‘진행 중인 작업’으로 변경"
+        tint="glow"
+        gap={80}
+      >
+        <DeepDiveTrials
+          text="서버 쪽 생성 시간 단축은 어려웠고, 대기가 10초를 넘자 외부 이탈률이 55% 이상 증가했습니다."
+          trials={[
+            {
+              step: "시도 ①",
+              name: "Spinner",
+              caption: "무엇이 진행되는지 알 수 없음",
+              image: {
+                src: "/projects/ellm/wait-spinner.png",
+                width: 634,
+                height: 448,
+                alt: "목차 옆 본문 영역에 스피너와 '보고서 생성 중...'만 표시된 화면",
+              },
+            },
+            {
+              step: "시도 ②",
+              name: "Skeleton",
+              caption: "반복 구조로 결과 영역을 예측할 수 없음",
+              image: {
+                src: "/projects/ellm/wait-skeleton.png",
+                width: 610,
+                height: 436,
+                alt: "'보고서 생성 중...' 아래 같은 모양의 스켈레톤 블록이 반복되는 화면",
+              },
+            },
+          ]}
+        />
+        <DeepDiveCompare
+          label="TO BE"
+          labelNode={
+            <>
+              <span>시도 ③</span>
+              <strong>생각하는 과정 표시</strong>
+            </>
+          }
+          labelGap={116}
+          lead={
+            <DeepDiveStat
+              value={
+                <>
+                  68%<span className="case-deep__stat-arrow">↓</span>
+                </>
+              }
+              caption="답변 대기 중 이탈률 하락"
+            />
+          }
+          text={[
+            "AI의 처리 단계를 실시간으로 보여주며, 기다림이 ‘진행 중인 작업’으로 느껴지게 만들었습니다.",
+            "AI 엔지니어와 주 2회 리뷰 회의로 로딩 단계를 새로 정의했습니다.",
+          ]}
+          figure={{
+            src: "/projects/ellm/wait-tobe.png",
+            width: 1564,
+            height: 893,
+            alt: "개선 후: 답변 위에 '답변을 생각하고 있습니다' 진행 단계가 표시되는 Ellm 채팅 화면",
           }}
         />
       </CaseDeepDive>
