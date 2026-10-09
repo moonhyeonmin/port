@@ -57,7 +57,7 @@ export default function EllmCaseStudy({ index, nextSlug }: CaseStudyProps) {
         }}
       />
 
-      {/* Ellm_02_Overview 1 (126:62652) */}
+      {/* Ellm_02_Overview 1 (126:62652), 하단 구분선 포함 */}
       <CaseOverview
         items={[
           {
@@ -66,7 +66,7 @@ export default function EllmCaseStudy({ index, nextSlug }: CaseStudyProps) {
             width: 389,
             gap: 37,
           },
-          { title: "Period", lines: ["2025.08 - 2026. 08"], width: 261, gap: 37 },
+          { title: "Period", lines: ["2025.08 - 2026.08"], width: 261, gap: 37 },
           {
             title: "Team",
             lines: ["기획 1 / FE 3 / 디자인 2 / BE 12", "클라이언트사"],

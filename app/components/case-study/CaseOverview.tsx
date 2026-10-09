@@ -13,20 +13,23 @@ export interface OverviewItem {
 export function CaseOverview({ items }: { items: OverviewItem[] }) {
   return (
     <section className="case-sec case-overview" aria-label="Overview">
-      {items.map(({ title, lines, width, gap }) => (
-        <div
-          key={title}
-          className="case-overview__item"
-          style={{ "--w": width, "--gap": gap } as CSSProperties}
-        >
-          <h2 className="case-overview__title">{title}</h2>
-          <p className="case-overview__body">
-            {lines.map((line) => (
-              <span key={line}>{line}</span>
-            ))}
-          </p>
-        </div>
-      ))}
+      <div className="case-overview__items">
+        {items.map(({ title, lines, width, gap }) => (
+          <div
+            key={title}
+            className="case-overview__item"
+            style={{ "--w": width, "--gap": gap } as CSSProperties}
+          >
+            <h2 className="case-overview__title">{title}</h2>
+            <p className="case-overview__body">
+              {lines.map((line) => (
+                <span key={line}>{line}</span>
+              ))}
+            </p>
+          </div>
+        ))}
+      </div>
+      <hr className="case-overview__divider" />
     </section>
   );
 }
