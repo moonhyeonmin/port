@@ -1,4 +1,5 @@
 import { CaseDeepDive, DeepDivePanel } from "~/components/case-study/CaseDeepDive";
+import { CaseGlassCards } from "~/components/case-study/CaseGlassCards";
 import { CaseHero } from "~/components/case-study/CaseHero";
 import { CaseOverview } from "~/components/case-study/CaseOverview";
 import { CaseSummary } from "~/components/case-study/CaseSummary";
@@ -12,7 +13,7 @@ export const lumixNav: CaseNavItem[] = [
   { id: "project", label: "Project" },
   { id: "summary", label: "Summary" },
   { id: "why", label: "Why" },
-  { id: "key-screens", label: "Key Screens" },
+  { id: "key-screens", label: "Key Screens", also: ["key-screen-2"] },
 ];
 
 // Figma: 2wduPMxRCf5SwSUCNYqvbl / "framer 이전용" > Multi AI Workspace_*
@@ -193,6 +194,54 @@ export default function LumixCaseStudy({ index }: CaseStudyProps) {
           ]}
         />
       </CaseDeepDive>
+
+      {/* Multi AI Workspace_06. security ux (163:158996): Key Screen 2 */}
+      <CaseGlassCards
+        id="key-screen-2"
+        eyebrow="Key Screen 2"
+        icon="/icons/star-gradient.svg"
+        pointColor="#5476FE"
+        title="디자인 포인트 3가지"
+        titleIcon={{ src: "/icons/dots-grid-white.svg", width: 60, height: 60, gap: 24 }}
+        cards={[
+          {
+            image: {
+              src: "/projects/lumix/security-1.jpg",
+              width: 499,
+              height: 377,
+              alt: "첫 화면 입력창 아래 보안 안내 문구가 고정된 화면",
+            },
+            level: "LEVEL 1 - 상시",
+            levelColor: "#AFAFAF",
+            title: "보안 안내",
+            desc: "입력창 하단 고정 문구, 개입 없이 안심 제공",
+          },
+          {
+            image: {
+              src: "/projects/lumix/security-2.jpg",
+              width: 499,
+              height: 377,
+              alt: "Gemini 패널에 Private 모드가 켜져 '이 대화는 학습에 사용되지 않습니다'가 표시된 화면",
+            },
+            level: "LEVEL 2 - 선택",
+            levelColor: "#8CA3FF",
+            title: "Private 모드",
+            desc: "패널 별로 켜는 비학습 모드, 학습 비사용 패턴",
+          },
+          {
+            image: {
+              src: "/projects/lumix/security-3.jpg",
+              width: 499,
+              height: 377,
+              alt: "주민등록번호 전송이 차단되고 프롬프트의 민감정보가 마스킹 처리된 DLP 경고 화면",
+            },
+            level: "LEVEL 3 - 차단",
+            levelColor: "#F77E6E",
+            title: "DLP 탐지 - 차단",
+            desc: "민감정보 감지 시 마스킹하고 이유를 명시",
+          },
+        ]}
+      />
     </>
   );
 }

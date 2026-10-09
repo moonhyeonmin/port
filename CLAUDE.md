@@ -133,6 +133,7 @@ PNG가 없으면 SVG를 Pretendard를 불러온 브라우저에서 그려 참고
 | 03 | Summary (카드 2~4 그라디언트는 SVG 값이 PNG와 달라 PNG 실측 색으로 만든 `summary-card-grad-*.svg` 사용) | `163:158592` | 완료 |
 | 04 | Why (`CaseWhyGrid`: 왼쪽 강조 카드 + 오른쪽 문제 행, 배경 이미지) | `163:158663` | 완료 |
 | 05 | 프로젝트 탐색 = Key Screen 1 Multi Chat (`CaseDeepDive` + `DeepDivePanel`, 목업은 2x PNG에서 잘라낸 이미지) | `163:159138` | 완료 |
+| 06 | security ux = Key Screen 2 (`CaseGlassCards`: 어두운 배경 + 유리 카드 3장, 목업은 2x PNG에서 잘라냄) | `163:158996` | 완료 |
 
 - 섹션 프레임 하나를 통째로 `get_design_context`하면 결과가 너무 커서 메타데이터만 돌아온다. 하위 frame 단위로 나눠서 호출한다.
 - 섹션 컴포넌트는 `app/components/case-study/Case*.tsx`, 프로젝트별 내용은 `app/case-studies/<slug>.tsx`, slug 등록은 `app/case-studies/index.ts`에 한다.
