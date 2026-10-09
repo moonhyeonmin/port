@@ -1185,6 +1185,91 @@ img, video { display: block; max-width: 100%; }
   color: rgb(255 255 255 / 0.6);
 }
 
+/* Multi AI Workspace 08 landing page (163:158691) */
+.case-landing {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: calc(var(--u) * 2688);
+}
+/* 위쪽 하늘색 그라디언트 (y -10 ~ 290) */
+.case-landing::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: calc(var(--u) * -10);
+  left: 0;
+  width: 100%;
+  height: calc(var(--u) * 300);
+  background: linear-gradient(to top, rgb(220 220 255 / 0), #dceeff);
+}
+/* 아래 유리 장식: 섹션 가운데 기준 2711×1060, 위 591은 흰색→투명 */
+.case-landing__bg {
+  position: absolute;
+  z-index: -1;
+  top: calc(var(--u) * 1628);
+  left: calc(50% - var(--u) * 1355.5);
+  width: calc(var(--u) * 2711);
+  height: calc(var(--u) * 1060);
+  background:
+    linear-gradient(#fff, rgb(255 255 255 / 0)) 0 0 / 100% calc(var(--u) * 591) no-repeat,
+    var(--landing-bg) 0 0 / 100% 100% no-repeat;
+}
+.case-landing__inner { padding-top: calc(var(--u) * 120); }
+.case-landing__head { display: flex; flex-direction: column; align-items: flex-start; gap: calc(var(--u) * 40); }
+.case-landing__body {
+  display: grid;
+  grid-template-columns: calc(var(--u) * 489.93) calc(var(--u) * 958);
+  column-gap: calc(var(--u) * 116.07);
+  align-items: start;
+  margin-top: calc(var(--u) * 117);
+}
+.case-landing__shot { width: 100%; height: auto; border-radius: calc(var(--u) * 50); }
+.case-landing__map { padding-top: calc(var(--u) * 238); }
+.case-landing__cols,
+.case-landing__row {
+  display: grid;
+  grid-template-columns: calc(var(--u) * 375) calc(var(--u) * 155) calc(var(--u) * 428);
+  align-items: center;
+}
+.case-landing__cols {
+  margin-bottom: calc(var(--u) * 31);
+  font-size: calc(var(--u) * 30);
+  font-weight: 400;
+  line-height: calc(var(--u) * 50);
+  color: var(--color-gray);
+  text-align: center;
+}
+.case-landing__rows { display: flex; flex-direction: column; gap: calc(var(--u) * 23); margin: 0; padding: 0; list-style: none; }
+.case-landing__from,
+.case-landing__to {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(var(--u) * 137);
+  font-size: calc(var(--u) * 28);
+  font-weight: 700;
+  line-height: calc(var(--u) * 40);
+  text-align: center;
+  white-space: pre-wrap;
+  border-radius: calc(var(--u) * 24);
+}
+.case-landing__from { color: #252d38; background: #f6f8fa; }
+.case-landing__to { color: var(--color-point); background: #f1f4ff; }
+.case-landing__arrow {
+  width: calc(var(--u) * 134);
+  height: calc(var(--u) * 12);
+  margin-left: calc(var(--u) * 9);
+  transform: translateY(calc(var(--u) * var(--dy, 0)));
+}
+.case-landing__note {
+  margin: calc(var(--u) * 66.5) 0 0 calc(var(--u) * 20);
+  font-size: calc(var(--u) * 28);
+  font-weight: 700;
+  line-height: calc(var(--u) * 40);
+  color: var(--color-point);
+}
+
 /* 태블릿: 여백을 줄이고 가로로 긴 배치를 2열로 */
 @media (max-width: 1279.98px) {
   .case-sec { padding-inline: 48px; }
@@ -1204,6 +1289,9 @@ img, video { display: block; max-width: 100%; }
   .case-whyg__body { grid-template-columns: minmax(0, 1fr) minmax(0, 2.2fr); column-gap: 24px; }
   .case-whyg__row { grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); }
   .case-deep__patterns { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 16px; }
+  .case-landing__body { grid-template-columns: minmax(0, 0.9fr) minmax(0, 2fr); column-gap: 32px; }
+  .case-landing__cols, .case-landing__row { grid-template-columns: minmax(0, 1fr) 48px minmax(0, 1.1fr); }
+  .case-landing__arrow { width: 40px; height: auto; margin-left: 4px; }
   .case-deep__pattern { padding-inline: 20px; }
   .case-glass__cards { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 16px; width: 100%; margin-left: 0; }
   .case-journey__head > * { margin-left: 0 !important; width: auto !important; text-align: left !important; }
@@ -1336,6 +1424,20 @@ img, video { display: block; max-width: 100%; }
   .case-whyg__desc { font-size: 15px; line-height: 1.6; }
   .case-whyg__bg { top: 120px; height: 100%; background-size: 100% 200px, cover; background-position: 0 0, center top; }
 
+  .case-landing { min-height: 0; padding-bottom: 260px; }
+  .case-landing__inner { padding-top: 56px; }
+  .case-landing__head { gap: 16px; }
+  .case-landing__body { grid-template-columns: 1fr; row-gap: 32px; margin-top: 32px; }
+  .case-landing__shot { width: min(100%, 300px); margin-inline: auto; border-radius: 16px; box-shadow: 0 4px 24px rgb(0 0 0 / 0.06); }
+  .case-landing__map { padding-top: 0; }
+  .case-landing__cols, .case-landing__row { grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr); }
+  .case-landing__cols { margin-bottom: 10px; font-size: 14px; line-height: 1.5; }
+  .case-landing__rows { gap: 8px; }
+  .case-landing__from, .case-landing__to { height: auto; min-height: 56px; padding: 10px 8px; font-size: 14px; line-height: 1.4; border-radius: 12px; word-break: keep-all; }
+  .case-landing__arrow { width: 22px; height: auto; margin-left: 3px; transform: none; }
+  .case-landing__note { margin: 20px 0 0; font-size: 16px; line-height: 1.5; }
+  .case-landing__bg { top: auto; bottom: 0; left: -40%; width: 180%; height: 320px; background-size: 100% 120px, 100% 100%; }
+
   .case-glass__inner { padding-block: 56px 72px; }
   .case-glass__head { gap: 16px; }
   .case-glass__cards { grid-template-columns: 1fr; row-gap: 16px; margin-top: 32px; }
@@ -1426,6 +1528,7 @@ img, video { display: block; max-width: 100%; }
     .case-whyg__lead, .case-whyg__row,
     .case-deep__panel-heading, .case-deep__panel-figure, .case-deep__panel-caption,
     .case-glass__card, .case-deep__pattern,
+    .case-landing__shot, .case-landing__row, .case-landing__note,
     .case-retro__stat, .case-retro__note, .case-retro__next
   ) {
     opacity: 0;

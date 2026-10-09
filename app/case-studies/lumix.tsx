@@ -7,6 +7,7 @@ import {
 } from "~/components/case-study/CaseDeepDive";
 import { CaseGlassCards } from "~/components/case-study/CaseGlassCards";
 import { CaseHero } from "~/components/case-study/CaseHero";
+import { CaseLanding } from "~/components/case-study/CaseLanding";
 import { CaseOverview } from "~/components/case-study/CaseOverview";
 import { CaseSummary } from "~/components/case-study/CaseSummary";
 import { CaseWhyGrid } from "~/components/case-study/CaseWhyGrid";
@@ -20,6 +21,7 @@ export const lumixNav: CaseNavItem[] = [
   { id: "summary", label: "Summary" },
   { id: "why", label: "Why" },
   { id: "key-screens", label: "Key Screens", also: ["key-screen-2", "key-screen-3"] },
+  { id: "landing", label: "Landing" },
 ];
 
 // Figma: 2wduPMxRCf5SwSUCNYqvbl / "framer 이전용" > Multi AI Workspace_*
@@ -295,6 +297,30 @@ export default function LumixCaseStudy({ index }: CaseStudyProps) {
           ]}
         />
       </CaseDeepDive>
+
+      {/* Multi AI Workspace_08_landing page (163:158691) */}
+      <CaseLanding
+        id="landing"
+        eyebrow="Landing page"
+        icon="/icons/star-gradient.svg"
+        pointColor="#5476FE"
+        title="화면 설계부터 마케팅 브랜드 요소까지"
+        shot={{
+          src: "/projects/lumix/landing-page.jpg",
+          width: 490,
+          height: 1507,
+          alt: "Front ACE 랜딩 페이지 전체: 히어로 목업, 핵심 업무 가치 카드, 보안 섹션, 지원 AI 모델 그리드, CTA",
+        }}
+        columns={["제품 요소", "랜딩 요소"]}
+        rows={[
+          { from: "Multi Chat 칼럼 UI", to: "히어로 목업", arrowDy: 3.5 },
+          { from: "DLP 차단  경고", to: "보안 섹션 시연 카드", arrowDy: 0.5 },
+          { from: "모델 칩, 로고", to: "지원 모델 그리드", fromColor: "#141414", arrowDy: -2.5 },
+          { from: "Primary Blue, 카드 형태", to: "CTA, 기능 카드", fromColor: "#141414", arrowDy: -5.5 },
+        ]}
+        note="마케팅 디자인을 넘어 브랜드 아이덴티티 확장으로 프레이밍"
+        background="/projects/lumix/landing-bg.jpg"
+      />
     </>
   );
 }
