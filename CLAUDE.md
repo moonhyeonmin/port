@@ -130,7 +130,7 @@ Figma 한도 때문에 사용자가 내보낸 파일(프로젝트의 `design-src
 | - | cover image (홈 썸네일) | `163:158533` | 완료 |
 | 01 | Hero (Ellm Hero와 같은 템플릿, 그라디언트 별 아이콘, 강조색 #5476FE) | `163:158413` | 완료 |
 | 02 | Overview (Ellm Overview 템플릿, 아래 여백 69) | `163:158647` | 완료 |
-| 03 | Summary | `163:158592` | |
+| 03 | Summary (카드 2~4 그라디언트는 SVG 값이 PNG와 달라 PNG 실측 색으로 만든 `summary-card-grad-*.svg` 사용) | `163:158592` | 완료 |
 
 - 섹션 프레임 하나를 통째로 `get_design_context`하면 결과가 너무 커서 메타데이터만 돌아온다. 하위 frame 단위로 나눠서 호출한다.
 - 섹션 컴포넌트는 `app/components/case-study/Case*.tsx`, 프로젝트별 내용은 `app/case-studies/<slug>.tsx`, slug 등록은 `app/case-studies/index.ts`에 한다.

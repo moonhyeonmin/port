@@ -461,7 +461,7 @@ img, video { display: block; max-width: 100%; }
   display: flex;
   flex-direction: column;
   gap: calc(var(--u) * 103);
-  padding-block: calc(var(--u) * 120);
+  padding-block: calc(var(--u) * var(--sum-top, 120)) calc(var(--u) * var(--sum-bottom, 120));
 }
 .case-summary__text { display: flex; flex-direction: column; align-items: flex-start; gap: calc(var(--u) * 40); }
 .case-summary__heading { display: flex; flex-direction: column; gap: calc(var(--u) * 20); }
@@ -474,8 +474,9 @@ img, video { display: block; max-width: 100%; }
   font-size: calc(var(--u) * 30);
   line-height: calc(var(--u) * 50);
 }
-.case-summary__row { display: flex; align-items: flex-end; }
-.case-summary__row dt { flex-shrink: 0; width: calc(var(--u) * 235); font-weight: 600; color: #3182f6; }
+.case-summary__row { display: flex; align-items: var(--summary-row-align, flex-end); }
+.case-summary__row dt { flex-shrink: 0; width: calc(var(--u) * 235); font-weight: 600; color: var(--summary-label, #3182f6); }
+.case-summary__line { display: block; }
 .case-summary__row dd { margin: 0; max-width: calc(var(--u) * 1213); font-weight: 400; color: var(--color-gray); }
 .case-summary__row strong { color: #181818; }
 .case-summary__cards {
@@ -525,6 +526,18 @@ img, video { display: block; max-width: 100%; }
 .case-summary__detail span { display: block; }
 .case-summary__card.is-accent .case-summary__value,
 .case-summary__card.is-accent .case-summary__detail { color: #fff; }
+/* 이미지 배경 위 흰 글자 그림자 (Figma drop shadow 0 4 20 / 4%) */
+.case-summary__card.has-shadow p { text-shadow: 0 calc(var(--u) * 4) calc(var(--u) * 20) rgb(0 0 0 / 0.04); }
+/* 큰 문구만 있는 카드 (40px, 줄 높이 60, 첫 줄 위치 고정) */
+.case-summary__card.is-text { justify-content: flex-start; padding-top: calc(var(--u) * 68.5); }
+.case-summary__card.is-text .case-summary__value {
+  display: block;
+  height: auto;
+  margin: 0;
+  font-size: calc(var(--u) * 40);
+  line-height: calc(var(--u) * 60);
+}
+.case-summary__card.is-text .case-summary__value span { display: block; }
 
 /* 04 Why and How (126:56068) */
 .case-why {
@@ -998,10 +1011,14 @@ img, video { display: block; max-width: 100%; }
   .case-summary { gap: 40px; padding-block: 56px; }
   .case-summary__text { gap: 16px; }
   .case-summary__heading { gap: 16px; }
-  .case-h2 { font-size: 26px; line-height: 1.4; }
+  .case-h2, .case-h2.is-tight { font-size: 26px; line-height: 1.4; }
   .case-summary__rows { gap: 14px; font-size: 15px; line-height: 1.6; }
   .case-summary__row { flex-direction: column; align-items: flex-start; gap: 2px; }
   .case-summary__row dt { width: auto; }
+  /* 줄 끝 공백은 Figma 원문 그대로 텍스트에 포함 (단어 중간 줄바꿈은 그대로 이어짐) */
+  .case-summary__line { display: inline; }
+  .case-summary__card.is-text { justify-content: center; }
+  .case-summary__card.is-text .case-summary__value { font-size: 20px; line-height: 1.5; letter-spacing: -0.01em; }
   .case-summary__cards { gap: 12px; }
   .case-summary__card, .case-summary__card.is-accent { height: auto; min-height: 150px; padding: 24px 18px; border-radius: 8px; }
   .case-summary__value { height: auto; margin-bottom: 10px; font-size: 34px; letter-spacing: -0.02em; }
