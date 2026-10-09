@@ -30,6 +30,8 @@ export const REVEAL_SELECTOR = [
   ".case-deep__priority-title",
   ".case-deep__priority-row",
   ".case-deep__figure",
+  ".case-whyg__lead",
+  ".case-whyg__row",
   ".case-retro__stat",
   ".case-retro__note",
   ".case-retro__next",

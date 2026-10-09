@@ -1,6 +1,7 @@
 import { CaseHero } from "~/components/case-study/CaseHero";
 import { CaseOverview } from "~/components/case-study/CaseOverview";
 import { CaseSummary } from "~/components/case-study/CaseSummary";
+import { CaseWhyGrid } from "~/components/case-study/CaseWhyGrid";
 import { CountUp } from "~/components/CountUp";
 import type { CaseNavItem } from "~/components/case-study/CaseNav";
 import type { CaseStudyProps } from "./index";
@@ -9,6 +10,7 @@ import type { CaseStudyProps } from "./index";
 export const lumixNav: CaseNavItem[] = [
   { id: "project", label: "Project" },
   { id: "summary", label: "Summary" },
+  { id: "why", label: "Why" },
 ];
 
 // Figma: 2wduPMxRCf5SwSUCNYqvbl / "framer 이전용" > Multi AI Workspace_*
@@ -124,6 +126,29 @@ export default function LumixCaseStudy({ index }: CaseStudyProps) {
             textLines: ["사용자 앱, 관리자", "콘솔, 랜딩 페이지"],
             detail: [],
             bg: "url(/projects/lumix/summary-card-grad-b.svg) 0 0 / 100% 100% no-repeat",
+          },
+        ]}
+      />
+
+      {/* Multi AI Workspace_04_Why (163:158663) */}
+      <CaseWhyGrid
+        id="why"
+        eyebrow="Why"
+        icon="/icons/star-gradient.svg"
+        pointColor="#5476FE"
+        background="/projects/lumix/why-bg.jpg"
+        title={["Ellm에서 배운 신뢰 문제를", "이번에는 처음부터 설계했습니다."]}
+        lead={{
+          lines: ["착수 전에 도메인별", "신뢰 요구 수준부터", "정의 합니다."],
+          quote: ["“직원들이 여러 AI를 제각각 쓰는데", "무슨 데이터가 나가는지 모르겠다”"],
+        }}
+        rows={[
+          { label: "AI 파편화", desc: ["탭을 오가며 같은 질문 복붙,", "비교는 기억에 의존"] },
+          { label: "정보 유출 불안", desc: ["민감정보가 외부 AI로", "그대로 전송, Shadow AI"] },
+          {
+            label: "관리 사각지대",
+            labelColor: "#141414",
+            desc: ["누가 어떤 AI를 얼마나", "사용하는지 불투명"],
           },
         ]}
       />

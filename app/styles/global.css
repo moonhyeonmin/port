@@ -961,6 +961,75 @@ img, video { display: block; max-width: 100%; }
 }
 .case-retro__next:hover .case-retro__next-arrow { transform: translateX(calc(var(--u) * 12)); }
 
+/* Multi AI Workspace 04 Why (163:158663): 왼쪽 강조 카드 + 오른쪽 문제 행 */
+.case-whyg {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: calc(var(--u) * 120) calc(var(--u) * 241);
+}
+/* 배경: 섹션 y=200부터 이미지(2160×1216), 위에서 902까지 흰색→투명 */
+.case-whyg__bg {
+  position: absolute;
+  z-index: -1;
+  top: calc(var(--u) * 200);
+  left: 0;
+  width: 100%;
+  height: calc(var(--u) * 1216);
+  background:
+    linear-gradient(#fff, rgb(255 255 255 / 0)) 0 0 / 100% calc(var(--u) * 902) no-repeat,
+    var(--whyg-bg) 0 0 / 100% 100% no-repeat;
+}
+.case-whyg__head { display: flex; flex-direction: column; align-items: flex-start; gap: calc(var(--u) * 40); }
+.case-whyg__body {
+  display: grid;
+  grid-template-columns: calc(var(--u) * 467) calc(var(--u) * 1044);
+  column-gap: calc(var(--u) * 53);
+  margin-top: calc(var(--u) * 126);
+}
+.case-whyg__lead,
+.case-whyg__row {
+  background: #fff;
+  border-radius: calc(var(--u) * 24);
+  box-shadow: 0 calc(var(--u) * 4) calc(var(--u) * 20) #cee1fc;
+}
+.case-whyg__lead {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(var(--u) * 457);
+  padding: calc(var(--u) * 47) calc(var(--u) * 48) calc(var(--u) * 61);
+}
+.case-whyg__lead-text {
+  font-size: calc(var(--u) * 40);
+  font-weight: 700;
+  line-height: calc(var(--u) * 63);
+  color: var(--color-point);
+}
+.case-whyg__quote {
+  margin: 0;
+  font-size: calc(var(--u) * 28);
+  font-weight: 400;
+  line-height: calc(var(--u) * 40);
+  color: #4d4c4d;
+}
+.case-whyg__lead-text span,
+.case-whyg__quote span,
+.case-whyg__desc span { display: block; }
+/* Figma에서 카드 안쪽 폭(371)을 살짝 넘겨 한 줄로 보이는 줄이 있어 데스크톱은 줄바꿈 없음 */
+.case-whyg__lead-text span,
+.case-whyg__quote span { white-space: nowrap; }
+.case-whyg__rows { display: flex; flex-direction: column; gap: calc(var(--u) * 23); margin: 0; padding: 0; list-style: none; }
+.case-whyg__row {
+  display: grid;
+  grid-template-columns: calc(var(--u) * 420) calc(var(--u) * 592);
+  align-items: center;
+  height: calc(var(--u) * 137);
+  text-align: center;
+}
+.case-whyg__label { font-size: calc(var(--u) * 28); font-weight: 700; line-height: calc(var(--u) * 40); color: #252d38; }
+.case-whyg__desc { font-size: calc(var(--u) * 28); font-weight: 400; line-height: calc(var(--u) * 40); color: #606faa; }
+
 /* 태블릿: 여백을 줄이고 가로로 긴 배치를 2열로 */
 @media (max-width: 1279.98px) {
   .case-sec { padding-inline: 48px; }
@@ -977,6 +1046,8 @@ img, video { display: block; max-width: 100%; }
   .case-journey__row { grid-template-columns: 1fr 1.3fr 1fr; column-gap: 32px; padding-inline: 24px; }
   .case-deep__priority-row { grid-template-columns: 0.6fr 1fr 1.6fr; column-gap: 32px; padding-inline: 24px; }
   .case-deep__priority-note { white-space: normal; }
+  .case-whyg__body { grid-template-columns: minmax(0, 1fr) minmax(0, 2.2fr); column-gap: 24px; }
+  .case-whyg__row { grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); }
   .case-journey__head > * { margin-left: 0 !important; width: auto !important; text-align: left !important; }
   .case-journey__head > :nth-child(1) { padding-left: 3px; }
   .case-journey__step { padding-left: 0; }
@@ -1080,6 +1151,19 @@ img, video { display: block; max-width: 100%; }
     border-radius: 12px;
   }
 
+  .case-whyg { padding-block: 56px 72px; }
+  .case-whyg__head { gap: 16px; }
+  .case-whyg__body { grid-template-columns: 1fr; row-gap: 12px; margin-top: 32px; }
+  .case-whyg__lead { height: auto; gap: 24px; padding: 24px 20px; border-radius: 16px; }
+  .case-whyg__lead-text { font-size: 20px; line-height: 1.5; }
+  .case-whyg__quote { font-size: 15px; line-height: 1.6; }
+  .case-whyg__lead-text span, .case-whyg__quote span { white-space: normal; }
+  .case-whyg__rows { gap: 12px; }
+  .case-whyg__row { grid-template-columns: 1fr; row-gap: 6px; height: auto; padding: 18px 16px; border-radius: 16px; }
+  .case-whyg__label { font-size: 16px; line-height: 1.5; }
+  .case-whyg__desc { font-size: 15px; line-height: 1.6; }
+  .case-whyg__bg { top: 120px; height: 100%; background-size: 100% 200px, cover; background-position: 0 0, center top; }
+
   .case-retro__inner { padding-block: 56px 64px; }
   .case-retro__text { gap: 16px; }
   .case-retro__glow.is-sky { top: auto; bottom: -30%; left: 10%; width: 120%; height: 60%; border-radius: 50%; filter: blur(40px); }
@@ -1156,6 +1240,7 @@ img, video { display: block; max-width: 100%; }
     .case-journey__desc, .case-journey__head, .case-journey__row,
     .case-deep__plain, .case-deep__row, .case-deep__stat, .case-deep__trial,
     .case-deep__priority-title, .case-deep__priority-row, .case-deep__figure,
+    .case-whyg__lead, .case-whyg__row,
     .case-retro__stat, .case-retro__note, .case-retro__next
   ) {
     opacity: 0;
