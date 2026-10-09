@@ -1031,7 +1031,7 @@ img, video { display: block; max-width: 100%; }
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  padding-block: calc(var(--u) * 95) calc(var(--u) * 138);
+  padding-block: calc(var(--u) * var(--next-top, 95)) calc(var(--u) * 138);
   color: #000;
 }
 .case-retro__next-text { display: flex; flex-direction: column; gap: calc(var(--u) * 30); }

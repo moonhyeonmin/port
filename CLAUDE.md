@@ -136,6 +136,7 @@ PNG가 없으면 SVG를 Pretendard를 불러온 브라우저에서 그려 참고
 | 06 | security ux = Key Screen 2 (`CaseGlassCards`: 어두운 배경 + 유리 카드 3장, 목업은 2x PNG에서 잘라냄) | `163:158996` | 완료 |
 | 07 | admin console = Key Screen 3 (`CaseDeepDive` + `DeepDiveCompare`(Design) + `DeepDivePatterns`, 모바일은 왼쪽 화면만 잘라 표시) | `163:159388` | 완료 |
 | 08 | landing page (`CaseLanding`: 세로 랜딩 화면 + 제품→랜딩 요소 대응표 + 아래 유리 장식 이미지) | `163:158691` | 완료 |
+| - | 하단 = Next Project (`CaseNext`, Ellm 회고 섹션과 공유, 위 여백 90) | `163:159740` | 완료 |
 
 - 섹션 프레임 하나를 통째로 `get_design_context`하면 결과가 너무 커서 메타데이터만 돌아온다. 하위 frame 단위로 나눠서 호출한다.
 - 섹션 컴포넌트는 `app/components/case-study/Case*.tsx`, 프로젝트별 내용은 `app/case-studies/<slug>.tsx`, slug 등록은 `app/case-studies/index.ts`에 한다.

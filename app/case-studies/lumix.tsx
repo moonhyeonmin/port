@@ -8,6 +8,7 @@ import {
 import { CaseGlassCards } from "~/components/case-study/CaseGlassCards";
 import { CaseHero } from "~/components/case-study/CaseHero";
 import { CaseLanding } from "~/components/case-study/CaseLanding";
+import { CaseNext } from "~/components/case-study/CaseNext";
 import { CaseOverview } from "~/components/case-study/CaseOverview";
 import { CaseSummary } from "~/components/case-study/CaseSummary";
 import { CaseWhyGrid } from "~/components/case-study/CaseWhyGrid";
@@ -26,7 +27,7 @@ export const lumixNav: CaseNavItem[] = [
 
 // Figma: 2wduPMxRCf5SwSUCNYqvbl / "framer 이전용" > Multi AI Workspace_*
 // MCP·REST 한도로 사용자가 내보낸 SVG(글자 윤곽선)·PNG 2x에서 수치와 문구를 옮김
-export default function LumixCaseStudy({ index }: CaseStudyProps) {
+export default function LumixCaseStudy({ index, nextSlug }: CaseStudyProps) {
   return (
     <>
       {/* Multi AI Workspace_01_Hero (163:158413): Ellm Hero와 같은 템플릿 */}
@@ -321,6 +322,9 @@ export default function LumixCaseStudy({ index }: CaseStudyProps) {
         note="마케팅 디자인을 넘어 브랜드 아이덴티티 확장으로 프레이밍"
         background="/projects/lumix/landing-bg.jpg"
       />
+
+      {/* 하단 (163:159740) */}
+      <CaseNext to={`/case-studies/${nextSlug}`} title="다크모드, RTL 디자인 시스템" top={90} />
     </>
   );
 }

@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
-import { Link } from "react-router";
 import { CaseEyebrow } from "./CaseEyebrow";
+import { CaseNext } from "./CaseNext";
 
 interface CaseRetroProps {
   id?: string;
@@ -56,15 +56,7 @@ export function CaseRetro({ id, title, stats, retro, next }: CaseRetroProps) {
         </div>
       </div>
 
-      <Link to={next.to} className="case-sec case-retro__next">
-        <span className="case-retro__next-text">
-          <span className="case-retro__next-label">Next Project</span>
-          <span className="case-retro__next-title">{next.title}</span>
-        </span>
-        <span className="case-retro__next-arrow" aria-hidden>
-          →
-        </span>
-      </Link>
+      <CaseNext to={next.to} title={next.title} />
     </section>
   );
 }
