@@ -315,7 +315,7 @@ export default function LumixCaseStudy({ index, nextSlug }: CaseStudyProps) {
         columns={["제품 요소", "랜딩 요소"]}
         rows={[
           { from: "Multi Chat 칼럼 UI", to: "히어로 목업", arrowDy: 3.5 },
-          { from: "DLP 차단  경고", to: "보안 섹션 시연 카드", arrowDy: 0.5 },
+          { from: "DLP 차단 경고", to: "보안 섹션 시연 카드", arrowDy: 0.5 },
           { from: "모델 칩, 로고", to: "지원 모델 그리드", fromColor: "#141414", arrowDy: -2.5 },
           { from: "Primary Blue, 카드 형태", to: "CTA, 기능 카드", fromColor: "#141414", arrowDy: -5.5 },
         ]}

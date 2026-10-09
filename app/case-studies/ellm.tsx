@@ -121,7 +121,7 @@ export default function EllmCaseStudy({ index, nextSlug }: CaseStudyProps) {
                 <CountUp to={6} />개사
               </>
             ),
-            detail: ["파일럿 데모 후", "신규 고개사 수주"],
+            detail: ["파일럿 데모 후", "신규 고객사 수주"],
             accent: true,
           },
           {
