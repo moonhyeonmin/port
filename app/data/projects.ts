@@ -30,6 +30,8 @@ export const projects: Project[] = [
     year: 2025,
     summary: "여러 AI 모델을 하나의 작업 공간에서 다루는 신제품 설계.",
     tone: "sky",
+    // Figma "framer 이전용" > Multi AI Workspace_cover image (163:158533), 4:3
+    thumbnail: "/projects/lumix/thumb.jpg",
   },
   {
     slug: "design-system",
