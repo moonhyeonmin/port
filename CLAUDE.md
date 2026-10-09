@@ -123,7 +123,7 @@ Figma 파일 `2wduPMxRCf5SwSUCNYqvbl`, 캔버스 **"framer 이전용"** (node `1
   - REST API도 Starter 플랜은 한도가 낮다. 429가 나면 `retry-after` 헤더(초)만큼 기다려야 한다. 그동안 MCP 한도가 풀려 있으면 MCP를 쓰고, 둘 다 막히면 사용자에게 Figma에서 직접 Export(PNG 1x)를 부탁한다.
 ### 멀티 AI 워크스페이스 (`/case-studies/lumix`, `app/case-studies/lumix.tsx`)
 
-Figma 한도 때문에 사용자가 내보낸 파일(`~/Desktop/path/suyeon/`: SVG + PNG 2x)로 작업한다. SVG는 글자가 윤곽선으로 변환돼 있어서 **문구는 PNG를 보고 옮기고, 위치와 크기는 SVG 도형(rect) 좌표로 측정한다.**
+Figma 한도 때문에 사용자가 내보낸 파일(프로젝트의 `design-src/`: SVG + PNG 2x, git 제외)로 작업한다. SVG는 "Outline text"를 해제해 내보내야 문구와 글꼴 크기가 `<text>`로 남는다(SemiBold 굵기는 빠지므로 PNG로 확인). 글자가 윤곽선이면 **문구는 PNG를 보고 옮기고, 위치와 크기는 SVG 도형(rect) 좌표로 측정한다.**
 
 | # | 섹션 | node | 상태 |
 | --- | --- | --- | --- |

@@ -10,3 +10,6 @@
 npm-debug.log*
 
 .vscode/*
+
+# Figma에서 내보낸 원본 (SVG/PNG). 저장소에 올리지 않음
+/design-src
