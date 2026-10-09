@@ -10,9 +10,14 @@ export interface OverviewItem {
   gap: number;
 }
 
-export function CaseOverview({ items }: { items: OverviewItem[] }) {
+/** bottom: 구분선 아래 여백 (디자인 px, 기본 44). 프레임 높이가 고정이라 항목이 짧으면 커진다 */
+export function CaseOverview({ items, bottom }: { items: OverviewItem[]; bottom?: number }) {
   return (
-    <section className="case-sec case-overview" aria-label="Overview">
+    <section
+      className="case-sec case-overview"
+      aria-label="Overview"
+      style={bottom !== undefined ? ({ "--ov-bottom": bottom } as CSSProperties) : undefined}
+    >
       <div className="case-overview__items">
         {items.map(({ title, lines, width, gap }) => (
           <div

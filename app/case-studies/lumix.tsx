@@ -1,4 +1,5 @@
 import { CaseHero } from "~/components/case-study/CaseHero";
+import { CaseOverview } from "~/components/case-study/CaseOverview";
 import type { CaseNavItem } from "~/components/case-study/CaseNav";
 import type { CaseStudyProps } from "./index";
 
@@ -34,6 +35,22 @@ export default function LumixCaseStudy({ index }: CaseStudyProps) {
           height: 1005,
           alt: "Multi Chat Workspace 화면: ChatGPT 4o, Claude 3.5 Sonnet, Gemini 1.5 Pro 답변을 나란히 비교하는 화면과 답변 요약 카드",
         }}
+      />
+
+      {/* Multi AI Workspace_02_Overview (163:158647): Ellm Overview와 같은 템플릿 */}
+      <CaseOverview
+        bottom={69}
+        items={[
+          {
+            title: "Role",
+            lines: ["서비스 기획, 사용자 및 관리자", "화면 설계, 랜딩 페이지 제작"],
+            width: 389,
+            gap: 37,
+          },
+          { title: "Period", lines: ["2026.06 - 2026.10"], width: 261, gap: 37 },
+          { title: "Team", lines: ["기획 1 / FE 2 / 디자인 2 / BE 6"], width: 358, gap: 12 },
+          { title: "Contribution", lines: ["기획 70%", "디자인 80%"], width: 184, gap: 12 },
+        ]}
       />
     </>
   );
