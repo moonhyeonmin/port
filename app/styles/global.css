@@ -683,7 +683,7 @@ img, video { display: block; max-width: 100%; }
   display: flex;
   flex-direction: column;
   gap: calc(var(--u) * 113);
-  padding-block: calc(var(--u) * 120);
+  padding-block: calc(var(--u) * 120) calc(var(--u) * var(--deep-bottom, 120));
 }
 .case-deep__text { display: flex; flex-direction: column; align-items: flex-start; gap: calc(var(--u) * 40); }
 .case-deep__heading { display: flex; flex-direction: column; gap: calc(var(--u) * 20); }
@@ -691,7 +691,69 @@ img, video { display: block; max-width: 100%; }
   font-size: calc(var(--u) * 48);
   font-weight: 600;
   line-height: calc(var(--u) * 50);
-  color: #3182f6;
+  color: var(--deep-point, #3182f6);
+}
+.case-deep__subtitle.is-pre { white-space: pre-wrap; }
+/* .case-h2 > span { display: block } 보다 우선 */
+.case-h2 > .case-deep__title-row { display: inline-flex; align-items: center; gap: calc(var(--u) * var(--title-icon-gap)); }
+.case-deep__title-row img { width: calc(var(--u) * var(--w)); height: calc(var(--u) * var(--h)); }
+/* Key Screen 패널 (Multi AI Workspace_05): 바탕 #F5F6F8 + y 1063에서 가장 진한 #D5E0FD */
+.case-deep__panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: calc(var(--u) * 56.5) calc(var(--u) * 24) calc(var(--u) * 63.8);
+  border-radius: calc(var(--u) * 24);
+  background:
+    linear-gradient(
+      rgb(213 224 253 / 0.0406) 0,
+      rgb(213 224 253) calc(var(--u) * 1063),
+      rgb(213 224 253 / 0) calc(var(--u) * 1813)
+    ),
+    #f5f6f8;
+}
+.case-deep__panel-heading {
+  margin-bottom: calc(var(--u) * 58.5);
+  font-size: calc(var(--u) * 34);
+  font-weight: 700;
+  line-height: calc(var(--u) * 50);
+  color: #252d38;
+  text-align: center;
+}
+.case-deep__panel-item { display: flex; flex-direction: column; align-items: center; }
+.case-deep__panel-item + .case-deep__panel-item { margin-top: calc(var(--u) * 70); }
+.case-deep__panel-figure {
+  width: calc(var(--u) * 1000);
+  max-width: 100%;
+  height: auto;
+  border-radius: calc(var(--u) * 35);
+  box-shadow: 0 calc(var(--u) * 4) calc(var(--u) * 30) rgb(0 0 0 / 0.08);
+}
+.case-deep__panel-caption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--u) * 20);
+  margin-top: calc(var(--u) * 40);
+  font-size: calc(var(--u) * 30);
+  font-weight: 400;
+  line-height: calc(var(--u) * 40);
+  color: #474238;
+}
+/* Figma에서 수동 배치된 줄은 x 위치 그대로 (그림 묶음 시작 x 580 기준) */
+.case-deep__panel-caption.has-x { align-self: flex-start; margin-left: calc(var(--u) * (var(--cap-x) - 580)); }
+.case-deep__panel-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(var(--u) * var(--w));
+  height: calc(var(--u) * 60);
+  font-size: calc(var(--u) * 26);
+  font-weight: 600;
+  color: #000;
+  background: #fff;
+  border-radius: calc(var(--u) * 30);
 }
 .case-deep__blocks { display: flex; flex-direction: column; gap: calc(var(--u) * var(--gap)); }
 /* 상단 연파랑 그라디언트 (페이지 전체 너비, 높이 508) */
@@ -1118,6 +1180,15 @@ img, video { display: block; max-width: 100%; }
   .case-deep__stat-caption { font-size: 18px; line-height: 1.4; }
   .case-deep__priority { gap: 12px; }
   .case-deep__priority-title { font-size: 16px; line-height: 1.5; }
+  .case-h2 > .case-deep__title-row { gap: 12px; }
+  .case-deep__title-row img { width: 44px; height: auto; }
+  .case-deep__panel { padding: 24px 12px 28px; border-radius: 16px; }
+  .case-deep__panel-heading { margin-bottom: 20px; font-size: 16px; line-height: 1.5; word-break: keep-all; }
+  .case-deep__panel-item + .case-deep__panel-item { margin-top: 32px; }
+  .case-deep__panel-figure { border-radius: 10px; }
+  .case-deep__panel-caption { gap: 8px; margin-top: 14px; font-size: 14px; line-height: 1.5; }
+  .case-deep__panel-caption.has-x { align-self: center; margin-left: 0; }
+  .case-deep__panel-pill { width: auto; height: 32px; padding-inline: 14px; font-size: 13px; border-radius: 16px; }
   .case-deep__priority-rows { gap: 8px; }
   .case-deep__priority-row {
     grid-template-columns: 56px 1fr;
@@ -1241,6 +1312,7 @@ img, video { display: block; max-width: 100%; }
     .case-deep__plain, .case-deep__row, .case-deep__stat, .case-deep__trial,
     .case-deep__priority-title, .case-deep__priority-row, .case-deep__figure,
     .case-whyg__lead, .case-whyg__row,
+    .case-deep__panel-heading, .case-deep__panel-figure, .case-deep__panel-caption,
     .case-retro__stat, .case-retro__note, .case-retro__next
   ) {
     opacity: 0;

@@ -1,3 +1,4 @@
+import { CaseDeepDive, DeepDivePanel } from "~/components/case-study/CaseDeepDive";
 import { CaseHero } from "~/components/case-study/CaseHero";
 import { CaseOverview } from "~/components/case-study/CaseOverview";
 import { CaseSummary } from "~/components/case-study/CaseSummary";
@@ -11,6 +12,7 @@ export const lumixNav: CaseNavItem[] = [
   { id: "project", label: "Project" },
   { id: "summary", label: "Summary" },
   { id: "why", label: "Why" },
+  { id: "key-screens", label: "Key Screens" },
 ];
 
 // Figma: 2wduPMxRCf5SwSUCNYqvbl / "framer 이전용" > Multi AI Workspace_*
@@ -152,6 +154,45 @@ export default function LumixCaseStudy({ index }: CaseStudyProps) {
           },
         ]}
       />
+
+      {/* Multi AI Workspace_05 프로젝트 탐색 (163:159138): Key Screen 1 */}
+      <CaseDeepDive
+        id="key-screens"
+        eyebrow="Key Screen 1"
+        icon="/icons/star-gradient.svg"
+        pointColor="#5476FE"
+        title="Multi Chat"
+        titleIcon={{ src: "/icons/diamond-stack.svg", width: 96, height: 58, gap: 31.3 }}
+        subtitle="  비교의 피로를 레이아웃으로 줄였습니다."
+        keepSubtitleSpaces
+        bottom={267}
+      >
+        <DeepDivePanel
+          heading="같은 질문, 서로 다른 읽기 목적 - 결론만 보는 사용자와 원문을 비교하는 사용자"
+          items={[
+            {
+              figure: {
+                src: "/projects/lumix/multichat-1.jpg",
+                width: 1000,
+                height: 711,
+                alt: "간략히 보기: 모델별 답변은 접혀 있고 종합 답변이 본문에 표시된 Multi Chat Workspace 화면",
+              },
+              pill: { label: "간략히 보기", width: 199, x: 677.5 },
+              caption: "모델 답은 접고 종합 답변은 본문으로 확인합니다.",
+            },
+            {
+              figure: {
+                src: "/projects/lumix/multichat-2.jpg",
+                width: 1000,
+                height: 711,
+                alt: "전체 답변 보기: Ellm, Gemini, Claude 답변을 칼럼으로 나란히 펼쳐 비교하는 화면",
+              },
+              pill: { label: "전체 답변 보기", width: 230, x: 711 },
+              caption: "칼럼으로 펼쳐 표현과 근거를 직접 비교합니다.",
+            },
+          ]}
+        />
+      </CaseDeepDive>
     </>
   );
 }

@@ -11,6 +11,18 @@ interface CaseDeepDiveProps {
   tintHeight?: number;
   /** 본문 블록 사이 간격 (디자인 px) */
   gap?: number;
+  /** 라벨 문구 (기본 "Deep Dive") */
+  eyebrow?: string;
+  /** 라벨 아이콘 */
+  icon?: string;
+  /** 라벨·부제 강조색 */
+  pointColor?: string;
+  /** 제목 옆 아이콘 (gap: 제목과 아이콘 사이 디자인 px) */
+  titleIcon?: { src: string; width: number; height: number; gap: number };
+  /** 부제 앞 공백(들여쓰기)을 Figma처럼 유지 */
+  keepSubtitleSpaces?: boolean;
+  /** 섹션 아래 여백 (디자인 px, 기본 120) */
+  bottom?: number;
   children: ReactNode;
 }
 
@@ -21,22 +33,52 @@ export function CaseDeepDive({
   tint,
   tintHeight,
   gap = 44,
+  eyebrow = "Deep Dive",
+  icon,
+  pointColor,
+  titleIcon,
+  keepSubtitleSpaces,
+  bottom,
   children,
 }: CaseDeepDiveProps) {
   return (
     <section
       id={id}
       className={`case-sec case-deep${tint ? ` has-${tint}` : ""}`}
-      style={tintHeight ? ({ "--tint-h": tintHeight } as CSSProperties) : undefined}
-      aria-label={`Deep Dive: ${title}`}
+      style={
+        {
+          ...(tintHeight && { "--tint-h": tintHeight }),
+          ...(pointColor && { "--color-point": pointColor, "--deep-point": pointColor }),
+          ...(bottom !== undefined && { "--deep-bottom": bottom }),
+        } as CSSProperties
+      }
+      aria-label={`${eyebrow}: ${title}`}
     >
       <div className="case-deep__text">
-        <CaseEyebrow>
-          <span className="case-eyebrow__point">Deep Dive</span>
+        <CaseEyebrow icon={icon}>
+          <span className="case-eyebrow__point">{eyebrow}</span>
         </CaseEyebrow>
         <div className="case-deep__heading">
-          <h2 className="case-h2 is-tight">{title}</h2>
-          <p className="case-deep__subtitle">{subtitle}</p>
+          <h2 className="case-h2 is-tight">
+            {titleIcon ? (
+              <span
+                className="case-deep__title-row"
+                style={{ "--title-icon-gap": titleIcon.gap } as CSSProperties}
+              >
+                {title}
+                <img
+                  src={titleIcon.src}
+                  alt=""
+                  width={titleIcon.width}
+                  height={titleIcon.height}
+                  style={{ "--w": titleIcon.width, "--h": titleIcon.height } as CSSProperties}
+                />
+              </span>
+            ) : (
+              title
+            )}
+          </h2>
+          <p className={`case-deep__subtitle${keepSubtitleSpaces ? " is-pre" : ""}`}>{subtitle}</p>
         </div>
       </div>
 
@@ -218,6 +260,43 @@ export function DeepDiveSpecCard({
           <span key={line}>{line}</span>
         ))}
       </p>
+    </div>
+  );
+}
+
+interface PanelItem {
+  figure: { src: string; width: number; height: number; alt: string };
+  /** 그림 아래 알약 라벨과 설명. width는 Figma 알약 너비, x는 알약 시작 x (없으면 가운데) */
+  pill: { label: string; width: number; x?: number };
+  caption: string;
+}
+
+/** 연보라 패널: 가운데 질문 + 화면 그림 + 알약 설명 반복 (Multi AI Workspace Key Screen) */
+export function DeepDivePanel({ heading, items }: { heading: string; items: PanelItem[] }) {
+  return (
+    <div className="case-deep__panel">
+      <h3 className="case-deep__panel-heading">{heading}</h3>
+      {items.map(({ figure, pill, caption }) => (
+        <div key={pill.label} className="case-deep__panel-item">
+          <img
+            className="case-deep__panel-figure"
+            src={figure.src}
+            width={figure.width}
+            height={figure.height}
+            alt={figure.alt}
+            loading="lazy"
+          />
+          <p
+            className={`case-deep__panel-caption${pill.x !== undefined ? " has-x" : ""}`}
+            style={pill.x !== undefined ? ({ "--cap-x": pill.x } as CSSProperties) : undefined}
+          >
+            <span className="case-deep__panel-pill" style={{ "--w": pill.width } as CSSProperties}>
+              {pill.label}
+            </span>
+            <span>{caption}</span>
+          </p>
+        </div>
+      ))}
     </div>
   );
 }
