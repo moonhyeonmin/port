@@ -121,6 +121,17 @@ Figma 파일 `2wduPMxRCf5SwSUCNYqvbl`, 캔버스 **"framer 이전용"** (node `1
   - 이미지: `GET https://api.figma.com/v1/images/<fileKey>?ids=<id>&scale=2&format=png`
   - 토큰 권한이 file_content:read라서 `/v1/me`는 403이 나지만 정상이다.
   - REST API도 Starter 플랜은 한도가 낮다. 429가 나면 `retry-after` 헤더(초)만큼 기다려야 한다. 그동안 MCP 한도가 풀려 있으면 MCP를 쓰고, 둘 다 막히면 사용자에게 Figma에서 직접 Export(PNG 1x)를 부탁한다.
+### 멀티 AI 워크스페이스 (`/case-studies/lumix`, `app/case-studies/lumix.tsx`)
+
+Figma 한도 때문에 사용자가 내보낸 파일(`~/Desktop/path/suyeon/`: SVG + PNG 2x)로 작업한다. SVG는 글자가 윤곽선으로 변환돼 있어서 **문구는 PNG를 보고 옮기고, 위치와 크기는 SVG 도형(rect) 좌표로 측정한다.**
+
+| # | 섹션 | node | 상태 |
+| --- | --- | --- | --- |
+| - | cover image (홈 썸네일) | `163:158533` | 완료 |
+| 01 | Hero (Ellm Hero와 같은 템플릿, 그라디언트 별 아이콘, 강조색 #5476FE) | `163:158413` | 완료 |
+| 02 | Overview | `163:158647` | |
+| 03 | Summary | `163:158592` | |
+
 - 섹션 프레임 하나를 통째로 `get_design_context`하면 결과가 너무 커서 메타데이터만 돌아온다. 하위 frame 단위로 나눠서 호출한다.
 - 섹션 컴포넌트는 `app/components/case-study/Case*.tsx`, 프로젝트별 내용은 `app/case-studies/<slug>.tsx`, slug 등록은 `app/case-studies/index.ts`에 한다.
 - 복잡한 UI 목업은 Figma에서 2배(`defaultScale: 2`) PNG로 내보내 `public/projects/<slug>/`에 둔다. 예: Hero 커버 3128×2010

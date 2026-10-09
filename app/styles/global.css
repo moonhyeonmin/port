@@ -355,6 +355,7 @@ img, video { display: block; max-width: 100%; }
   height: calc(var(--u) * 29.669);
   transform: rotate(-62.6deg);
 }
+.case-eyebrow__icon.is-custom img { width: 100%; height: 100%; transform: none; }
 .case-eyebrow__point { color: var(--color-point); }
 
 /* 섹션 제목 (Summary, Why & How 등 70px) */
@@ -372,7 +373,7 @@ img, video { display: block; max-width: 100%; }
   display: flex;
   flex-direction: column;
   gap: calc(var(--u) * 120);
-  padding-block: calc(var(--u) * 168) calc(var(--u) * 33);
+  padding-block: calc(var(--u) * 168) calc(var(--u) * var(--hero-bottom, 33));
 }
 .case-hero__text { display: flex; flex-direction: column; align-items: flex-start; gap: calc(var(--u) * 40); }
 .case-hero__heading { display: flex; flex-direction: column; gap: calc(var(--u) * 20); }

@@ -14,13 +14,39 @@ interface CaseHeroProps {
   /** box: Figma 태그 컨테이너 너비, pill: 그 안의 pill 너비 (디자인 px) */
   tags: { label: string; box: number; pill: number }[];
   cover: { src: string; width: number; height: number; alt: string };
+  /** 라벨 아이콘 (기본: 파란 별) */
+  icon?: string;
+  /** "Project N" 강조색 (기본 --color-point) */
+  pointColor?: string;
+  /** 섹션 아래 여백 (디자인 px, 기본 33) */
+  bottom?: number;
 }
 
-export function CaseHero({ id, index, label, title, description, tags, cover }: CaseHeroProps) {
+export function CaseHero({
+  id,
+  index,
+  label,
+  title,
+  description,
+  tags,
+  cover,
+  icon,
+  pointColor,
+  bottom,
+}: CaseHeroProps) {
   return (
-    <header id={id} className="case-sec case-hero">
+    <header
+      id={id}
+      className="case-sec case-hero"
+      style={
+        {
+          ...(pointColor && { "--color-point": pointColor }),
+          ...(bottom !== undefined && { "--hero-bottom": bottom }),
+        } as CSSProperties
+      }
+    >
       <div className="case-hero__text">
-        <CaseEyebrow>
+        <CaseEyebrow icon={icon}>
           <span className="case-eyebrow__point">Project {index}</span> - {label}
         </CaseEyebrow>
 
