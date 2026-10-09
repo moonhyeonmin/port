@@ -1,4 +1,10 @@
-import { CaseDeepDive, DeepDivePanel } from "~/components/case-study/CaseDeepDive";
+import {
+  CaseDeepDive,
+  DeepDiveCompare,
+  DeepDivePanel,
+  DeepDivePatterns,
+  DeepDiveStat,
+} from "~/components/case-study/CaseDeepDive";
 import { CaseGlassCards } from "~/components/case-study/CaseGlassCards";
 import { CaseHero } from "~/components/case-study/CaseHero";
 import { CaseOverview } from "~/components/case-study/CaseOverview";
@@ -13,7 +19,7 @@ export const lumixNav: CaseNavItem[] = [
   { id: "project", label: "Project" },
   { id: "summary", label: "Summary" },
   { id: "why", label: "Why" },
-  { id: "key-screens", label: "Key Screens", also: ["key-screen-2"] },
+  { id: "key-screens", label: "Key Screens", also: ["key-screen-2", "key-screen-3"] },
 ];
 
 // Figma: 2wduPMxRCf5SwSUCNYqvbl / "framer 이전용" > Multi AI Workspace_*
@@ -242,6 +248,53 @@ export default function LumixCaseStudy({ index }: CaseStudyProps) {
           },
         ]}
       />
+
+      {/* Multi AI Workspace_07. admin console (163:159388): Key Screen 3 */}
+      <CaseDeepDive
+        id="key-screen-3"
+        eyebrow="Key Screen 3"
+        icon="/icons/star-gradient.svg"
+        pointColor="#5476FE"
+        title="어드민 관리자 콘솔"
+        titleIcon={{ src: "/icons/admin-grid.svg", width: 64, height: 64, gap: 28.7, dy: 3 }}
+        subtitle="  Ellm 대시보드 경험을 재사용 가능한 패턴으로"
+        keepSubtitleSpaces
+        tint="tint"
+        tintHeight={300}
+        tintColors={["rgb(220 220 255 / 0)", "#DCE5FF"]}
+        gap={90}
+      >
+        <DeepDiveCompare
+          label="Design"
+          text={["관리자 화면을 새로 그리지 않고, 반복되는 구조를 3개의 패턴으로 정리해 적용했습니다."]}
+          figure={{
+            src: "/projects/lumix/admin-console.jpg",
+            width: 1564,
+            height: 780,
+            alt: "관리자 콘솔: AI 서비스 사용 현황 KPI 카드와 테이블, 필터 칩이 있는 처리 이력 테이블 화면",
+          }}
+          // 모바일은 왼쪽 AI 서비스 사용 현황 화면만 크게
+          mobileCrop={{ aspect: "1 / 1", x: "3%" }}
+        />
+        <DeepDivePatterns
+          stat={
+            <DeepDiveStat
+              value={
+                <>
+                  <CountUp to={40} />%
+                </>
+              }
+              caption="신규 관리자 화면 설계 시간 단축, 업무 효율성 증가"
+              gradient={["#4263E5", "#6584FF"]}
+            />
+          }
+          cards={[
+            { title: "KPI 카드", desc: "핵심 수치 + 비중" },
+            { title: "필터 칩 테이블", desc: "조건 칩 + 검색 + 정렬" },
+            { title: "상태 Dot", desc: "정상, 대기, 만료, 반려" },
+          ]}
+        />
+      </CaseDeepDive>
     </>
   );
 }

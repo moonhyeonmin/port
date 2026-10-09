@@ -9,6 +9,8 @@ interface CaseDeepDiveProps {
   tint?: "tint" | "glow";
   /** tint 배경 높이 (디자인 px, 기본 508) */
   tintHeight?: number;
+  /** tint 그라디언트 색 [아래(투명 쪽), 위] (기본 연파랑) */
+  tintColors?: [string, string];
   /** 본문 블록 사이 간격 (디자인 px) */
   gap?: number;
   /** 라벨 문구 (기본 "Deep Dive") */
@@ -17,8 +19,8 @@ interface CaseDeepDiveProps {
   icon?: string;
   /** 라벨·부제 강조색 */
   pointColor?: string;
-  /** 제목 옆 아이콘 (gap: 제목과 아이콘 사이 디자인 px) */
-  titleIcon?: { src: string; width: number; height: number; gap: number };
+  /** 제목 옆 아이콘 (gap: 제목과 아이콘 사이, dy: 세로 보정, 디자인 px) */
+  titleIcon?: { src: string; width: number; height: number; gap: number; dy?: number };
   /** 부제 앞 공백(들여쓰기)을 Figma처럼 유지 */
   keepSubtitleSpaces?: boolean;
   /** 섹션 아래 여백 (디자인 px, 기본 120) */
@@ -32,6 +34,7 @@ export function CaseDeepDive({
   subtitle,
   tint,
   tintHeight,
+  tintColors,
   gap = 44,
   eyebrow = "Deep Dive",
   icon,
@@ -48,6 +51,7 @@ export function CaseDeepDive({
       style={
         {
           ...(tintHeight && { "--tint-h": tintHeight }),
+          ...(tintColors && { "--tint-from": tintColors[0], "--tint-to": tintColors[1] }),
           ...(pointColor && { "--color-point": pointColor, "--deep-point": pointColor }),
           ...(bottom !== undefined && { "--deep-bottom": bottom }),
         } as CSSProperties
@@ -71,7 +75,13 @@ export function CaseDeepDive({
                   alt=""
                   width={titleIcon.width}
                   height={titleIcon.height}
-                  style={{ "--w": titleIcon.width, "--h": titleIcon.height } as CSSProperties}
+                  style={
+                    {
+                      "--w": titleIcon.width,
+                      "--h": titleIcon.height,
+                      "--dy": titleIcon.dy ?? 0,
+                    } as CSSProperties
+                  }
                 />
               </span>
             ) : (
@@ -90,7 +100,10 @@ export function CaseDeepDive({
 }
 
 interface DeepDiveCompareProps {
-  label: "AS IS" | "TO BE";
+  /** 행 라벨 (AS IS / TO BE / Design 등) */
+  label: string;
+  /** 라벨 색 톤 (기본: TO BE는 파랑, 그 외는 진한 갈색) */
+  tone?: "asis" | "tobe";
   /** 줄 단위로 나눈 설명 */
   text: string[];
   figure: { src: string; width: number; height: number; alt: string };
@@ -116,10 +129,11 @@ export function DeepDiveCompare({
   labelGap = 0,
   overlay,
   mobileCrop,
+  tone = label === "TO BE" ? "tobe" : "asis",
 }: DeepDiveCompareProps) {
   const row = (
     <p className="case-deep__row" style={{ "--label-gap": labelGap } as CSSProperties}>
-      <span className={`case-deep__label ${label === "AS IS" ? "is-asis" : "is-tobe"}`}>
+      <span className={`case-deep__label is-${tone}`}>
         {labelNode ?? label}
       </span>
       <span className="case-deep__desc">
@@ -161,10 +175,25 @@ export function DeepDiveCompare({
   );
 }
 
-/** 그라디언트 큰 수치 + 설명 */
-export function DeepDiveStat({ value, caption }: { value: ReactNode; caption: string }) {
+/** 그라디언트 큰 수치 + 설명. gradient: [위, 아래] (기본 #1658ff → #3182f6) */
+export function DeepDiveStat({
+  value,
+  caption,
+  gradient,
+}: {
+  value: ReactNode;
+  caption: string;
+  gradient?: [string, string];
+}) {
   return (
-    <div className="case-deep__stat">
+    <div
+      className="case-deep__stat"
+      style={
+        gradient
+          ? ({ "--stat-from": gradient[0], "--stat-to": gradient[1] } as CSSProperties)
+          : undefined
+      }
+    >
       <p className="case-deep__stat-value">{value}</p>
       <p className="case-deep__stat-caption">{caption}</p>
     </div>
@@ -297,6 +326,29 @@ export function DeepDivePanel({ heading, items }: { heading: string; items: Pane
           </p>
         </div>
       ))}
+    </div>
+  );
+}
+
+/** 수치 + 아래 패턴 카드 줄 (Multi AI Workspace Key Screen 3) */
+export function DeepDivePatterns({
+  stat,
+  cards,
+}: {
+  stat: ReactNode;
+  cards: { title: string; desc: string }[];
+}) {
+  return (
+    <div className="case-deep__result">
+      {stat}
+      <ul className="case-deep__patterns">
+        {cards.map(({ title, desc }) => (
+          <li key={title} className="case-deep__pattern">
+            <h3 className="case-deep__pattern-title">{title}</h3>
+            <p className="case-deep__pattern-desc">{desc}</p>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

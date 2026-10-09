@@ -36,6 +36,7 @@ export const REVEAL_SELECTOR = [
   ".case-deep__panel-figure",
   ".case-deep__panel-caption",
   ".case-glass__card",
+  ".case-deep__pattern",
   ".case-retro__stat",
   ".case-retro__note",
   ".case-retro__next",

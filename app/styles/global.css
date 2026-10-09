@@ -696,7 +696,29 @@ img, video { display: block; max-width: 100%; }
 .case-deep__subtitle.is-pre { white-space: pre-wrap; }
 /* .case-h2 > span { display: block } 보다 우선 */
 .case-h2 > .case-deep__title-row { display: inline-flex; align-items: center; gap: calc(var(--u) * var(--title-icon-gap)); }
-.case-deep__title-row img { width: calc(var(--u) * var(--w)); height: calc(var(--u) * var(--h)); }
+.case-deep__title-row img { width: calc(var(--u) * var(--w)); height: calc(var(--u) * var(--h)); transform: translateY(calc(var(--u) * var(--dy, 0))); }
+/* 수치 + 패턴 카드 (Multi AI Workspace_07) */
+.case-deep__result { display: flex; flex-direction: column; gap: calc(var(--u) * 50); }
+.case-deep__patterns {
+  display: grid;
+  grid-template-columns: repeat(3, calc(var(--u) * 496));
+  column-gap: calc(var(--u) * 38);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.case-deep__pattern {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: calc(var(--u) * 9.5);
+  height: calc(var(--u) * 137);
+  padding-inline: calc(var(--u) * 36);
+  background: #f1f4ff;
+  border-radius: calc(var(--u) * 24);
+}
+.case-deep__pattern-title { font-size: calc(var(--u) * 28); font-weight: 700; line-height: calc(var(--u) * 40); color: #141414; }
+.case-deep__pattern-desc { font-size: calc(var(--u) * 24); font-weight: 400; line-height: calc(var(--u) * 34); color: #606faa; }
 /* Key Screen 패널 (Multi AI Workspace_05): 바탕 #F5F6F8 + y 1063에서 가장 진한 #D5E0FD */
 .case-deep__panel {
   display: flex;
@@ -766,7 +788,7 @@ img, video { display: block; max-width: 100%; }
   width: 100cqw;
   height: calc(var(--u) * var(--tint-h, 508));
   transform: translateX(-50%);
-  background: linear-gradient(to top, rgb(220 234 255 / 0), #ebf3ff);
+  background: linear-gradient(to top, var(--tint-from, rgb(220 234 255 / 0)), var(--tint-to, #ebf3ff));
 }
 /* 상단 보라·하늘 원형 그라디언트 (Figma Ellipse 3144/3145) */
 .case-deep.has-glow::before {
@@ -852,7 +874,7 @@ img, video { display: block; max-width: 100%; }
   font-weight: 400;
   line-height: calc(var(--u) * 110);
   letter-spacing: calc(var(--u) * -1.2);
-  background: linear-gradient(to bottom, #1658ff, #3182f6);
+  background: linear-gradient(to bottom, var(--stat-from, #1658ff), var(--stat-to, #3182f6));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -1181,6 +1203,8 @@ img, video { display: block; max-width: 100%; }
   .case-deep__priority-note { white-space: normal; }
   .case-whyg__body { grid-template-columns: minmax(0, 1fr) minmax(0, 2.2fr); column-gap: 24px; }
   .case-whyg__row { grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); }
+  .case-deep__patterns { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 16px; }
+  .case-deep__pattern { padding-inline: 20px; }
   .case-glass__cards { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 16px; width: 100%; margin-left: 0; }
   .case-journey__head > * { margin-left: 0 !important; width: auto !important; text-align: left !important; }
   .case-journey__head > :nth-child(1) { padding-left: 3px; }
@@ -1255,6 +1279,11 @@ img, video { display: block; max-width: 100%; }
   .case-h2 > .case-deep__title-row { gap: 12px; }
   .case-deep__title-row img { width: 44px; height: auto; }
   .case-deep__panel { padding: 24px 12px 28px; border-radius: 16px; }
+  .case-deep__result { gap: 24px; }
+  .case-deep__patterns { grid-template-columns: 1fr; row-gap: 10px; }
+  .case-deep__pattern { gap: 2px; height: auto; padding: 16px 18px; border-radius: 14px; }
+  .case-deep__pattern-title { font-size: 17px; line-height: 1.4; }
+  .case-deep__pattern-desc { font-size: 15px; line-height: 1.5; }
   .case-deep__panel-heading { margin-bottom: 20px; font-size: 16px; line-height: 1.5; word-break: keep-all; }
   .case-deep__panel-item + .case-deep__panel-item { margin-top: 32px; }
   .case-deep__panel-figure { border-radius: 10px; }
@@ -1396,7 +1425,7 @@ img, video { display: block; max-width: 100%; }
     .case-deep__priority-title, .case-deep__priority-row, .case-deep__figure,
     .case-whyg__lead, .case-whyg__row,
     .case-deep__panel-heading, .case-deep__panel-figure, .case-deep__panel-caption,
-    .case-glass__card,
+    .case-glass__card, .case-deep__pattern,
     .case-retro__stat, .case-retro__note, .case-retro__next
   ) {
     opacity: 0;
