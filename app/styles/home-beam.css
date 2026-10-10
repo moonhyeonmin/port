@@ -107,16 +107,14 @@
 
 /* 푸터도 같은 어두운 톤으로 이어지게 */
 .page.is-home-beam .footer { border-top-color: var(--beam-line); }
-.page.is-home-beam .footer__name { font-size: 18px; font-weight: 600; }
+.page.is-home-beam .footer__name { font-size: 16px; font-weight: 600; }
 .page.is-home-beam .footer__intro,
-.page.is-home-beam .footer__col { font-size: 15px; }
-.page.is-home-beam .footer__label { font-size: 13px; }
-.page.is-home-beam .pill { font-size: 15px; }
+.page.is-home-beam .footer__col { font-size: 14px; }
+.page.is-home-beam .footer__label { font-size: 12px; }
 .page.is-home-beam .footer .muted,
 .page.is-home-beam .footer__label { color: var(--beam-muted); }
-.page.is-home-beam .footer__col a:not(.pill):hover,
+.page.is-home-beam .footer__col a:hover,
 .page.is-home-beam .footer__email:hover { color: #fff; opacity: 0.7; }
-.page.is-home-beam .pill { color: var(--beam-base); background: #fff; }
 
 @media (max-width: 809.98px) {
   .page.is-home-beam .hero__inner::before { inset: -24px -8%; }

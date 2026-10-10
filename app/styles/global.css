@@ -1943,18 +1943,21 @@ img, video { display: block; max-width: 100%; }
 .error { padding-block: 120px; text-align: center; display: flex; flex-direction: column; gap: 8px; }
 
 /* ─── Footer ─── */
-.footer { border-top: 1px solid var(--color-border); padding-block: 48px; }
+.footer { border-top: 1px solid var(--color-border); padding-block: 28px; }
 .footer__inner {
   display: grid;
   grid-template-columns: minmax(0, 2fr) 1fr 1fr;
   gap: 32px;
 }
-.footer__intro { display: flex; flex-direction: column; gap: 8px; max-width: 360px; font-size: var(--fs-sm); }
+.footer__intro { display: flex; flex-direction: column; gap: 4px; max-width: 360px; font-size: var(--fs-sm); }
 .footer__name { font-size: var(--fs-md); font-weight: 600; }
-.footer__col { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; font-size: var(--fs-sm); }
-.footer__col a:not(.pill):hover, .footer__email:hover { color: var(--color-muted); }
+/* 라벨 아래 링크는 한 줄로 (세로로 쌓지 않아 푸터 높이를 줄인다) */
+.footer__col { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; font-size: var(--fs-sm); }
+.footer__label { flex-basis: 100%; }
+.footer__col a:hover, .footer__email:hover { color: var(--color-muted); }
 .footer__label { color: var(--color-muted); font-size: var(--fs-xs); }
 @media (max-width: 809.98px) {
-  .footer__inner { grid-template-columns: 1fr 1fr; }
+  .footer { padding-block: 24px; }
+  .footer__inner { grid-template-columns: 1fr 1fr; gap: 16px; }
   .footer__intro { grid-column: 1 / -1; }
 }
