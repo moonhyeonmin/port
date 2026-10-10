@@ -158,6 +158,9 @@ PNG가 없으면 SVG를 Pretendard를 불러온 브라우저에서 그려 참고
 - **숫자 카운트업**: `app/components/CountUp.tsx` (기본 2초). 미리 렌더링된 HTML에는 최종 숫자가 들어가고, 최종 숫자 폭으로 자리를 고정해 옆 글자가 흔들리지 않는다.
 - **상단 내비 알약**: `CaseNav`의 `.case-nav__indicator`가 현재 항목으로 미끄러지듯 이동한다.
 - **홈 카드 호버**: 카드 테두리는 그대로 두고 안의 이미지만 1.03배 확대한다.
+- **홈 어두운 배경 (실험, `feature/home-beam` 브랜치)**: https://josu.framer.website 첫 화면을 참고한 어두운 남색 바탕 + 대각선 파란 빛줄기. 직접 만든 WebGL 셰이더(`app/components/HomeBeam.tsx`)이고, 시간에 따라 천천히 흐르며 마우스 쪽으로 살짝 기운다. 화면 밖·숨은 탭에서는 멈추고, 동작 줄이기 설정이면 정지 화면 한 장, WebGL이 없으면 CSS 그라디언트를 보여 준다.
+  - 스타일은 `app/styles/home-beam.css`에 모았고 모두 `.page.is-home-beam` 아래에서만 적용된다 (`root.tsx`가 홈에서 이 클래스를 붙인다).
+  - **되돌리기**: `app/data/features.ts`의 `homeBeam`을 `false`로 바꾸면 기존 밝은 홈으로 돌아간다. 완전히 지우려면 위 두 파일과 `features.ts`, `root.tsx`/`home.tsx`의 관련 줄을 지운다.
 
 ## 컨벤션
 
