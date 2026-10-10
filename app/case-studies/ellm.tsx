@@ -207,7 +207,7 @@ export default function EllmCaseStudy({ index, nextSlug }: CaseStudyProps) {
       {/* Ellm_06_DeepDive01_프로젝트 탐색 (126:56301) */}
       <CaseDeepDive
         id="deep-dive"
-        title="프로젝트 탐색"
+        title="1. 프로젝트 탐색"
         subtitle="반복되는 카드 리스트 →  테이블 + 검색, 필터"
       >
         <DeepDiveCompare
@@ -238,7 +238,7 @@ export default function EllmCaseStudy({ index, nextSlug }: CaseStudyProps) {
       {/* Ellm_06_DeepDive02_문서 생성 (126:57131) */}
       <CaseDeepDive
         id="deep-dive-docgen"
-        title="문서 생성"
+        title="2. 문서 생성"
         subtitle="입력 항목이 아닌 입력 ‘순서’를 재설계"
         tint="tint"
         gap={90}
@@ -293,7 +293,7 @@ export default function EllmCaseStudy({ index, nextSlug }: CaseStudyProps) {
       {/* Ellm_07_DeepDive03_답변 생성 대기 (126:56943) */}
       <CaseDeepDive
         id="deep-dive-wait"
-        title="답변 생성 대기"
+        title="3. 답변 생성 대기"
         subtitle="세번의 시도 끝에 기다림을 ‘진행 중인 작업’으로 변경"
         tint="glow"
         gap={80}
