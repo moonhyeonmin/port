@@ -1,4 +1,5 @@
 import { CaseHero } from "~/components/case-study/CaseHero";
+import { CaseOverview } from "~/components/case-study/CaseOverview";
 import type { CaseNavItem } from "~/components/case-study/CaseNav";
 import type { CaseStudyProps } from "./index";
 
@@ -33,6 +34,22 @@ export default function DesignSystemCaseStudy({ index }: CaseStudyProps) {
           height: 1173,
           alt: "라이트·다크 모드를 나란히 보여주는 관제 화면, 아랍어 RTL 화면, 라이트/다크 컬러 토큰 표, 다크 모드 Primitives 컬러 시스템",
         }}
+      />
+
+      {/* Design system_02_Overview: 멀티 AI 워크스페이스 Overview와 같은 배치, 아래 여백 69 */}
+      <CaseOverview
+        bottom={69}
+        items={[
+          {
+            title: "Role",
+            lines: ["컬러 시스템, Variable 설계", "플러그인 제작, 마크다운 문서화"],
+            width: 389,
+            gap: 37,
+          },
+          { title: "Period", lines: ["2026.01 - 2026.10"], width: 261, gap: 37 },
+          { title: "Team", lines: ["전 제품 Web, Mobile", "공통 다크모드, RTL"], width: 358, gap: 12 },
+          { title: "Contribution", lines: ["디자이너 6명", "협업"], width: 184, gap: 12 },
+        ]}
       />
     </>
   );

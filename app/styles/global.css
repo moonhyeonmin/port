@@ -440,6 +440,8 @@ img, video { display: block; max-width: 100%; }
 .case-page.is-dark { background: #0e0e0e; color: #fff; }
 .case-page.is-dark .case-hero__desc { color: #eee; }
 .case-page.is-dark .case-hero__tag { background: #404040; }
+.case-page.is-dark .case-overview__body { color: #c1c1c1; }
+.case-page.is-dark .case-overview__divider { background: #525252; }
 
 /* 02 Overview (126:62652): 항목 줄 + 아래 구분선 */
 .case-overview {

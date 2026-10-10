@@ -146,7 +146,7 @@ PNG가 없으면 SVG를 Pretendard를 불러온 브라우저에서 그려 참고
 | --- | --- | --- |
 | - | cover image (홈 썸네일) | 완료 |
 | 01 | Hero (Ellm Hero 템플릿, 아래 여백 156, 커버 1564×1173) | 완료 |
-| 02 | Overview | |
+| 02 | Overview (멀티 AI 워크스페이스 Overview와 같은 배치, 내용 #C1C1C1, 구분선 #525252) | 완료 |
 | 03 | Summary | |
 | 04 | Why (Problem & Solution 1) | |
 | 05 | Problem & Solution 2 (Contrast Checker) | |
