@@ -57,7 +57,8 @@ void main() {
   vec2 p = gl_FragCoord.xy / uRes.y;           // 가로 0..aspect, 세로 0..1
   gM = uMouse * vec2(aspect, 1.0);
   gTr = uTrail * vec2(aspect, 1.0);
-  gT = uTime;
+  // 전체 흐름 속도: 원본처럼 느긋하게 (1이면 천 한 장이 14~19초에 지나간다)
+  gT = uTime * 0.4;
   gAspect = aspect;
 
   vec3 base = vec3(0.008, 0.012, 0.045);
