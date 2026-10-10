@@ -4,13 +4,15 @@
  */
 .cases.cases--row {
   /* 카드 너비: 히어로 아래 남은 높이를 넘지 않게 (썸네일 4:3) */
-  --row-card: clamp(200px, (100svh - 520px) * 1.333, 440px);
+  --row-card: clamp(200px, (100svh - 464px - var(--row-top)) * 1.333, 440px);
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 20px;
   max-width: calc(var(--row-card) * 4 + 60px + var(--gutter) * 2);
   padding-bottom: 80px;
 }
-.home:has(.cases--row) .hero { padding-bottom: 56px; }
+/* 히어로와 카드 사이 간격: 화면 높이에 맞춰 넉넉하게 (카드를 화면 아래쪽으로) */
+.home:has(.cases--row) { --row-top: clamp(56px, 13svh, 136px); }
+.home:has(.cases--row) .hero { padding-bottom: var(--row-top); }
 
 .cases--row .card__meta { flex-direction: column; align-items: flex-start; gap: 8px; }
 .cases--row .card__media,
@@ -43,7 +45,7 @@
 /* 모바일: 2열 작은 카드 (2줄) */
 @media (max-width: 809.98px) {
   .cases.cases--row { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: none; gap: 24px 12px; padding-bottom: 56px; }
-  .home:has(.cases--row) .hero { padding-bottom: 40px; }
+  .home:has(.cases--row) { --row-top: clamp(40px, 7svh, 64px); }
   .cases--row .card { gap: 10px; }
   .page.is-home-beam .cases--row .card__title { font-size: 15px; }
   .cases--row .tag { font-size: 11px; }
