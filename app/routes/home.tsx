@@ -1,6 +1,5 @@
 import type { Route } from "./+types/home";
 import { HomeBeam } from "~/components/HomeBeam";
-import { HomeMarquee } from "~/components/HomeMarquee";
 import { ProjectCard } from "~/components/ProjectCard";
 import { features } from "~/data/features";
 import { pageMeta } from "~/data/meta";
@@ -28,15 +27,14 @@ export default function Home() {
         </div>
       </section>
 
-      {features.homeMarquee ? (
-        <HomeMarquee projects={projects} />
-      ) : (
-        <section className="container cases" aria-label="Case Studies">
-          {projects.map((project) => (
-            <ProjectCard key={project.slug} project={project} />
-          ))}
-        </section>
-      )}
+      <section
+        className={`container cases${features.homeRow ? " cases--row" : ""}`}
+        aria-label="Case Studies"
+      >
+        {projects.map((project) => (
+          <ProjectCard key={project.slug} project={project} />
+        ))}
+      </section>
     </div>
   );
 }

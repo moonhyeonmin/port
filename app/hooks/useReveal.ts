@@ -7,7 +7,6 @@ import { useEffect } from "react";
 export const REVEAL_SELECTOR = [
   // 홈
   ".cases .card",
-  ".home-marquee",
   // 케이스 스터디
   ".case-page .case-eyebrow",
   ".case-page .case-h2",

@@ -9,8 +9,8 @@ export const features = {
    */
   homeBeam: true,
   /**
-   * 홈 프로젝트 카드를 한 줄 가로 띠로 천천히 흘려 보여준다 (false면 기존 2열 카드 목록).
-   * 관련 파일: components/HomeMarquee.tsx, styles/home-marquee.css
+   * 홈 프로젝트 카드 4장을 히어로 아래 가로 한 줄로 두고, 마우스를 올린 카드만 강조한다 (false면 기존 2열 목록).
+   * 관련 파일: styles/home-row.css, routes/home.tsx(cases--row 클래스)
    */
-  homeMarquee: true,
+  homeRow: true,
 };
