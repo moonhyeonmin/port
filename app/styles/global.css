@@ -939,6 +939,8 @@ img, video { display: block; max-width: 100%; }
   padding: calc(var(--fu) * 30) calc(var(--fu) * 20);
   color: #343434;
   background: #fff;
+  /* 위 두 모서리만 둥글게 (아래는 그림 아래 끝에 붙음) */
+  border-radius: calc(var(--fu) * 20) calc(var(--fu) * 20) 0 0;
   box-shadow: 0 calc(var(--fu) * 4) calc(var(--fu) * 20) rgb(0 0 0 / 0.04);
 }
 .case-deep__spec-title,
