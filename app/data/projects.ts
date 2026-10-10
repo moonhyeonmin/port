@@ -40,6 +40,8 @@ export const projects: Project[] = [
     year: 2025,
     summary: "다크모드를 포함한 개인 디자인 시스템 구축.",
     tone: "lime",
+    // Figma "framer 이전용" > 다크모드, RTL 다국어 디자인 시스템 구축_cover image, 4:3
+    thumbnail: "/projects/design-system/thumb.webp",
   },
   {
     slug: "aviera",
