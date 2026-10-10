@@ -1,5 +1,7 @@
 import type { Route } from "./+types/home";
+import { HomeBeam } from "~/components/HomeBeam";
 import { ProjectCard } from "~/components/ProjectCard";
+import { features } from "~/data/features";
 import { pageMeta } from "~/data/meta";
 import { projects } from "~/data/projects";
 import { site } from "~/data/site";
@@ -10,7 +12,8 @@ export const meta: Route.MetaFunction = () => pageMeta({});
 export default function Home() {
   useReveal();
   return (
-    <>
+    <div className="home">
+      {features.homeBeam && <HomeBeam />}
       <section className="hero">
         <div className="hero__sky" aria-hidden />
         <div className="container hero__inner">
@@ -29,6 +32,6 @@ export default function Home() {
           <ProjectCard key={project.slug} project={project} />
         ))}
       </section>
-    </>
+    </div>
   );
 }

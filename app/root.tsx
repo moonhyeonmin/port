@@ -11,7 +11,9 @@ import type { Route } from "./+types/root";
 import { TabNav } from "~/components/TabNav";
 import { Footer } from "~/components/Footer";
 import { getCaseStudy } from "~/case-studies";
+import { features } from "~/data/features";
 import "~/styles/global.css";
+import "~/styles/home-beam.css";
 
 export const links: Route.LinksFunction = () => [
   { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
@@ -28,8 +30,9 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  // head 스크립트가 붙이는 .js 클래스 때문에 생기는 hydration 경고를 막는다
   return (
-    <html lang="ko">
+    <html lang="ko" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -52,9 +55,11 @@ export default function App() {
   // 디자인이 있는 케이스 스터디는 자체 섹션 내비게이션(CaseNav)을 쓴다
   const slug = pathname.match(/^\/case-studies\/([^/]+)/)?.[1];
   const hasCaseNav = Boolean(getCaseStudy(slug));
+  // 홈 어두운 배경 실험 (features.homeBeam)
+  const homeBeam = features.homeBeam && pathname === "/";
 
   return (
-    <div className="page">
+    <div className={`page${homeBeam ? " is-home-beam" : ""}`}>
       {!hasCaseNav && <TabNav />}
       <main>
         <Outlet />
