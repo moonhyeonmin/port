@@ -20,7 +20,7 @@ export function Footer() {
       <div className="container footer__inner">
         <div className="footer__intro">
           <p className="footer__name">{site.name}</p>
-          <p className="muted">{site.intro}</p>
+          <p className="muted">{site.footerIntro}</p>
         </div>
         <div className="footer__col">
           <p className="footer__label">Links</p>
@@ -33,9 +33,6 @@ export function Footer() {
           <button type="button" className="footer__email" onClick={copyEmail}>
             {copied ? "Copied!" : site.email}
           </button>
-          <a className="pill" href={site.callUrl} target="_blank" rel="noreferrer">
-            Schedule a call
-          </a>
         </div>
       </div>
     </footer>
