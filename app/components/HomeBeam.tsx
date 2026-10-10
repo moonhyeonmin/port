@@ -18,7 +18,7 @@ uniform vec2 uRes;
 uniform float uTime;
 
 // 원본과 같은 설정값
-const float SPEED = 0.4;     // 흐름 속도
+const float SPEED = 0.25;    // 흐름 속도 (원본 0.4, 사용자 요청으로 더 느리게)
 const float SCALE = 0.6;     // 무늬 크기 (작을수록 크다)
 const float TURB_AMP = 0.6;  // 비트는 세기
 const float TURB_FREQ = 0.1; // 비트는 촘촘함
