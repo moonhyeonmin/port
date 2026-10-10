@@ -12,6 +12,17 @@
   color-scheme: dark;
 }
 
+/*
+ * 글꼴: 홈 전체를 Pretendard 하나로 (기본 스택은 Manrope가 먼저라 영문만 Manrope로 섞여 보였다).
+ * 글자 크기는 아래 단계만 쓴다: 64(제목) / 20(카드 제목) / 18(설명) / 15(메뉴·본문) / 13(태그·라벨)
+ */
+.page.is-home-beam {
+  --beam-font: var(--font-kr);
+  font-family: var(--beam-font);
+  letter-spacing: -0.01em;
+}
+.page.is-home-beam button { font-family: inherit; }
+
 /* 배경: 첫 화면 높이만큼 위쪽에 깔고, 아래는 바탕색으로 자연스럽게 이어진다 */
 .home { position: relative; isolation: isolate; }
 .home-beam {
@@ -41,7 +52,7 @@
   background: rgb(2 3 11 / 0.35);
   border-bottom-color: var(--beam-line);
 }
-.page.is-home-beam .tabnav__tab { color: rgb(225 232 255 / 0.6); }
+.page.is-home-beam .tabnav__tab { font-size: 15px; color: rgb(225 232 255 / 0.6); }
 .page.is-home-beam .tabnav__tab:hover { color: #fff; }
 .page.is-home-beam .tabnav__tab.is-active { color: #fff; background: rgb(255 255 255 / 0.1); }
 
@@ -63,15 +74,31 @@
   background: radial-gradient(closest-side, rgb(2 3 11 / 0.55), rgb(2 3 11 / 0));
   pointer-events: none;
 }
-.page.is-home-beam .hero__title { color: #fff; text-shadow: 0 2px 24px rgb(2 3 11 / 0.35); }
-.page.is-home-beam .hero__desc { color: rgb(225 232 255 / 0.8); text-shadow: 0 1px 12px rgb(2 3 11 / 0.5); }
+.page.is-home-beam .hero__inner { gap: 20px; }
+.page.is-home-beam .hero__title {
+  font-size: clamp(40px, 4.6vw, 64px);
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.035em;
+  color: #fff;
+  text-shadow: 0 2px 24px rgb(2 3 11 / 0.35);
+}
+.page.is-home-beam .hero__desc {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: rgb(225 232 255 / 0.8);
+  text-shadow: 0 1px 12px rgb(2 3 11 / 0.5);
+}
 
 /* 카드: 썸네일 가장자리를 얇은 선으로 구분하고, 정보는 밝은 글자 */
 .page.is-home-beam .card__media {
   box-shadow: 0 0 0 1px var(--beam-line), 0 24px 60px rgb(0 0 0 / 0.45);
 }
-.page.is-home-beam .card__title { color: #fff; }
+.page.is-home-beam .card__title { font-size: 20px; font-weight: 600; letter-spacing: -0.02em; color: #fff; }
 .page.is-home-beam .tag {
+  font-size: 13px;
+  font-weight: 500;
   color: rgb(225 232 255 / 0.78);
   background: rgb(255 255 255 / 0.08);
   box-shadow: inset 0 0 0 1px var(--beam-line);
@@ -81,6 +108,11 @@
 
 /* 푸터도 같은 어두운 톤으로 이어지게 */
 .page.is-home-beam .footer { border-top-color: var(--beam-line); }
+.page.is-home-beam .footer__name { font-size: 18px; font-weight: 600; }
+.page.is-home-beam .footer__intro,
+.page.is-home-beam .footer__col { font-size: 15px; }
+.page.is-home-beam .footer__label { font-size: 13px; }
+.page.is-home-beam .pill { font-size: 15px; }
 .page.is-home-beam .footer .muted,
 .page.is-home-beam .footer__label { color: var(--beam-muted); }
 .page.is-home-beam .footer__col a:not(.pill):hover,
@@ -90,5 +122,8 @@
 @media (max-width: 809.98px) {
   .page.is-home-beam .hero__inner::before { inset: -24px -8%; }
   .page.is-home-beam .hero { padding-top: calc(64px + 45px); padding-bottom: 56px; }
+  .page.is-home-beam .hero__title { font-size: 34px; }
+  .page.is-home-beam .hero__desc { font-size: 16px; }
+  .page.is-home-beam .card__title { font-size: 18px; }
   .home-beam { height: max(100svh, 720px); }
 }

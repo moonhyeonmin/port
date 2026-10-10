@@ -1,8 +1,10 @@
 import { useEffect, useRef } from "react";
 
 /**
- * 홈 배경: 어두운 남색 바탕 위로 대각선 파란 빛줄기가 천천히 흐르고, 마우스 쪽으로 살짝 기운다.
- * WebGL 셰이더로 그리며, WebGL이 없거나 동작 줄이기 설정이면 CSS 그라디언트(.home-beam 배경)만 보인다.
+ * 홈 배경: 어두운 남색 바탕 위 대각선 파란 빛줄기 (josu.framer.website 첫 화면 참고).
+ * 빛줄기는 비단처럼 접힌 결을 따라 흐르고, 마우스를 움직이면 커서 쪽으로 크게 휘며 뒤따라온다.
+ * 터치 기기처럼 마우스가 없으면 보이지 않는 점이 천천히 돌며 같은 움직임을 만든다.
+ * WebGL이 없으면 CSS 그라디언트(.home-beam 배경)만 보이고, 동작 줄이기 설정이면 정지 화면 한 장만 그린다.
  */
 
 const VERT = `
@@ -14,7 +16,9 @@ const FRAG = `
 precision highp float;
 uniform vec2 uRes;
 uniform float uTime;
-uniform vec2 uMouse;   // -1..1, 천천히 따라오는 값
+uniform vec2 uMouse;   // 커서를 빠르게 따라오는 점 (0..1, 위가 1)
+uniform vec2 uTrail;   // 커서를 느리게 따라오는 점: 둘 사이로 빛이 끌려간다
+uniform float uEnergy; // 커서 속도 (0..1), 빠를수록 결이 크게 일렁인다
 uniform float uScroll; // 0..1, 아래로 내릴수록 빛을 줄인다
 
 float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
@@ -28,48 +32,54 @@ float fbm(vec2 p) {
   for (int i = 0; i < 4; i++) { v += a * noise(p); p *= 2.02; a *= 0.5; }
   return v;
 }
+// 점 p에서 선분 a-b까지 거리
+float segDist(vec2 p, vec2 a, vec2 b) {
+  vec2 pa = p - a, ba = b - a;
+  float h = clamp(dot(pa, ba) / max(dot(ba, ba), 1e-4), 0.0, 1.0);
+  return length(pa - ba * h);
+}
 
 void main() {
-  // 화면 비율을 보정한 좌표 (가로 0..aspect, 세로 0..1, 위가 1)
-  vec2 uv = gl_FragCoord.xy / uRes.y;
   float aspect = uRes.x / uRes.y;
-  float t = uTime * 0.06;
+  vec2 uv = gl_FragCoord.xy / uRes.y;           // 가로 0..aspect, 세로 0..1
+  vec2 m = uMouse * vec2(aspect, 1.0);
+  vec2 tr = uTrail * vec2(aspect, 1.0);
+  float t = uTime * 0.08;
 
-  // 빛줄기 경계선: 화면 위 가운데에서 오른쪽 아래로 내려가는 대각선
-  // 세로로 긴 화면(모바일)은 경계를 왼쪽으로 옮기고 더 가파르게
+  // 기본 빛줄기: 위 가운데에서 오른쪽 아래로 내려가는 대각선 (세로 화면은 더 가파르게)
   float narrow = smoothstep(1.3, 0.6, aspect);
-  float ang = radians(mix(-42.0, -60.0, narrow)) + uMouse.x * 0.05 + sin(t * 1.3) * 0.04;
-  vec2 dir = vec2(cos(ang), sin(ang));
-  vec2 nrm = vec2(-dir.y, dir.x);
-  vec2 origin = vec2(aspect * (mix(0.48, 0.3, narrow) + uMouse.x * 0.025) + sin(t) * 0.05, 1.0 + uMouse.y * 0.025);
-  float warp = (fbm(uv * 1.4 + vec2(t, -t * 0.7)) - 0.5) * 0.16;
-  float d = dot(uv - origin, nrm) + warp; // 양수 = 빛 쪽
+  float ang = radians(mix(-42.0, -60.0, narrow)) + sin(t * 1.3) * 0.05;
+  vec2 nrm = vec2(sin(-ang), cos(ang));
+  vec2 origin = vec2(aspect * mix(0.5, 0.3, narrow) + sin(t) * 0.06, 1.0);
+
+  // 결이 흐르도록 좌표를 비튼다 (커서가 빠를수록 크게)
+  vec2 q = uv + (vec2(fbm(uv * 0.75 + t), fbm(uv * 0.75 - t + 4.0)) - 0.5) * (0.3 + uEnergy * 0.3);
+  float f = dot(q - origin, nrm);
+
+  // 커서 쪽으로 빛이 끌려온다: 느린 점→빠른 점 선분 주변을 밝은 쪽으로 밀어 비단 자락처럼
+  float pull = exp(-pow(segDist(q, tr, m) / 0.42, 2.0));
+  f += pull * (0.55 + uEnergy * 0.35);
 
   vec3 base = vec3(0.008, 0.012, 0.045);
-  vec3 deep = vec3(0.03, 0.14, 0.72);
+  vec3 deep = vec3(0.02, 0.1, 0.62);
   vec3 blue = vec3(0.1, 0.36, 1.0);
-  vec3 edge = vec3(0.42, 0.62, 1.0);
+  vec3 edge = vec3(0.45, 0.65, 1.0);
 
-  // 빛 쪽: 경계에서 빠르게 밝아지고 안쪽은 진한 파랑과 밝은 파랑이 흐른다
-  float side = smoothstep(-0.015, 0.1, d);
-  float inner = fbm(uv * 0.9 + vec2(-t * 0.6, t * 0.4));
-  vec3 lit = mix(blue, deep, smoothstep(0.2, 0.9, d) * (0.4 + inner * 0.6));
+  float side = smoothstep(-0.02, 0.12, f);
+  // 접힌 비단 결: 빛 안쪽에 밝고 어두운 주름
+  float folds = 0.5 + 0.5 * sin(f * 4.2 + fbm(q * 0.9 + t) * 2.2 - t * 1.5);
+  folds = smoothstep(0.1, 0.9, folds);
+  vec3 lit = mix(deep, blue, 0.35 + 0.65 * folds);
+  lit = mix(lit, deep, smoothstep(0.35, 1.1, f) * 0.5);
   vec3 col = mix(base, lit, side);
-  // 어두운 쪽으로 번지는 푸른 기운
-  col += deep * exp(-max(-d, 0.0) * 5.0) * 0.28 * (1.0 - side);
-  // 경계의 밝은 띠
-  col += edge * exp(-abs(d - 0.012) * 40.0) * 0.35;
-
-  // 왼쪽 아래 은은한 푸른 기운
-  vec2 g = uv - vec2(aspect * 0.18 + sin(t * 0.8) * 0.05, -0.05);
-  col += vec3(0.03, 0.12, 0.55) * exp(-dot(g, g) * 5.5) * 0.55;
+  col += deep * exp(-max(-f, 0.0) * 5.0) * 0.3 * (1.0 - side); // 어두운 쪽으로 번지는 푸른 기운
+  col += edge * exp(-abs(f - 0.015) * 38.0) * 0.32;            // 경계의 밝은 띠
 
   // 아래로 갈수록, 스크롤할수록 차분하게 (카드 영역 가독성)
   float fade = smoothstep(-0.15, 0.55, uv.y) * (1.0 - uScroll * 0.6);
   col = mix(base, col, fade);
 
-  // 필름 그레인
-  col += (hash(gl_FragCoord.xy + fract(uTime) * 100.0) - 0.5) * 0.035;
+  col += (hash(gl_FragCoord.xy + fract(uTime) * 100.0) - 0.5) * 0.035; // 필름 그레인
   gl_FragColor = vec4(col, 1.0);
 }
 `;
@@ -107,16 +117,25 @@ export function HomeBeam() {
     gl.enableVertexAttribArray(loc);
     gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
 
-    const uRes = gl.getUniformLocation(prog, "uRes");
-    const uTime = gl.getUniformLocation(prog, "uTime");
-    const uMouse = gl.getUniformLocation(prog, "uMouse");
-    const uScroll = gl.getUniformLocation(prog, "uScroll");
+    const u = (name: string) => gl.getUniformLocation(prog, name);
+    const uRes = u("uRes");
+    const uTime = u("uTime");
+    const uMouse = u("uMouse");
+    const uTrail = u("uTrail");
+    const uEnergy = u("uEnergy");
+    const uScroll = u("uScroll");
 
     const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const mouse = { x: 0, y: 0, tx: 0, ty: 0 };
+    // 좌표는 캔버스 기준 0..1 (위가 1). 처음엔 오른쪽 위 빛줄기 근처
+    const target = { x: 0.78, y: 0.75 };
+    const mouse = { ...target };
+    const trail = { ...target };
+    let energy = 0;
+    let lastMove = -Infinity;
     let visible = true;
     let frame = 0;
-    const start = performance.now();
+    let prev = performance.now();
+    const start = prev;
 
     const resize = () => {
       // 흐릿한 그림이라 고해상도가 필요 없다: 픽셀 밀도 최대 1.25
@@ -127,12 +146,30 @@ export function HomeBeam() {
     };
 
     const draw = (now: number) => {
-      mouse.x += (mouse.tx - mouse.x) * 0.04;
-      mouse.y += (mouse.ty - mouse.y) * 0.04;
-      const scroll = Math.min(window.scrollY / Math.max(canvas.clientHeight, 1), 1);
+      const dt = Math.min((now - prev) / 16.7, 3); // 60fps 기준 프레임 수
+      prev = now;
+      const time = (now - start) / 1000;
+
+      // 커서가 3초 이상 없으면 보이지 않는 점이 천천히 원을 그린다 (터치 기기 포함)
+      if (now - lastMove > 3000) {
+        target.x = 0.62 + Math.cos(time * 0.25) * 0.22;
+        target.y = 0.62 + Math.sin(time * 0.33) * 0.2;
+      }
+      const vx = (target.x - mouse.x) * 0.08 * dt;
+      const vy = (target.y - mouse.y) * 0.08 * dt;
+      mouse.x += vx;
+      mouse.y += vy;
+      trail.x += (mouse.x - trail.x) * 0.025 * dt;
+      trail.y += (mouse.y - trail.y) * 0.025 * dt;
+      energy = Math.min(1, energy * Math.pow(0.95, dt) + Math.hypot(vx, vy) * 1.5);
+
+      const rect = canvas.getBoundingClientRect();
+      const scroll = Math.min(Math.max(-rect.top, 0) / Math.max(rect.height, 1), 1);
       gl.uniform2f(uRes, canvas.width, canvas.height);
-      gl.uniform1f(uTime, still ? 8 : (now - start) / 1000 + 8);
+      gl.uniform1f(uTime, still ? 8 : time + 8);
       gl.uniform2f(uMouse, mouse.x, mouse.y);
+      gl.uniform2f(uTrail, trail.x, trail.y);
+      gl.uniform1f(uEnergy, energy);
       gl.uniform1f(uScroll, scroll);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
       canvas.classList.add("is-ready");
@@ -144,12 +181,17 @@ export function HomeBeam() {
       if (!still && visible && !document.hidden) frame = requestAnimationFrame(loop);
     };
     const kick = () => {
-      if (!frame) frame = requestAnimationFrame(loop);
+      if (!frame) {
+        prev = performance.now();
+        frame = requestAnimationFrame(loop);
+      }
     };
 
     const onPointer = (e: PointerEvent) => {
-      mouse.tx = (e.clientX / window.innerWidth) * 2 - 1;
-      mouse.ty = -((e.clientY / window.innerHeight) * 2 - 1);
+      const rect = canvas.getBoundingClientRect();
+      target.x = (e.clientX - rect.left) / rect.width;
+      target.y = 1 - (e.clientY - rect.top) / rect.height;
+      lastMove = performance.now();
     };
     const onResize = () => {
       resize();
