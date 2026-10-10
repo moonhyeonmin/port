@@ -8,4 +8,9 @@ export const features = {
    * 관련 파일: components/HomeBeam.tsx, styles/home-beam.css, root.tsx(is-home-beam 클래스)
    */
   homeBeam: true,
+  /**
+   * 홈 프로젝트 카드를 한 줄 가로 띠로 천천히 흘려 보여준다 (false면 기존 2열 카드 목록).
+   * 관련 파일: components/HomeMarquee.tsx, styles/home-marquee.css
+   */
+  homeMarquee: true,
 };

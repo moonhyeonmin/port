@@ -1,0 +1,54 @@
+/*
+ * 홈 프로젝트 카드 가로 띠 (features.homeMarquee, components/HomeMarquee.tsx).
+ * 히어로 아래 한 화면 안에 카드 4개가 모두 보이도록 카드 크기를 화면 높이에 맞춰 줄인다.
+ */
+.home-marquee {
+  /* 카드 너비: 카드 4장이 한 화면 너비에 다 들어오고(간격·양 끝 여백 제외),
+     높이도 히어로 아래 남은 공간을 넘지 않게 (썸네일 4:3) */
+  --marquee-card: clamp(200px, min((100vw - 168px) / 4, (100svh - 570px) * 1.333), 420px);
+  --marquee-gap: 24px;
+  --marquee-stagger: 48px;
+  overflow: hidden;
+  padding-block: 8px 72px;
+  /* 양 끝이 바탕으로 스며들게 */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+}
+.home-marquee__track {
+  display: flex;
+  width: max-content;
+  animation: home-marquee var(--marquee-duration, 60s) linear infinite;
+}
+/* 카드를 보려고 마우스를 올리거나 키보드로 들어가면 멈춘다 */
+.home-marquee:hover .home-marquee__track,
+.home-marquee:focus-within .home-marquee__track { animation-play-state: paused; }
+@keyframes home-marquee {
+  to { transform: translateX(calc(-100% / var(--marquee-copies, 3))); }
+}
+.home-marquee__list {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--marquee-gap);
+  margin: 0;
+  padding: 0 var(--marquee-gap) 0 0;
+  list-style: none;
+}
+.home-marquee__item { flex: none; width: var(--marquee-card); }
+/* 원본처럼 카드 높이를 번갈아 어긋나게 */
+.home-marquee__item:nth-child(even) { margin-top: var(--marquee-stagger); }
+
+/* 히어로는 카드 띠와 한 화면에 들어오도록 아래 여백을 줄인다 */
+.home:has(.home-marquee) .hero { padding-bottom: 56px; }
+
+@media (max-width: 809.98px) {
+  .home-marquee { --marquee-card: min(72vw, 300px); --marquee-gap: 16px; --marquee-stagger: 28px; padding-bottom: 56px; }
+  .home:has(.home-marquee) .hero { padding-bottom: 40px; }
+}
+
+/* 동작 줄이기: 흐르지 않고 손으로 가로 스크롤 */
+@media (prefers-reduced-motion: reduce) {
+  .home-marquee { overflow-x: auto; scroll-snap-type: x mandatory; -webkit-mask-image: none; mask-image: none; }
+  .home-marquee__track { animation: none; padding-inline: var(--gutter); }
+  .home-marquee__list[aria-hidden] { display: none; }
+  .home-marquee__item { scroll-snap-align: start; }
+}

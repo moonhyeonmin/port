@@ -14,6 +14,7 @@ import { getCaseStudy } from "~/case-studies";
 import { features } from "~/data/features";
 import "~/styles/global.css";
 import "~/styles/home-beam.css";
+import "~/styles/home-marquee.css";
 
 export const links: Route.LinksFunction = () => [
   { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },

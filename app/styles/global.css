@@ -1525,7 +1525,7 @@ img, video { display: block; max-width: 100%; }
 /* ─── Reveal: 화면 진입 시 한 번 올라오며 나타남 (app/hooks/useReveal.ts와 선택자 동기화) ─── */
 @media (prefers-reduced-motion: no-preference) {
   .js :is(
-    .cases .card,
+    .cases .card, .home-marquee,
     .case-page .case-eyebrow, .case-page .case-h2, .case-hero__heading > *, .case-hero__tags, .case-hero__cover,
     .case-overview__item, .case-summary__row, .case-summary__card, .case-deep__subtitle,
     .case-why__bullets, .case-why__stat, .case-why__figure,

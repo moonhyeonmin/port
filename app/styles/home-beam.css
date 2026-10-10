@@ -74,7 +74,8 @@
 }
 .page.is-home-beam .hero__inner { gap: 20px; }
 .page.is-home-beam .hero__title {
-  font-size: clamp(40px, 4.6vw, 64px);
+  /* 낮은 화면에서도 카드 띠가 한 화면에 들어오도록 높이에도 맞춰 줄인다 */
+  font-size: clamp(36px, min(4.6vw, 7.4svh), 64px);
   font-weight: 700;
   line-height: 1.18;
   letter-spacing: -0.035em;
