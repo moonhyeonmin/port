@@ -324,7 +324,7 @@ export default function LumixCaseStudy({ index, nextSlug }: CaseStudyProps) {
       />
 
       {/* 하단 (163:159740) */}
-      <CaseNext to={`/case-studies/${nextSlug}`} title="다크모드, RTL 디자인 시스템" top={90} />
+      <CaseNext to={`/case-studies/${nextSlug}`} title="다크모드, RTL 다국어 디자인 시스템 구축" top={90} />
     </>
   );
 }

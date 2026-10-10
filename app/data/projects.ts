@@ -35,7 +35,7 @@ export const projects: Project[] = [
   },
   {
     slug: "design-system",
-    title: "다크모드 · 디자인 시스템",
+    title: "다크모드, RTL 다국어 디자인 시스템 구축",
     company: "Personal project",
     year: 2025,
     summary: "다크모드를 포함한 개인 디자인 시스템 구축.",

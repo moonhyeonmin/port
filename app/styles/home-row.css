@@ -15,6 +15,8 @@
 .home:has(.cases--row) .hero { padding-bottom: var(--row-top); }
 
 .cases--row .card__meta { flex-direction: column; align-items: flex-start; gap: 8px; }
+/* 긴 제목이 두 줄이 될 때 단어 중간에서 끊기지 않게 */
+.cases--row .card__title { word-break: keep-all; }
 .cases--row .card__media,
 .cases--row .card__title,
 .cases--row .tags { transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.45s, opacity 0.45s, filter 0.45s, color 0.3s; }
