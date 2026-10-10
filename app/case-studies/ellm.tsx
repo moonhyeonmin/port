@@ -174,7 +174,7 @@ export default function EllmCaseStudy({ index, nextSlug }: CaseStudyProps) {
         }}
       />
 
-      {/* Ellm_05_UserJourney 1 (126:57609) */}
+      {/* Ellm_05_UserJourney 3 (147:50863) */}
       <CaseJourney
         id="user-journey"
         title={["문제는 4개였지만,", "전부 연결되어 있었습니다."]}
@@ -188,12 +188,12 @@ export default function EllmCaseStudy({ index, nextSlug }: CaseStudyProps) {
           {
             step: "문서 생성",
             pain: ["우선 순위 없는 입력 폼", "고객사 불만 요청 증가"],
-            fix: { action: "Wizard로 필수 데이터 분리", result: "리드 타임 42%↓" },
+            fix: { action: "Wizard로 필수 데이터 분리", result: "리드타임 42% ↓" },
           },
           {
             step: "답변 생성 대기",
             pain: ["10초 넘는 대기", "외부 이탈률 54% 증가"],
-            fix: { action: "생각하는 과정 표시", result: "이탈률 63%↓" },
+            fix: { action: "생각하는 과정 표시", result: "이탈률 63% ↓" },
           },
           {
             step: "관리자 페이지",
@@ -201,7 +201,7 @@ export default function EllmCaseStudy({ index, nextSlug }: CaseStudyProps) {
             fix: { action: "지표 유형별 그룹화", result: "3개 그룹으로 정리" },
           },
         ]}
-        background={{ src: "/projects/ellm/journey-bg.jpg", width: 2160, height: 1244 }}
+        background={{ src: "/projects/ellm/journey-bg.webp", width: 2160, height: 1002 }}
       />
 
       {/* Ellm_06_DeepDive01_프로젝트 탐색 (126:56301) */}
@@ -360,7 +360,7 @@ export default function EllmCaseStudy({ index, nextSlug }: CaseStudyProps) {
       {/* Ellm_08_관리자 페이지 (126:56374) */}
       <CaseDeepDive
         id="deep-dive-admin"
-        title="관리자 대시보드 페이지"
+        title="4. 관리자 대시보드 페이지"
         subtitle="38개의 지표 → 유형별로 3개의 그래프 타입으로 정의"
         tint="tint"
         tintHeight={363}

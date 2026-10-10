@@ -70,7 +70,8 @@ export function CaseJourney({ id, title, description, steps, background }: CaseJ
             {steps.map(({ step, pain, fix }, i) => (
               <li key={step} className="case-journey__row">
                 <h3 className="case-journey__step">
-                  {i + 1}. {step}
+                  {/* Figma 번호 목록처럼 번호 뒤 간격이 조금 넓다 */}
+                  <span className="case-journey__num">{i + 1}.</span> {step}
                 </h3>
                 <div>
                   <PainTag />

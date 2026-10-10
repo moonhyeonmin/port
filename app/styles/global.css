@@ -584,20 +584,20 @@ img, video { display: block; max-width: 100%; }
 .case-why__figure { margin: 0; }
 .case-why__figure img { width: 100%; height: auto; }
 
-/* 05 User Journey (126:57609) */
+/* 05 User Journey (147:50863) */
 .case-journey {
   position: relative;
   overflow: hidden;
   isolation: isolate;
 }
-/* Figma 배경 그래픽: 섹션 y=630부터 하단까지 (섹션이 길어지면 늘어남) */
+/* Figma 배경 그래픽: 섹션 y=388부터 하단까지 (섹션이 길어지면 늘어남) */
 .case-journey__bg {
   position: absolute;
   z-index: -1;
-  top: calc(var(--u) * 630);
+  top: calc(var(--u) * 388);
   left: 0;
   width: 100%;
-  height: calc(100% - var(--u) * 630);
+  height: calc(100% - var(--u) * 388);
   object-fit: cover;
   object-position: center top;
   pointer-events: none;
@@ -606,7 +606,7 @@ img, video { display: block; max-width: 100%; }
   display: flex;
   flex-direction: column;
   gap: calc(var(--u) * 100);
-  padding-block: calc(var(--u) * 120) calc(var(--u) * 256);
+  padding-block: calc(var(--u) * 120);
 }
 .case-journey__text { display: flex; flex-direction: column; align-items: flex-start; gap: calc(var(--u) * 40); }
 .case-journey__heading { display: flex; flex-direction: column; gap: calc(var(--u) * 20); }
@@ -617,13 +617,14 @@ img, video { display: block; max-width: 100%; }
   color: var(--color-gray);
 }
 .case-journey__table { display: flex; flex-direction: column; gap: calc(var(--u) * 33); }
-/* 행과 같은 3열 그리드. 데스크톱은 Figma 위치에 맞춘 오프셋 */
+/* 행과 같은 3열 그리드. 열마다 가운데 정렬 (열 중심: 카드 왼쪽에서 189.5 / 720 / 1250.5) */
 .case-journey__head,
 .case-journey__row {
   display: grid;
-  grid-template-columns: repeat(3, calc(var(--u) * 333));
-  column-gap: calc(var(--u) * 224);
-  padding-inline: calc(var(--u) * 23) calc(var(--u) * 101);
+  grid-template-columns: repeat(3, calc(var(--u) * 379));
+  column-gap: calc(var(--u) * 151.5);
+  justify-items: center;
+  text-align: center;
 }
 .case-journey__head {
   align-items: center;
@@ -631,9 +632,8 @@ img, video { display: block; max-width: 100%; }
   font-weight: 400;
   line-height: calc(var(--u) * 50);
 }
-.case-journey__head > :nth-child(1) { width: calc(var(--u) * 337); margin-left: calc(var(--u) * -23); text-align: center; }
-.case-journey__head > :nth-child(2) { margin-left: calc(var(--u) * 113); }
-.case-journey__head > :nth-child(3) { margin-left: calc(var(--u) * 76); }
+/* Figma에서 Step 머리글만 열 중심보다 21 왼쪽 */
+.case-journey__head > :nth-child(1) { position: relative; left: calc(var(--u) * -21); }
 .case-journey__tag { display: flex; align-items: center; }
 .case-journey__tag img { width: calc(var(--u) * 26); height: calc(var(--u) * 26); }
 .case-journey__tag span { padding-inline: calc(var(--u) * 10); }
@@ -649,30 +649,32 @@ img, video { display: block; max-width: 100%; }
 }
 .case-journey__row {
   align-items: center;
-  height: calc(var(--u) * 224);
+  height: calc(var(--u) * 137);
   background: #fff;
-  border: calc(var(--u) * 3) solid #e3e8f0;
   border-radius: calc(var(--u) * 24);
+  box-shadow: 0 calc(var(--u) * 4) calc(var(--u) * 20) rgb(206 225 252);
 }
 .case-journey__step {
-  padding-left: calc(var(--u) * 12);
-  font-size: calc(var(--u) * 40);
-  font-weight: 600;
-  line-height: calc(var(--u) * 60);
+  font-size: calc(var(--u) * 28);
+  font-weight: 700;
+  line-height: calc(var(--u) * 40);
+  color: #252d38;
 }
+.case-journey__num { margin-right: calc(var(--u) * 4); }
 .case-journey__pain {
   font-size: calc(var(--u) * 28);
-  font-weight: 500;
+  font-weight: 400;
   line-height: calc(var(--u) * 44);
-  text-align: center;
+  color: #4d4c4d;
 }
 .case-journey__pain span, .case-journey__fix span { display: block; }
 .case-journey__fix {
   font-size: calc(var(--u) * 28);
-  font-weight: 500;
-  line-height: calc(var(--u) * 60);
+  font-weight: 400;
+  line-height: calc(var(--u) * 40);
+  color: #4d4c4d;
 }
-.case-journey__fix strong { display: block; font-size: calc(var(--u) * 40); font-weight: 700; color: #3182f6; }
+.case-journey__fix strong { display: block; font-weight: 700; color: #3182f6; }
 /* 행 안의 Pain/Fix 라벨은 모바일에서만 */
 .case-journey__row .case-journey__tag { display: none; }
 
@@ -944,12 +946,13 @@ img, video { display: block; max-width: 100%; }
 /* 부제-본문 간격은 1 (카드 gap 7을 상쇄) */
 .case-deep__spec-subtitle { padding: calc(var(--fu) * 10); margin-bottom: calc(var(--fu) * -6); }
 .case-deep__spec-body {
-  width: calc(var(--fu) * 466);
   font-size: calc(var(--fu) * 18);
   font-weight: 400;
   line-height: calc(var(--fu) * 30);
 }
-.case-deep__spec-body span { display: block; }
+/* 글머리 기호 목록: 기호는 왼쪽 들여쓰기 안에, 줄바꿈된 줄은 글자 시작에 맞춤 */
+.case-deep__spec-body span { position: relative; display: block; padding-left: calc(var(--fu) * 27); }
+.case-deep__spec-body span::before { content: "•"; position: absolute; left: calc(var(--fu) * 9); }
 
 /* 09 회고 및 정리 (126:56881): 어두운 결과 영역 + Next Project */
 .case-retro__dark {
@@ -1284,6 +1287,7 @@ img, video { display: block; max-width: 100%; }
   .case-summary__card { width: auto; }
   .case-journey__head,
   .case-journey__row { grid-template-columns: 1fr 1.3fr 1fr; column-gap: 32px; padding-inline: 24px; }
+  .case-journey__head > :nth-child(1) { left: 0; }
   .case-deep__priority-row { grid-template-columns: 0.6fr 1fr 1.6fr; column-gap: 32px; padding-inline: 24px; }
   .case-deep__priority-note { white-space: normal; }
   .case-whyg__body { grid-template-columns: minmax(0, 1fr) minmax(0, 2.2fr); column-gap: 24px; }
@@ -1294,10 +1298,7 @@ img, video { display: block; max-width: 100%; }
   .case-landing__arrow { width: 40px; height: auto; margin-left: 4px; }
   .case-deep__pattern { padding-inline: 20px; }
   .case-glass__cards { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 16px; width: 100%; margin-left: 0; }
-  .case-journey__head > * { margin-left: 0 !important; width: auto !important; text-align: left !important; }
-  .case-journey__head > :nth-child(1) { padding-left: 3px; }
-  .case-journey__step { padding-left: 0; }
-  .case-journey__row { height: auto; min-height: calc(var(--u) * 224); padding-block: 24px; }
+  .case-journey__row { height: auto; min-height: calc(var(--u) * 137); padding-block: 20px; }
 }
 
 /* 모바일 */
@@ -1482,7 +1483,9 @@ img, video { display: block; max-width: 100%; }
   }
   .case-deep__spec-title, .case-deep__spec-subtitle { font-size: 15px; line-height: 1.5; }
   .case-deep__spec-subtitle { padding: 0; margin-bottom: 4px; }
-  .case-deep__spec-body { width: auto; font-size: 14px; line-height: 1.6; }
+  .case-deep__spec-body { font-size: 14px; line-height: 1.6; }
+  .case-deep__spec-body span { padding-left: 16px; }
+  .case-deep__spec-body span::before { left: 3px; }
   .case-deep__desc span { display: inline; }
   .case-deep__desc span + span::before { content: " "; }
 
@@ -1496,9 +1499,11 @@ img, video { display: block; max-width: 100%; }
   .case-journey__row {
     grid-template-columns: 1fr;
     row-gap: 14px;
+    justify-items: start;
     padding: 20px;
-    border-width: 2px;
     border-radius: 16px;
+    box-shadow: 0 4px 16px rgb(206 225 252);
+    text-align: left;
   }
   .case-journey__step { font-size: 19px; line-height: 1.4; }
   .case-journey__row .case-journey__tag { display: flex; margin-bottom: 4px; font-size: 13px; font-weight: 400; line-height: 1.4; }
@@ -1506,7 +1511,7 @@ img, video { display: block; max-width: 100%; }
   .case-journey__tag span { padding-inline: 5px; }
   .case-journey__pain { font-size: 15px; line-height: 1.6; text-align: left; }
   .case-journey__fix { font-size: 15px; line-height: 1.6; }
-  .case-journey__fix strong { display: block; font-size: 20px; line-height: 1.4; }
+  .case-journey__fix strong { display: block; }
 }
 
 /* ─── 숫자 카운트업: 최종 숫자 폭으로 자리를 고정 ─── */
