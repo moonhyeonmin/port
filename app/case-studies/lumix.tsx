@@ -49,7 +49,7 @@ export default function LumixCaseStudy({ index, nextSlug }: CaseStudyProps) {
           { label: "AI Collaboration", box: 208.491, pill: 208.491 },
         ]}
         cover={{
-          src: "/projects/lumix/cover.jpg",
+          src: "/projects/lumix/cover.webp",
           width: 1564,
           height: 1005,
           alt: "Multi Chat Workspace 화면: ChatGPT 4o, Claude 3.5 Sonnet, Gemini 1.5 Pro 답변을 나란히 비교하는 화면과 답변 요약 카드",
@@ -114,7 +114,7 @@ export default function LumixCaseStudy({ index, nextSlug }: CaseStudyProps) {
             accent: true,
             shadow: true,
             // Figma 이미지 채우기 위치 그대로 (이미지 705.3×397 / 카드 362×282, 오프셋 -284.6, -115)
-            bg: "url(/projects/lumix/summary-card-bg.jpg) 82.9% 100% / 194.84% 140.77% no-repeat",
+            bg: "url(/projects/lumix/summary-card-bg.webp) 82.9% 100% / 194.84% 140.77% no-repeat",
           },
           {
             value: (
@@ -148,7 +148,7 @@ export default function LumixCaseStudy({ index, nextSlug }: CaseStudyProps) {
         eyebrow="Why"
         icon="/icons/star-gradient.svg"
         pointColor="#5476FE"
-        background="/projects/lumix/why-bg.jpg"
+        background="/projects/lumix/why-bg.webp"
         title={["Ellm에서 배운 신뢰 문제를", "이번에는 처음부터 설계했습니다."]}
         lead={{
           lines: ["착수 전에 도메인별", "신뢰 요구 수준부터", "정의 합니다."],
@@ -182,7 +182,7 @@ export default function LumixCaseStudy({ index, nextSlug }: CaseStudyProps) {
           items={[
             {
               figure: {
-                src: "/projects/lumix/multichat-1.jpg",
+                src: "/projects/lumix/multichat-1.webp",
                 width: 1000,
                 height: 711,
                 alt: "간략히 보기: 모델별 답변은 접혀 있고 종합 답변이 본문에 표시된 Multi Chat Workspace 화면",
@@ -192,7 +192,7 @@ export default function LumixCaseStudy({ index, nextSlug }: CaseStudyProps) {
             },
             {
               figure: {
-                src: "/projects/lumix/multichat-2.jpg",
+                src: "/projects/lumix/multichat-2.webp",
                 width: 1000,
                 height: 711,
                 alt: "전체 답변 보기: Ellm, Gemini, Claude 답변을 칼럼으로 나란히 펼쳐 비교하는 화면",
@@ -215,7 +215,7 @@ export default function LumixCaseStudy({ index, nextSlug }: CaseStudyProps) {
         cards={[
           {
             image: {
-              src: "/projects/lumix/security-1.jpg",
+              src: "/projects/lumix/security-1.webp",
               width: 499,
               height: 377,
               alt: "첫 화면 입력창 아래 보안 안내 문구가 고정된 화면",
@@ -227,7 +227,7 @@ export default function LumixCaseStudy({ index, nextSlug }: CaseStudyProps) {
           },
           {
             image: {
-              src: "/projects/lumix/security-2.jpg",
+              src: "/projects/lumix/security-2.webp",
               width: 499,
               height: 377,
               alt: "Gemini 패널에 Private 모드가 켜져 '이 대화는 학습에 사용되지 않습니다'가 표시된 화면",
@@ -239,7 +239,7 @@ export default function LumixCaseStudy({ index, nextSlug }: CaseStudyProps) {
           },
           {
             image: {
-              src: "/projects/lumix/security-3.jpg",
+              src: "/projects/lumix/security-3.webp",
               width: 499,
               height: 377,
               alt: "주민등록번호 전송이 차단되고 프롬프트의 민감정보가 마스킹 처리된 DLP 경고 화면",
@@ -271,7 +271,7 @@ export default function LumixCaseStudy({ index, nextSlug }: CaseStudyProps) {
           label="Design"
           text={["관리자 화면을 새로 그리지 않고, 반복되는 구조를 3개의 패턴으로 정리해 적용했습니다."]}
           figure={{
-            src: "/projects/lumix/admin-console.jpg",
+            src: "/projects/lumix/admin-console.webp",
             width: 1564,
             height: 780,
             alt: "관리자 콘솔: AI 서비스 사용 현황 KPI 카드와 테이블, 필터 칩이 있는 처리 이력 테이블 화면",
@@ -307,7 +307,7 @@ export default function LumixCaseStudy({ index, nextSlug }: CaseStudyProps) {
         pointColor="#5476FE"
         title="화면 설계부터 마케팅 브랜드 요소까지"
         shot={{
-          src: "/projects/lumix/landing-page.jpg",
+          src: "/projects/lumix/landing-page.webp",
           width: 490,
           height: 1507,
           alt: "Front ACE 랜딩 페이지 전체: 히어로 목업, 핵심 업무 가치 카드, 보안 섹션, 지원 AI 모델 그리드, CTA",
@@ -320,7 +320,7 @@ export default function LumixCaseStudy({ index, nextSlug }: CaseStudyProps) {
           { from: "Primary Blue, 카드 형태", to: "CTA, 기능 카드", fromColor: "#141414", arrowDy: -5.5 },
         ]}
         note="마케팅 디자인을 넘어 브랜드 아이덴티티 확장으로 프레이밍"
-        background="/projects/lumix/landing-bg.jpg"
+        background="/projects/lumix/landing-bg.webp"
       />
 
       {/* 하단 (163:159740) */}

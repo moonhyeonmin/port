@@ -50,7 +50,7 @@ export default function EllmCaseStudy({ index, nextSlug }: CaseStudyProps) {
           { label: "기업용 sLLM", box: 166, pill: 166.491 },
         ]}
         cover={{
-          src: "/projects/ellm/cover.png",
+          src: "/projects/ellm/cover.webp",
           width: 1564,
           height: 1005,
           alt: "Ellm 관리자 홈 대시보드와 DB 성능 카드, 추가 질문 입력창",
@@ -167,7 +167,7 @@ export default function EllmCaseStudy({ index, nextSlug }: CaseStudyProps) {
           { value: "3→1", label: "depth 단순화" },
         ]}
         figure={{
-          src: "/projects/ellm/ia-diagram.png",
+          src: "/projects/ellm/ia-diagram.webp",
           width: 1564,
           height: 1005,
           alt: "Ellm IA Diagram: 채팅(K-Master + Librarian)과 보고서 생성(Scribe)의 화면 구조도",
@@ -214,7 +214,7 @@ export default function EllmCaseStudy({ index, nextSlug }: CaseStudyProps) {
           label="AS IS"
           text={["프로젝트 카드가 같은 형태로 나열되어 있어, 원하는 프로젝트를 찾기 어려웠습니다."]}
           figure={{
-            src: "/projects/ellm/explore-asis.png",
+            src: "/projects/ellm/explore-asis.webp",
             width: 1564,
             height: 893,
             alt: "개선 전: 같은 형태의 문서 카드가 4열로 반복 나열된 목록 화면",
@@ -227,7 +227,7 @@ export default function EllmCaseStudy({ index, nextSlug }: CaseStudyProps) {
             "원하는 항목과 생성 버튼이 한눈에 보이도록 정보의 강약을 재설계했습니다.",
           ]}
           figure={{
-            src: "/projects/ellm/explore-tobe.png",
+            src: "/projects/ellm/explore-tobe.webp",
             width: 1564,
             height: 893,
             alt: "개선 후: 상단 문서 생성 카드와 검색이 있는 문서 테이블 화면",
@@ -249,7 +249,7 @@ export default function EllmCaseStudy({ index, nextSlug }: CaseStudyProps) {
             "모든 항목을 한 화면에 늘어 놓자 무엇부터 채워야 하는지 알 수 없었고, 생성 시작 단계에서 사용자 이탈과 불만이 늘었습니다.",
           ]}
           figure={{
-            src: "/projects/ellm/docgen-asis.png",
+            src: "/projects/ellm/docgen-asis.webp",
             width: 1564,
             height: 893,
             alt: "개선 전: 주제, 구성, 추가 지침, 논문 가져오기가 한 화면에 모두 놓인 문서 생성 화면",
@@ -282,7 +282,7 @@ export default function EllmCaseStudy({ index, nextSlug }: CaseStudyProps) {
             "흩어져 있던 인력 과정을 구조화해 속도와 답변 품질을 함께 높혔습니다. (사내 QA 기준)",
           ]}
           figure={{
-            src: "/projects/ellm/docgen-tobe.png",
+            src: "/projects/ellm/docgen-tobe.webp",
             width: 1564,
             height: 893,
             alt: "개선 후: 문서 제목·키워드, 기반 파일 업로드, 추가 지침 3단계 Wizard 화면",
@@ -306,7 +306,7 @@ export default function EllmCaseStudy({ index, nextSlug }: CaseStudyProps) {
               name: "Spinner",
               caption: "무엇이 진행되는지 알 수 없음",
               image: {
-                src: "/projects/ellm/wait-spinner.png",
+                src: "/projects/ellm/wait-spinner.webp",
                 width: 634,
                 height: 448,
                 alt: "목차 옆 본문 영역에 스피너와 '보고서 생성 중...'만 표시된 화면",
@@ -317,7 +317,7 @@ export default function EllmCaseStudy({ index, nextSlug }: CaseStudyProps) {
               name: "Skeleton",
               caption: "반복 구조로 결과 영역을 예측할 수 없음",
               image: {
-                src: "/projects/ellm/wait-skeleton.png",
+                src: "/projects/ellm/wait-skeleton.webp",
                 width: 610,
                 height: 436,
                 alt: "'보고서 생성 중...' 아래 같은 모양의 스켈레톤 블록이 반복되는 화면",
@@ -349,7 +349,7 @@ export default function EllmCaseStudy({ index, nextSlug }: CaseStudyProps) {
             "AI 엔지니어와 주 2회 리뷰 회의로 로딩 단계를 새로 정의했습니다.",
           ]}
           figure={{
-            src: "/projects/ellm/wait-tobe.png",
+            src: "/projects/ellm/wait-tobe.webp",
             width: 1564,
             height: 893,
             alt: "개선 후: 답변 위에 '답변을 생각하고 있습니다' 진행 단계가 표시되는 Ellm 채팅 화면",
@@ -369,7 +369,7 @@ export default function EllmCaseStudy({ index, nextSlug }: CaseStudyProps) {
           label="AS IS"
           text={["5줄의 개발 사양서와 정리되지 않은 38개의 지표들이 존재했습니다."]}
           figure={{
-            src: "/projects/ellm/admin-asis.png",
+            src: "/projects/ellm/admin-asis.webp",
             width: 1564.5,
             height: 441,
             alt: "개선 전: 정리되지 않은 vllm 지표 이름이 길게 나열된 목록",
@@ -393,7 +393,7 @@ export default function EllmCaseStudy({ index, nextSlug }: CaseStudyProps) {
           label="TO BE"
           text={["지표를 그래프 유형별로 묶고, 중요도 ・위험도・시선 흐름 순으로 배치했습니다."]}
           figure={{
-            src: "/projects/ellm/admin-tobe.png",
+            src: "/projects/ellm/admin-tobe.webp",
             width: 1564.5,
             height: 1217,
             alt: "개선 후: Gauge·Histogram·Counter 세 유형으로 묶은 지표와 모니터링 대시보드 화면",
