@@ -9,6 +9,7 @@ import {
   PsProblemCard,
   PsSwatchCompare,
 } from "~/components/case-study/CaseProblemSolution";
+import { CaseRetro } from "~/components/case-study/CaseRetro";
 import { CaseRtl } from "~/components/case-study/CaseRtl";
 import { CaseSummary } from "~/components/case-study/CaseSummary";
 import { CountUp } from "~/components/CountUp";
@@ -21,11 +22,12 @@ export const designSystemNav: CaseNavItem[] = [
   { id: "summary", label: "Summary" },
   { id: "problem-solution", label: "Problem & Solution", also: ["problem-solution-2"] },
   { id: "rtl", label: "RTL & Result" },
+  { id: "retrospective", label: "Retrospective" },
 ];
 
 // Figma: 2wduPMxRCf5SwSUCNYqvbl / "framer 이전용" > Design system_*
 // 사용자가 내보낸 SVG(글자 포함)·PNG 4x에서 수치와 문구를 옮김. 페이지 전체가 어두운 바탕(#0E0E0E)
-export default function DesignSystemCaseStudy({ index }: CaseStudyProps) {
+export default function DesignSystemCaseStudy({ index, nextSlug }: CaseStudyProps) {
   return (
     <>
       {/* Design system_01_Hero: Ellm Hero와 같은 템플릿, 주황 그라디언트 별·강조 글자, 어두운 바탕 */}
@@ -289,6 +291,65 @@ export default function DesignSystemCaseStudy({ index }: CaseStudyProps) {
           height: 1076,
           alt: "(Web) Server 아랍어 타이포그래피 표: 제목·본문·캡션 단계별 텍스트 스타일, 크기, 행간, 굵기",
         }}
+      />
+
+      {/* Design system_07: 결과 및 회고 + Next Project (Ellm 회고 템플릿, 검은 바탕·주황 강조) */}
+      <CaseRetro
+        id="retrospective"
+        title="결과 및 회고"
+        colors={{
+          bg: "#000",
+          accent: "#FA5D34",
+          glows: ["rgb(250 93 52 / 0.25)", "rgb(250 93 52 / 0.25)"],
+        }}
+        divider="#53555D"
+        statWidth={402}
+        stats={[
+          {
+            value: (
+              <>
+                <CountUp to={16} />개
+              </>
+            ),
+            caption: ["공통 다크모드", "적용"],
+          },
+          {
+            value: (
+              <>
+                <CountUp to={100} />%
+              </>
+            ),
+            caption: ["Semantic 컬러 토큰", "AA 통과"],
+            tight: true,
+          },
+          {
+            value: (
+              <>
+                -<CountUp to={70} />%
+              </>
+            ),
+            caption: ["컬러 대비 검수", "시간"],
+            tight: true,
+          },
+          {
+            value: (
+              <>
+                <CountUp to={0} />건
+              </>
+            ),
+            caption: ["개발 후", "대비 오류"],
+          },
+        ]}
+        retro={{
+          label: "회고",
+          lines: [
+            "브랜드와 테마를 분리하고 나니 다크모드도 RTL도 '예외 처리'가 아닌 같은 규칙의 확장이 됐습니다.",
+            "다음에는 검증을 디자인 단계에서 끝내지 않고, 개발 파이프라인까지 자동으로 이어보고 싶습니다.",
+            "",
+          ],
+          highlight: "→ 반복되는 문제는 규칙으로, 규칙이 지켜지지 않을 경우에는 도구로",
+        }}
+        next={{ to: `/case-studies/${nextSlug}`, title: "데이터 기반 사내메신저 개선" }}
       />
     </>
   );

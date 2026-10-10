@@ -151,7 +151,7 @@ PNG가 없으면 SVG를 Pretendard를 불러온 브라우저에서 그려 참고
 | 04 | Why = Problem & Solution 1 (`CaseProblemSolution`: 검은 바탕 + 사선 무늬, 문제 카드·색 견본은 HTML, 토큰 표·화면은 4x PNG에서 잘라냄) | 완료 |
 | 05 | Problem & Solution 2 (`CaseContrast`: 대비 견본 3장 + 반복 작업 카드 / `CasePlugin`: 검은 바탕, Contrast Checker 화면(4x PNG에서 잘라냄) + 단계 01~03, Why와 같은 사선 무늬를 180° 회전) | 완료 |
 | 06 | RTL & Result (`CaseRtl`: 위 화면 그림 + 원칙 카드 3장(HTML) + 작성 규칙·타이포 표 그림, 그림은 4x PNG에서 잘라냄) | 완료 |
-| 07 | 결과 및 회고 + Next Project | |
+| 07 | 결과 및 회고 + Next Project (`CaseRetro`에 `colors`(검은 바탕·주황 #FA5D34)·`divider`(#53555D, SVG에는 없고 PNG에만 있음)·`statWidth` 402 추가, Next는 흰 바탕) | 완료 |
 
 - 섹션 프레임 하나를 통째로 `get_design_context`하면 결과가 너무 커서 메타데이터만 돌아온다. 하위 frame 단위로 나눠서 호출한다.
 - 섹션 컴포넌트는 `app/components/case-study/Case*.tsx`, 프로젝트별 내용은 `app/case-studies/<slug>.tsx`, slug 등록은 `app/case-studies/index.ts`에 한다.
