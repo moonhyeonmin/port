@@ -571,6 +571,113 @@ img, video { display: block; max-width: 100%; }
 }
 .case-summary__card.is-text .case-summary__value span { display: block; }
 
+/* Problem & Solution (Design system_04_Why): 검은 바탕, 오른쪽 위 사선 무늬 */
+.case-ps { background: #000; }
+.case-ps__inner { position: relative; padding-block: calc(var(--u) * 220) calc(var(--u) * 202.5); }
+.case-ps__inner > :not(.case-ps__decor) { position: relative; }
+.case-ps__decor {
+  position: absolute;
+  top: calc(var(--u) * 269);
+  right: 0;
+  width: calc(var(--u) * 1131);
+  height: calc(var(--u) * 1178);
+  object-fit: cover;
+  object-position: 50% 0;
+  pointer-events: none;
+}
+.case-ps__head { display: flex; flex-direction: column; align-items: flex-start; gap: calc(var(--u) * 40); }
+.case-ps__title { color: #fff; text-shadow: 0 calc(var(--u) * 4) calc(var(--u) * 20) rgb(0 0 0 / 0.4); }
+
+.case-ps__problem {
+  display: grid;
+  grid-template-columns: calc(var(--u) * 810) minmax(0, 1fr);
+  margin-top: calc(var(--u) * 125);
+  padding: calc(var(--u) * 55) calc(var(--u) * 48) calc(var(--u) * 61);
+  background: #282828;
+  border-radius: calc(var(--u) * 24);
+}
+.case-ps__problem-label { font-size: calc(var(--u) * 28); font-weight: 600; line-height: calc(var(--u) * 40); color: #f77e6e; }
+.case-ps__quote { margin-top: calc(var(--u) * 89); font-size: calc(var(--u) * 40); font-weight: 700; line-height: calc(var(--u) * 63); color: #fff; }
+.case-ps__quote span, .case-ps__problem-desc span { display: block; }
+.case-ps__problem-figure { padding-top: calc(var(--u) * 29); }
+.case-ps__problem-desc {
+  grid-column: 1 / -1;
+  margin-top: calc(var(--u) * 86);
+  font-size: calc(var(--u) * 28);
+  line-height: calc(var(--u) * 40);
+  color: #cdcdcd;
+}
+
+/* 색 견본: 열 간격 272, 사각형 73(간격 20), 제목은 사각형 가운데 */
+.case-ps__swatches { display: flex; gap: calc(var(--u) * 272); }
+.case-ps__swatch-col { display: flex; flex-direction: column; gap: calc(var(--u) * 20); }
+.case-ps__swatch-label {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  left: calc(var(--u) * -3.7);
+  width: calc(var(--u) * 73);
+  margin-bottom: calc(var(--u) * 4);
+  font-size: calc(var(--u) * 28);
+  line-height: calc(var(--u) * 40);
+  white-space: nowrap;
+  color: #cdcdcd;
+}
+.case-ps__swatch { position: relative; width: calc(var(--u) * 73); height: calc(var(--u) * 73); border-radius: calc(var(--u) * 8); }
+.case-ps__swatch.is-flagged { box-shadow: inset 0 0 0 calc(var(--u) * 4) #f77e6e; }
+.case-ps__swatch-flag {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(100% + var(--u) * 19);
+  display: flex;
+  align-items: center;
+  font-size: calc(var(--u) * 28);
+  line-height: calc(var(--u) * 40);
+  white-space: nowrap;
+  color: #f77e6e;
+}
+
+.case-ps__solution { margin-top: calc(var(--u) * 225); }
+.case-ps__solution-label { font-size: calc(var(--u) * 28); font-weight: 600; line-height: calc(var(--u) * 40); color: #73c2ff; }
+.case-ps__layers-row {
+  display: grid;
+  grid-template-columns: calc(var(--u) * 820) calc(var(--u) * 678);
+  justify-content: space-between;
+  align-items: start;
+  margin-top: calc(var(--u) * 46);
+}
+.case-ps__layers { display: flex; flex-direction: column; gap: calc(var(--u) * 28); margin: 0; padding: 0; list-style: none; }
+.case-ps__layer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: calc(var(--u) * 137);
+  padding-left: calc(var(--u) * 30);
+  font-size: calc(var(--u) * 28);
+  line-height: calc(var(--u) * 46);
+  background: #282828;
+  border-radius: calc(var(--u) * 24);
+}
+.case-ps__layer.is-active { box-shadow: inset 0 0 0 calc(var(--u) * 3) #73c2ff; }
+.case-ps__layer-title { font-weight: 700; color: #fff; }
+.case-ps__layer-desc { color: #cdcdcd; }
+.case-ps__layers-figure { width: 100%; height: auto; margin-top: calc(var(--u) * -2); }
+.case-ps__callout {
+  display: flex;
+  align-items: center;
+  height: calc(var(--u) * 89);
+  margin-top: calc(var(--u) * 42.5);
+  padding-left: calc(var(--u) * 30);
+  font-size: calc(var(--u) * 28);
+  font-weight: 700;
+  line-height: calc(var(--u) * 40);
+  color: #73c2ff;
+  background: #232b3d;
+  border-radius: calc(var(--u) * 24);
+}
+.case-ps__figure { width: 100%; height: auto; margin-top: calc(var(--u) * 225); border-radius: calc(var(--u) * 24); }
+
 /* 04 Why and How (126:56068) */
 .case-why {
   display: flex;
@@ -1548,6 +1655,36 @@ img, video { display: block; max-width: 100%; }
   .case-journey__fix strong { display: block; }
 }
 
+/* Problem & Solution 모바일: 한 열로 쌓고 읽기 좋은 고정 크기 */
+@media (max-width: 809.98px) {
+  .case-ps__inner { padding-block: 56px 72px; }
+  .case-ps__decor { top: 96px; width: 72%; height: 440px; opacity: 0.6; }
+  .case-ps__head { gap: 16px; }
+  .case-ps__title > span { display: inline; }
+  .case-ps__title > span + span::before { content: " "; }
+  .case-ps__problem { grid-template-columns: minmax(0, 1fr); margin-top: 32px; padding: 24px 20px; border-radius: 16px; }
+  .case-ps__problem-label, .case-ps__solution-label { font-size: 14px; line-height: 1.5; }
+  .case-ps__quote { margin-top: 14px; font-size: 20px; line-height: 1.5; }
+  .case-ps__problem-figure { padding-top: 28px; }
+  .case-ps__problem-desc { margin-top: 28px; font-size: 14px; line-height: 1.6; }
+  .case-ps__problem-desc span { display: inline; }
+  .case-ps__problem-desc span + span::before { content: " "; }
+  .case-ps__swatches { gap: 92px; }
+  .case-ps__swatch-col { gap: 10px; }
+  .case-ps__swatch-label { left: 0; width: 40px; margin-bottom: 0; font-size: 13px; line-height: 20px; }
+  .case-ps__swatch { width: 40px; height: 40px; border-radius: 6px; }
+  .case-ps__swatch.is-flagged { box-shadow: inset 0 0 0 2.5px #f77e6e; }
+  .case-ps__swatch-flag { left: calc(100% + 8px); font-size: 13px; line-height: 20px; }
+  .case-ps__solution { margin-top: 56px; }
+  .case-ps__layers-row { grid-template-columns: minmax(0, 1fr); gap: 16px; margin-top: 14px; }
+  .case-ps__layers { gap: 10px; }
+  .case-ps__layer { height: auto; padding: 14px 18px; font-size: 15px; line-height: 1.5; border-radius: 14px; }
+  .case-ps__layer.is-active { box-shadow: inset 0 0 0 2px #73c2ff; }
+  .case-ps__layers-figure { margin-top: 0; }
+  .case-ps__callout { height: auto; margin-top: 16px; padding: 14px 18px; font-size: 15px; line-height: 1.5; border-radius: 14px; }
+  .case-ps__figure { margin-top: 40px; border-radius: 12px; }
+}
+
 /* ─── 숫자 카운트업: 최종 숫자 폭으로 자리를 고정 ─── */
 .countup { display: inline-grid; }
 .countup > * { grid-area: 1 / 1; }
@@ -1568,7 +1705,8 @@ img, video { display: block; max-width: 100%; }
     .case-deep__panel-heading, .case-deep__panel-figure, .case-deep__panel-caption,
     .case-glass__card, .case-deep__pattern,
     .case-landing__shot, .case-landing__row, .case-landing__note,
-    .case-retro__stat, .case-retro__note, .case-retro__next
+    .case-retro__stat, .case-retro__note, .case-retro__next,
+    .case-ps__problem, .case-ps__solution-label, .case-ps__layer, .case-ps__layers-figure, .case-ps__callout, .case-ps__figure
   ) {
     opacity: 0;
     transform: translateY(16px);

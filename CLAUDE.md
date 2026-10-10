@@ -148,7 +148,7 @@ PNG가 없으면 SVG를 Pretendard를 불러온 브라우저에서 그려 참고
 | 01 | Hero (Ellm Hero 템플릿, 아래 여백 156, 커버 1564×1173) | 완료 |
 | 02 | Overview (멀티 AI 워크스페이스 Overview와 같은 배치, 내용 #C1C1C1, 구분선 #525252) | 완료 |
 | 03 | Summary (어두운 카드 그라디언트 + #727272 테두리, 1번 카드 점무늬 이미지, 행 간격 26·제목 간격 28) | 완료 |
-| 04 | Why (Problem & Solution 1) | |
+| 04 | Why = Problem & Solution 1 (`CaseProblemSolution`: 검은 바탕 + 사선 무늬, 문제 카드·색 견본은 HTML, 토큰 표·화면은 4x PNG에서 잘라냄) | 완료 |
 | 05 | Problem & Solution 2 (Contrast Checker) | |
 | 06 | RTL & Result | |
 | 07 | 결과 및 회고 + Next Project | |

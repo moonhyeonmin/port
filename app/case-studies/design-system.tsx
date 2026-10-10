@@ -1,5 +1,13 @@
 import { CaseHero } from "~/components/case-study/CaseHero";
 import { CaseOverview } from "~/components/case-study/CaseOverview";
+import {
+  CaseProblemSolution,
+  PsCallout,
+  PsFigure,
+  PsLayers,
+  PsProblemCard,
+  PsSwatchCompare,
+} from "~/components/case-study/CaseProblemSolution";
 import { CaseSummary } from "~/components/case-study/CaseSummary";
 import { CountUp } from "~/components/CountUp";
 import type { CaseNavItem } from "~/components/case-study/CaseNav";
@@ -9,6 +17,7 @@ import type { CaseStudyProps } from "./index";
 export const designSystemNav: CaseNavItem[] = [
   { id: "project", label: "Project" },
   { id: "summary", label: "Summary" },
+  { id: "problem-solution", label: "Problem & Solution" },
 ];
 
 // Figma: 2wduPMxRCf5SwSUCNYqvbl / "framer 이전용" > Design system_*
@@ -131,6 +140,60 @@ export default function DesignSystemCaseStudy({ index }: CaseStudyProps) {
           },
         ]}
       />
+
+      {/* Design system_04_Why: Problem & Solution 1 (브랜드·테마 분리) */}
+      <CaseProblemSolution
+        id="problem-solution"
+        eyebrow="Problem & Solution 1"
+        icon="/icons/star-orange.svg"
+        pointGradient="linear-gradient(90deg, #FA5730, #FCA25F)"
+        title={["브랜드가 다른 제품들이 같은 토큰에서", "충돌했고, 브랜드와 테마를 분리해 풀었습니다."]}
+        decor="/projects/design-system/why-decor.webp"
+      >
+        <PsProblemCard
+          label="Problem - 같은 토큰, 다른 의미"
+          quote={["착수 전에 도메인별", "신뢰 요구 수준부터", "정의하겠다."]}
+          figure={
+            <PsSwatchCompare
+              columns={[
+                {
+                  label: "그린 제품",
+                  swatches: [{ color: "#05C072" }, { color: "#05C072", flag: "구분 불가" }, { color: "#3182F6" }],
+                },
+                {
+                  label: "블루 제품",
+                  swatches: [{ color: "#3182F6" }, { color: "#05C072" }, { color: "#3182F6", flag: "구분 불가" }],
+                },
+              ]}
+            />
+          }
+          description={[
+            "브랜드 색과 상태색이 같은 원색을 직접 참조해, 제품이 바뀌면 “성공\"과 “브랜드\"가 겹쳤습니다.",
+            "다크모드까지 더해지며 조합은 제품, 테마만큼 늘었습니다.",
+          ]}
+        />
+        <PsLayers
+          label="Solution - Variable 3단 구조"
+          layers={[
+            { title: "Primitive", description: "원색 팔레트, 직접 사용 금지" },
+            { title: "Brand (Green / Blue)", description: "제품이 바뀌면 이 층만 교체", active: true },
+            { title: "Semantic (Light / Dark)", description: "역할 기준, 상태 색은 브랜드와 분리" },
+          ]}
+          figure={{
+            src: "/projects/design-system/why-tokens.webp",
+            width: 678,
+            height: 470,
+            alt: "그린 브랜드 컬러 토큰의 라이트/다크 값 표: light/green/20~80과 dark/green/20~80",
+          }}
+        />
+        <PsCallout>→ 하나의 컴포넌트가 제품 X 테마 4가지 조합에서 규칙대로 전환</PsCallout>
+        <PsFigure
+          src="/projects/design-system/why-screen.webp"
+          width={1564}
+          height={996}
+          alt="Fasoo DSPM 설정 화면을 왼쪽은 다크 모드, 오른쪽은 라이트 모드로 나눠 보여주는 화면"
+        />
+      </CaseProblemSolution>
     </>
   );
 }
