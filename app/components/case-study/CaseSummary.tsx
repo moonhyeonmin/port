@@ -30,6 +30,12 @@ interface CaseSummaryProps {
   icon?: string;
   /** "Summary"와 행 라벨 색 (기본: 라벨 --color-point, 행 #3182f6) */
   pointColor?: string;
+  /** "Summary" 글자 그라디언트 (CSS 배경 값). 행 라벨은 pointColor 그대로 */
+  pointGradient?: string;
+  /** 행 사이 간격 (디자인 px, 기본 20) */
+  rowGap?: number;
+  /** 제목과 행 사이 간격 (디자인 px, 기본 20) */
+  headingGap?: number;
   /** 섹션 위·아래 여백 (디자인 px, 기본 120) */
   top?: number;
   bottom?: number;
@@ -44,6 +50,9 @@ export function CaseSummary({
   cards,
   icon,
   pointColor,
+  pointGradient,
+  rowGap,
+  headingGap,
   top,
   bottom,
   rowAlign,
@@ -52,11 +61,14 @@ export function CaseSummary({
   return (
     <section
       id={id}
-      className="case-sec case-summary"
+      className={`case-sec case-summary${pointGradient ? " has-point-gradient" : ""}`}
       aria-label="Summary"
       style={
         {
           ...(pointColor && { "--color-point": pointColor, "--summary-label": pointColor }),
+          ...(pointGradient && { "--point-gradient": pointGradient }),
+          ...(rowGap !== undefined && { "--sum-row-gap": rowGap }),
+          ...(headingGap !== undefined && { "--sum-heading-gap": headingGap }),
           ...(top !== undefined && { "--sum-top": top }),
           ...(bottom !== undefined && { "--sum-bottom": bottom }),
           ...(rowAlign === "center" && { "--summary-row-align": "center" }),

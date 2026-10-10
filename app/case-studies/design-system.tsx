@@ -1,10 +1,15 @@
 import { CaseHero } from "~/components/case-study/CaseHero";
 import { CaseOverview } from "~/components/case-study/CaseOverview";
+import { CaseSummary } from "~/components/case-study/CaseSummary";
+import { CountUp } from "~/components/CountUp";
 import type { CaseNavItem } from "~/components/case-study/CaseNav";
 import type { CaseStudyProps } from "./index";
 
 /** 상단 내비게이션 항목 (섹션 id와 연결) */
-export const designSystemNav: CaseNavItem[] = [{ id: "project", label: "Project" }];
+export const designSystemNav: CaseNavItem[] = [
+  { id: "project", label: "Project" },
+  { id: "summary", label: "Summary" },
+];
 
 // Figma: 2wduPMxRCf5SwSUCNYqvbl / "framer 이전용" > Design system_*
 // 사용자가 내보낸 SVG(글자 포함)·PNG 4x에서 수치와 문구를 옮김. 페이지 전체가 어두운 바탕(#0E0E0E)
@@ -49,6 +54,81 @@ export default function DesignSystemCaseStudy({ index }: CaseStudyProps) {
           { title: "Period", lines: ["2026.01 - 2026.10"], width: 261, gap: 37 },
           { title: "Team", lines: ["전 제품 Web, Mobile", "공통 다크모드, RTL"], width: 358, gap: 12 },
           { title: "Contribution", lines: ["디자이너 6명", "협업"], width: 184, gap: 12 },
+        ]}
+      />
+
+      {/* Design system_03_Summary: 멀티 AI 워크스페이스 Summary와 같은 배치, 어두운 카드 */}
+      <CaseSummary
+        id="summary"
+        icon="/icons/star-orange.svg"
+        pointColor="#FA5730"
+        pointGradient="linear-gradient(90deg, #FA5730, #FCA25F)"
+        top={128}
+        bottom={108}
+        rowGap={26}
+        headingGap={28}
+        rowAlign="center"
+        title={["반복되는 문제는 규칙으로,", "규칙이 지켜지지 않으면 도구로"]}
+        rows={[
+          {
+            label: "Problem",
+            text: [
+              "다크모드를 전 제품에 적용하려고 하자 브랜드 색과 상태 색이 같은 원색을 참조해 충돌했고, 다크모드 ",
+              "배경 위 대비는 눈으로 판단할 수 없어 수정이 반복됐습니다.",
+            ],
+          },
+          {
+            label: "Solution",
+            text: [
+              "Primitive, Brand, Semantic 3단 Variable 구조로 브랜드와 테마를 분리하고, ",
+              "파수 제품용 WCAG AA 대비 검사 Figma Plugin을 직접 만들어 검증했습니다.",
+            ],
+          },
+          {
+            label: "Impact",
+            text: [
+              "아랍어 RTL까지 확장해 마크다운용 문서로 남기고, 컬러 대비 검수 시간과 개발 후 오류를 줄였습니다.",
+            ],
+          },
+        ]}
+        cards={[
+          {
+            value: (
+              <>
+                <CountUp to={16} />개 제품
+              </>
+            ),
+            detail: ["공통 다크모드 적용"],
+            accent: true,
+            shadow: true,
+            // Figma 이미지 채우기 그대로 (이미지 너비 = 카드의 119.73%, 높이 100%, 가운데)
+            bg: "url(/projects/design-system/summary-card-bg.webp) 50% 0 / 119.73% 100% no-repeat",
+          },
+          {
+            value: (
+              <>
+                <CountUp to={100} />%
+              </>
+            ),
+            detail: ["Semantic 컬러 토큰", "AA 통과"],
+          },
+          {
+            value: (
+              <>
+                -<CountUp to={70} />%
+              </>
+            ),
+            // Figma 문구 그대로 (Lignt: 오타 의심, 사용자에게 알림)
+            detail: ["Lignt 모드 대비", "검수 시간"],
+          },
+          {
+            value: (
+              <>
+                <CountUp to={48} />%↓
+              </>
+            ),
+            detail: ["개발 후", "색상 대비 오류"],
+          },
         ]}
       />
     </>

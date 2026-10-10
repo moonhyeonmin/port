@@ -442,6 +442,17 @@ img, video { display: block; max-width: 100%; }
 .case-page.is-dark .case-hero__tag { background: #404040; }
 .case-page.is-dark .case-overview__body { color: #c1c1c1; }
 .case-page.is-dark .case-overview__divider { background: #525252; }
+.case-page.is-dark .case-summary__row dd { color: #c1c1c1; }
+/* 어두운 카드: 135.6° #181818(6%) → #3F3F3F, 안쪽 1px 테두리 #727272 */
+.case-page.is-dark .case-summary__card {
+  background-image: linear-gradient(135.626deg, rgb(24 24 24 / 0.06) 2.853%, #3f3f3f 82.312%);
+  box-shadow: inset 0 0 0 max(1px, var(--u)) #727272;
+}
+.case-page.is-dark .case-summary__value { color: #fff; }
+/* 숫자 카드(2~4번)는 Figma에서 자간이 더 좁다 (실측으로 맞춤) */
+.case-page.is-dark .case-summary__card:not(.is-accent) .case-summary__value { letter-spacing: -0.06em; }
+.case-page.is-dark .case-summary__detail { color: #d4d4d4; }
+.case-page.is-dark .case-summary__card.is-accent .case-summary__detail { color: #fff; }
 
 /* 02 Overview (126:62652): 항목 줄 + 아래 구분선 */
 .case-overview {
@@ -485,12 +496,12 @@ img, video { display: block; max-width: 100%; }
   padding-block: calc(var(--u) * var(--sum-top, 120)) calc(var(--u) * var(--sum-bottom, 120));
 }
 .case-summary__text { display: flex; flex-direction: column; align-items: flex-start; gap: calc(var(--u) * 40); }
-.case-summary__heading { display: flex; flex-direction: column; gap: calc(var(--u) * 20); }
+.case-summary__heading { display: flex; flex-direction: column; gap: calc(var(--u) * var(--sum-heading-gap, 20)); }
 
 .case-summary__rows {
   display: flex;
   flex-direction: column;
-  gap: calc(var(--u) * 20);
+  gap: calc(var(--u) * var(--sum-row-gap, 20));
   margin: 0;
   font-size: calc(var(--u) * 30);
   line-height: calc(var(--u) * 50);
