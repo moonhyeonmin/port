@@ -219,7 +219,12 @@ export function HomeBeam() {
       window.removeEventListener("pointermove", onPointer);
       window.removeEventListener("scroll", kick);
       document.removeEventListener("visibilitychange", kick);
-      gl.getExtension("WEBGL_lose_context")?.loseContext();
+      // 컨텍스트는 버리지 않는다: 개발 모드(StrictMode)는 effect를 두 번 실행하는데,
+      // 여기서 loseContext()를 부르면 같은 캔버스의 두 번째 실행이 아무것도 못 그린다
+      gl.deleteProgram(prog);
+      gl.deleteShader(vs);
+      gl.deleteShader(fs);
+      gl.deleteBuffer(buf);
     };
   }, []);
 
