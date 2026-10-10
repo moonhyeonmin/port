@@ -33,13 +33,13 @@ export default function CaseStudy({ loaderData }: Route.ComponentProps) {
   useReveal();
 
   if (caseStudy) {
-    const { Content, nav } = caseStudy;
+    const { Content, nav, theme } = caseStudy;
     return (
       <>
         {/* .case-page는 container-type이라 fixed 기준이 바뀌므로 바깥에 둔다 */}
         <CaseNav items={nav} />
         {/* Next Project 등 모든 요소는 Figma 디자인대로 Content 안에서 그린다 */}
-        <article className="case-page">
+        <article className={`case-page${theme === "dark" ? " is-dark" : ""}`}>
           <Content index={index} nextSlug={next.slug} />
         </article>
       </>

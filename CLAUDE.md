@@ -138,6 +138,21 @@ PNG가 없으면 SVG를 Pretendard를 불러온 브라우저에서 그려 참고
 | 08 | landing page (`CaseLanding`: 세로 랜딩 화면 + 제품→랜딩 요소 대응표 + 아래 유리 장식 이미지, 사용자가 준 고해상도 원본에서 5422px로 만든 `landing-bg.webp`) | `163:158691` | 완료 |
 | - | 하단 = Next Project (`CaseNext`, Ellm 회고 섹션과 공유, 위 여백 90) | `163:159740` | 완료 |
 
+### 다크모드, RTL 다국어 디자인 시스템 구축 (`/case-studies/design-system`, `app/case-studies/design-system.tsx`)
+
+페이지 전체가 어두운 바탕(#0E0E0E)이다. 레지스트리에 `theme: "dark"`를 주면 `.case-page.is-dark`가 붙고, 섹션 컴포넌트의 어두운 바탕용 색(설명 #EEEEEE, 태그 #404040, 내비 어두운 유리)이 적용된다. 강조색은 주황 그라디언트(#FA5730 → #FCA25F, `star-orange.svg`, CaseHero `pointGradient`). 사용자가 내보낸 SVG(글자 포함) + PNG **4x**로 작업한다.
+
+| # | 섹션 | 상태 |
+| --- | --- | --- |
+| - | cover image (홈 썸네일) | 완료 |
+| 01 | Hero (Ellm Hero 템플릿, 아래 여백 156, 커버 1564×1173) | 완료 |
+| 02 | Overview | |
+| 03 | Summary | |
+| 04 | Why (Problem & Solution 1) | |
+| 05 | Problem & Solution 2 (Contrast Checker) | |
+| 06 | RTL & Result | |
+| 07 | 결과 및 회고 + Next Project | |
+
 - 섹션 프레임 하나를 통째로 `get_design_context`하면 결과가 너무 커서 메타데이터만 돌아온다. 하위 frame 단위로 나눠서 호출한다.
 - 섹션 컴포넌트는 `app/components/case-study/Case*.tsx`, 프로젝트별 내용은 `app/case-studies/<slug>.tsx`, slug 등록은 `app/case-studies/index.ts`에 한다.
 - 복잡한 UI 목업은 Figma에서 2배(`defaultScale: 2`) PNG로 내보내 `public/projects/<slug>/`에 둔다. 예: Hero 커버 3128×2010

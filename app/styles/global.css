@@ -288,6 +288,13 @@ img, video { display: block; max-width: 100%; }
   border-radius: 16px;
   transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), width 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
+/* 어두운 페이지 위의 내비게이션: 어두운 유리, 현재 항목 알약은 흰색 그대로 */
+.case-nav:has(~ .case-page.is-dark) { background: rgb(40 40 46 / 0.6); }
+.case-nav:has(~ .case-page.is-dark) .case-nav__back { color: #fff; }
+.case-nav:has(~ .case-page.is-dark) .case-nav__divider { background: rgb(255 255 255 / 0.2); }
+.case-nav:has(~ .case-page.is-dark) .case-nav__link { color: rgb(255 255 255 / 0.6); }
+.case-nav:has(~ .case-page.is-dark) .case-nav__link:hover { color: #fff; }
+.case-nav:has(~ .case-page.is-dark) .case-nav__link.is-active { color: var(--color-text); }
 /* 떠 있는 헤더(top 40 + 높이 45)와 첫 섹션이 붙지 않도록 */
 .case-page { padding-top: 40px; }
 .case-page [id] { scroll-margin-top: 40px; }
@@ -421,6 +428,18 @@ img, video { display: block; max-width: 100%; }
   border-radius: calc(var(--u) * 45.33);
 }
 .case-hero__cover { width: 100%; height: auto; }
+/* "Project N" 글자 그라디언트: Figma 그라디언트 폭 504 (글자 크기 32 기준 15.75em) */
+.has-point-gradient .case-eyebrow__point {
+  color: transparent;
+  background: var(--point-gradient) 0 0 / 15.75em 100% no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* 어두운 페이지 (디자인 시스템: Design system_*) */
+.case-page.is-dark { background: #0e0e0e; color: #fff; }
+.case-page.is-dark .case-hero__desc { color: #eee; }
+.case-page.is-dark .case-hero__tag { background: #404040; }
 
 /* 02 Overview (126:62652): 항목 줄 + 아래 구분선 */
 .case-overview {

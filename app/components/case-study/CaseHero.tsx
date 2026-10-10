@@ -18,6 +18,8 @@ interface CaseHeroProps {
   icon?: string;
   /** "Project N" 강조색 (기본 --color-point) */
   pointColor?: string;
+  /** "Project N" 글자 그라디언트 (CSS 배경 값). 있으면 pointColor 대신 쓴다 */
+  pointGradient?: string;
   /** 섹션 아래 여백 (디자인 px, 기본 33) */
   bottom?: number;
 }
@@ -32,15 +34,17 @@ export function CaseHero({
   cover,
   icon,
   pointColor,
+  pointGradient,
   bottom,
 }: CaseHeroProps) {
   return (
     <header
       id={id}
-      className="case-sec case-hero"
+      className={`case-sec case-hero${pointGradient ? " has-point-gradient" : ""}`}
       style={
         {
           ...(pointColor && { "--color-point": pointColor }),
+          ...(pointGradient && { "--point-gradient": pointGradient }),
           ...(bottom !== undefined && { "--hero-bottom": bottom }),
         } as CSSProperties
       }
