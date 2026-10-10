@@ -2,7 +2,8 @@ import { useEffect, useRef } from "react";
 
 /**
  * 홈 배경: 어두운 남색 바탕 위 대각선 파란 빛줄기 (josu.framer.website 첫 화면 참고).
- * 빛줄기는 비단처럼 접힌 결을 따라 흐르고, 마우스를 움직이면 커서 쪽으로 크게 휘며 뒤따라온다.
+ * 큰 천(비단)이 파도처럼 일렁이며 계속 밀려가고, 빛을 받는 면은 파랗게, 주름은 어둡게 보인다.
+ * 마우스를 움직이면 커서 자리의 천이 부풀어 오르며 뒤따라온다.
  * 터치 기기처럼 마우스가 없으면 보이지 않는 점이 천천히 돌며 같은 움직임을 만든다.
  * WebGL이 없으면 CSS 그라디언트(.home-beam 배경)만 보이고, 동작 줄이기 설정이면 정지 화면 한 장만 그린다.
  */
@@ -17,66 +18,61 @@ precision highp float;
 uniform vec2 uRes;
 uniform float uTime;
 uniform vec2 uMouse;   // 커서를 빠르게 따라오는 점 (0..1, 위가 1)
-uniform vec2 uTrail;   // 커서를 느리게 따라오는 점: 둘 사이로 빛이 끌려간다
-uniform float uEnergy; // 커서 속도 (0..1), 빠를수록 결이 크게 일렁인다
+uniform vec2 uTrail;   // 커서를 느리게 따라오는 점
+uniform float uEnergy; // 커서 속도 (0..1)
 uniform float uScroll; // 0..1, 아래로 내릴수록 빛을 줄인다
 
+const float PI = 3.14159265;
 float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
-float noise(vec2 p) {
-  vec2 i = floor(p), f = fract(p);
-  vec2 u = f * f * (3.0 - 2.0 * f);
-  return mix(mix(hash(i), hash(i + vec2(1, 0)), u.x), mix(hash(i + vec2(0, 1)), hash(i + vec2(1, 1)), u.x), u.y);
-}
-float fbm(vec2 p) {
-  float v = 0.0, a = 0.5;
-  for (int i = 0; i < 4; i++) { v += a * noise(p); p *= 2.02; a *= 0.5; }
-  return v;
-}
-// 점 p에서 선분 a-b까지 거리
-float segDist(vec2 p, vec2 a, vec2 b) {
-  vec2 pa = p - a, ba = b - a;
-  float h = clamp(dot(pa, ba) / max(dot(ba, ba), 1e-4), 0.0, 1.0);
-  return length(pa - ba * h);
+
+vec2 gM; vec2 gTr; float gT; float gAspect;
+
+// 천 한 장: 법선 n 쪽으로 폭 W만큼 펼쳐진 띠. 또렷한 경계(f=0)에서 n 쪽으로 갈수록 진해지다 사라진다.
+// 띠 전체가 주기 T초 동안 화면 한쪽 밖에서 반대쪽 밖으로 지나간다 (dirSign: +1이면 n 쪽으로 이동)
+vec3 sheet(vec3 col, vec2 p, vec2 n, float W, float T, float ph, float dirSign, float bend) {
+  // 화면 네 모서리에서 n 방향 투영의 최소/최대
+  float d0 = 0.0, d1 = gAspect * n.x, d2 = n.y, d3 = gAspect * n.x + n.y;
+  float lo = min(min(d0, d1), min(d2, d3)) - 0.35, hi = max(max(d0, d1), max(d2, d3)) + 0.35;
+  float u = fract(gT / T + ph);
+  // 띠가 완전히 화면 밖일 때 처음으로 돌아간다
+  float o = dirSign > 0.0 ? mix(lo - W, hi, u) : mix(hi, lo - W, u);
+  vec2 dir = vec2(n.y, -n.x);
+  float f = dot(p, n) - o + bend * sin(dot(p, dir) * 1.7 + gT * 0.45 + ph * 6.0)
+          + 0.04 * sin(dot(p, dir) * 4.1 - gT * 0.8 + ph * 3.0);
+  // 커서 쪽으로 천 자락이 넓게 휘어 온다
+  vec2 dm = p - gM, dt = p - gTr;
+  f += (0.1 + uEnergy * 0.18) * exp(-dot(dm, dm) / 0.22) + 0.05 * exp(-dot(dt, dt) / 0.3);
+
+  float side = smoothstep(-0.006, 0.012, f) * smoothstep(W, W * 0.45, f);
+  vec3 bright = vec3(0.14, 0.4, 1.0), deep = vec3(0.02, 0.16, 0.78);
+  vec3 c = mix(deep, bright, exp(-max(f, 0.0) * 2.4));
+  c *= 1.0 - 0.2 * exp(-pow((f - 0.17) / 0.06, 2.0));          // 안쪽 두 번째 결
+  c += vec3(0.45, 0.62, 1.0) * exp(-abs(f) * 70.0) * 0.45;      // 경계 하이라이트
+  col *= 1.0 - 0.45 * exp(-max(-f, 0.0) * 9.0) * step(f, 0.0);  // 경계 바깥 그림자
+  return mix(col, c, side);
 }
 
 void main() {
   float aspect = uRes.x / uRes.y;
-  vec2 uv = gl_FragCoord.xy / uRes.y;           // 가로 0..aspect, 세로 0..1
-  vec2 m = uMouse * vec2(aspect, 1.0);
-  vec2 tr = uTrail * vec2(aspect, 1.0);
-  float t = uTime * 0.08;
-
-  // 기본 빛줄기: 위 가운데에서 오른쪽 아래로 내려가는 대각선 (세로 화면은 더 가파르게)
-  float narrow = smoothstep(1.3, 0.6, aspect);
-  float ang = radians(mix(-42.0, -60.0, narrow)) + sin(t * 1.3) * 0.05;
-  vec2 nrm = vec2(sin(-ang), cos(ang));
-  vec2 origin = vec2(aspect * mix(0.5, 0.3, narrow) + sin(t) * 0.06, 1.0);
-
-  // 결이 흐르도록 좌표를 비튼다 (커서가 빠를수록 크게)
-  vec2 q = uv + (vec2(fbm(uv * 0.75 + t), fbm(uv * 0.75 - t + 4.0)) - 0.5) * (0.3 + uEnergy * 0.3);
-  float f = dot(q - origin, nrm);
-
-  // 커서 쪽으로 빛이 끌려온다: 느린 점→빠른 점 선분 주변을 밝은 쪽으로 밀어 비단 자락처럼
-  float pull = exp(-pow(segDist(q, tr, m) / 0.42, 2.0));
-  f += pull * (0.55 + uEnergy * 0.35);
+  vec2 p = gl_FragCoord.xy / uRes.y;           // 가로 0..aspect, 세로 0..1
+  gM = uMouse * vec2(aspect, 1.0);
+  gTr = uTrail * vec2(aspect, 1.0);
+  gT = uTime;
+  gAspect = aspect;
 
   vec3 base = vec3(0.008, 0.012, 0.045);
-  vec3 deep = vec3(0.02, 0.1, 0.62);
-  vec3 blue = vec3(0.1, 0.36, 1.0);
-  vec3 edge = vec3(0.45, 0.65, 1.0);
+  vec3 col = base;
+  // 왼쪽 아래 은은히 떠다니는 푸른 빛
+  vec2 g = p - vec2(aspect * 0.18 + 0.12 * sin(gT * 0.21), 0.28 + 0.1 * sin(gT * 0.17));
+  col += vec3(0.04, 0.12, 0.5) * exp(-dot(g * vec2(0.7, 1.3), g * vec2(0.7, 1.3)) * 7.0) * 0.7;
 
-  float side = smoothstep(-0.02, 0.12, f);
-  // 접힌 비단 결: 빛 안쪽에 밝고 어두운 주름
-  float folds = 0.5 + 0.5 * sin(f * 4.2 + fbm(q * 0.9 + t) * 2.2 - t * 1.5);
-  folds = smoothstep(0.1, 0.9, folds);
-  vec3 lit = mix(deep, blue, 0.35 + 0.65 * folds);
-  lit = mix(lit, deep, smoothstep(0.35, 1.1, f) * 0.5);
-  vec3 col = mix(base, lit, side);
-  col += deep * exp(-max(-f, 0.0) * 5.0) * 0.3 * (1.0 - side); // 어두운 쪽으로 번지는 푸른 기운
-  col += edge * exp(-abs(f - 0.015) * 38.0) * 0.32;            // 경계의 밝은 띠
+  // 서로 다른 방향의 천 세 장이 번갈아 화면을 지나간다 (뒤 → 앞)
+  col = sheet(col, p, normalize(vec2(-0.85, 0.5)), 1.1, 19.0, 0.55, -1.0, 0.08); // 왼쪽 위에서 오른쪽 아래로
+  col = sheet(col, p, normalize(vec2(-0.12, 1.0)), 1.0, 16.0, 0.2, -1.0, 0.07);  // 위에서 아래로
+  col = sheet(col, p, normalize(vec2(0.78, 0.62)), 1.2, 14.0, 0.8, 1.0, 0.06);   // 오른쪽 위 대각선, 오른쪽으로 물러남
 
   // 아래로 갈수록, 스크롤할수록 차분하게 (카드 영역 가독성)
-  float fade = smoothstep(-0.15, 0.55, uv.y) * (1.0 - uScroll * 0.6);
+  float fade = smoothstep(-0.15, 0.55, p.y) * (1.0 - uScroll * 0.6);
   col = mix(base, col, fade);
 
   col += (hash(gl_FragCoord.xy + fract(uTime) * 100.0) - 0.5) * 0.035; // 필름 그레인

@@ -59,11 +59,8 @@
 /* 히어로: 흰 글자, 설명은 밝은 회청색 (빛줄기 위에서도 대비 4.5:1 이상) */
 .page.is-home-beam .hero { padding-top: calc(96px + 45px); padding-bottom: 88px; overflow: visible; }
 .page.is-home-beam .hero__sky { display: none; }
-.page.is-home-beam .hero__photo {
-  background: rgb(255 255 255 / 0.08);
-  border-color: rgb(255 255 255 / 0.22);
-  backdrop-filter: blur(8px);
-}
+/* 프로필 사진 자리(빈 원)는 숨긴다 */
+.page.is-home-beam .hero__photo { display: none; }
 .page.is-home-beam .hero__inner { position: relative; }
 /* 글자 뒤 은은한 어두운 막: 빛줄기가 지나가도 글자 대비를 지킨다 */
 .page.is-home-beam .hero__inner::before {
