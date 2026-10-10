@@ -3,7 +3,7 @@
  * 모든 규칙이 .page.is-home-beam 아래에만 적용되므로, 스위치를 끄면 기존 밝은 홈 그대로다.
  */
 .page.is-home-beam {
-  --beam-base: #02030b;
+  --beam-base: #000;
   --beam-text: #f5f7ff;
   --beam-muted: rgb(225 232 255 / 0.68);
   --beam-line: rgb(255 255 255 / 0.12);
@@ -29,12 +29,13 @@
   position: absolute;
   z-index: -1;
   inset: 0 0 auto;
-  height: max(100svh, 860px);
+  /* 원본과 같은 비율: 화면 너비의 약 0.88배 높이 */
+  height: max(100svh, 88vw);
   pointer-events: none;
   /* WebGL을 못 쓸 때 보이는 정지 그라디언트 */
   background:
-    linear-gradient(to bottom, rgb(2 3 11 / 0) 55%, var(--beam-base)),
-    linear-gradient(130deg, var(--beam-base) 46%, #0a2bb8 62%, #1d55ff 80%, #2f6bff);
+    linear-gradient(to bottom, rgb(0 0 0 / 0), var(--beam-base)),
+    linear-gradient(130deg, var(--beam-base) 40%, #0044ff 70%, #2962ff);
 }
 .home-beam__canvas {
   display: block;
