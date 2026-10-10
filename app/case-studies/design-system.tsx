@@ -118,8 +118,8 @@ export default function DesignSystemCaseStudy({ index }: CaseStudyProps) {
                 -<CountUp to={70} />%
               </>
             ),
-            // Figma 문구 그대로 (Lignt: 오타 의심, 사용자에게 알림)
-            detail: ["Lignt 모드 대비", "검수 시간"],
+            // Figma 원문은 "Lignt" (사용자 요청으로 Light로 수정)
+            detail: ["Light 모드 대비", "검수 시간"],
           },
           {
             value: (
