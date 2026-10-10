@@ -45,7 +45,7 @@ export const projects: Project[] = [
   },
   {
     slug: "aviera",
-    title: "사내 메신저 개선",
+    title: "데이터 기반 사내메신저 개선",
     company: "Aviera",
     year: 2024,
     summary: "사내 메신저 경험 개선 프로젝트.",
