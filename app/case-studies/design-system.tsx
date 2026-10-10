@@ -168,7 +168,7 @@ export default function DesignSystemCaseStudy({ index }: CaseStudyProps) {
             />
           }
           description={[
-            "브랜드 색과 상태색이 같은 원색을 직접 참조해, 제품이 바뀌면 “성공\"과 “브랜드\"가 겹쳤습니다.",
+            "브랜드 색과 상태색이 같은 원색을 직접 참조해, 제품이 바뀌면 “성공”과 “브랜드”가 겹쳤습니다.",
             "다크모드까지 더해지며 조합은 제품, 테마만큼 늘었습니다.",
           ]}
         />
