@@ -9,6 +9,7 @@ import {
   PsProblemCard,
   PsSwatchCompare,
 } from "~/components/case-study/CaseProblemSolution";
+import { CaseRtl } from "~/components/case-study/CaseRtl";
 import { CaseSummary } from "~/components/case-study/CaseSummary";
 import { CountUp } from "~/components/CountUp";
 import type { CaseNavItem } from "~/components/case-study/CaseNav";
@@ -19,6 +20,7 @@ export const designSystemNav: CaseNavItem[] = [
   { id: "project", label: "Project" },
   { id: "summary", label: "Summary" },
   { id: "problem-solution", label: "Problem & Solution", also: ["problem-solution-2"] },
+  { id: "rtl", label: "RTL & Result" },
 ];
 
 // Figma: 2wduPMxRCf5SwSUCNYqvbl / "framer 이전용" > Design system_*
@@ -255,6 +257,38 @@ export default function DesignSystemCaseStudy({ index }: CaseStudyProps) {
           { title: "AI로 제작", description: ["AI 코딩으로 Figma Plugin API 기반", "검사 로직으로 UI 구현"] },
           { title: "규칙화", description: ["AA 미달 조합은 톤 단계를 올려 교체,", "결과를 Variable에 반영"] },
         ]}
+      />
+
+      {/* Design system_06: RTL & Result */}
+      <CaseRtl
+        id="rtl"
+        eyebrow="RTL & Result"
+        icon="/icons/star-orange.svg"
+        pointGradient="linear-gradient(90deg, #FA5730, #FCA25F)"
+        cover={{
+          src: "/projects/design-system/rtl-screens.webp",
+          width: 1564,
+          height: 794,
+          alt: "아랍어 RTL로 전환한 관리자 화면, 로그인 화면, 정책 목록 화면",
+        }}
+        title={["아랍어 지원을 하며, 글로벌 환경에서의", "디자인 시스템 확장성과 일관성 확보"]}
+        cards={[
+          { title: "반전", items: ["레이아웃, 내비게이션 방향", "진행 방향 아이콘", "정렬, 여백 시작점"] },
+          { title: "유지", items: ["숫자, 날짜, 로고", "재생 아이콘", "차트 시간 축"] },
+          { title: "조정", items: ["아랍어 폰트 행간", "텍스트 길이 증가", "영문 혼합 텍스트"] },
+        ]}
+        notes={{
+          src: "/projects/design-system/rtl-notes.webp",
+          width: 622,
+          height: 534,
+          alt: "RTL 작성 규칙: 아랍어는 오른쪽에서 왼쪽, 영문과 숫자는 왼쪽에서 오른쪽, 혼합 시 텍스트 상자를 나눠 간격을 두는 예시",
+        }}
+        table={{
+          src: "/projects/design-system/rtl-type-table.webp",
+          width: 852,
+          height: 1076,
+          alt: "(Web) Server 아랍어 타이포그래피 표: 제목·본문·캡션 단계별 텍스트 스타일, 크기, 행간, 굵기",
+        }}
       />
     </>
   );

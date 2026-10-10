@@ -150,7 +150,7 @@ PNG가 없으면 SVG를 Pretendard를 불러온 브라우저에서 그려 참고
 | 03 | Summary (어두운 카드 그라디언트 + #727272 테두리, 1번 카드 점무늬 이미지, 행 간격 26·제목 간격 28) | 완료 |
 | 04 | Why = Problem & Solution 1 (`CaseProblemSolution`: 검은 바탕 + 사선 무늬, 문제 카드·색 견본은 HTML, 토큰 표·화면은 4x PNG에서 잘라냄) | 완료 |
 | 05 | Problem & Solution 2 (`CaseContrast`: 대비 견본 3장 + 반복 작업 카드 / `CasePlugin`: 검은 바탕, Contrast Checker 화면(4x PNG에서 잘라냄) + 단계 01~03, Why와 같은 사선 무늬를 180° 회전) | 완료 |
-| 06 | RTL & Result | |
+| 06 | RTL & Result (`CaseRtl`: 위 화면 그림 + 원칙 카드 3장(HTML) + 작성 규칙·타이포 표 그림, 그림은 4x PNG에서 잘라냄) | 완료 |
 | 07 | 결과 및 회고 + Next Project | |
 
 - 섹션 프레임 하나를 통째로 `get_design_context`하면 결과가 너무 커서 메타데이터만 돌아온다. 하위 frame 단위로 나눠서 호출한다.
