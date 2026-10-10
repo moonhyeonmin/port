@@ -1,3 +1,4 @@
+import { CaseContrast, CasePlugin } from "~/components/case-study/CaseContrast";
 import { CaseHero } from "~/components/case-study/CaseHero";
 import { CaseOverview } from "~/components/case-study/CaseOverview";
 import {
@@ -17,7 +18,7 @@ import type { CaseStudyProps } from "./index";
 export const designSystemNav: CaseNavItem[] = [
   { id: "project", label: "Project" },
   { id: "summary", label: "Summary" },
-  { id: "problem-solution", label: "Problem & Solution" },
+  { id: "problem-solution", label: "Problem & Solution", also: ["problem-solution-2"] },
 ];
 
 // Figma: 2wduPMxRCf5SwSUCNYqvbl / "framer 이전용" > Design system_*
@@ -194,6 +195,67 @@ export default function DesignSystemCaseStudy({ index }: CaseStudyProps) {
           alt="Fasoo DSPM 설정 화면을 왼쪽은 다크 모드, 오른쪽은 라이트 모드로 나눠 보여주는 화면"
         />
       </CaseProblemSolution>
+
+      {/* Design system_05: Problem & Solution 2 (다크모드 색 대비 → Contrast Checker 플러그인) */}
+      <CaseContrast
+        id="problem-solution-2"
+        eyebrow="Problem & Solution 2"
+        icon="/icons/star-orange.svg"
+        pointGradient="linear-gradient(90deg, #FA5730, #FCA25F)"
+        title={["다크모드 배경 위의 그린,", "색상 차이 눈으로는 판단할 수 없었습니다."]}
+        description={[
+          "같은 그린이 라이트에선 탁하고 다크에선 형광처럼 번졌습니다.",
+          "매번 눈으로 조정하다 보니 수정이 반복됐습니다.",
+        ]}
+        samples={[
+          {
+            bg: "#fff",
+            color: "#00B76B",
+            text: "Aa 관제 상태 정상",
+            caption: "라이트 배경 green 600",
+            ratio: "3.30 : 1",
+            verdict: "AA 미달",
+            tone: "#F77E6E",
+          },
+          {
+            bg: "#181818",
+            color: "#01D67D",
+            text: "Aa 관제 상태 정상",
+            caption: "다크 배경 green 600",
+            ratio: "4.99 : 1",
+            verdict: "AA 통과",
+            tone: "#01D67D",
+          },
+          {
+            bg: "#05C072",
+            color: "#fff",
+            text: "Aa 관제 상태 정상",
+            caption: "green 버튼 위 흰 글자",
+            ratio: "3.30 : 1",
+            verdict: "AA 미달",
+            tone: "#F77E6E",
+          },
+        ]}
+        work={{
+          title: "반복되던 작업",
+          items: ["색 조정", "외부 사이트에서 HEX를 복사하여 대비 확인", "토큰 수 x 모드 수 만큼 반복", "누락된 조합은 개발 후 발견"],
+        }}
+      />
+      <CasePlugin
+        title={["AI로 WCAG AA 대비 검사 Figma 플러그인을", "직접 만들어 컬러 Variable을 검증했습니다."]}
+        decor="/projects/design-system/why-decor.webp"
+        figure={{
+          src: "/projects/design-system/contrast-checker.webp",
+          width: 706,
+          height: 695,
+          alt: "Contrast Checker 플러그인: 토큰 조합별 대비 비율과 AA 통과 여부, 수정 전후 값을 보여주는 화면",
+        }}
+        steps={[
+          { title: "문제 정의", description: ["토큰 모음(글자, 배경)을 모드 별로", "한번에 검사하고 싶은 마음"] },
+          { title: "AI로 제작", description: ["AI 코딩으로 Figma Plugin API 기반", "검사 로직으로 UI 구현"] },
+          { title: "규칙화", description: ["AA 미달 조합은 톤 단계를 올려 교체,", "결과를 Variable에 반영"] },
+        ]}
+      />
     </>
   );
 }

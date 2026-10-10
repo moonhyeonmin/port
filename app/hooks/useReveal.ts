@@ -49,6 +49,11 @@ export const REVEAL_SELECTOR = [
   ".case-ps__layers-figure",
   ".case-ps__callout",
   ".case-ps__figure",
+  ".case-contrast__desc",
+  ".case-contrast__sample",
+  ".case-contrast__work",
+  ".case-plugin__figure",
+  ".case-plugin__step",
 ].join(", ");
 
 /** 등장 시간은 global.css의 --reveal-duration 기본값(1.2s)과 같게 유지 */
