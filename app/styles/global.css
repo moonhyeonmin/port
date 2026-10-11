@@ -900,9 +900,18 @@ img, video { display: block; max-width: 100%; }
 .case-diag__card-desc span { display: block; }
 /* 아래 목록의 흰색 덮개보다 설명 글자가 위에 오도록 */
 .case-diag__card-desc { position: relative; z-index: 1; }
-.case-diag__bars { display: flex; flex-direction: column; gap: calc(var(--u) * 45); margin: calc(var(--u) * 59) 0 0; }
-.case-diag__bar-row { display: grid; grid-template-columns: calc(var(--u) * 116) auto; align-items: center; font-size: calc(var(--u) * 24); line-height: calc(var(--u) * 27); }
-.case-diag__bar-row dt { color: #898989; white-space: nowrap; }
+.case-diag__bars {
+  display: grid;
+  /* 이름 열은 최소 116, 긴 이름(예: 프로필 열람)이 있으면 그만큼 넓어진다 */
+  grid-template-columns: minmax(calc(var(--u) * 116), max-content) auto;
+  row-gap: calc(var(--u) * 45);
+  align-items: center;
+  margin: calc(var(--u) * 59) 0 0;
+  font-size: calc(var(--u) * 24);
+  line-height: calc(var(--u) * 27);
+}
+.case-diag__bar-row { display: contents; }
+.case-diag__bar-row dt { padding-right: calc(var(--u) * 16); color: #898989; white-space: nowrap; }
 .case-diag__bar-row dd { display: flex; align-items: center; gap: calc(var(--u) * 18); margin: 0; }
 .case-diag__bar { width: calc(var(--u) * var(--w)); height: calc(var(--u) * 27); background: var(--c); }
 .case-diag__bar-value { color: #292929; }
@@ -2068,8 +2077,8 @@ img, video { display: block; max-width: 100%; }
   .case-diag__card-desc { margin-top: 4px; font-size: 14px; line-height: 1.6; }
   .case-diag__card-desc span { display: inline; }
   .case-diag__card-desc span + span::before { content: " "; }
-  .case-diag__bars { gap: 12px; margin-top: 20px; }
-  .case-diag__bar-row { grid-template-columns: 72px auto; font-size: 13px; line-height: 16px; }
+  .case-diag__bars { grid-template-columns: minmax(72px, max-content) auto; row-gap: 12px; margin-top: 20px; font-size: 13px; line-height: 16px; }
+  .case-diag__bar-row dt { padding-right: 8px; }
   .case-diag__bar-row dd { gap: 8px; }
   .case-diag__bar { width: calc(var(--w) / 191 * 120px); height: 16px; }
   .case-diag__rows { gap: 4px; margin-top: 16px; }

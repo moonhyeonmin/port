@@ -109,12 +109,13 @@ export default function AvieraCaseStudy({ index }: CaseStudyProps) {
             label: "저활용 신호",
             color: "#F3526D",
             value: "13건",
-            // Figma 원문 그대로 ("누적) ,프로필" 쉼표 위치: 사용자에게 알림)
-            description: ["AI 기능 요청 (6개월 누적) ,프로필,", "예약 전송 저활용"],
+            // Figma 원문은 "누적) ,프로필" (사용자 요청으로 쉼표 위치 수정)
+            description: ["AI 기능 요청 (6개월 누적), 프로필,", "예약 전송 저활용"],
             bars: [
-              { label: "읽음 처리", value: "18", width: 191 },
-              { label: "검색", value: "13", width: 131 },
-              { label: "URL 요청", value: "6", width: 54 },
+              // Figma 막대 이름은 사용 편중 카드와 같았음 (사용자 요청으로 실제 항목명으로 변경)
+              { label: "예약 전송", value: "18", width: 191 },
+              { label: "AI", value: "13", width: 131 },
+              { label: "프로필 열람", value: "6", width: 54 },
             ],
           },
           {
