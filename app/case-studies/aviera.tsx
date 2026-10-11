@@ -65,12 +65,12 @@ export default function AvieraCaseStudy({ index }: CaseStudyProps) {
         question={{
           label: "Key Question",
           paragraphs: [
-            ["사내메신저는 보안 측면에서 강점을", "가지고 있습니다."],
+            ["사내 메신저는 보안 측면에서 강점을", "가지고 있습니다."],
             ["하지만 그 강점만으로는 고객을", "유지할 수 없었습니다."],
           ],
         }}
         steps={[
-          { title: "로그 전수 분석", description: "Spring Boot Obserability 기반 6개월 API 요청 로그" },
+          { title: "로그 전수 분석", description: "Spring Boot Observability 기반 6개월 API 요청 로그" },
           { title: "경쟁사 벤치마킹", description: "Slack, 네이버웍스, 카카오워크, 다우오피스 등 분석" },
           { title: "우선순위 도출", description: "사용 편중, 저활용 신호, 포지셔닝 격차 기준" },
           { title: "KPI 설계", description: "Now, Next, Later 3단계 화면 제안으로 구체화" },
