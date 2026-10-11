@@ -15,6 +15,7 @@ import { features } from "~/data/features";
 import "~/styles/global.css";
 import "~/styles/home-beam.css";
 import "~/styles/home-row.css";
+import "~/styles/about.css";
 
 export const links: Route.LinksFunction = () => [
   { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },

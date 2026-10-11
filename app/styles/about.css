@@ -1,0 +1,158 @@
+/* About (design-src/About@1x 1.png, 1440 프레임: 콘텐츠 너비 1200) */
+.about {
+  --about-ink: #0b1220;
+  --about-blue: #1f4fe8;
+  --about-gray: #4b5563;
+  --about-line: #e5e7eb;
+  --about-soft: #f7f8fa;
+  font-family: var(--font-kr);
+  color: var(--about-ink);
+  word-break: keep-all;
+  background: #fff;
+}
+.about .container { max-width: calc(1200px + var(--gutter) * 2); }
+.about-label { font-size: 14px; font-weight: 700; line-height: 1.2; letter-spacing: 0.06em; text-transform: uppercase; color: var(--about-blue); }
+.about-h2 { margin-top: 17px; font-size: 43px; font-weight: 700; line-height: 1.25; letter-spacing: -0.02em; }
+
+/* 소개 + 사진 */
+.about-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 655px) 475px;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 120px;
+}
+.about-intro__title { display: flex; flex-direction: column; margin-top: 30px; font-size: 60px; font-weight: 800; line-height: 68px; letter-spacing: -0.03em; }
+.about-intro__body { margin-top: 28px; font-size: 19px; font-weight: 400; line-height: 32.5px; color: var(--about-gray); }
+.about-intro__body + .about-intro__body { margin-top: 16px; }
+.about-intro__body.is-strong { font-weight: 700; color: var(--about-ink); }
+.about-intro__photo {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 475 / 592;
+  object-fit: cover;
+  border-radius: 24px;
+  background: #f1f3f6;
+  box-shadow: inset 0 0 0 1px #eceef1;
+}
+
+/* 수치 카드 */
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-block: 95px 0;
+  padding-bottom: 120px;
+  list-style: none;
+}
+.about-stat { height: 192px; padding: 44px 30px 0; background: var(--about-soft); border-radius: 20px; }
+.about-stat__value { font-size: 47px; font-weight: 800; line-height: 1; letter-spacing: -0.02em; color: var(--about-blue); }
+.about-stat__value small { margin-left: 2px; font-size: 24px; font-weight: 700; }
+.about-stat__caption { margin-top: 16px; font-size: 16px; line-height: 24px; color: var(--about-gray); }
+.about-stat__caption span { display: block; }
+
+/* 일하는 방식 */
+.about-work { padding-block: 121px 117.5px; background: var(--about-soft); }
+.about-work__cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 44px 0 0; padding: 0; list-style: none; }
+.about-work__card { min-height: 258px; padding: 44px 42px 40px; background: #fff; border: 1px solid #eceef1; border-radius: 20px; }
+.about-work__num { font-size: 15px; font-weight: 600; line-height: 1; color: var(--about-gray); }
+.about-work__title { margin-top: 20px; font-size: 25px; font-weight: 700; line-height: 1.4; letter-spacing: -0.01em; }
+.about-work__desc { margin-top: 14px; font-size: 17px; line-height: 28px; color: #374151; }
+.about-work__desc span { display: block; }
+
+/* 경력 흐름 */
+.about-journey { padding-top: 120px; }
+.about-journey__steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 44px 0 0; padding: 0; list-style: none; }
+.about-journey__step { padding-top: 30px; border-top: 2px solid var(--about-line); }
+.about-journey__step.is-current { border-top-color: var(--about-blue); }
+.about-journey__label { font-size: 14px; font-weight: 600; line-height: 1.4; color: var(--about-gray); }
+.about-journey__step.is-current .about-journey__label { color: var(--about-blue); }
+.about-journey__title { margin-top: 12px; font-size: 24px; font-weight: 700; line-height: 1.4; }
+.about-journey__desc { margin-top: 11px; font-size: 17px; line-height: 27px; color: #374151; }
+.about-journey__desc span { display: block; }
+
+/* 도구 */
+.about-toolkit { padding-top: 119px; }
+.about-toolkit__rows { display: flex; flex-direction: column; gap: 19px; margin: 34px 0 0; }
+.about-toolkit__row { display: grid; grid-template-columns: 130px minmax(0, 1fr); align-items: center; }
+.about-toolkit__row dt { font-size: 15px; font-weight: 700; }
+.about-toolkit__row dd { display: flex; flex-wrap: wrap; gap: 10px; margin: 0; }
+.about-chip { display: inline-flex; align-items: center; height: 44px; padding-inline: 18px; font-size: 15px; font-weight: 500; border: 1px solid #e8eaee; border-radius: 999px; }
+
+/* 연락 */
+.about-cta-wrap { padding-block: 119px 118px; }
+.about-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 203px;
+  padding: 40px 57px;
+  color: #fff;
+  background: #0b1220;
+  border-radius: 24px;
+}
+.about-cta__title { font-size: 42px; font-weight: 800; line-height: 1.3; letter-spacing: -0.02em; }
+.about-cta__actions { display: flex; gap: 12px; flex-shrink: 0; }
+.about-cta__btn {
+  display: inline-flex;
+  align-items: center;
+  height: 58px;
+  padding-inline: 28px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  border: 1px solid rgb(255 255 255 / 0.3);
+  border-radius: 999px;
+  transition: background-color 0.2s, color 0.2s;
+}
+.about-cta__btn:hover { background: rgb(255 255 255 / 0.1); }
+.about-cta__btn.is-primary { color: #0b1220; background: #fff; border-color: #fff; }
+.about-cta__btn.is-primary:hover { background: #e8ecf5; }
+
+/* 태블릿 */
+@media (max-width: 1023.98px) {
+  .about-intro { grid-template-columns: minmax(0, 1fr) minmax(0, 0.72fr); gap: 40px; padding-top: 80px; }
+  .about-intro__title { font-size: 44px; line-height: 1.2; }
+  .about-intro__body { font-size: 16px; line-height: 1.8; }
+  .about-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 64px; padding-bottom: 88px; }
+  .about-stat { height: auto; padding: 32px 26px; }
+  .about-work { padding-block: 88px; }
+  .about-work__desc span, .about-journey__desc span { display: inline; }
+  .about-work__desc span + span::before, .about-journey__desc span + span::before { content: " "; }
+  .about-journey, .about-toolkit { padding-top: 88px; }
+  .about-cta-wrap { padding-block: 88px; }
+  .about-cta { flex-direction: column; align-items: flex-start; padding: 40px; }
+}
+
+/* 모바일 */
+@media (max-width: 809.98px) {
+  .about-intro { grid-template-columns: minmax(0, 1fr); gap: 32px; padding-top: 48px; }
+  .about-intro__photo { grid-row: 1; width: min(100%, 320px); }
+  .about-intro__title { margin-top: 16px; font-size: 34px; }
+  .about-intro__body { margin-top: 20px; font-size: 15px; }
+  .about-h2 { margin-top: 12px; font-size: 28px; }
+  .about-stats { gap: 10px; margin-top: 48px; padding-bottom: 64px; }
+  .about-stat { padding: 24px 18px; border-radius: 16px; }
+  .about-stat__value { font-size: 36px; }
+  .about-stat__value small { font-size: 18px; }
+  .about-stat__caption { margin-top: 12px; font-size: 13px; line-height: 1.6; }
+  .about-work { padding-block: 64px; }
+  .about-work__cards { grid-template-columns: minmax(0, 1fr); margin-top: 28px; }
+  .about-work__card { min-height: 0; padding: 28px 24px; border-radius: 16px; }
+  .about-work__title { margin-top: 14px; font-size: 19px; }
+  .about-work__desc { font-size: 15px; line-height: 1.7; }
+  .about-journey, .about-toolkit { padding-top: 64px; }
+  .about-journey__steps { grid-template-columns: minmax(0, 1fr); gap: 28px; margin-top: 28px; }
+  .about-journey__step { padding-top: 20px; }
+  .about-journey__title { font-size: 19px; }
+  .about-journey__desc { font-size: 15px; line-height: 1.7; }
+  .about-toolkit__rows { gap: 20px; margin-top: 28px; }
+  .about-toolkit__row { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .about-chip { height: 38px; padding-inline: 14px; font-size: 14px; }
+  .about-cta-wrap { padding-block: 64px; }
+  .about-cta { min-height: 0; padding: 32px 24px; border-radius: 20px; }
+  .about-cta__title { font-size: 26px; }
+  .about-cta__actions { flex-wrap: wrap; }
+  .about-cta__btn { height: 50px; padding-inline: 22px; font-size: 15px; }
+}

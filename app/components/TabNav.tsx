@@ -14,8 +14,8 @@ export function TabNav() {
 
   return (
     <header className="tabnav">
-      {/* 왼쪽 위 이름 (홈에서만) */}
-      {pathname === "/" && (
+      {/* 왼쪽 위 이름 (홈·About) */}
+      {(pathname === "/" || pathname === "/about") && (
         <Link to="/" className="tabnav__brand">
           <strong>{site.name}</strong> {site.role}
         </Link>

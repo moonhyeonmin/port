@@ -177,6 +177,10 @@ Figma 프레임 이름은 `fireside_*` (제품명 Fireside). 흰 바탕, 강조�
 - 사용자 요청으로 Figma와 다르게 바꾼 것: Summary 회색 카드 3개는 모두 두 번째 카드(68%↓) 그라디언트를 쓴다 (Figma 3·4번 카드 그라디언트는 색 지점이 뒤섞여 대각선 줄무늬가 생김).
 - 디자인이 있는 페이지는 라우트에서 TOC나 Next 카드를 덧붙이지 않는다. Next Project도 09 섹션 디자인대로 그린다.
 
+## About (`/about`, `app/routes/about.tsx`, `app/styles/about.css`)
+
+디자인은 `design-src/About@1x 1.png` (1440 프레임 4x PNG, SVG 없음 → 문구는 PNG를 보고 옮기고 크기는 실측). 콘텐츠 너비 1200. 사진은 `public/about/profile.webp` (증명사진을 475:592로 잘라냄). 상단 탭과 푸터는 사이트 공통 것을 쓴다(디자인 시안의 헤더·푸터와 다름). 디자인 글꼴이 Pretendard보다 약 7% 넓어 글자 크기를 실측 너비에 맞춰 키웠다.
+
 ## 인터랙션
 
 과하지 않게, 화면에 들어올 때 한 번만 짧게 움직인다. `prefers-reduced-motion: reduce`이면 모두 끈다.
