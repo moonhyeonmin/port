@@ -52,7 +52,7 @@ export const projects: Project[] = [
   {
     slug: "leaf",
     title: "가상 식물키우기 사이드 프로젝트",
-    tags: ["2023", "UX/UI"],
+    tags: ["2023", "사이드 프로젝트"],
     summary: "식물을 가상으로 미리 키워 보며 마음까지 힐링하는 AI 감성 식물 키우기 앱 leaf.",
     tone: "gray",
     // Figma "framer 이전용" > 개인작_cover image, 4:3
