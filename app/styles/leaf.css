@@ -448,3 +448,48 @@
   .lf-chip .lf-t { --mfs: 14px; }
   .lf-chip__check { position: static; font-size: 18px; }
 }
+
+/* ───── 4단계: 물 주기 ~ AI 음성 분석 ───── */
+.lf-s4 { background: #292724; }
+.lf-float-wrap, .lf-phones { display: contents; }
+@media (prefers-reduced-motion: no-preference) {
+  .lf-s4-phone.is-float { animation: lf-float 6s ease-in-out infinite alternate; }
+  .lf-s4-phone.is-voice { animation: lf-float 7s ease-in-out infinite alternate; }
+  .js .lf-s4-phone.lf-r:not(.is-revealed), .js .lf-s4-card.lf-r:not(.is-revealed) { transform: translateY(calc(var(--u) * 90)); }
+  html.js .lf-s4-phone.is-2.is-revealed.is-revealed.is-revealed, html.js .lf-s4-card.is-2.is-revealed.is-revealed.is-revealed { transition-delay: 180ms; }
+  html.js .lf-s4-phone.is-3.is-revealed.is-revealed.is-revealed { transition-delay: 360ms; }
+  html.js .lf-s4-phone.is-4.is-revealed.is-revealed.is-revealed { transition-delay: 540ms; }
+}
+@media (hover: hover) {
+  .lf-phones .lf-img { transition: translate 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .lf-phones .lf-img:hover { translate: 0 calc(var(--u) * -18); }
+}
+/* 음성 파형: 말하는 것처럼 세로로 숨쉰다 */
+.lf-wave { pointer-events: none; transform-origin: 50% 18%; }
+@media (prefers-reduced-motion: no-preference) {
+  .lf-wave { animation: lf-voice 1.6s ease-in-out infinite alternate; }
+}
+@keyframes lf-voice { 0% { transform: scaleY(0.7); } 50% { transform: scaleY(1.08); } 100% { transform: scaleY(0.85); } }
+/* 녹음 버튼 주위로 퍼지는 원 */
+.lf-rec { position: absolute; top: calc(var(--u) * (var(--y) - 40)); left: calc(var(--u) * (var(--x) - 40)); width: calc(var(--u) * 80); height: calc(var(--u) * 80); border-radius: 50%; pointer-events: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .lf-rec::before, .lf-rec::after { content: ""; position: absolute; inset: 0; border: calc(var(--u) * 3) solid rgb(255 60 60 / 0.7); border-radius: 50%; animation: lf-ripple 2.4s ease-out infinite; }
+  .lf-rec::after { animation-delay: 1.2s; }
+}
+@keyframes lf-ripple { from { transform: scale(0.7); opacity: 1; } to { transform: scale(2.2); opacity: 0; } }
+
+@media (max-width: 1099.98px) {
+  .lf-s4 .lf-sec__inner { display: flex; flex-direction: column; }
+  .lf-s4 .lf-bgimg { display: none !important; }
+  .lf-float-wrap { display: block; order: 3; margin-top: 28px; }
+  .lf-s4-phone.is-float { width: 72%; margin-inline: auto; }
+  .lf-phones { display: flex; order: 3; gap: 10px; margin: 28px -24px 0; padding: 0 24px; overflow-x: auto; scrollbar-width: none; }
+  .lf-phones::-webkit-scrollbar { display: none; }
+  .lf-phones .lf-img { flex: none; width: 60%; }
+  .lf-s4-card { width: 82% !important; }
+  .lf-s4-phone.is-voice { order: 3; width: 64%; margin: 28px auto 0; }
+  .lf-rec, .lf-wave { display: none !important; }
+  #healing .lf-sec__inner { background: #3a3530; }
+  #diary .lf-sec__inner { background: linear-gradient(#5f5a52, #2f3a2c); }
+  #voice .lf-sec__inner { background: linear-gradient(#1d1c1a, #34312d); }
+}

@@ -11,6 +11,7 @@ export const leafNav: CaseNavItem[] = [
   { id: "research", label: "Research", also: ["survey", "competitor"] },
   { id: "branding", label: "Branding", also: ["packaging"] },
   { id: "concept", label: "Concept", also: ["onboarding", "add-plant", "today"] },
+  { id: "growing", label: "Features", also: ["healing", "pot", "diary", "voice", "analyze"] },
 ];
 
 /*
@@ -872,6 +873,202 @@ function Today() {
   );
 }
 
+
+/* ───── 16 Growing Plants (36950 – 39000) ───── */
+function Growing() {
+  const T = 36950;
+  return (
+    <Sec id="growing" top={T} h={2050} className="lf-s4" label="Growing Plants">
+      <Img top={T} x={0} y={T} w={2160} h={2050} src="/projects/leaf/s4-grow-bg.webp" className="lf-bgimg lf-s4bg" />
+      <span className="lf-dot is-sm lf-r" style={{ "--x": 195, "--y": 37136 - T } as CSSProperties} aria-hidden />
+      <Txt top={T} fs={22.5} fw={700} color={G} className="lf-label" lines={[[214.0, 37144.5, "l", "GROWING PLANTS"]]} />
+      <Txt
+        top={T}
+        fs={54}
+        lh={82.1}
+        fw={700}
+        className="lf-h2"
+        lines={[
+          [209.2, 37242.1, "l", "분갈이를 하거나 물을 줄 때가 됐나요?"],
+          [209.2, 37324.2, "l", "소중한 식물을 위해 물을 주고 직접 행동해봐요"],
+        ]}
+      />
+      <div className="lf-float-wrap">
+        <Img top={T} x={110} y={37618} w={494} h={977} src="/projects/leaf/s4-g-phone.webp" className="lf-s4-phone is-float lf-r" alt="물 주기 화면: 물이 필요해요! 물 마시기를 인증해주세요" />
+      </div>
+      <Txt
+        top={T}
+        fs={22.5}
+        lh={47.2}
+        className="lf-body"
+        lines={[
+          [819.0, 38353.9, "l", "식물 물을 줄 때 직접 적정량의 물을 뜨고 사진으로 인증을 남겨요 ! 물을 줄때도 분갈이를 할때도 직접 행동으로 옮기고"],
+          [819.0, 38401.1, "l", "햇빛을 쐬거나 시간이 걸릴때에는 마음 명상 ASMR 이나 AI 추천 플레이리스트나 명언 모음집 등 힘이 나는 문구를 보고"],
+          [819.0, 38448.4, "l", "지친 일상 속 힐링의 시간을 가져요. 내 마음이 편안해질때 식물도 살랑살랑 움직이며 긍정적인 영향을 준답니다!"],
+        ]}
+      />
+    </Sec>
+  );
+}
+
+/* ───── 17 Healing (39000 – 40579) ───── */
+function Healing() {
+  const T = 39000;
+  return (
+    <Sec id="healing" top={T} h={1579} className="lf-s4" label="Healing Emotion Therapy">
+      <Img top={T} x={0} y={T} w={2160} h={1579} src="/projects/leaf/s4-heal-bg.webp" className="lf-bgimg lf-s4bg" />
+      <span className="lf-dot is-sm lf-r" style={{ "--x": 649, "--y": 39173 - T } as CSSProperties} aria-hidden />
+      <Txt top={T} fs={22.5} fw={700} color={G} className="lf-label" lines={[[669.4, 39097.5, "l", "HEALING EMOTION THERAPY"]]} />
+      <Txt
+        top={T}
+        fs={54}
+        lh={82.1}
+        fw={700}
+        className="lf-h2"
+        lines={[
+          [664.9, 39195.1, "l", "명상, 마음챙김 글이나 ASMR , 사운드 테라피 등"],
+          [664.9, 39277.2, "l", "식물을 기르며 마음도 힐링하는 시간을 가져요"],
+        ]}
+      />
+      <div className="lf-phones">
+        <Img top={T} x={357} y={39532} w={460.5} h={940} src="/projects/leaf/s4-h-1.webp" className="lf-s4-phone is-1 lf-r" alt="마음 명상 ASMR 재생 화면" />
+        <Img top={T} x={863} y={39539} w={472} h={921} src="/projects/leaf/s4-h-2.webp" className="lf-s4-phone is-2 lf-r" alt="15초 명언 화면: 세상에서 가장 아름다운 것은 세상 그 자체이다" />
+        <Img top={T} x={1390} y={39539} w={432} h={916} src="/projects/leaf/s4-h-3.webp" className="lf-s4-phone is-3 lf-r" alt="할 일 완료 화면: 축하해요! 모든 할 일을 완료했어요" />
+      </div>
+    </Sec>
+  );
+}
+
+/* ───── 18 Plant Pot Custom (40579 – 43285) ───── */
+function PotCustom() {
+  const T = 40579;
+  return (
+    <Sec id="pot" top={T} h={2706} className="lf-s4" label="Plant Pot Custom">
+      <Img top={T} x={0} y={T} w={2160} h={2706} src="/projects/leaf/s4-pot-bg.webp" className="lf-bgimg lf-s4bg" />
+      <span className="lf-dot is-sm lf-r" style={{ "--x": 801, "--y": 41320 - T } as CSSProperties} aria-hidden />
+      <Txt top={T} fs={22.5} fw={700} color={G} className="lf-label" lines={[[821.2, 41328.4, "l", "PLANT POT CUSTOM"]]} />
+      <Txt top={T} fs={54} lh={82.1} fw={700} className="lf-h2" lines={[[816.8, 41415.8, "l", "내 공간의 무드와 취향에 맞게 화분을 커스텀 해봐요!"]]} />
+      <div className="lf-phones">
+        <Img top={T} x={816} y={41655} w={454} h={997} src="/projects/leaf/s4-p-1.webp" className="lf-s4-phone is-1 lf-r" alt="화분 꾸미기 화면: 색상과 모양 변경" />
+        <Img top={T} x={1357} y={41690} w={435.5} h={925.5} src="/projects/leaf/s4-p-2.webp" className="lf-s4-phone is-2 lf-r" alt="주황색 화분으로 바꾼 화면" />
+        <Img top={T} x={1831} y={41693} w={329} h={926} src="/projects/leaf/s4-p-3.webp" className="lf-s4-phone is-3 lf-r" alt="연두색 화분으로 바꾼 화면" />
+      </div>
+    </Sec>
+  );
+}
+
+/* ───── 19 Write Daily Record (43285 – 45541) ───── */
+function Diary() {
+  const T = 43285;
+  return (
+    <Sec id="diary" top={T} h={2256} className="lf-s4" label="Write Daily Record">
+      <Img top={T} x={0} y={T} w={2160} h={2256} src="/projects/leaf/s4-diary-bg.webp" className="lf-bgimg lf-s4bg" />
+      <span className="lf-dot is-sm lf-r" style={{ "--x": 173, "--y": 43566 - T } as CSSProperties} aria-hidden />
+      <Txt top={T} fs={22.5} fw={700} color={G} className="lf-label" lines={[[198.0, 43575.2, "l", "WRITE DAILY RECORD"]]} />
+      <Txt
+        top={T}
+        fs={54}
+        lh={82.1}
+        fw={700}
+        className="lf-h2"
+        lines={[
+          [198.0, 43668.1, "l", "귀찮은 일지 작성은 앱에서"],
+          [198.0, 43750.2, "l", "나와 식물과의 교감은 내가 직접 작성해요"],
+        ]}
+      />
+      <Txt
+        top={T}
+        fs={22.5}
+        lh={47.3}
+        className="lf-body"
+        lines={[
+          [204.8, 43824.7, "l", "칭찬 양파와 비난 양파 들어보셨나요? 식물도 분위기와 사람과 공간의 분위기를 인지한다고 해요."],
+          [204.8, 43872.0, "l", "아무한테도 말 못했던 나의 감정을 식물에게는 털어놓아도 좋아요. 사진으로, 음악으로, 이모지로 다양하게 남겨봐요!"],
+        ]}
+      />
+      <div className="lf-phones">
+        <Img top={T} x={188} y={44188} w={448.5} h={878.5} src="/projects/leaf/s4-d-1.webp" className="lf-s4-phone is-1 lf-r" alt="기록 시작 화면: 오늘의 마음을 적어보세요" />
+        <Img top={T} x={661} y={44188} w={414} h={837} src="/projects/leaf/s4-d-2.webp" className="lf-s4-phone is-2 lf-r" alt="글쓰기 화면: 오늘 너무 힘든 날이었어" />
+        <Img top={T} x={1126} y={44188} w={414} h={844} src="/projects/leaf/s4-d-3.webp" className="lf-s4-phone is-3 lf-r" alt="작성한 기록 화면" />
+        <Img top={T} x={1556} y={44188} w={485} h={878.5} src="/projects/leaf/s4-d-4.webp" className="lf-s4-phone is-4 lf-r" alt="2월 기록 모아보기 화면" />
+      </div>
+    </Sec>
+  );
+}
+
+/* ───── 20 AI Voice (45541 – 48700) ───── */
+function Voice() {
+  const T = 45541;
+  return (
+    <Sec id="voice" top={T} h={3159} className="lf-s4" label="Using AI Voice Recognition">
+      <Img top={T} x={0} y={T} w={2160} h={3159} src="/projects/leaf/s4-voice-bg.webp" className="lf-bgimg lf-s4bg" />
+      <span className="lf-dot is-sm lf-r" style={{ "--x": 897, "--y": 45969 - T } as CSSProperties} aria-hidden />
+      <Txt top={T} fs={22.5} fw={700} color={G} className="lf-label" lines={[[917.8, 45978.1, "l", "USING AI VOICE RECOGNITION"]]} />
+      <Txt
+        top={T}
+        fs={54}
+        lh={82.1}
+        fw={700}
+        className="lf-h2"
+        lines={[
+          [1055.7, 46084.6, "c", "반려 식물과 교감하며 힐링하고"],
+          [1068.2, 46166.7, "c", "AI 감정 분석을 활용해서 내 감정을 기록해볼까요?"],
+        ]}
+      />
+      <Txt
+        top={T}
+        fs={22.5}
+        lh={47.3}
+        className="lf-body"
+        lines={[
+          [1081.5, 46268.2, "c", "반려 식물도 나의 감정에 영향을 받는다고 해요. 식물의 성장일기와 함께 오늘 하루의 마음을 분석하고 기록해봐요."],
+          [1080.8, 46315.5, "c", "STT를 활용해서 간단하게 오늘 있었던 일을 정리 할 수 있어요!"],
+        ]}
+      />
+        <Img top={T} x={845} y={46848} w={497} h={998} src="/projects/leaf/s4-v-phone.webp" className="lf-s4-phone is-voice lf-r" alt="음성 녹음 화면: Monstera와 녹음 버튼" />
+      <Img top={T} x={0} y={47270} w={2160} h={700} src="/projects/leaf/s4-v-wave.webp" className="lf-wave" />
+      <span className="lf-rec" style={{ "--x": 1100, "--y": 47734 - T } as CSSProperties} aria-hidden />
+    </Sec>
+  );
+}
+
+/* ───── 21 Analyzing Voice (48700 – 50837) ───── */
+function Analyze() {
+  const T = 48700;
+  return (
+    <Sec id="analyze" top={T} h={2137} className="lf-s4" label="Analyzing Voice with AI">
+      <Img top={T} x={0} y={T} w={2160} h={2137} src="/projects/leaf/s4-analyze-bg.webp" className="lf-bgimg lf-s4bg" />
+      <span className="lf-dot is-sm lf-r" style={{ "--x": 118, "--y": 48775 - T } as CSSProperties} aria-hidden />
+      <Txt top={T} fs={22.5} fw={700} color={G} className="lf-label" lines={[[142.9, 48783.9, "l", "ANALYZING VOICE WITH AI"]]} />
+      <Txt
+        top={T}
+        fs={54}
+        lh={82.1}
+        fw={700}
+        className="lf-h2"
+        lines={[
+          [142.9, 48876.8, "l", "AI 분석하기 버튼을 누르고 녹음이 완료되면"],
+          [142.9, 48958.9, "l", "리프가 내 감정과 기분을 정리해서 감정을 출력해요"],
+        ]}
+      />
+      <Txt
+        top={T}
+        fs={22.5}
+        lh={47.2}
+        className="lf-body"
+        lines={[
+          [149.6, 49033.5, "l", "음성 녹음이 완료되면 간단하게 내용을 한 줄 요약해주거나 내 감정 분석을 해주는 화면까지 보여줘요."],
+          [149.6, 49080.7, "l", "그날 감정에 따라 이미지가 달라져요. 출력된 감정 기록들을 모아서 식물과 나의 감정 공유와 함께 기록해 둘 수 있어요!"],
+        ]}
+      />
+      <div className="lf-phones">
+        <Img top={T} x={59} y={49358} w={998} h={1193} src="/projects/leaf/s4-a-left.webp" className="lf-s4-card is-1 lf-r" alt="AI 분석하기 버튼이 있는 녹음 완료 화면" />
+        <Img top={T} x={1107} y={49358} w={998} h={1196.5} src="/projects/leaf/s4-a-right.webp" className="lf-s4-card is-2 lf-r" alt="감정 분석 완료 화면: 지치고 힘들어요, AI 요약" />
+      </div>
+    </Sec>
+  );
+}
+
 export default function LeafCaseStudy(_: CaseStudyProps) {
   return (
     <div className="lf">
@@ -890,6 +1087,12 @@ export default function LeafCaseStudy(_: CaseStudyProps) {
       <AppIntro />
       <AddPlant />
       <Today />
+      <Growing />
+      <Healing />
+      <PotCustom />
+      <Diary />
+      <Voice />
+      <Analyze />
     </div>
   );
 }
