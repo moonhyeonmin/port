@@ -2,12 +2,14 @@ import type { CSSProperties, ReactNode } from "react";
 import type { CaseNavItem } from "~/components/case-study/CaseNav";
 import { CountUp } from "~/components/CountUp";
 import type { CaseStudyProps } from "./index";
+import { Clover, Wordmark } from "./leaf-marks";
 
 /** 상단 내비게이션 항목 (섹션 id와 연결) */
 export const leafNav: CaseNavItem[] = [
   { id: "project", label: "Project" },
   { id: "overview", label: "Overview" },
-  { id: "research", label: "Research", also: ["survey"] },
+  { id: "research", label: "Research", also: ["survey", "competitor"] },
+  { id: "branding", label: "Branding", also: ["packaging"] },
 ];
 
 /*
@@ -477,6 +479,243 @@ function Survey() {
   );
 }
 
+
+/* ───── 06 Competitor Analysis (10220 – 12288.4) ───── */
+const competitors = [
+  { icon: "groo", name: "groo", y: 11414.8, marks: ["o", "o", "o", "x", "x"] },
+  { icon: "planta", name: "Planta", y: 11559.9, marks: ["o", "o", "o", "x", "x"] },
+  { icon: "app3", name: "식물 관리 앱 3", y: 11705.1, marks: ["o", "o", "x", "x", "x"] },
+  { icon: "app4", name: "식물 관리 앱 4", y: 11850.2, marks: ["o", "x", "x", "x", "x"] },
+  { icon: "app5", name: "식물 관리 앱 5", y: 11995.3, marks: ["o", "o", "x", "x", "x"] },
+];
+const compareCols = [
+  { cx: 582.3, label: "식물 돌봄", markX: 586.7 },
+  { cx: 818.9, label: "직접 일지 작성", markX: 818.4 },
+  { cx: 1050.3, label: "커뮤니티", markX: 1050.2 },
+  { cx: 1313.4, label: "나에게 맞는 식물 추천", markX: 1313.5, chip: [1167.75, 291.375] },
+  { cx: 1696.5, label: "식물과의 정서적 감정 기록 서비스", markX: 1696.5, chip: [1489.5, 414] },
+];
+
+function Competitor() {
+  const T = 10220;
+  return (
+    <Sec id="competitor" top={T} h={2068.4} className="lf-compare" label="Competitor Analysis">
+      <Txt top={T} fs={22.5} fw={700} color="#A8D180" className="lf-label" lines={[[1082.3, 10435.3, "c", "COMPETITOR ANALYSIS"]]} />
+      <Txt
+        top={T}
+        fs={54}
+        lh={82.1}
+        fw={700}
+        color="#35322B"
+        className="lf-h2"
+        lines={[
+          [1072.1, 10531.2, "c", "다양한 서비스를 제공하지만"],
+          [1078.3, 10613.3, "c", "내가 잘 키울 수 있는 식물을 찾고 키워내는 것이 어려워요"],
+        ]}
+      />
+      <Txt
+        top={T}
+        fs={22.5}
+        lh={47.2}
+        color="#35322B"
+        className="lf-body"
+        lines={[
+          [1073.9, 10705.9, "c", "국내외 주요 식물 기르기 서비스를 분석했어요. 그 결과 다양한 서비스를 제공하지만 게임처럼 실제 해당 식물을 기르는 것과"],
+          // Figma 원문 그대로: "많았으며  작성하기" (띄어쓰기 2칸)
+          [1073.6, 10753.1, "c", "관련 없는 플레이 방식이 많았으며\u00a0 작성하기 귀찮은 식물 상태의 보고는 AI가 대신해주고, 유저가 작성하는 식물과의 정서적"],
+          [1073.9, 10800.4, "c", "감정 기록 서비스를 제공하며 실제 나의 방에 어울리는 식물을 추천해주는 서비스나 기능은 현재 시장에서 볼 수 없었어요."],
+        ]}
+      />
+      <Img top={T} x={0} y={11003} w={2160} h={1286} src="/projects/leaf/compare-bg.webp" className="lf-compare__bg" />
+      {/* 좁은 화면용: 같은 내용을 일반 표로 */}
+      <table className="lf-compare__mtable lf-r">
+        <thead>
+          <tr>
+            <th scope="col"><span className="lf-sr">서비스</span></th>
+            {compareCols.map(({ label, chip }) => (
+              <th key={label} scope="col" className={chip ? "is-chip" : undefined}>
+                {label}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {competitors.map(({ icon, name, marks }) => (
+            <tr key={icon}>
+              <th scope="row">
+                <img src={`/projects/leaf/icon-${icon}.webp`} alt={name} width={40} height={40} loading="lazy" />
+              </th>
+              {marks.map((m, i) => (
+                <td key={i} className={`is-${m}${i > 2 ? " is-accent" : ""}`} aria-label={m === "o" ? "지원" : "미지원"}>
+                  {m === "o" ? "○" : "×"}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <div className="lf-compare__table lf-r" role="table" aria-label="식물 기르기 서비스 기능 비교">
+        <div role="row" className="lf-compare__head">
+          <span role="columnheader" className="lf-sr">서비스</span>
+          {compareCols.map(({ cx, label, chip }, i) => (
+            <span
+              key={label}
+              role="columnheader"
+              className={`lf-compare__col${chip ? " is-chip" : ""}`}
+              style={{ "--x": chip ? chip[0] : cx, "--w": chip ? chip[1] : 0 } as CSSProperties}
+            >
+              <Txt
+                top={chip ? 11244.4 : 11194}
+                fs={28.125}
+                fw={chip ? 700 : 400}
+                color={chip ? "#242424" : "#fff"}
+                ls={-0.334}
+                lines={[[chip ? cx - chip[0] : 0, i === 3 ? 11292.2 : i === 4 ? 11289.9 : i === 0 ? 11292.2 : 11293.3, "c", label]]}
+              />
+            </span>
+          ))}
+        </div>
+        {competitors.map(({ icon, name, y, marks }) => (
+          <div role="row" key={icon} className="lf-compare__row" style={{ "--y": y } as CSSProperties}>
+            <span role="rowheader" className="lf-compare__app">
+              <img src={`/projects/leaf/icon-${icon}.webp`} alt={name} width={89} height={89} loading="lazy" />
+            </span>
+            {marks.map((m, i) => (
+              <span
+                key={i}
+                role="cell"
+                className={`lf-mark is-${m}${i > 2 ? " is-accent" : ""}`}
+                style={{ "--x": compareCols[i].markX } as CSSProperties}
+                aria-label={m === "o" ? "지원" : "미지원"}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
+    </Sec>
+  );
+}
+
+/* ───── 07 Who · How · What (12288.4 – 12839.6) ───── */
+function Hypothesis() {
+  const T = 12288.4;
+  const tags = [
+    { x: 727.875, y: 12389.6, t: "WHO", ty: 12420.2 },
+    { x: 939.375, y: 12474, t: "HOW", ty: 12504.6 },
+    { x: 1155.375, y: 12556.1, t: "WHAT", ty: 12586.7 },
+  ];
+  return (
+    <Sec top={T} h={551.2} className="lf-hypo" label="가설">
+      <Txt
+        top={T}
+        fs={54}
+        lh={82.1}
+        fw={700}
+        className="lf-h2"
+        lines={[
+          [118.1, 12497.1, "l", "반려 식물을 들이기 전 사용자에게"],
+          [118.1, 12579.2, "l", "감성적 공유와 성취감을 느낄 수 있게 한다면"],
+          [118.1, 12661.4, "l", "실제로 식물을 길러내는 것에 도움을 줄 수 있지 않을까?"],
+        ]}
+      />
+      {tags.map(({ x, y, t, ty }, i) => (
+        <span key={t} className="lf-tag lf-r" style={{ "--x": x, "--y": y - T, "--i": i } as CSSProperties}>
+          <Txt top={y} fs={19.125} fw={700} color="#615B54" lines={[[46.69, ty, "c", t]]} />
+        </span>
+      ))}
+    </Sec>
+  );
+}
+
+/* ───── 08 Brand intro (12839.6 – 15219) ───── */
+function BrandIntro() {
+  const T = 12839.6;
+  return (
+    <Sec id="branding" top={T} h={2379.4} className="lf-brand" label="leaf 소개">
+      <Img top={T} x={0} y={12839.6} w={2160} h={2379.4} src="/projects/leaf/brand-scene.webp" className="lf-brand__scene" alt="leaf 앱 화면이 켜진 휴대폰 두 대와 몬스테라, 돌 오브제" />
+      <div className="lf-brand__mark lf-r">
+        <span className="lf-brand__icon" aria-hidden>✤</span>
+        <Wordmark className="lf-brand__wordmark" title="leaf" />
+        <Clover className="lf-brand__clover" />
+      </div>
+      <Txt
+        top={T}
+        fs={22.5}
+        lh={47.2}
+        className="lf-body"
+        lines={[
+          [150.8, 13410.4, "l", "식물이 주는 역할은 다양해요. 감정적인 위로도 인테리어, 공기정화까지 내 생활 전반에 함께하고 있어요."],
+          // Figma 원문 그대로: "가능해요.  AI로" (띄어쓰기 2칸)
+          [150.8, 13457.6, "l", "작은 휴대폰 속 리프 앱에서도 가능해요.\u00a0 AI로 키우고 싶었던 식물을 혹은 나와 잘 맞는 식물을 추천받아 식물을 실제처럼"],
+          [150.8, 13504.9, "l", "가상에서 길러보고 내 생활 습관, 감정을 공유하고 영향을 받는 반려 식물과 함께 나의 감정의 기록들도 함께 정리해요."],
+        ]}
+      />
+    </Sec>
+  );
+}
+
+/* ───── 09 Shadow logo (15219 – 16642) ───── */
+function ShadowLogo() {
+  const T = 15219;
+  return (
+    <Sec top={T} h={1423} className="lf-shadow" label="leaf 로고">
+      <Img top={T} x={0} y={15219} w={2160} h={1423} src="/projects/leaf/shadow.webp" className="lf-shadow__photo" alt="" />
+      <div className="lf-shadow__mark lf-r" aria-hidden>
+        <Wordmark className="lf-shadow__wordmark" />
+        <Clover className="lf-shadow__clover" />
+      </div>
+    </Sec>
+  );
+}
+
+/* ───── 10 Logo system (16642 – 20866.5) ───── */
+function LogoSystem() {
+  const T = 16642;
+  return (
+    <Sec top={T} h={4224.5} className="lf-logo" label="로고와 앱 아이콘">
+      <div className="lf-logo__mark lf-r" aria-hidden>
+        <Clover className="lf-logo__symbol" />
+        <Wordmark className="lf-logo__wordmark" />
+        <Clover className="lf-logo__clover" />
+      </div>
+      <Txt
+        top={T}
+        fs={22.5}
+        lh={47.2}
+        color="#35322B"
+        className="lf-body"
+        lines={[
+          [1059.6, 17369.2, "c", "리프는 사용자의 힐링을 주는 마음과 함께 가상 식물의 잎사귀를 키워나가는 것에서부터 시작해요."],
+          [1059.8, 17416.5, "c", "정형화되지 않고 어떠한 방향으로든 다양하게 뻗어나갈 수 있는 식물의 특성을 반영하여 리프 앱의 로고를 제작했어요."],
+          [1059.7, 17463.7, "c", "리프 로고의 컬러 무드보드는 원초적인 흙에서 단단한 뿌리를 내려 마침내 잎사귀를 피워낸다는 이미지를 표현했어요."],
+        ]}
+      />
+      <div className="lf-card is-dark lf-r" style={{ "--x": 46.125, "--y": 17651.2 - T, "--w": 1008, "--ch": 775.125 } as CSSProperties}>
+        <Wordmark className="lf-card__wordmark" title="leaf 워드마크" />
+        <Clover className="lf-card__clover" />
+      </div>
+      <div className="lf-card is-green lf-r" style={{ "--x": 1103.6, "--y": 17651.2 - T, "--w": 1006.9, "--ch": 775.125 } as CSSProperties}>
+        <img src="/projects/leaf/symbol-grid.webp" alt="원형 가이드 위의 leaf 심볼" width={1007} height={775} loading="lazy" />
+      </div>
+      <Img top={T} x={46} y={18475} w={2065} h={777} src="/projects/leaf/phone-dock.webp" className="lf-card-img lf-r" alt="아이폰 독에 놓인 leaf 앱 아이콘" />
+      <Img top={T} x={46} y={19300.5} w={2064.4} h={955.1} src="/projects/leaf/mac-dock.webp" className="lf-card-img lf-r" alt="앱 아이콘 그리드와 맥 독에 놓인 leaf 아이콘" />
+      <Txt top={T} fs={22.5} fw={700} color="#A8D180" className="lf-label" lines={[[1074.3, 20775.7, "c", "PACKAGING DESIGN"]]} />
+    </Sec>
+  );
+}
+
+/* ───── 11 Packaging (20866.5 – 23475) ───── */
+function Packaging() {
+  const T = 20866.5;
+  return (
+    <Sec id="packaging" top={T} h={2608.5} className="lf-package" label="Packaging Design">
+      <Img top={T} x={0} y={20866.5} w={2160} h={1334.3} src="/projects/leaf/package.webp" className="lf-package__photo" alt="클로버 무늬 연두색 테이프를 두른 leaf 포장 상자" />
+      <Img top={T} x={46.375} y={22245.8} w={1007.75} h={1188} src="/projects/leaf/pot.webp" className="lf-card-img lf-r" alt="leaf 심볼이 새겨진 화분에 심은 식물" />
+      <Img top={T} x={1105} y={22245.8} w={1007.75} h={1188} src="/projects/leaf/bag.webp" className="lf-card-img lf-r" alt="leaf 로고가 찍힌 크라프트 종이 봉투" />
+    </Sec>
+  );
+}
+
 export default function LeafCaseStudy(_: CaseStudyProps) {
   return (
     <div className="lf">
@@ -485,6 +724,12 @@ export default function LeafCaseStudy(_: CaseStudyProps) {
       <Background />
       <Research />
       <Survey />
+      <Competitor />
+      <Hypothesis />
+      <BrandIntro />
+      <ShadowLogo />
+      <LogoSystem />
+      <Packaging />
     </div>
   );
 }

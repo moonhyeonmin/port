@@ -26,10 +26,10 @@ export const links: Route.LinksFunction = () => [
     rel: "stylesheet",
     href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap",
   },
-  // leaf 케이스 스터디 인용 부호(“ ”)에만 쓰는 글꼴: 두 글자만 받아 온다
+  // leaf 케이스 스터디의 인용 부호(“ ”, Potta One)와 ✤(Kaisei Decol)에만 쓰는 글꼴: 해당 글자만 받아 온다
   {
     rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Potta+One&text=%E2%80%9C%E2%80%9D&display=swap",
+    href: "https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Potta+One&text=%E2%80%9C%E2%80%9D%E2%9C%A4&display=swap",
   },
   {
     rel: "stylesheet",
