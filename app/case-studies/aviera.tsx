@@ -184,7 +184,7 @@ export default function AvieraCaseStudy({ index }: CaseStudyProps) {
         title="개인 AI Workspace - 슬래시 커맨드 호출"
         description={[
           "네이버웍스, Slack AI는 이미 기본 제공합니다.",
-          "자사의 사내메신저는 채팅방 안에서 곧바로 AI를 호출하는 방법이 없었습니다.",
+          "자사의 사내 메신저는 채팅방 안에서 곧바로 AI를 호출하는 방법이 없었습니다.",
         ]}
       >
         <KsCompare
@@ -214,18 +214,15 @@ export default function AvieraCaseStudy({ index }: CaseStudyProps) {
         />
       </CaseKeyScreen>
 
-      {/* Figma 원문 그대로: Key Screen 3 제목·설명이 Key Screen 2와 같음 (사용자에게 알림) */}
+      {/* Figma 원문은 Key Screen 2와 같은 제목·설명 (사용자 요청으로 연동 내용에 맞게 변경) */}
       <CaseKeyScreen
         id="key-screen-3"
         bottom={190}
         eyebrow="Key Screen 3"
         icon="/icons/star-cyan.svg"
         pointColor="#2BC8D9"
-        title="개인 AI Workspace - 슬래시 커맨드 호출"
-        description={[
-          "네이버웍스, Slack AI는 이미 기본 제공합니다.",
-          "자사의 사내메신저는 채팅방 안에서 곧바로 AI를 호출하는 방법이 없었습니다.",
-        ]}
+        title="회의·근무 일정을 사내 메신저와 연동"
+        description={["외부 업무 도구 연동 - Outlook·회의실"]}
       >
         <KsStat
           image={{
