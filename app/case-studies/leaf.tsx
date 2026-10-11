@@ -11,7 +11,8 @@ export const leafNav: CaseNavItem[] = [
   { id: "research", label: "Research", also: ["survey", "competitor"] },
   { id: "branding", label: "Branding", also: ["packaging"] },
   { id: "concept", label: "Concept", also: ["onboarding", "add-plant", "today"] },
-  { id: "growing", label: "Features", also: ["healing", "pot", "diary", "voice", "analyze"] },
+  { id: "growing", label: "Features", also: ["healing", "pot", "diary", "voice", "analyze", "community", "mypage"] },
+  { id: "screens", label: "Screens" },
 ];
 
 /*
@@ -857,17 +858,17 @@ function Today() {
         ]}
       />
       <div className="lf-today__stage">
-        <p className="lf-chip is-white lf-r" style={{ "--x": 353.25, "--y": 36299.2 - T, "--o": 0.83, "--from": -1 } as CSSProperties}>
+        <div className="lf-chip is-white lf-r" style={{ "--x": 353.25, "--y": 36299.2 - T, "--o": 0.83, "--from": -1 } as CSSProperties}>
           <Txt top={36299.2} fs={26.29} ls={-0.643} color="#424242" lines={[[37.5, 36361.9, "l", "오늘은 물을 흠뻑 주는 날이예요"]]} />
-        </p>
-        <p className="lf-chip is-white lf-r" style={{ "--x": 1230.75, "--y": 36228.4 - T, "--o": 0.58, "--from": 1 } as CSSProperties}>
+        </div>
+        <div className="lf-chip is-white lf-r" style={{ "--x": 1230.75, "--y": 36228.4 - T, "--o": 0.58, "--from": 1 } as CSSProperties}>
           <Txt top={36228.4} fs={26.29} ls={-0.643} color="#4D4D4D" lines={[[37.5, 36291.0, "l", "햇빛을 받을 수 있도록 화분 위치를 옮겨주세요"]]} />
-        </p>
+        </div>
         <Img top={T} x={849} y={35614} w={459} h={934} src="/projects/leaf/today-phone.webp" className="lf-today__phone lf-r" alt="오늘 할 일 화면: 몬스테라와 선인장의 할 일 목록, 물주러 가기 버튼" />
-        <p className="lf-chip is-green lf-r" style={{ "--x": 280.125, "--y": 35934.8 - T, "--from": -1 } as CSSProperties}>
+        <div className="lf-chip is-green lf-r" style={{ "--x": 280.125, "--y": 35934.8 - T, "--from": -1 } as CSSProperties}>
           <Txt top={35934.8} fs={26.29} fw={700} ls={-0.643} color="#474238" lines={[[37.5, 35997.4, "l", "환기가 필요해요! 창문을 열어주세요"]]} />
           <span className="lf-chip__check" aria-hidden>✓</span>
-        </p>
+        </div>
       </div>
     </Sec>
   );
@@ -1069,6 +1070,99 @@ function Analyze() {
   );
 }
 
+
+/* ───── 22 Community (50837 – 53768) ───── */
+function Community() {
+  const T = 50837;
+  return (
+    <Sec id="community" top={T} h={2931} className="lf-s4 lf-comm" label="Community Page">
+      <Img top={T} x={0} y={T} w={2160} h={2931} src="/projects/leaf/s5-comm-bg.webp" className="lf-bgimg lf-s5bg" alt="커뮤니티 카드 모음: 음악, 사진, 질문 글" />
+      <span className="lf-dot is-sm lf-r" style={{ "--x": 956, "--y": 51155 - T } as CSSProperties} aria-hidden />
+      {/* Figma 원문 그대로 "COMUNITY" (오타 의심: 사용자에게 알림) */}
+      <Txt top={T} fs={22.5} fw={700} color={G} className="lf-label" lines={[[989.2, 51164.4, "l", "COMUNITY PAGE"]]} />
+      <Txt
+        top={T}
+        fs={54}
+        lh={82.1}
+        fw={700}
+        className="lf-h2"
+        lines={[
+          [1062.0, 51270.8, "c", "다양한 유저들과 소통하며 다양하게 자라는 식물을"],
+          [1068.2, 51352.9, "c", "구경하고 추천 음악이나 업로드한 글을 확인해봐요"],
+        ]}
+      />
+      <Txt
+        top={T}
+        fs={22.5}
+        lh={47.2}
+        className="lf-body"
+        lines={[
+          [1078.6, 51481.5, "c", "커뮤니티 페이지에 해쉬태그와 함께 내 식물의 상태와 마음 글을 작성해서 공유해봐요."],
+          [1078.7, 51528.7, "c", "같은 식물이더라도 나의 공간과 위치, 내 감정에 따라서 식물마다 성장속도와 모양이 모두 달라요."],
+          [1081.1, 51576.0, "c", "궁금한 점을 물어보고 다양한 유저들의 이미지를 모아서 볼 수도 있어요!"],
+        ]}
+      />
+      <Img top={T} x={158} y={51882} w={673} h={1301} src="/projects/leaf/s5-c-phone.webp" className="lf-s4-phone is-float lf-r" alt="커뮤니티 화면: 추천 탭의 사진·음악·글 카드" />
+    </Sec>
+  );
+}
+
+/* ───── 23 My Page (53768 – 55823) ───── */
+const myPhones = [
+  { n: 1, x: 201, y: 54529, w: 473, h: 985, alt: "회원 정보 화면: 프로필 사진과 작성 완료 버튼" },
+  { n: 2, x: 768, y: 54618, w: 406, h: 841, alt: "마이페이지: 내 식물 탭, 기록이 없는 상태" },
+  { n: 3, x: 1217, y: 54620, w: 406, h: 841, alt: "마이페이지: 내 식물 기록 목록" },
+  { n: 4, x: 1661, y: 54622, w: 406, h: 841, alt: "마이페이지: 감정 기록 탭" },
+];
+
+function MyPage() {
+  const T = 53768;
+  return (
+    <Sec id="mypage" top={T} h={2055} className="lf-s4" label="My Page">
+      <Img top={T} x={0} y={T} w={2160} h={2055} src="/projects/leaf/s5-my-bg.webp" className="lf-bgimg" />
+      <span className="lf-dot is-sm lf-r" style={{ "--x": 163, "--y": 54043 - T } as CSSProperties} aria-hidden />
+      <Txt top={T} fs={22.5} fw={700} color={G} className="lf-label" lines={[[187.9, 54052.3, "l", "MY PAGE"]]} />
+      <Txt top={T} fs={54} lh={82.1} fw={700} className="lf-h2" lines={[[187.9, 54145.7, "l", "나의 식물 기록과 활동 히스토리를 확인해요"]]} />
+      <Txt
+        top={T}
+        fs={22.5}
+        lh={47.2}
+        className="lf-body"
+        lines={[
+          [187.9, 54229.9, "l", "마이페이지에서 나의 가입 정보와 내 식물 리스트, 나의 활동 내역과 감정 기록을 확인할 수 있어요."],
+          [187.9, 54277.1, "l", "설정에 대한 부분들도 마이페이지에서 수정하고 사용자 히스토리를 제공하고 있어요!"],
+        ]}
+      />
+      <div className="lf-phones">
+        {myPhones.map(({ n, x, y, w, h, alt }) => (
+          <Img key={n} top={T} x={x} y={y} w={w} h={h} src={`/projects/leaf/s5-m-${n}.webp`} alt={alt} className={`lf-s4-phone is-${n} lf-r`} />
+        ))}
+      </div>
+    </Sec>
+  );
+}
+
+/* ───── 24 Devices photo (55823 – 57401) ───── */
+function Devices() {
+  const T = 55823;
+  return (
+    <Sec top={T} h={1578} className="lf-devices" label="태블릿과 휴대폰의 leaf">
+      <Img top={T} x={0} y={T} w={2160} h={1578} src="/projects/leaf/s5-photo-bg.webp" className="lf-devices__photo" alt="햇빛 드는 테이블 위 태블릿과 휴대폰에 띄운 leaf 홈 화면" />
+    </Sec>
+  );
+}
+
+/* ───── 25 Overview: 전체 화면 (57401 – 63865) ───── */
+function Screens() {
+  const T = 57401;
+  return (
+    <Sec id="screens" top={T} h={6464} className="lf-screens" label="전체 화면">
+      <Img top={T} x={0} y={T} w={2160} h={6464} src="/projects/leaf/s5-over-bg.webp" className="lf-screens__img lf-r" alt="leaf 앱 전체 화면 모음: 시작, 홈, 할 일, 화분 꾸미기, 기록, 음성 녹음 등 22개 화면" />
+      <Txt top={T} fs={22.5} fw={700} color={G} className="lf-label" lines={[[1102.3, 57635.4, "c", "OVERVIEW"]]} />
+    </Sec>
+  );
+}
+
 export default function LeafCaseStudy(_: CaseStudyProps) {
   return (
     <div className="lf">
@@ -1093,6 +1187,10 @@ export default function LeafCaseStudy(_: CaseStudyProps) {
       <Diary />
       <Voice />
       <Analyze />
+      <Community />
+      <MyPage />
+      <Devices />
+      <Screens />
     </div>
   );
 }

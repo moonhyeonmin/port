@@ -493,3 +493,23 @@
   #diary .lf-sec__inner { background: linear-gradient(#5f5a52, #2f3a2c); }
   #voice .lf-sec__inner { background: linear-gradient(#1d1c1a, #34312d); }
 }
+
+/* ───── 5단계: 커뮤니티 ~ 전체 화면 ───── */
+.lf-comm { background: #5c5751; }
+.lf-devices { overflow: hidden; background: #cfc9c0; }
+@media (prefers-reduced-motion: no-preference) {
+  .lf-devices__photo { animation: lf-hero-zoom 1.8s cubic-bezier(0.2, 0.8, 0.2, 1) both; animation-timeline: view(); animation-range: entry 0% cover 50%; }
+}
+.lf-screens { background: #292724; }
+@media (prefers-reduced-motion: no-preference) {
+  .js .lf-screens__img.lf-r:not(.is-revealed) { transform: translateY(calc(var(--u) * 120)); }
+  html.js .lf-screens__img.is-revealed.is-revealed.is-revealed { transition-duration: 1.8s; }
+}
+@media (max-width: 1099.98px) {
+  .lf-comm .lf-sec__inner { background: #5c5751; }
+  .lf-comm .lf-bgimg.lf-s5bg { display: block !important; order: 4; margin: 24px -24px 0; width: calc(100% + 48px); height: 360px; object-fit: cover; object-position: 75% 60%; }
+  .lf-devices .lf-sec__inner, .lf-screens .lf-sec__inner { padding: 0; }
+  .lf-screens .lf-sec__inner { display: flex; flex-direction: column; }
+  .lf-screens .lf-label { order: -1; position: relative; z-index: 1; padding: 48px 24px 0; text-align: center; }
+  .lf-screens__img { margin-top: -24px; }
+}
