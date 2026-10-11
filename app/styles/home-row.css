@@ -95,3 +95,35 @@
   .page.is-home-beam .cases--row .card__title { font-size: 15px; }
   .cases--row .tag { font-size: 11px; }
 }
+
+/*
+ * 태블릿·데스크톱: 다섯 번째 카드가 오른쪽 끝에 살짝 보이게 한다.
+ * 카드 줄을 화면 오른쪽 끝까지 넓히고(왼쪽은 히어로와 같은 시작선),
+ * 오른쪽 여백이 좁은 화면에서는 카드를 조금 줄여 다음 카드가 최소 --row-peek만큼 보이게 한다.
+ */
+@media (min-width: 810px) {
+  .cases-scroll {
+    container-type: inline-size;
+    --row-peek: 72px;
+    /* 카드 줄 시작선: 4장 콘텐츠 폭의 왼쪽 끝 */
+    --row-left: max(var(--gutter), (100cqw - var(--row-max)) / 2 + var(--gutter));
+    --row-col: min(
+      (var(--row-max) - var(--gutter) * 2 - var(--row-gap) * 3) / 4,
+      (100cqw - var(--row-left) - var(--row-gap) * 4 - var(--row-peek)) / 4
+    );
+  }
+  .cases-scroll { --row-gap: 20px; }
+  .cases.cases--row {
+    grid-auto-columns: var(--row-col);
+    max-width: none;
+    margin-inline: 0;
+    padding-inline: var(--row-left) var(--gutter);
+    scroll-padding-inline: var(--row-left) var(--gutter);
+  }
+  .cases-scroll__btn { top: calc(12px + var(--row-col) * 0.375); }
+  .cases-scroll__btn.is-next { right: calc(var(--gutter) / 2); }
+  .cases-scroll__btn.is-prev { left: calc(var(--row-left) - 22px); }
+}
+@media (min-width: 810px) and (max-width: 1279.98px) {
+  .cases-scroll { --row-gap: 14px; --row-peek: 56px; }
+}
