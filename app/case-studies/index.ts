@@ -1,5 +1,6 @@
 import type { ComponentType } from "react";
 import type { CaseNavItem } from "~/components/case-study/CaseNav";
+import AvieraCaseStudy, { avieraNav } from "./aviera";
 import DesignSystemCaseStudy, { designSystemNav } from "./design-system";
 import EllmCaseStudy, { ellmNav } from "./ellm";
 import LumixCaseStudy, { lumixNav } from "./lumix";
@@ -24,6 +25,7 @@ export const caseStudies: Record<string, CaseStudyEntry> = {
   ellm: { Content: EllmCaseStudy, nav: ellmNav },
   lumix: { Content: LumixCaseStudy, nav: lumixNav },
   "design-system": { Content: DesignSystemCaseStudy, nav: designSystemNav, theme: "dark" },
+  aviera: { Content: AvieraCaseStudy, nav: avieraNav },
 };
 
 export const getCaseStudy = (slug: string | undefined) =>

@@ -153,6 +153,20 @@ PNG가 없으면 SVG를 Pretendard를 불러온 브라우저에서 그려 참고
 | 06 | RTL & Result (`CaseRtl`: 위 화면 그림 + 원칙 카드 3장(HTML) + 작성 규칙·타이포 표 그림, 그림은 4x PNG에서 잘라냄) | 완료 |
 | 07 | 결과 및 회고 + Next Project (`CaseRetro`에 `colors`(검은 바탕·주황 #FA5D34)·`divider`(#53555D, SVG에는 없고 PNG에만 있음)·`statWidth` 402 추가, Next는 흰 바탕) | 완료 |
 
+### 데이터 기반 사내 메신저 개선 (`/case-studies/aviera`, `app/case-studies/aviera.tsx`)
+
+Figma 프레임 이름은 `fireside_*` (제품명 Fireside). 흰 바탕, 강조색 청록(#2BC8D9, `star-cyan.svg`). 사용자가 내보낸 SVG + PNG **4x**로 작업한다.
+
+| # | 섹션 | 상태 |
+| --- | --- | --- |
+| - | cover image (홈 썸네일, 그라디언트가 많아 WebP 품질 94) | 완료 |
+| 01 | Hero (멀티 AI 워크스페이스 Hero 템플릿, 제목 1줄, 아래 여백 248, 커버 1564×1005 무손실) | 완료 |
+| 02 | Overview | |
+| 03 | Summary | |
+| 04 | Why | |
+| 05 | 프로젝트 탐색 | |
+| 06 | 회고 및 정리 | |
+
 - 섹션 프레임 하나를 통째로 `get_design_context`하면 결과가 너무 커서 메타데이터만 돌아온다. 하위 frame 단위로 나눠서 호출한다.
 - 섹션 컴포넌트는 `app/components/case-study/Case*.tsx`, 프로젝트별 내용은 `app/case-studies/<slug>.tsx`, slug 등록은 `app/case-studies/index.ts`에 한다.
 - 복잡한 UI 목업은 Figma에서 2배(`defaultScale: 2`) PNG로 내보내 `public/projects/<slug>/`에 둔다. 예: Hero 커버 3128×2010
