@@ -1,3 +1,4 @@
+import { CaseDiagnosis } from "~/components/case-study/CaseDiagnosis";
 import { CaseHero } from "~/components/case-study/CaseHero";
 import { CaseOverview } from "~/components/case-study/CaseOverview";
 import { CaseQuestionSteps } from "~/components/case-study/CaseQuestionSteps";
@@ -8,6 +9,7 @@ import type { CaseStudyProps } from "./index";
 export const avieraNav: CaseNavItem[] = [
   { id: "project", label: "Project" },
   { id: "why-how", label: "Why & How" },
+  { id: "diagnosis", label: "Diagnosis" },
 ];
 
 // Figma: 2wduPMxRCf5SwSUCNYqvbl / "framer 이전용" > fireside_* (데이터 기반 사내 메신저 개선)
@@ -74,6 +76,61 @@ export default function AvieraCaseStudy({ index }: CaseStudyProps) {
           { title: "경쟁사 벤치마킹", description: "Slack, 네이버웍스, 카카오워크, 다우오피스 등 분석" },
           { title: "우선순위 도출", description: "사용 편중, 저활용 신호, 포지셔닝 격차 기준" },
           { title: "KPI 설계", description: "Now, Next, Later 3단계 화면 제안으로 구체화" },
+        ]}
+      />
+
+      {/* fireside_04 (파일 이름은 Why, 내용은 Diagnosis): 데이터가 말해준 3가지 */}
+      <CaseDiagnosis
+        id="diagnosis"
+        eyebrow="Diagnosis"
+        icon="/icons/star-cyan.svg"
+        pointColor="#2BC8D9"
+        title="데이터가 말해준 3가지"
+        description={[
+          "일주일, 6개월 API 로그 전수 분석과 5개 협업툴 벤치마킹에서,",
+          "우선적으로 개선되어야 할 3가지 포인트를 찾았습니다.",
+        ]}
+        background="/projects/aviera/diagnosis-bg.webp"
+        cards={[
+          {
+            icon: "/projects/aviera/diagnosis-icon-usage.webp",
+            label: "사용 편중",
+            color: "#7CAF23",
+            value: "77,457건",
+            description: ["대화 읽음 처리 - 대화 조회 39,159건", "과 함께 압도적 비중"],
+            bars: [
+              { label: "읽음 처리", value: "77,457", width: 191 },
+              { label: "검색", value: "39,159", width: 87 },
+              { label: "URL 요청", value: "2,139", width: 14 },
+            ],
+          },
+          {
+            icon: "/projects/aviera/diagnosis-icon-signal.webp",
+            label: "저활용 신호",
+            color: "#F3526D",
+            value: "13건",
+            // Figma 원문 그대로 ("누적) ,프로필" 쉼표 위치: 사용자에게 알림)
+            description: ["AI 기능 요청 (6개월 누적) ,프로필,", "예약 전송 저활용"],
+            bars: [
+              { label: "읽음 처리", value: "18", width: 191 },
+              { label: "검색", value: "13", width: 131 },
+              { label: "URL 요청", value: "6", width: 54 },
+            ],
+          },
+          {
+            icon: "/projects/aviera/diagnosis-icon-gap.webp",
+            label: "확장성 격차",
+            color: "#3182F6",
+            value: "5개사 중 최하",
+            description: ["서드파티 연동 제한적,", "무료 진입 경로 없음"],
+            rows: [
+              { name: "카카오워크", note: "연동 선택적, 상시 무료" },
+              { name: "Slack", note: "연동 무제한, 상시 무료" },
+              { name: "네이버웍스", note: "오피스 생태계 연동" },
+              { name: "잔디", note: "연동 지원, 무료 등급" },
+              { name: "Fireside", note: "연동 제한, 무료 없음", highlight: true },
+            ],
+          },
         ]}
       />
     </>

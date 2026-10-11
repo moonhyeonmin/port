@@ -163,7 +163,7 @@ Figma 프레임 이름은 `fireside_*` (제품명 Fireside). 흰 바탕, 강조�
 | 01 | Hero (멀티 AI 워크스페이스 Hero 템플릿, 제목 1줄, 아래 여백 248, 커버 1564×1005 무손실) | 완료 |
 | 02 | Overview (멀티 AI 워크스페이스 Overview와 같은 배치) | 완료 |
 | 03 | 파일 이름은 Summary, 내용은 Why & How (`CaseQuestionSteps`: Key Question 카드 + 그라디언트 숫자 01~04, 카드 그라디언트는 PNG 실측) | 완료 |
-| 04 | 파일 이름은 Why, 내용은 Diagnosis (데이터가 말해준 3가지) | |
+| 04 | 파일 이름은 Why, 내용은 Diagnosis (`CaseDiagnosis`: 파스텔 빛 번짐 배경(SVG에서 렌더) + 카드 3장, 테두리 색→흰 그라디언트, 막대·비교 목록은 HTML, 아이콘은 4x PNG에서 잘라냄) | 완료 |
 | 05 | 프로젝트 탐색 | |
 | 06 | 회고 및 정리 | |
 

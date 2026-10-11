@@ -856,6 +856,93 @@ img, video { display: block; max-width: 100%; }
 .case-qs__step-title { font-size: calc(var(--u) * 32); font-weight: 700; line-height: calc(var(--u) * 45); color: #141414; }
 .case-qs__step-desc { font-size: calc(var(--u) * 28); line-height: calc(var(--u) * 40); color: #616161; }
 
+/* 진단 카드 3장 (fireside_04 Diagnosis) */
+.case-diag { position: relative; isolation: isolate; overflow: hidden; }
+.case-diag__bg { position: absolute; z-index: -1; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 100%; pointer-events: none; }
+.case-diag__inner { padding-block: calc(var(--u) * 120) calc(var(--u) * 191.5); }
+.case-diag__head { display: flex; flex-direction: column; align-items: flex-start; gap: calc(var(--u) * 40); }
+.case-diag__heading { display: flex; flex-direction: column; gap: calc(var(--u) * 30); }
+.case-diag__desc { font-size: calc(var(--u) * 30); line-height: calc(var(--u) * 50); color: #616161; }
+.case-diag__desc span { display: block; }
+.case-diag__cards {
+  display: grid;
+  grid-template-columns: repeat(3, calc(var(--u) * 479));
+  justify-content: space-between;
+  margin: calc(var(--u) * 70) 0 0;
+  padding: 0;
+  list-style: none;
+}
+/* 테두리 3px: 카드 색 → 흰색 그라디언트 (144°) */
+.case-diag__card {
+  position: relative;
+  height: calc(var(--u) * 641);
+  padding: calc(var(--u) * 22) calc(var(--u) * 36);
+  background: #fff;
+  border-radius: calc(var(--u) * 24);
+}
+.case-diag__card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: calc(var(--u) * 3);
+  border-radius: inherit;
+  background: linear-gradient(144.131deg, var(--c) 3.596%, #fff 101.61%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  pointer-events: none;
+}
+.case-diag__card-head { display: flex; align-items: center; gap: calc(var(--u) * 16); margin-left: calc(var(--u) * -10.5); }
+.case-diag__card-head img { width: calc(var(--u) * 110); height: calc(var(--u) * 110); }
+.case-diag__label { font-size: calc(var(--u) * 28); line-height: calc(var(--u) * 40); color: var(--c); }
+.case-diag__value { margin-top: calc(var(--u) * 42); font-size: calc(var(--u) * 50); font-weight: 700; line-height: calc(var(--u) * 70); color: #000; }
+.case-diag__card-desc { margin-top: calc(var(--u) * 10); font-size: calc(var(--u) * 28); line-height: calc(var(--u) * 40); color: #898989; }
+.case-diag__card-desc span { display: block; }
+/* 아래 목록의 흰색 덮개보다 설명 글자가 위에 오도록 */
+.case-diag__card-desc { position: relative; z-index: 1; }
+.case-diag__bars { display: flex; flex-direction: column; gap: calc(var(--u) * 45); margin: calc(var(--u) * 59) 0 0; }
+.case-diag__bar-row { display: grid; grid-template-columns: calc(var(--u) * 116) auto; align-items: center; font-size: calc(var(--u) * 24); line-height: calc(var(--u) * 27); }
+.case-diag__bar-row dt { color: #898989; white-space: nowrap; }
+.case-diag__bar-row dd { display: flex; align-items: center; gap: calc(var(--u) * 18); margin: 0; }
+.case-diag__bar { width: calc(var(--u) * var(--w)); height: calc(var(--u) * 27); background: var(--c); }
+.case-diag__bar-value { color: #292929; }
+.case-diag__rows {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 6);
+  margin: calc(var(--u) * -25) calc(var(--u) * -0.5) 0;
+  padding: 0;
+  list-style: none;
+}
+/* 위 두 행은 흰색으로 흐려진다 (Figma 그라디언트 덮개) */
+.case-diag__rows::after {
+  content: "";
+  position: absolute;
+  top: calc(var(--u) * -2);
+  left: 0;
+  right: 0;
+  height: calc(var(--u) * 236);
+  background: linear-gradient(#fff 5.3%, rgb(255 255 255 / 0));
+  pointer-events: none;
+}
+.case-diag__row {
+  display: grid;
+  grid-template-columns: calc(var(--u) * 156) auto;
+  align-items: center;
+  height: calc(var(--u) * 56);
+  padding-left: calc(var(--u) * 19);
+  font-size: calc(var(--u) * 24);
+  line-height: calc(var(--u) * 27);
+  background: #f3f3f3;
+  border-radius: calc(var(--u) * 8);
+}
+.case-diag__row-name { font-weight: 700; color: #252d38; }
+.case-diag__row-note { color: #898989; }
+.case-diag__row.is-highlight { background: rgb(239 94 75 / 0.1); }
+.case-diag__row.is-highlight .case-diag__row-name { color: #ef5e4b; }
+.case-diag__row.is-highlight .case-diag__row-note { color: #f77e6e; }
+
 /* 04 Why and How (126:56068) */
 .case-why {
   display: flex;
@@ -1959,6 +2046,37 @@ img, video { display: block; max-width: 100%; }
   .case-qs__step-desc { font-size: 14px; line-height: 1.6; }
 }
 
+/* 진단 카드 태블릿·모바일 */
+@media (max-width: 1279.98px) {
+  .case-diag__cards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .case-diag__card { height: auto; padding-bottom: 28px; }
+}
+@media (max-width: 809.98px) {
+  .case-diag__inner { padding-block: 56px 72px; }
+  .case-diag__head { gap: 16px; }
+  .case-diag__heading { gap: 12px; }
+  .case-diag__desc { font-size: 15px; line-height: 1.6; }
+  .case-diag__desc span { display: inline; }
+  .case-diag__desc span + span::before { content: " "; }
+  .case-diag__cards { grid-template-columns: minmax(0, 1fr); gap: 14px; margin-top: 32px; }
+  .case-diag__card { padding: 16px 20px 24px; border-radius: 16px; }
+  .case-diag__card::before { padding: 2px; }
+  .case-diag__card-head { gap: 8px; margin-left: -6px; }
+  .case-diag__card-head img { width: 56px; height: 56px; }
+  .case-diag__label { font-size: 15px; line-height: 1.5; }
+  .case-diag__value { margin-top: 10px; font-size: 28px; line-height: 1.3; }
+  .case-diag__card-desc { margin-top: 4px; font-size: 14px; line-height: 1.6; }
+  .case-diag__card-desc span { display: inline; }
+  .case-diag__card-desc span + span::before { content: " "; }
+  .case-diag__bars { gap: 12px; margin-top: 20px; }
+  .case-diag__bar-row { grid-template-columns: 72px auto; font-size: 13px; line-height: 16px; }
+  .case-diag__bar-row dd { gap: 8px; }
+  .case-diag__bar { width: calc(var(--w) / 191 * 120px); height: 16px; }
+  .case-diag__rows { gap: 4px; margin-top: 16px; }
+  .case-diag__rows::after { height: 72px; }
+  .case-diag__row { grid-template-columns: 88px auto; height: 36px; padding-left: 12px; font-size: 13px; line-height: 16px; border-radius: 6px; }
+}
+
 /* ─── 숫자 카운트업: 최종 숫자 폭으로 자리를 고정 ─── */
 .countup { display: inline-grid; }
 .countup > * { grid-area: 1 / 1; }
@@ -1983,7 +2101,7 @@ img, video { display: block; max-width: 100%; }
     .case-ps__problem, .case-ps__solution-label, .case-ps__layer, .case-ps__layers-figure, .case-ps__callout, .case-ps__figure,
     .case-contrast__desc, .case-contrast__sample, .case-contrast__work, .case-plugin__figure, .case-plugin__step,
     .case-rtl__cover, .case-rtl__card, .case-rtl__notes, .case-rtl__table,
-    .case-qs__card, .case-qs__step
+    .case-qs__card, .case-qs__step, .case-diag__desc, .case-diag__card
   ) {
     opacity: 0;
     transform: translateY(16px);
