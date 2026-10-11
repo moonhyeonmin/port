@@ -5,7 +5,7 @@ export function pageMeta({
   title,
   description = site.intro,
   path = "/",
-  image = "/og.png",
+  image = "/og.jpg",
 }: {
   title?: string;
   description?: string;
@@ -21,6 +21,14 @@ export function pageMeta({
     { property: "og:description", content: description },
     { property: "og:url", content: site.url + path },
     { property: "og:image", content: site.url + image },
+    // 기본 공유 이미지(/og.jpg)는 홈 첫 화면을 1200×630으로 찍은 것
+    ...(image === "/og.jpg"
+      ? [
+          { property: "og:image:width", content: "1200" },
+          { property: "og:image:height", content: "630" },
+        ]
+      : []),
     { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:image", content: site.url + image },
   ];
 }
