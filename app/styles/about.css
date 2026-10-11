@@ -171,6 +171,7 @@
 .resume-hero__role { margin-top: 18px; font-family: var(--font-sans); font-size: 17px; font-weight: 500; color: #374151; }
 .resume-hero__links { display: flex; flex-wrap: wrap; gap: 6px 20px; margin-top: 12px; font-size: 15px; font-weight: 500; }
 .resume-hero__links a { transition: color 0.2s; }
+/* 버튼이 빠져 이름 블록만 남음 */
 .resume-hero__links a:hover { color: var(--about-blue); }
 .resume-hero__pdf {
   display: inline-flex;
@@ -257,7 +258,7 @@
 
 /* 인쇄(Download PDF): 공통 탭·푸터·버튼은 숨긴다 */
 @media print {
-  .tabnav, .footer, .resume-hero__pdf { display: none !important; }
+  .tabnav, .footer { display: none !important; }
   .resume { padding: 0; }
   .resume-hero { padding-top: 0; }
   .resume-row { break-inside: avoid; }

@@ -14,5 +14,6 @@ export const site = {
   ],
   heroTitle: ["보기 좋은 화면에서,", "믿고 쓰는 경험으로."],
   email: "whtnska913@gmail.com",
+  linkedin: "https://www.linkedin.com/in/suyeon-jo-a169242a4/",
   url: "https://port-five-peach-95.vercel.app",
 };

@@ -107,20 +107,13 @@ export default function Resume() {
               Suyeon Jo <span>조수연</span>
             </h1>
             <p className="resume-hero__role">Product Designer · UI / UX · AI Products · Seoul</p>
-            {/* LinkedIn·GitHub 주소가 정해지면 a 태그로 바꾼다 */}
             <p className="resume-hero__links">
               <a href={`mailto:${site.email}`}>{site.email}</a>
-              <span>LinkedIn ↗</span>
-              <span>GitHub ↗</span>
+              <a href={site.linkedin} target="_blank" rel="noreferrer">
+                LinkedIn ↗
+              </a>
             </p>
           </div>
-          {/* PDF 파일 대신 브라우저 인쇄(PDF로 저장)를 연다. 인쇄용 스타일은 about.css */}
-          <button type="button" className="resume-hero__pdf" onClick={() => window.print()}>
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden>
-              <path d="M8 2v8m0 0L4.5 6.5M8 10l3.5-3.5M2.5 13.5h11" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            Download PDF
-          </button>
         </header>
 
         <Row label="Summary">
@@ -184,14 +177,13 @@ export default function Resume() {
           </dl>
         </Row>
 
-        {/* 디자인 원문이 자리표시자 그대로다: 학교명·전공·졸업연도는 사용자에게 받아 채운다 */}
         <Row label="Education">
           <div className="resume-job__head">
             <div>
-              <h3 className="resume-job__company">[학교명]</h3>
-              <p className="resume-job__role">[전공]</p>
+              <h3 className="resume-job__company">상명대학교</h3>
+              <p className="resume-job__role">산업디자인과</p>
             </div>
-            <p className="resume-job__period">[졸업연도]</p>
+            <p className="resume-job__period">2023.02 졸업</p>
           </div>
         </Row>
       </div>

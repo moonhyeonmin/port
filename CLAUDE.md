@@ -183,13 +183,13 @@ Figma 프레임 이름은 `fireside_*` (제품명 Fireside). 흰 바탕, 강조�
 
 ## Resume (`/resume`, `app/routes/resume.tsx`, 스타일은 `about.css` 아래쪽)
 
-디자인은 `design-src/Resume@1x 1.png` (About과 같은 방식). 왼쪽 라벨 열 288 + 내용 열. "Download PDF"는 PDF 파일이 없어 `window.print()`로 인쇄(PDF로 저장)를 연다(인쇄용 스타일로 탭·푸터·버튼 숨김). LinkedIn·GitHub는 주소가 없어 글자만, Education은 디자인 원문 자리표시자([학교명] 등) 그대로.
+디자인은 `design-src/Resume@1x 1.png` (About과 같은 방식). 왼쪽 라벨 열 288 + 내용 열. 사용자 요청으로 Download PDF 버튼과 GitHub는 뺐고, LinkedIn 주소는 `site.linkedin`. 인쇄용 스타일은 탭·푸터를 숨긴다.
 
 ## 인터랙션
 
 과하지 않게, 화면에 들어올 때 한 번만 짧게 움직인다. `prefers-reduced-motion: reduce`이면 모두 끈다.
 
-- **등장(Reveal)**: `app/hooks/useReveal.ts`의 `REVEAL_SELECTOR` 요소가 화면 진입 시 16px 아래에서 나타난다. 1.2초 동안 나타나고, 같이 들어온 요소는 180ms 간격(최대 1100ms)으로 순서대로 나타난다. 페이지 첫 화면은 200ms 뒤에 시작한다.
+- **등장(Reveal)**: 주소(`pathname`)가 바뀔 때마다 다시 관찰한다. 같은 라우트에서 주소만 바뀌는 이동(Next Project)은 컴포넌트가 다시 마운트되지 않아, 예전에는 새 요소가 숨은 채로 남아 빈 화면처럼 보였다. `app/hooks/useReveal.ts`의 `REVEAL_SELECTOR` 요소가 화면 진입 시 16px 아래에서 나타난다. 1.2초 동안 나타나고, 같이 들어온 요소는 180ms 간격(최대 1100ms)으로 순서대로 나타난다. 페이지 첫 화면은 200ms 뒤에 시작한다.
   - 첫 페인트 전에 숨기려고 `root.tsx`의 `<head>` 스크립트가 `<html>`에 `.js`를 붙이고, `global.css` "Reveal" 블록이 같은 선택자로 숨긴다. **선택자를 바꾸면 두 곳을 함께 수정한다.**
   - 홈(`home.tsx`)과 케이스 스터디(`case-study.tsx`)에서 `useReveal()`을 호출한다.
 - **숫자 카운트업**: `app/components/CountUp.tsx` (기본 2초). 미리 렌더링된 HTML에는 최종 숫자가 들어가고, 최종 숫자 폭으로 자리를 고정해 옆 글자가 흔들리지 않는다.

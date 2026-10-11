@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useLocation } from "react-router";
 
 /**
  * 화면에 들어올 때 살짝 올라오며 나타나는 요소.
@@ -90,6 +91,9 @@ const FIRST_LEAD_MS = 200;
 
 /** 페이지의 REVEAL_SELECTOR 요소를 화면 진입 시 한 번씩 나타나게 한다 */
 export function useReveal() {
+  // 같은 라우트 안에서 주소만 바뀌는 이동(예: Next Project → 다음 케이스 스터디)도
+  // 컴포넌트가 다시 마운트되지 않으므로, 주소가 바뀔 때마다 새 요소를 다시 관찰한다.
+  const { pathname } = useLocation();
   useEffect(() => {
     const targets = document.querySelectorAll<HTMLElement>(REVEAL_SELECTOR);
     if (!("IntersectionObserver" in window)) {
@@ -125,5 +129,5 @@ export function useReveal() {
       if (!el.classList.contains("is-revealed")) observer.observe(el);
     });
     return () => observer.disconnect();
-  }, []);
+  }, [pathname]);
 }
