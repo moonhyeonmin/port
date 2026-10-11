@@ -10,6 +10,9 @@ export interface OverviewItem {
   gap: number;
 }
 
+/** 줄이 좁아져 바뀔 때 숫자가 앞 단어와 떨어지지 않게 (예: "BE 8") 숫자 앞 공백을 줄바꿈 없는 공백으로 */
+const keepNumbers = (line: string) => line.replace(/ (?=\d)/g, "\u00a0");
+
 /** bottom: 구분선 아래 여백 (디자인 px, 기본 44). 프레임 높이가 고정이라 항목이 짧으면 커진다 */
 export function CaseOverview({ items, bottom }: { items: OverviewItem[]; bottom?: number }) {
   return (
@@ -28,7 +31,7 @@ export function CaseOverview({ items, bottom }: { items: OverviewItem[]; bottom?
             <h2 className="case-overview__title">{title}</h2>
             <p className="case-overview__body">
               {lines.map((line) => (
-                <span key={line}>{line}</span>
+                <span key={line}>{keepNumbers(line)}</span>
               ))}
             </p>
           </div>

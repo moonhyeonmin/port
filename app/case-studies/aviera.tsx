@@ -40,8 +40,8 @@ export default function AvieraCaseStudy({ index }: CaseStudyProps) {
         items={[
           {
             title: "Role",
-            // Figma 원문 그대로 ("사용자Desktop" 띄어쓰기 없음: 사용자에게 알림)
-            lines: ["사용자Desktop/Mobile,", "관리자 설계 기획, 디자인, QA"],
+            // Figma 원문은 "사용자Desktop" (사용자 요청으로 띄어쓰기 추가)
+            lines: ["사용자 Desktop/Mobile,", "관리자 설계 기획, 디자인, QA"],
             width: 389,
             gap: 37,
           },
