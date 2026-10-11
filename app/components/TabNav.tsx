@@ -1,4 +1,5 @@
-import { NavLink, useLocation } from "react-router";
+import { Link, NavLink, useLocation } from "react-router";
+import { site } from "~/data/site";
 
 const tabs = [
   { to: "/", label: "Projects" },
@@ -13,6 +14,12 @@ export function TabNav() {
 
   return (
     <header className="tabnav">
+      {/* 왼쪽 위 이름 (홈에서만) */}
+      {pathname === "/" && (
+        <Link to="/" className="tabnav__brand">
+          <strong>{site.name}</strong> {site.role}
+        </Link>
+      )}
       <nav className="tabnav__tabs" aria-label="주요 메뉴">
         {tabs.map((tab) => (
           <NavLink

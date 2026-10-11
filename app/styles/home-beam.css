@@ -54,6 +54,7 @@
   border-bottom-color: var(--beam-line);
 }
 .page.is-home-beam .tabnav__tab { font-size: 15px; color: rgb(225 232 255 / 0.6); }
+.page.is-home-beam .tabnav__brand { font-size: 16px; color: #fff; }
 .page.is-home-beam .tabnav__tab:hover { color: #fff; }
 .page.is-home-beam .tabnav__tab.is-active { color: #fff; background: rgb(255 255 255 / 0.1); }
 
@@ -83,6 +84,7 @@
   text-shadow: 0 2px 24px rgb(2 3 11 / 0.35);
 }
 .page.is-home-beam .hero__desc {
+  max-width: none;
   font-size: 18px;
   font-weight: 500;
   line-height: 1.6;

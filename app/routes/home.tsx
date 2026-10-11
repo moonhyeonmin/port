@@ -23,7 +23,11 @@ export default function Home() {
               <span key={line}>{line}</span>
             ))}
           </h1>
-          <p className="hero__desc muted">{site.intro}</p>
+          <p className="hero__desc muted">
+            {site.heroDesc.map((line) => (
+              <span key={line}>{line}</span>
+            ))}
+          </p>
         </div>
       </section>
 
