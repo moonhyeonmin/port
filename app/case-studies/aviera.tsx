@@ -1,4 +1,5 @@
 import { CaseHero } from "~/components/case-study/CaseHero";
+import { CaseOverview } from "~/components/case-study/CaseOverview";
 import type { CaseNavItem } from "~/components/case-study/CaseNav";
 import type { CaseStudyProps } from "./index";
 
@@ -31,6 +32,23 @@ export default function AvieraCaseStudy({ index }: CaseStudyProps) {
           height: 1005,
           alt: "사내 메신저 Fireside 데스크톱 화면: 런칭TF 채팅방과 스레드 답글, 그 위에 즐겨찾기 동료의 상태와 Outlook 일정 연동을 보여주는 창",
         }}
+      />
+
+      {/* fireside_02_Overview: 멀티 AI 워크스페이스 Overview와 같은 배치, 아래 여백 69 */}
+      <CaseOverview
+        bottom={69}
+        items={[
+          {
+            title: "Role",
+            // Figma 원문 그대로 ("사용자Desktop" 띄어쓰기 없음: 사용자에게 알림)
+            lines: ["사용자Desktop/Mobile,", "관리자 설계 기획, 디자인, QA"],
+            width: 389,
+            gap: 37,
+          },
+          { title: "Period", lines: ["2025.08 - 2026.08"], width: 261, gap: 37 },
+          { title: "Team", lines: ["기획 1 / FE 4 / 디자인 1 / BE 8"], width: 358, gap: 12 },
+          { title: "Contribution", lines: ["제안 완료", "기획 제안 검토 중"], width: 184, gap: 12 },
+        ]}
       />
     </>
   );

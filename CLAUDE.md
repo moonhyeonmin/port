@@ -161,7 +161,7 @@ Figma 프레임 이름은 `fireside_*` (제품명 Fireside). 흰 바탕, 강조�
 | --- | --- | --- |
 | - | cover image (홈 썸네일, 그라디언트가 많아 WebP 품질 94) | 완료 |
 | 01 | Hero (멀티 AI 워크스페이스 Hero 템플릿, 제목 1줄, 아래 여백 248, 커버 1564×1005 무손실) | 완료 |
-| 02 | Overview | |
+| 02 | Overview (멀티 AI 워크스페이스 Overview와 같은 배치) | 완료 |
 | 03 | Summary | |
 | 04 | Why | |
 | 05 | 프로젝트 탐색 | |
