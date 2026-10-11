@@ -4,9 +4,11 @@ import { CaseNext } from "./CaseNext";
 
 interface CaseRetroProps {
   id?: string;
-  title: string;
+  /** 한 줄 문자열 또는 줄 단위 배열 */
+  title: string | string[];
   /** tight: 숫자·기호만 있는 값의 좁은 자간 */
-  stats: { value: ReactNode; caption: string[]; tight?: boolean }[];
+  /** from: 숫자 그라디언트 시작색 (없으면 colors.accent) */
+  stats: { value: ReactNode; caption: string[]; tight?: boolean; from?: string }[];
   /** 숫자 열 너비 (디자인 px). 없으면 4등분 */
   statWidth?: number;
   retro: {
@@ -14,7 +16,7 @@ interface CaseRetroProps {
     /** 줄 단위 문단. 빈 문자열은 빈 줄 */
     lines: string[];
     /** 마지막에 파란 굵은 글씨로 강조하는 문장 */
-    highlight: string;
+    highlight?: string;
   };
   next: { to: string; title: string };
   /** 색 바꾸기 (기본: Ellm 남색 바탕 + 파란 강조) */
@@ -28,10 +30,12 @@ interface CaseRetroProps {
   };
   /** 숫자 아래 구분선 색 (있으면 표시) */
   divider?: string;
+  /** 구분선·회고를 아래로 더 내리는 값 (디자인 px). 어두운 영역 높이는 그대로 */
+  noteShift?: number;
 }
 
 /** 결과 및 회고 (어두운 배경) + Next Project */
-export function CaseRetro({ id, title, stats, retro, next, colors, divider, statWidth }: CaseRetroProps) {
+export function CaseRetro({ id, title, stats, retro, next, colors, divider, statWidth, noteShift }: CaseRetroProps) {
   return (
     <section
       id={id}
@@ -47,6 +51,7 @@ export function CaseRetro({ id, title, stats, retro, next, colors, divider, stat
           }),
           ...(divider && { "--retro-divider": divider }),
           ...(statWidth && { "--retro-stat-w": statWidth }),
+          ...(noteShift && { "--retro-shift": noteShift }),
         } as CSSProperties
       }
     >
@@ -58,12 +63,18 @@ export function CaseRetro({ id, title, stats, retro, next, colors, divider, stat
         <div className="case-sec case-retro__inner">
           <div className="case-retro__text">
             <CaseEyebrow light>Retrospective</CaseEyebrow>
-            <h2 className="case-h2 is-tight">{title}</h2>
+            <h2 className="case-h2 is-tight">
+              {Array.isArray(title) ? title.map((line) => <span key={line}>{line}</span>) : title}
+            </h2>
           </div>
 
           <ul className={`case-retro__stats${statWidth ? " has-width" : ""}`}>
-            {stats.map(({ value, caption, tight }) => (
-              <li key={caption.join(" ")} className="case-retro__stat">
+            {stats.map(({ value, caption, tight, from }) => (
+              <li
+                key={caption.join(" ")}
+                className="case-retro__stat"
+                style={from ? ({ "--retro-accent": from } as CSSProperties) : undefined}
+              >
                 <p className={`case-retro__value${tight ? " is-tight" : ""}`}>{value}</p>
                 <p className="case-retro__caption">
                   {caption.map((line) => (
@@ -81,7 +92,7 @@ export function CaseRetro({ id, title, stats, retro, next, colors, divider, stat
               {retro.lines.map((line, i) =>
                 line ? <span key={i}>{line}</span> : <span key={i} className="is-blank" />,
               )}
-              <strong>{retro.highlight}</strong>
+              {retro.highlight && <strong>{retro.highlight}</strong>}
             </p>
           </div>
         </div>

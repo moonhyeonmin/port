@@ -165,7 +165,7 @@ Figma 프레임 이름은 `fireside_*` (제품명 Fireside). 흰 바탕, 강조�
 | 03 | 파일 이름은 Summary, 내용은 Why & How (`CaseQuestionSteps`: Key Question 카드 + 그라디언트 숫자 01~04, 카드 그라디언트는 PNG 실측) | 완료 |
 | 04 | 파일 이름은 Why, 내용은 Diagnosis (`CaseDiagnosis`: 파스텔 빛 번짐 배경(SVG에서 렌더) + 카드 3장, 테두리 색→흰 그라디언트, 막대·비교 목록은 HTML, 아이콘은 4x PNG에서 잘라냄) | 완료 |
 | 05 | 프로젝트 탐색 = Key Screen 1~3 (`CaseKeyScreen` + `KsCompare`: AS IS·TO BE 패널은 4x PNG에서 라벨 글자만 지우고 잘라낸 그림 위에 HTML 라벨, 글머리 목록은 HTML / `KsStat`: 연동 화면 + 3개+ 수치) | 완료 |
-| 06 | 회고 및 정리 | |
+| 06 | 회고 및 정리 + Next Project (`CaseRetro`: Ellm 색, 제목 2줄, 강조 문장 없음, 마지막 수치 회색 그라디언트 `from`, 구분선·회고 `noteShift` 19.5. 다음 프로젝트(가상 식물키우기)는 페이지가 없어 홈으로 연결) | 완료 |
 
 - 섹션 프레임 하나를 통째로 `get_design_context`하면 결과가 너무 커서 메타데이터만 돌아온다. 하위 frame 단위로 나눠서 호출한다.
 - 섹션 컴포넌트는 `app/components/case-study/Case*.tsx`, 프로젝트별 내용은 `app/case-studies/<slug>.tsx`, slug 등록은 `app/case-studies/index.ts`에 한다.

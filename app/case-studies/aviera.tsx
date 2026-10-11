@@ -2,7 +2,9 @@ import { CaseDiagnosis } from "~/components/case-study/CaseDiagnosis";
 import { CaseKeyScreen, KsCompare, KsStat } from "~/components/case-study/CaseKeyScreen";
 import { CaseHero } from "~/components/case-study/CaseHero";
 import { CaseOverview } from "~/components/case-study/CaseOverview";
+import { CaseRetro } from "~/components/case-study/CaseRetro";
 import { CaseQuestionSteps } from "~/components/case-study/CaseQuestionSteps";
+import { CountUp } from "~/components/CountUp";
 import type { CaseNavItem } from "~/components/case-study/CaseNav";
 import type { CaseStudyProps } from "./index";
 
@@ -12,6 +14,7 @@ export const avieraNav: CaseNavItem[] = [
   { id: "why-how", label: "Why & How" },
   { id: "diagnosis", label: "Diagnosis" },
   { id: "key-screen-1", label: "Key Screens", also: ["key-screen-2", "key-screen-3"] },
+  { id: "retrospective", label: "Retrospective" },
 ];
 
 // Figma: 2wduPMxRCf5SwSUCNYqvbl / "framer 이전용" > fireside_* (데이터 기반 사내 메신저 개선)
@@ -239,6 +242,51 @@ export default function AvieraCaseStudy({ index }: CaseStudyProps) {
           ]}
         />
       </CaseKeyScreen>
+
+      {/* Fireside_06_회고 및 정리 (Ellm 회고 템플릿: 남색 바탕·파란 빛, 마지막 수치만 회색 그라디언트) */}
+      <CaseRetro
+        id="retrospective"
+        title={["제자리 걸음 중이던 사내 메신저,", "의미있는 첫 걸음을 내딛다."]}
+        divider="#53555D"
+        noteShift={19.5}
+        statWidth={402}
+        stats={[
+          {
+            value: (
+              <>
+                <CountUp to={6} />개월
+              </>
+            ),
+            caption: ["API 로그 전수", "분석"],
+          },
+          {
+            value: (
+              <>
+                <CountUp to={5} />개사
+              </>
+            ),
+            caption: ["경쟁 협업 툴", "벤치마킹"],
+          },
+          {
+            value: (
+              <>
+                <CountUp to={4} />개
+              </>
+            ),
+            caption: ["우선순위 기반", "제안"],
+          },
+          { value: "검토 중", caption: ["리더쉽 승인", "대기"], from: "#7A7B7E" },
+        ]}
+        retro={{
+          label: "회고",
+          lines: [
+            "정량 데이터와 정성 벤치마킹을 함께 근거로 쓰는 방식을 처음 체계화 했습니다.",
+            "다음에는 설계 초기부터 베이스라인 측정 계획을 넣어, 실행 이후 효과까지 검증하고 싶습니다.",
+          ],
+        }}
+        // 다음 프로젝트(가상 식물키우기)는 아직 페이지가 없어 프로젝트 목록으로 연결
+        next={{ to: "/", title: "가상 식물키우기 사이드 프로젝트" }}
+      />
     </>
   );
 }
