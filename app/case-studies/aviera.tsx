@@ -19,7 +19,7 @@ export const avieraNav: CaseNavItem[] = [
 
 // Figma: 2wduPMxRCf5SwSUCNYqvbl / "framer 이전용" > fireside_* (데이터 기반 사내 메신저 개선)
 // 사용자가 내보낸 SVG(글자 포함)·PNG 4x에서 수치와 문구를 옮김
-export default function AvieraCaseStudy({ index }: CaseStudyProps) {
+export default function AvieraCaseStudy({ index, nextSlug }: CaseStudyProps) {
   return (
     <>
       {/* fireside_01_Hero: 멀티 AI 워크스페이스 Hero와 같은 템플릿, 청록 별·강조색 #2BC8D9 */}
@@ -284,8 +284,7 @@ export default function AvieraCaseStudy({ index }: CaseStudyProps) {
             "다음에는 설계 초기부터 베이스라인 측정 계획을 넣어, 실행 이후 효과까지 검증하고 싶습니다.",
           ],
         }}
-        // 다음 프로젝트(가상 식물키우기)는 아직 페이지가 없어 프로젝트 목록으로 연결
-        next={{ to: "/", title: "가상 식물키우기 사이드 프로젝트" }}
+        next={{ to: `/case-studies/${nextSlug}`, title: "가상 식물키우기 사이드 프로젝트" }}
       />
     </>
   );

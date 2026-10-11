@@ -3,6 +3,7 @@ import type { CaseNavItem } from "~/components/case-study/CaseNav";
 import AvieraCaseStudy, { avieraNav } from "./aviera";
 import DesignSystemCaseStudy, { designSystemNav } from "./design-system";
 import EllmCaseStudy, { ellmNav } from "./ellm";
+import LeafCaseStudy, { leafNav } from "./leaf";
 import LumixCaseStudy, { lumixNav } from "./lumix";
 
 export interface CaseStudyProps {
@@ -26,6 +27,7 @@ export const caseStudies: Record<string, CaseStudyEntry> = {
   lumix: { Content: LumixCaseStudy, nav: lumixNav },
   "design-system": { Content: DesignSystemCaseStudy, nav: designSystemNav, theme: "dark" },
   aviera: { Content: AvieraCaseStudy, nav: avieraNav },
+  leaf: { Content: LeafCaseStudy, nav: leafNav, theme: "dark" },
 };
 
 export const getCaseStudy = (slug: string | undefined) =>

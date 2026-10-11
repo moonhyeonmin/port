@@ -4,15 +4,56 @@
  */
 .cases.cases--row {
   /* 카드 너비: 히어로 아래 남은 높이를 넘지 않게 (썸네일 4:3) */
-  --row-card: clamp(200px, (100svh - 464px - var(--row-top)) * 1.333, 440px);
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 20px;
-  max-width: calc(var(--row-card) * 4 + 60px + var(--gutter) * 2);
+  /* 한 화면에 4장, 5장째부터는 오른쪽으로 가로 스크롤 */
+  grid-template-columns: none;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - var(--row-gap) * 3) / 4);
+  --row-gap: 20px;
+  gap: var(--row-gap);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--gutter);
+  scrollbar-width: none;
+  max-width: var(--row-max);
+  /* 호버 시 떠오르는 카드가 스크롤 영역에 잘리지 않게 */
+  padding-top: 12px;
+  margin-top: -12px;
   padding-bottom: 80px;
 }
 /* 히어로와 카드 사이 간격: 화면 높이에 맞춰 넉넉하게 (카드를 화면 아래쪽으로) */
-.home:has(.cases--row) { --row-top: clamp(56px, 13svh, 136px); }
+.home:has(.cases--row) {
+  --row-top: clamp(56px, 13svh, 136px);
+  /* 카드 너비: 히어로 아래 남은 높이를 넘지 않게 (썸네일 4:3) */
+  --row-card: clamp(200px, (100svh - 464px - var(--row-top)) * 1.333, 440px);
+  --row-max: calc(var(--row-card) * 4 + 60px + var(--gutter) * 2);
+}
 .home:has(.cases--row) .hero { padding-bottom: var(--row-top); }
+.cases--row::-webkit-scrollbar { display: none; }
+.cases--row > .card { scroll-snap-align: start; }
+/* 오른쪽에 더 있다는 걸 알리는 그림자·화살표 버튼 */
+.cases-scroll { position: relative; }
+.cases-scroll__btn {
+  position: absolute;
+  z-index: 2;
+  top: calc((var(--row-card) * 0.75) / 2);
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  font-size: 18px;
+  color: var(--color-text);
+  background: rgb(255 255 255 / 0.92);
+  border-radius: 50%;
+  box-shadow: 0 6px 20px rgb(0 0 0 / 0.25);
+  transform: translateY(-50%);
+  transition: opacity 0.3s, transform 0.3s;
+}
+.cases-scroll__btn.is-next { right: calc(var(--gutter) / 2 + max(0px, (100% - var(--row-max)) / 2)); }
+.cases-scroll__btn.is-prev { left: calc(var(--gutter) / 2 + max(0px, (100% - var(--row-max)) / 2)); }
+.cases-scroll__btn { top: calc(12px + var(--row-card) * 0.375 - 6px); }
+.cases-scroll__btn[hidden] { display: grid; opacity: 0; pointer-events: none; }
+.cases-scroll__btn:hover { transform: translateY(-50%) scale(1.06); }
 
 .cases--row .card__meta { flex-direction: column; align-items: flex-start; gap: 8px; }
 /* 긴 제목이 두 줄이 될 때 단어 중간에서 끊기지 않게 */
@@ -41,12 +82,14 @@
 
 /* 태블릿: 한 줄 4장 그대로, 간격과 글자만 줄인다 */
 @media (max-width: 1279.98px) {
-  .cases.cases--row { gap: 14px; }
+  .cases.cases--row { --row-gap: 14px; }
   .page.is-home-beam .cases--row .card__title { font-size: 17px; }
 }
 /* 모바일: 2열 작은 카드 (2줄) */
 @media (max-width: 809.98px) {
-  .cases.cases--row { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: none; gap: 24px 12px; padding-bottom: 56px; }
+  /* 모바일: 두 장과 다음 카드 일부가 보이며 가로로 넘긴다 */
+  .cases.cases--row { --row-gap: 12px; grid-auto-columns: 44%; max-width: none; padding-bottom: 56px; }
+  .cases-scroll__btn { display: none !important; }
   .home:has(.cases--row) { --row-top: clamp(40px, 7svh, 64px); }
   .cases--row .card { gap: 10px; }
   .page.is-home-beam .cases--row .card__title { font-size: 15px; }

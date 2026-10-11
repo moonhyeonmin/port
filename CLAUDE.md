@@ -177,6 +177,10 @@ Figma 프레임 이름은 `fireside_*` (제품명 Fireside). 흰 바탕, 강조�
 - 사용자 요청으로 Figma와 다르게 바꾼 것: Summary 회색 카드 3개는 모두 두 번째 카드(68%↓) 그라디언트를 쓴다 (Figma 3·4번 카드 그라디언트는 색 지점이 뒤섞여 대각선 줄무늬가 생김).
 - 디자인이 있는 페이지는 라우트에서 TOC나 Next 카드를 덧붙이지 않는다. Next Project도 09 섹션 디자인대로 그린다.
 
+### leaf 가상 식물키우기 (`/case-studies/leaf`, `app/case-studies/leaf.tsx`)
+
+디자인(`design-src/leaf.svg`, 2160×63865)은 설치되지 않은 글꼴(Nexa, Nagoda 등)과 큰 사진이 섞인 긴 비주얼 페이지라 HTML로 다시 짜지 않고, Figma PNG(`leaf.png`, 1109 너비)를 1640px 높이 조각 20장으로 잘라 이어 붙였다(`public/projects/leaf/band-*.webp`). 조각마다 alt에 그 구간의 SVG 본문 문구를 넣었다. 너비 1109라 큰 화면에서는 약간 흐리므로, Figma에서 2배 PNG를 받으면 교체한다. 프로젝트 목록 마지막(5번째)이라 홈 카드 줄은 가로 스크롤(4장 보이고 화살표 버튼).
+
 ## About (`/about`, `app/routes/about.tsx`, `app/styles/about.css`)
 
 디자인은 `design-src/About@1x 1.png` (1440 프레임 4x PNG, SVG 없음 → 문구는 PNG를 보고 옮기고 크기는 실측). 콘텐츠 너비 1200. 사진은 `public/about/profile.webp` (증명사진을 475:592로 잘라냄). 상단 탭과 푸터는 사이트 공통 것을 쓴다(디자인 시안의 헤더·푸터와 다름). 디자인 글꼴이 Pretendard보다 약 7% 넓어 글자 크기를 실측 너비에 맞춰 키웠다.

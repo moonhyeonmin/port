@@ -1041,6 +1041,11 @@ img, video { display: block; max-width: 100%; }
 .case-ks__stat-row.is-tobe dd { color: #252d38; }
 .case-ks__stat-row dd span { display: block; white-space: nowrap; }
 
+/* leaf: 디자인 PNG 조각을 이어 붙인 긴 비주얼 페이지 */
+.leaf-page { background: #292724; }
+.case-page:has(.leaf-page) { padding-top: 0; background: #292724; }
+.leaf-page__band { display: block; width: 100%; max-width: 2160px; height: auto; margin-inline: auto; }
+
 /* 04 Why and How (126:56068) */
 .case-why {
   display: flex;
