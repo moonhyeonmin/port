@@ -1,4 +1,5 @@
 import { CaseDiagnosis } from "~/components/case-study/CaseDiagnosis";
+import { CaseKeyScreen, KsCompare, KsStat } from "~/components/case-study/CaseKeyScreen";
 import { CaseHero } from "~/components/case-study/CaseHero";
 import { CaseOverview } from "~/components/case-study/CaseOverview";
 import { CaseQuestionSteps } from "~/components/case-study/CaseQuestionSteps";
@@ -10,6 +11,7 @@ export const avieraNav: CaseNavItem[] = [
   { id: "project", label: "Project" },
   { id: "why-how", label: "Why & How" },
   { id: "diagnosis", label: "Diagnosis" },
+  { id: "key-screen-1", label: "Key Screens", also: ["key-screen-2", "key-screen-3"] },
 ];
 
 // Figma: 2wduPMxRCf5SwSUCNYqvbl / "framer 이전용" > fireside_* (데이터 기반 사내 메신저 개선)
@@ -134,6 +136,112 @@ export default function AvieraCaseStudy({ index }: CaseStudyProps) {
           },
         ]}
       />
+
+      {/* fireside_05 프로젝트 탐색: Key Screen 1~3 */}
+      <CaseKeyScreen
+        id="key-screen-1"
+        eyebrow="Key Screen 1"
+        icon="/icons/star-cyan.svg"
+        pointColor="#2BC8D9"
+        title="채팅을 업무 맥락 공간으로 - 스레드형 댓글"
+        description={[
+          "업무 메신저 특성상 한 주제에 대한 답장형 대화가 많습니다.",
+          "그래서 타사에서 기본 제공하는 스레드 기능을 탑재했습니다.",
+        ]}
+      >
+        <KsCompare
+          asIs={{
+            label: "AS IS - 단일 채팅방",
+            image: {
+              src: "/projects/aviera/ks-thread-asis.webp",
+              width: 616,
+              height: 882,
+              alt: "개선 전: 여러 주제의 대화가 한 채팅방에 섞여 있는 경영지원팀 채팅 화면",
+            },
+            bullets: ["런칭, 카피, QA 논의가 한 흐름에 섞임", "지난 맥락을 스크롤로 거슬러 찾아야함"],
+            align: { left: 55.5 },
+          }}
+          toBe={{
+            label: "TO BE - 메시지별 스레드",
+            image: {
+              src: "/projects/aviera/ks-thread-tobe.webp",
+              width: 914,
+              height: 882,
+              alt: "개선 후: 메시지의 답글이 오른쪽 스레드 창으로 분리된 런칭TF 채팅 화면",
+            },
+            bullets: ["메시지에 답글을 달면 별도 스레드로 분리", "본문은 결론만 간결하게 유지"],
+            align: { center: 465 },
+          }}
+        />
+      </CaseKeyScreen>
+
+      <CaseKeyScreen
+        id="key-screen-2"
+        bottom={100.8}
+        eyebrow="Key Screen 2"
+        icon="/icons/star-cyan.svg"
+        pointColor="#2BC8D9"
+        title="개인 AI Workspace - 슬래시 커맨드 호출"
+        description={[
+          "네이버웍스, Slack AI는 이미 기본 제공합니다.",
+          "자사의 사내메신저는 채팅방 안에서 곧바로 AI를 호출하는 방법이 없었습니다.",
+        ]}
+      >
+        <KsCompare
+          asIs={{
+            label: "AS IS - 단일 채팅방",
+            image: {
+              src: "/projects/aviera/ks-ai-asis.webp",
+              width: 616,
+              height: 882,
+              alt: "개선 전: 채팅방 안에서 AI를 호출할 방법이 없어 다른 AI를 열어 확인해야 하는 1:1 채팅 화면",
+            },
+            bullets: ["AI 기능은 있지만 호출 지점이 안내되지 않음", "6개월 누적 요청 13건"],
+            align: { center: 301.5 },
+          }}
+          toBe={{
+            label: "TO BE - 슬래시 커맨드",
+            image: {
+              src: "/projects/aviera/ks-ai-tobe.webp",
+              width: 914,
+              height: 882,
+              alt: "개선 후: 입력창에서 /claude, /codex, /search 명령어를 고르고 Claude 요약을 나에게만 보이게 받는 채팅 화면",
+            },
+            bullets: ["채팅방에서 /claude, /codex, /search 바로 호출", "결과는 나에게만 보이는 개인 워크스페이스"],
+            align: { center: 466.2 },
+          }}
+          bulletGap={48}
+        />
+      </CaseKeyScreen>
+
+      {/* Figma 원문 그대로: Key Screen 3 제목·설명이 Key Screen 2와 같음 (사용자에게 알림) */}
+      <CaseKeyScreen
+        id="key-screen-3"
+        bottom={190}
+        eyebrow="Key Screen 3"
+        icon="/icons/star-cyan.svg"
+        pointColor="#2BC8D9"
+        title="개인 AI Workspace - 슬래시 커맨드 호출"
+        description={[
+          "네이버웍스, Slack AI는 이미 기본 제공합니다.",
+          "자사의 사내메신저는 채팅방 안에서 곧바로 AI를 호출하는 방법이 없었습니다.",
+        ]}
+      >
+        <KsStat
+          image={{
+            src: "/projects/aviera/ks-integration.webp",
+            width: 969,
+            height: 754,
+            alt: "설정 > 외부 업무 도구 연동 화면: Microsoft Outlook 연결과 일정에 따라 메신저 상태를 자동으로 바꾸는 규칙",
+          }}
+          value="3개+"
+          caption="1차 서드파티 연동 목표"
+          rows={[
+            { label: "AS IS", lines: ["메일함, 캘린더를 오고가며 상태를", "직접 사용자가 바꾸던 흐름"], tone: "asis" },
+            { label: "TO BE", lines: ["예약 메일 감지 → 일정 자동 등록 →", "회의 중 상태 자동 전환"], tone: "tobe" },
+          ]}
+        />
+      </CaseKeyScreen>
     </>
   );
 }

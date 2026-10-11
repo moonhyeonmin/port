@@ -62,6 +62,10 @@ export const REVEAL_SELECTOR = [
   ".case-qs__step",
   ".case-diag__desc",
   ".case-diag__card",
+  ".case-ks__desc",
+  ".case-ks__panel",
+  ".case-ks__stat-figure",
+  ".case-ks__stat-text",
 ].join(", ");
 
 /** 등장 시간은 global.css의 --reveal-duration 기본값(1.2s)과 같게 유지 */
