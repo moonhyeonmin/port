@@ -129,7 +129,7 @@
 }
 
 /* 크레딧: 카드 줄 시작선에 맞춘다 */
-.home:has(.cases--row) .home-credits { max-width: var(--row-max); margin-top: -32px; }
+.home:has(.cases--row) .home-credits { max-width: var(--row-max); margin-top: -60px; }
 @media (max-width: 809.98px) {
-  .home:has(.cases--row) .home-credits { margin-top: -16px; padding-bottom: 48px; }
+  .home:has(.cases--row) .home-credits { margin-top: -32px; padding-bottom: 48px; }
 }
