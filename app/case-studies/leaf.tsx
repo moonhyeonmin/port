@@ -10,6 +10,7 @@ export const leafNav: CaseNavItem[] = [
   { id: "overview", label: "Overview" },
   { id: "research", label: "Research", also: ["survey", "competitor"] },
   { id: "branding", label: "Branding", also: ["packaging"] },
+  { id: "concept", label: "Concept", also: ["onboarding", "add-plant", "today"] },
 ];
 
 /*
@@ -711,6 +712,166 @@ function Packaging() {
   );
 }
 
+
+/* ───── 12 Service Concept (23475 – 26225) ───── */
+function Concept() {
+  const T = 23475;
+  return (
+    <>
+      <Sec id="concept" top={T} h={873} className="lf-concept" label="Service Concept">
+        <Img top={T} x={0} y={T} w={2160} h={873} src="/projects/leaf/concept-bg.webp" className="lf-bgimg" />
+        <Txt top={T} fs={22.5} fw={700} color={G} className="lf-label" lines={[[1079.1, 23798.6, "c", "SERVICE CONCEPT"]]} />
+        <Txt top={T} fs={54} lh={82.1} fw={700} className="lf-h2" lines={[[1087.5, 23886.1, "c", "AI 식물을 키우며 내 마음을 공유해요"]]} />
+        <Txt
+          top={T}
+          fs={22.5}
+          lh={47.2}
+          className="lf-body"
+          lines={[
+            [1095.7, 23965.1, "c", "이전의 경험으로 식물 키우기를 겁냈더라도 괜찮아요. 가상 식물을 키우며 나의 마음과 식물을 이어주고 다양한 방법으로"],
+            [1095.9, 24012.4, "c", "소통할 수 있는 리프 앱을 소개해요. 별안간 깜짝 선물처럼 새잎을 내기도 하고, 강인한 모습에 위로와 용기가 되기도 해요."],
+            [1095.2, 24059.6, "c", "때로는 식물의 죽음을 마주하며 의연하게 나아가는 모습까지도 배울 수 있어요."],
+          ]}
+        />
+      </Sec>
+      <Sec top={24348.4} h={1876.6} className="lf-concept-photo" label="leaf 앱 화면">
+        <Img top={24348.4} x={0} y={24348.4} w={2160} h={1876.6} src="/projects/leaf/concept-photo.webp" className="lf-concept-photo__img" alt="나뭇잎 그림자가 드리운 바닥 위 휴대폰 속 leaf 홈 화면" />
+      </Sec>
+    </>
+  );
+}
+
+/* ───── 13 Onboarding · Main Home (26225 – 30746) ───── */
+const onboardingScreens = [
+  { n: 1, x: 93, y: 26866, w: 690, h: 817, alt: "시작 화면: leaf 로고와 시작하기 버튼" },
+  { n: 3, x: 985, y: 26870, w: 866, h: 825, alt: "성향 테스트 화면: 리프님과 식물의 케미를 알아보기 위한 테스트" },
+  { n: 4, x: 1430, y: 26867, w: 632, h: 829, alt: "장소 선택 화면: 어느 장소에서 식물을 기르고 싶으신가요?" },
+  { n: 5, x: 1614, y: 26871, w: 546, h: 825, alt: "경험 선택 화면: 식물을 키워보신 경험이 있나요?" },
+  { n: 2, x: 173, y: 26814, w: 1243, h: 929, alt: "로그인 화면: 카카오·네이버·애플 간편 로그인" },
+];
+
+function AppIntro() {
+  const T = 26225;
+  return (
+    <Sec id="onboarding" top={T} h={4521} className="lf-app" label="Onboarding · Main Home">
+      <span className="lf-dot is-sm lf-r" style={{ "--x": 975.1, "--y": 26473.2 - T, "--c": "#A8D180" } as CSSProperties} aria-hidden />
+      <Txt top={T} fs={22.5} fw={700} color="#A8D180" className="lf-label" lines={[[993.5, 26481.7, "l", "ONBOARDING"]]} />
+      <Txt
+        top={T}
+        fs={54}
+        lh={82.1}
+        fw={700}
+        color="#474238"
+        className="lf-h2"
+        lines={[
+          [1102.4, 26582.7, "c", "온보딩 화면에서 나와 성향이 잘 맞는"],
+          [1108.6, 26664.8, "c", "식물을 추천받으며 시작해요!"],
+        ]}
+      />
+      <div className="lf-onb">
+        {onboardingScreens.map(({ n, x, y, w, h, alt }) => (
+          <Img key={n} top={T} x={x} y={y} w={w} h={h} src={`/projects/leaf/ob-${n}.webp`} alt={alt} className={`lf-onb__screen is-${n} lf-r`} />
+        ))}
+      </div>
+      {/* 좁은 화면: 온보딩 화면 줄 전체를 가로로 넘겨 본다 */}
+      <div className="lf-xscroll lf-onb-m">
+        <img src="/projects/leaf/ob-row.webp" alt="온보딩 화면 5개: 시작, 로그인, 성향 테스트, 장소 선택, 경험 선택" width={3240} height={1395} loading="lazy" />
+      </div>
+      <Img top={T} x={212} y={27696} w={590} h={626} src="/projects/leaf/ob-line.webp" className="lf-onb__line lf-r" />
+
+      <span className="lf-dot is-sm lf-r" style={{ "--x": 130.2, "--y": 28376.7 - T, "--c": "#A8D180" } as CSSProperties} aria-hidden />
+      <Txt top={T} fs={22.5} fw={700} color="#A8D180" className="lf-label" lines={[[154.4, 28385.2, "l", "MAIN HOME"]]} />
+      <Txt
+        top={T}
+        fs={54}
+        lh={82.1}
+        fw={700}
+        color="#474238"
+        className="lf-h2"
+        lines={[
+          [144.0, 28494.1, "l", "추천 받은 식물은 홈 화면에서"],
+          [144.0, 28576.2, "l", "나의 감정, 성향에 따라 같은 식물이라도 다르게 표현돼요"],
+        ]}
+      />
+      <Img top={T} x={0} y={28700} w={2160} h={1260} src="/projects/leaf/carousel.webp" className="lf-carousel lf-r" alt="추천 식물 화면들: Bird of Paradise, Asparagus, Monstera(홈), Yellow palm, Rubber tree" />
+      <Img top={T} x={396} y={30073} w={1772} h={1106} src="/projects/leaf/home-tablet.webp" className="lf-app__tablet lf-r" alt="가로 화면의 leaf 홈: Monstera" />
+    </Sec>
+  );
+}
+
+/* ───── 14 Add Your Plant (30746 – 34865) ───── */
+function AddPlant() {
+  const T = 30746;
+  return (
+    <Sec id="add-plant" top={T} h={4119} className="lf-add" label="Add Your Plant">
+      <Img top={T} x={0} y={T} w={2160} h={4119} src="/projects/leaf/add-bg.webp" className="lf-bgimg" />
+      <span className="lf-dot is-sm lf-r" style={{ "--x": 169.6, "--y": 31552.6 - T } as CSSProperties} aria-hidden />
+      <Txt top={T} fs={22.5} fw={700} color={G} className="lf-label" lines={[[192.9, 31561.1, "l", "ADD YOUR PLANT"]]} />
+      <Txt
+        top={T}
+        fs={54}
+        lh={82.1}
+        fw={700}
+        className="lf-h2"
+        lines={[
+          [192.4, 31650.8, "l", "홈 화면에서 내 반려 식물을 추가하고"],
+          [192.4, 31732.9, "l", "내 식물에 대한 관련 소식들을 확인 할 수 있어요"],
+        ]}
+      />
+      <Txt
+        top={T}
+        fs={22.5}
+        lh={47.2}
+        className="lf-body"
+        lines={[
+          [192.4, 31808.6, "l", "사용자의 식물 키우기 단계에 따라 키울 수 있는 식물의 수가 달라져요. 중요한 할 일이 있을때는 상단에 알림이 뜨고 홈 화면"],
+          [192.4, 31855.9, "l", "스크롤을 내리면 오늘 할일과 음악, 이모지, 글쓰기, 음성녹음 등 다양한 카드 형식으로 식물 상태와 감정 기록을 작성하는 페이"],
+          [192.4, 31903.1, "l", "지와 내 식물에 남긴 코멘트를 확인할 수 있어요."],
+        ]}
+      />
+      <div className="lf-add__wrap">
+        <Img top={T} x={0} y={32150} w={2160} h={2715} src="/projects/leaf/add-collage.webp" className="lf-add__collage lf-r" alt="홈 화면 구성: Monstera 식물, 할 일 알림, 오늘 할 일 카드, 기록·음악·코멘트 카드 모음과 세로로 긴 홈 화면" />
+      </div>
+    </Sec>
+  );
+}
+
+/* ───── 15 Today's Work (34865 – 36950) ───── */
+function Today() {
+  const T = 34865;
+  return (
+    <Sec id="today" top={T} h={2085} className="lf-today" label="Today's Work">
+      <Img top={T} x={0} y={T} w={2160} h={2085} src="/projects/leaf/today-bg.webp" className="lf-bgimg" />
+      <span className="lf-dot is-sm lf-r" style={{ "--x": 949.2, "--y": 35314.6 - T } as CSSProperties} aria-hidden />
+      <Txt top={T} fs={22.5} fw={700} color={G} className="lf-label" lines={[[969.3, 35323.1, "l", "TODAY’S WORK"]]} />
+      <Txt
+        top={T}
+        fs={54}
+        lh={82.1}
+        fw={700}
+        className="lf-h2"
+        lines={[
+          [1052.0, 35412.8, "c", "홈 화면에서 내 반려 식물을 추가하고"],
+          [1058.3, 35494.9, "c", "내 식물에 대한 관련 소식들을 확인 할 수 있어요"],
+        ]}
+      />
+      <div className="lf-today__stage">
+        <p className="lf-chip is-white lf-r" style={{ "--x": 353.25, "--y": 36299.2 - T, "--o": 0.83, "--from": -1 } as CSSProperties}>
+          <Txt top={36299.2} fs={26.29} ls={-0.643} color="#424242" lines={[[37.5, 36361.9, "l", "오늘은 물을 흠뻑 주는 날이예요"]]} />
+        </p>
+        <p className="lf-chip is-white lf-r" style={{ "--x": 1230.75, "--y": 36228.4 - T, "--o": 0.58, "--from": 1 } as CSSProperties}>
+          <Txt top={36228.4} fs={26.29} ls={-0.643} color="#4D4D4D" lines={[[37.5, 36291.0, "l", "햇빛을 받을 수 있도록 화분 위치를 옮겨주세요"]]} />
+        </p>
+        <Img top={T} x={849} y={35614} w={459} h={934} src="/projects/leaf/today-phone.webp" className="lf-today__phone lf-r" alt="오늘 할 일 화면: 몬스테라와 선인장의 할 일 목록, 물주러 가기 버튼" />
+        <p className="lf-chip is-green lf-r" style={{ "--x": 280.125, "--y": 35934.8 - T, "--from": -1 } as CSSProperties}>
+          <Txt top={35934.8} fs={26.29} fw={700} ls={-0.643} color="#474238" lines={[[37.5, 35997.4, "l", "환기가 필요해요! 창문을 열어주세요"]]} />
+          <span className="lf-chip__check" aria-hidden>✓</span>
+        </p>
+      </div>
+    </Sec>
+  );
+}
+
 export default function LeafCaseStudy(_: CaseStudyProps) {
   return (
     <div className="lf">
@@ -725,6 +886,10 @@ export default function LeafCaseStudy(_: CaseStudyProps) {
       <ShadowLogo />
       <LogoSystem />
       <Packaging />
+      <Concept />
+      <AppIntro />
+      <AddPlant />
+      <Today />
     </div>
   );
 }

@@ -368,3 +368,83 @@
   .lf-package .lf-sec__inner { display: flex; flex-direction: column; gap: 14px; padding-top: 0; }
   .lf-package__photo { margin: 0 -24px 10px; width: calc(100% + 48px); }
 }
+
+/* ───── 3단계: 서비스 콘셉트 ~ 오늘 할 일 ───── */
+.lf-bgimg { z-index: 0; pointer-events: none; }
+.lf-concept, .lf-add, .lf-today { background: #292724; }
+.lf-concept { background: #161616; }
+.lf-concept-photo { overflow: hidden; background: #8a8378; }
+@media (prefers-reduced-motion: no-preference) {
+  .lf-concept-photo__img { animation: lf-sway 10s ease-in-out infinite alternate; }
+}
+.lf-dot.is-sm { top: calc(var(--u) * (var(--y) - 4.22)); left: calc(var(--u) * (var(--x) - 4.22)); width: calc(var(--u) * 8.44); height: calc(var(--u) * 8.44); background: var(--c, var(--g)); }
+
+.lf-app { position: relative; z-index: 2; background: #fffcf5; }
+@media (prefers-reduced-motion: no-preference) {
+  .js .lf-onb__screen.lf-r:not(.is-revealed) { transform: translateY(calc(var(--u) * 80)); }
+  html.js .lf-onb__screen.is-revealed.is-revealed.is-revealed { transition-duration: 1.1s; }
+  html.js .lf-onb__screen.is-2.is-revealed.is-revealed.is-revealed { transition-delay: 150ms; }
+  html.js .lf-onb__screen.is-3.is-revealed.is-revealed.is-revealed { transition-delay: 300ms; }
+  html.js .lf-onb__screen.is-4.is-revealed.is-revealed.is-revealed { transition-delay: 450ms; }
+  html.js .lf-onb__screen.is-5.is-revealed.is-revealed.is-revealed { transition-delay: 600ms; }
+  .js .lf-onb__line:not(.is-revealed) { clip-path: inset(0 0 100% 0); }
+  .lf-onb__line { transition: clip-path 1.6s ease 0.6s; }
+  .js .lf-carousel:not(.is-revealed) { transform: translateX(calc(var(--u) * 160)); }
+  .js .lf-app__tablet:not(.is-revealed) { transform: translateY(calc(var(--u) * 120)) scale(0.96); }
+}
+@media (hover: hover) {
+  .lf-onb__screen { transition: translate 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .lf-onb__screen:hover { translate: 0 calc(var(--u) * -16); z-index: 3; }
+}
+
+.lf-add { z-index: 1; }
+@media (prefers-reduced-motion: no-preference) {
+  .js .lf-add__collage:not(.is-revealed) { transform: translateY(calc(var(--u) * 60)); }
+}
+
+.lf-today__stage { position: absolute; inset: 0; pointer-events: none; }
+.lf-onb-m { display: none; }
+.lf-add__wrap { display: contents; }
+.lf-chip {
+  position: absolute;
+  top: calc(var(--u) * var(--y));
+  left: calc(var(--u) * var(--x));
+  width: calc(var(--u) * 662.8);
+  height: calc(var(--u) * 107);
+  margin: 0;
+  border-radius: calc(var(--u) * 30);
+}
+.lf-chip.is-white { background: rgb(255 255 255 / var(--o)); }
+.lf-chip.is-green { background: var(--g); box-shadow: 0 calc(var(--u) * 3.4) calc(var(--u) * 37) rgb(0 0 0 / 0.21); }
+.lf-chip__check { position: absolute; top: calc(var(--u) * 26); left: calc(var(--u) * 595.2); font-size: calc(var(--u) * 37.55); line-height: 1; color: #474238; }
+@media (prefers-reduced-motion: no-preference) {
+  .js .lf-chip.lf-r:not(.is-revealed) { transform: translateX(calc(var(--u) * 140 * var(--from))); }
+  html.js .lf-chip.is-revealed.is-revealed.is-revealed { transition-delay: 500ms; }
+  html.js .lf-chip.is-green.is-revealed.is-revealed.is-revealed { transition-delay: 900ms; }
+  .lf-today__phone { animation: lf-float 6s ease-in-out infinite alternate; }
+}
+
+@media (max-width: 1099.98px) {
+  .lf-concept .lf-sec__inner { padding-block: 64px; }
+  .lf-bgimg { display: none !important; }
+  .lf-concept-photo .lf-sec__inner { padding: 0; }
+  .lf-dot.is-sm { display: none; }
+  .lf-onb { display: none; }
+  .lf-xscroll { display: block; margin: 28px -24px 0; overflow-x: auto; scrollbar-width: none; }
+  .lf-xscroll::-webkit-scrollbar { display: none; }
+  .lf-onb-m img { display: block; width: 260%; max-width: none; height: auto; }
+  .lf-add__wrap { display: block; margin: 32px -24px 0; overflow-x: auto; scrollbar-width: none; }
+  .lf-add__wrap::-webkit-scrollbar { display: none; }
+  .lf-onb__line { display: none; }
+  .lf-app .lf-sec__inner > .lf-label:nth-of-type(2) { margin-top: 56px; }
+  .lf-carousel { margin: 24px -24px 0; width: calc(100% + 48px); }
+  .lf-app__tablet { margin-top: 24px; }
+  .lf-add .lf-sec__inner { background: linear-gradient(#1c1b19, #292724); }
+  .lf-add__collage { width: 200%; max-width: none; }
+  .lf-today .lf-sec__inner { padding-bottom: 56px; background: radial-gradient(120% 60% at 50% 100%, rgb(90 96 66 / 0.6), transparent 70%); }
+  .lf-today__stage { position: relative; display: grid; justify-items: center; gap: 12px; margin-top: 32px; }
+  .lf-today__phone { width: 60%; order: -1; }
+  .lf-chip { position: relative; top: auto; left: auto; display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 360px; height: auto; padding: 14px 18px; border-radius: 16px; }
+  .lf-chip .lf-t { --mfs: 14px; }
+  .lf-chip__check { position: static; font-size: 18px; }
+}
