@@ -62,8 +62,11 @@ export default function CaseStudy({ loaderData }: Route.ComponentProps) {
           <h1 className="case__title">{project.title}</h1>
           <p className="muted">{project.summary}</p>
           <div className="tags">
-            <span className="tag">{project.company}</span>
-            <span className="tag">{project.year}</span>
+            {project.tags.map((tag) => (
+              <span key={tag} className="tag">
+                {tag}
+              </span>
+            ))}
           </div>
         </header>
 

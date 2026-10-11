@@ -349,7 +349,7 @@ export default function DesignSystemCaseStudy({ index, nextSlug }: CaseStudyProp
           ],
           highlight: "→ 반복되는 문제는 규칙으로, 규칙이 지켜지지 않을 경우에는 도구로",
         }}
-        next={{ to: `/case-studies/${nextSlug}`, title: "데이터 기반 사내메신저 개선" }}
+        next={{ to: `/case-studies/${nextSlug}`, title: "데이터 기반 사내 메신저 개선" }}
       />
     </>
   );
