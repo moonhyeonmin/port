@@ -22,6 +22,8 @@ export const REVEAL_SELECTOR = [
   ".resume-row",
   ".resume-job",
   ".resume-project",
+  // leaf
+  ".lf-r",
   // 케이스 스터디
   ".case-page .case-eyebrow",
   ".case-page .case-h2",

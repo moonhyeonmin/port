@@ -1,0 +1,227 @@
+/*
+ * leaf 케이스 스터디 (app/case-studies/leaf.tsx)
+ * 데스크톱(1100px~): 디자인 좌표 배치. --u = 디자인 1px (2160 기준, 최대 1px)
+ * 그 아래: 위→아래 흐름 배치
+ */
+.case-page:has(.lf) { padding-top: 0; background: #292724; }
+.lf {
+  --g: #cfff9f;
+  --u: min(100cqw / 2160, 1px);
+  font-family: var(--font-kr);
+  color: #fff;
+  background: #292724;
+  word-break: keep-all;
+}
+.lf em { font-style: normal; color: var(--g); }
+
+/* ── 공통: 디자인 좌표 배치 ── */
+.lf-sec { position: relative; }
+.lf-sec__inner { position: relative; width: calc(var(--u) * 2160); height: calc(var(--u) * var(--h)); margin-inline: auto; }
+.lf-t {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  font-size: calc(var(--u) * var(--fs));
+  line-height: calc(var(--u) * var(--lh));
+  letter-spacing: calc(var(--u) * var(--ls));
+  pointer-events: none;
+}
+.lf-t__line { position: absolute; top: calc(var(--u) * var(--y)); left: calc(var(--u) * var(--x)); white-space: pre; }
+.lf-t__line.is-c { translate: -50% 0; }
+.lf-t__line.is-r { translate: -100% 0; }
+.lf-img { position: absolute; top: calc(var(--u) * var(--y)); left: calc(var(--u) * var(--x)); width: calc(var(--u) * var(--w)); max-width: none; height: auto; }
+
+/* 01 Hero */
+.lf-hero { overflow: hidden; background: #a69f98; }
+.lf-hero__photo { animation: lf-hero-zoom 2.4s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+@keyframes lf-hero-zoom { from { transform: scale(1.06); } }
+.lf-hero__badge {
+  position: absolute;
+  top: calc(var(--u) * 65.25);
+  left: calc(var(--u) * 2011.5);
+  display: grid;
+  place-items: center;
+  width: calc(var(--u) * 95.63);
+  height: calc(var(--u) * 95.63);
+  background: #474238;
+  border-radius: calc(var(--u) * 24.6);
+}
+.lf-hero__badge img { width: calc(var(--u) * 47.4); height: auto; }
+.lf-hero__logo { position: absolute; top: calc(var(--u) * 495); left: calc(var(--u) * 899.9); margin: 0; line-height: 0; }
+.lf-hero__logo > img:first-child { width: calc(var(--u) * 389.8); height: auto; margin-top: calc(var(--u) * 12.7); }
+.lf-hero__clover { position: absolute; top: 0; left: calc(var(--u) * (1314.9 - 899.9)); width: calc(var(--u) * 58.74); height: auto; }
+.lf-hero__start {
+  position: absolute;
+  top: calc(var(--u) * 830.25);
+  left: calc(var(--u) * 839.25);
+  display: grid;
+  place-items: center;
+  width: calc(var(--u) * 526.5);
+  height: calc(var(--u) * 77.55);
+  font-size: calc(var(--u) * 27.41);
+  font-weight: 700;
+  letter-spacing: calc(var(--u) * -0.427);
+  color: #fff;
+  background: rgb(255 255 255 / 0.2);
+  border-radius: calc(var(--u) * 24.75);
+  -webkit-backdrop-filter: blur(calc(var(--u) * 61));
+  backdrop-filter: blur(calc(var(--u) * 61));
+  transition: background-color 0.3s, transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.lf-hero__start:hover { background: rgb(255 255 255 / 0.32); transform: translateY(calc(var(--u) * -4)); }
+/* 첫 화면 등장: 로고 → 클로버 → 버튼 */
+@media (prefers-reduced-motion: no-preference) {
+  .lf-hero__logo > img:first-child { animation: lf-rise 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s both; }
+  .lf-hero__clover { animation: lf-pop 0.9s cubic-bezier(0.3, 1.4, 0.4, 1) 0.9s both; }
+  .lf-hero__start { animation: lf-rise 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.6s both; }
+  .lf-hero__meta, .lf-hero__badge { animation: lf-fade 1.2s ease 0.8s both; }
+}
+@keyframes lf-rise { from { opacity: 0; transform: translateY(calc(var(--u) * 40)); } }
+@keyframes lf-pop { from { opacity: 0; transform: scale(0.3) rotate(-90deg); } }
+@keyframes lf-fade { from { opacity: 0; } }
+
+/* 02 Overview */
+.lf-overview { background: #292724; }
+.lf-overview__logo { position: absolute; top: calc(var(--u) * (1644.2 - 1329)); left: calc(var(--u) * 157.5); line-height: 0; }
+.lf-overview__logo > img:first-child { width: calc(var(--u) * 154); height: auto; margin-top: calc(var(--u) * 4.5); }
+.lf-overview__clover { position: absolute; top: 0; left: calc(var(--u) * (322.9 - 157.5)); width: calc(var(--u) * 16); height: auto; }
+
+/* 03 Background */
+.lf-background { background: #161616; }
+.lf-background__panel { position: absolute; inset: 0 auto 0 0; width: calc(var(--u) * 1078); background: #161616; }
+
+/* 04 User Research */
+.lf-research { z-index: 1; background: #fffcf5; }
+.lf-research__card { opacity: 0.2; }
+@media (prefers-reduced-motion: no-preference) {
+  .lf-research__card { animation: lf-float 6s ease-in-out infinite alternate; }
+  .lf-research__card.is-b, .lf-research__card.is-e { animation-delay: -2s; animation-duration: 7s; }
+  .lf-research__card.is-c, .lf-research__card.is-f { animation-delay: -4s; animation-duration: 5.5s; }
+}
+@keyframes lf-float { from { transform: translateY(calc(var(--u) * -14)); } to { transform: translateY(calc(var(--u) * 14)); } }
+
+/* 05 Survey · Insight · Quote */
+.lf-survey { background: #292724; }
+.lf-dot { position: absolute; top: calc(var(--u) * (var(--y) - 8.44)); left: calc(var(--u) * (var(--x) - 8.44)); width: calc(var(--u) * 16.88); height: calc(var(--u) * 16.88); background: var(--g); border-radius: 50%; }
+.lf-pie { position: absolute; top: calc(var(--u) * var(--y)); left: calc(var(--u) * var(--x)); width: calc(var(--u) * 387); aspect-ratio: 1; container-type: inline-size; }
+.lf-pie > * { --u: calc(100cqw / 387); }
+.lf-pie svg { display: block; width: 100%; height: 100%; }
+.lf-pie__a, .lf-pie__b { transform-origin: 1100.25px 6007.5px; transform-box: view-box; }
+@media (prefers-reduced-motion: no-preference) {
+  .js .lf-pie:not(.is-revealed) .lf-pie__a, .js .lf-pie:not(.is-revealed) .lf-pie__b { transform: scale(0.6) rotate(-40deg); opacity: 0; }
+  .lf-pie__a, .lf-pie__b { transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s, opacity 0.8s ease 0.3s; }
+  .lf-pie__b { transition-delay: 0.5s; }
+}
+
+.lf-bars, .lf-bars__rows { position: absolute; inset: 0; margin: 0; padding: 0; list-style: none; pointer-events: none; }
+.lf-bar { position: absolute; top: calc(var(--u) * var(--y)); left: calc(var(--u) * var(--x)); width: calc(var(--u) * var(--w)); height: calc(var(--u) * var(--bh)); }
+.lf-bar__fill { position: absolute; inset: 0; background: #45423f; border-radius: calc(var(--u) * 9); transform-origin: left; }
+.lf-bar.is-top .lf-bar__fill { background: #161616; }
+@media (prefers-reduced-motion: no-preference) {
+  .js .lf-bar:not(.is-revealed) .lf-bar__fill { transform: scaleX(0); }
+  .lf-bar__fill { transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) calc(var(--reveal-delay, 0ms) + 200ms); }
+}
+
+.lf-survey__line {
+  position: absolute;
+  top: calc(var(--u) * (7770.4 - 5180));
+  left: calc(var(--u) * (1078.9 - 1.69));
+  width: calc(var(--u) * 3.375);
+  height: calc(var(--u) * 308.2);
+  background: repeating-linear-gradient(to bottom, #fff 0 calc(var(--u) * 6.75), transparent 0 calc(var(--u) * 13.5));
+  -webkit-mask: linear-gradient(#000, transparent);
+  mask: linear-gradient(#000, transparent);
+}
+.lf-insights { position: absolute; inset: 0; margin: 0; padding: 0; list-style: none; pointer-events: none; }
+.lf-insight {
+  position: absolute;
+  top: calc(var(--u) * var(--y));
+  left: calc(var(--u) * var(--x));
+  width: calc(var(--u) * 499.5);
+  aspect-ratio: 1;
+  container-type: inline-size;
+  background: #161616;
+  border-radius: 50%;
+  box-shadow: 0 0 calc(var(--u) * 20.25) rgb(0 0 0 / 0.25);
+}
+.lf-insight > * { --u: calc(100cqw / 499.5); }
+.lf-quote { position: absolute; inset: 0; margin: 0; pointer-events: none; }
+.lf-quote__mark {
+  position: absolute;
+  top: calc(var(--u) * (var(--y) - 78.75 * 1.16));
+  left: calc(var(--u) * var(--x));
+  font-family: "Potta One", var(--font-kr);
+  font-size: calc(var(--u) * 78.75);
+  line-height: 1.45;
+}
+
+/* ── 등장 효과(Reveal)는 useReveal의 .lf-r. 아래는 1100px 미만 흐름 배치 ── */
+@media (max-width: 1099.98px) {
+  .lf { --u: 1px; }
+  .lf-sec__inner { width: auto; height: auto; padding: 72px 24px; }
+  .lf-t { position: static; inset: auto; font-size: var(--mfs, 16px); line-height: 1.6; letter-spacing: 0; pointer-events: auto; }
+  .lf-t__line { position: static; translate: none; white-space: normal; }
+  .lf-t__line + .lf-t__line::before { content: " "; }
+  .lf-t.is-c { text-align: center; }
+  .lf-t.is-r { text-align: right; }
+  .lf-img { position: static; display: block; width: 100%; }
+  .lf-label { --mfs: 13px; margin-bottom: 12px; font-weight: 700; letter-spacing: 0.04em; }
+  .lf-h2 { --mfs: 26px; line-height: 1.4; margin-bottom: 16px; }
+  .lf-body, .lf-source { --mfs: 15px; }
+  .lf-statement { --mfs: 21px; line-height: 1.5; margin-block: 28px; }
+
+  /* Hero: 사진을 채우고 가운데 정렬 */
+  .lf-hero .lf-sec__inner { display: grid; place-items: center; min-height: min(78svh, 640px); padding: 0; }
+  .lf-hero__photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .lf-hero__meta { position: absolute; top: 16px; right: 72px; text-align: right; --mfs: 11px; line-height: 1.5; }
+  .lf-hero__meta .lf-t__line { display: block; }
+  .lf-hero__meta .lf-t__line::before { content: none !important; }
+  .lf-hero__badge { top: 12px; left: auto; right: 16px; width: 44px; height: 44px; border-radius: 12px; }
+  .lf-hero__badge img { width: 22px; }
+  .lf-hero__logo { position: relative; top: auto; left: auto; display: flex; flex-direction: column; align-items: center; gap: 28px; }
+  .lf-hero__logo > img:first-child { width: min(46vw, 260px); margin: 0; }
+  .lf-hero__clover { top: -6px; left: auto; right: -34px; width: min(7vw, 40px); }
+  .lf-hero__start { position: absolute; top: auto; left: 50%; bottom: 22%; width: min(70vw, 320px); height: 50px; font-size: 16px; letter-spacing: 0; border-radius: 16px; translate: -50% 0; }
+
+  .lf-overview__logo { position: relative; top: auto; left: auto; display: inline-block; margin-bottom: 28px; }
+  .lf-overview__icons { width: 60px; margin-bottom: 28px; }
+  .lf-overview__logo > img:first-child { width: 96px; margin: 0; }
+  .lf-overview__clover { left: auto; right: -16px; width: 11px; }
+
+  .lf-background .lf-sec__inner { padding: 0; }
+  .lf-background__panel { display: none; }
+  .lf-background .lf-t { padding-inline: 24px; }
+  .lf-background .lf-label { padding-top: 64px; }
+  .lf-background .lf-h2 { padding-bottom: 48px; }
+
+  .lf-research .lf-sec__inner { padding-bottom: 0; }
+  .lf-research__stage { margin: 24px -24px 0; }
+  .lf-research__card { display: none; }
+  .lf-research__tablet { width: 120%; margin-left: -10%; }
+
+  .lf-survey { background: #292724 url(/projects/leaf/survey-bg.webp) top / 100% auto no-repeat; }
+  .lf-survey__bg { display: none !important; }
+  .lf-dot { position: relative; top: auto; left: auto; display: inline-block; width: 10px; height: 10px; margin-right: 8px; vertical-align: middle; }
+  .lf-survey .lf-dot + .lf-t { display: inline; --mfs: 17px; }
+  .lf-survey .lf-dot ~ .lf-source { margin-top: 6px; }
+  .lf-pie { position: relative; top: auto; left: auto; width: min(72vw, 300px); margin: 24px auto 0; }
+  .lf-pie .lf-t { position: absolute; inset: 0; font-size: calc(var(--u) * var(--fs)); line-height: calc(var(--u) * var(--lh)); }
+  .lf-pie .lf-t__line { position: absolute; white-space: pre; }
+  .lf-pie .lf-t__line + .lf-t__line::before { content: none; }
+  .lf-bars { position: static; margin-top: 40px; }
+  .lf-bars__rows { position: static; display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+  .lf-bar { position: relative; top: auto; left: auto; display: flex; align-items: center; justify-content: space-between; width: calc(var(--w) / 586.1 * 100%); min-width: 150px; height: auto; min-height: 40px; padding: 8px 14px; }
+  .lf-bar.is-top { min-height: 52px; }
+  .lf-bar .lf-t { position: relative; --mfs: 13px; white-space: nowrap; }
+  .lf-bar.is-top .lf-t { --mfs: 15px; }
+  .lf-bar__fill { border-radius: 8px; }
+  .lf-survey__line { position: relative; top: auto; left: auto; display: block; height: 120px; margin: 48px auto; translate: -1px 0; width: 2px; background: repeating-linear-gradient(to bottom, #fff 0 4px, transparent 0 8px); }
+  .lf-insights { position: static; display: grid; gap: 16px; justify-items: center; margin-top: 32px; pointer-events: auto; }
+  .lf-insight { position: relative; top: auto; left: auto; width: min(72vw, 280px); }
+  .lf-insight .lf-t { position: absolute; inset: 0; font-size: calc(var(--u) * var(--fs)); line-height: calc(var(--u) * var(--lh)); letter-spacing: calc(var(--u) * var(--ls)); }
+  .lf-insight .lf-t__line { position: absolute; white-space: pre; }
+  .lf-insight .lf-t__line + .lf-t__line::before { content: none; }
+  .lf-quote { position: static; margin-top: 72px; text-align: center; }
+  .lf-quote .lf-t { display: inline; --mfs: 26px; line-height: 1.45; font-weight: 700; }
+  .lf-quote__mark { position: static; display: inline; font-size: 30px; line-height: 1; vertical-align: top; }
+}
