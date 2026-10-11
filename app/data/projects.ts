@@ -50,6 +50,8 @@ export const projects: Project[] = [
     year: 2024,
     summary: "사내 메신저 경험 개선 프로젝트.",
     tone: "gray",
+    // Figma "framer 이전용" > 사내메신저_cover image, 4:3
+    thumbnail: "/projects/aviera/thumb.webp",
   },
 ];
 
