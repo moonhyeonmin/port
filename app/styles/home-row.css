@@ -23,9 +23,9 @@
 }
 /* 히어로와 카드 사이 간격: 화면 높이에 맞춰 넉넉하게 (카드를 화면 아래쪽으로) */
 .home:has(.cases--row) {
-  --row-top: clamp(56px, 13svh, 136px);
+  --row-top: clamp(56px, 13svh / var(--vz), 136px);
   /* 카드 너비: 히어로 아래 남은 높이를 넘지 않게 (썸네일 4:3) */
-  --row-card: clamp(200px, (100svh - 464px - var(--row-top)) * 1.333, 440px);
+  --row-card: clamp(200px, (100svh / var(--vz) - 464px - var(--row-top)) * 1.333, 440px);
   --row-max: calc(var(--row-card) * 4 + 60px + var(--gutter) * 2);
 }
 .home:has(.cases--row) .hero { padding-bottom: var(--row-top); }

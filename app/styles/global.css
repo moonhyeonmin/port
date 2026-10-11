@@ -1,4 +1,15 @@
 /* ─── Design tokens (Tabfolio 템플릿 기준) ─── */
+/*
+ * 사이트 기본 배율: 넓은 화면(1280px~)에서 전체를 80%로 보여 준다
+ * (사용자 요청: Chrome에서 ⌘− 두 번 누른 80% 화면이 기본이 되도록).
+ * zoom 안에서는 vw·vh 단위가 줄지 않으므로, 화면 크기 단위를 쓰는 곳은 calc(… / var(--vz))로 나눈다.
+ */
+:root { --vz: 1; }
+@media (min-width: 1280px) {
+  html { zoom: 0.8; }
+  :root { --vz: 0.8; }
+}
+
 :root {
   --font-sans: "Manrope", "Pretendard Variable", Pretendard, -apple-system,
     BlinkMacSystemFont, system-ui, sans-serif;
@@ -68,7 +79,7 @@ a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
 img, video { display: block; max-width: 100%; }
 
-.page { min-height: 100vh; display: flex; flex-direction: column; }
+.page { min-height: calc(100vh / var(--vz)); display: flex; flex-direction: column; }
 .page > main { flex: 1; }
 .container {
   width: 100%;
@@ -250,7 +261,7 @@ img, video { display: block; max-width: 100%; }
   left: 50%;
   display: flex;
   align-items: center;
-  max-width: calc(100vw - 32px);
+  max-width: calc(100vw / var(--vz) - 32px);
   padding: 4px 4px 4px 20px;
   font-family: var(--font-sans);
   font-size: 14px;

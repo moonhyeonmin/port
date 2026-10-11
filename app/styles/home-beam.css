@@ -30,7 +30,7 @@
   z-index: -1;
   inset: 0 0 auto;
   /* 원본과 같은 비율: 화면 너비의 약 0.88배 높이 */
-  height: max(100svh, 88vw);
+  height: max(100svh / var(--vz), 88vw / var(--vz));
   pointer-events: none;
   /* WebGL을 못 쓸 때 보이는 정지 그라디언트 */
   background:
@@ -76,7 +76,7 @@
 .page.is-home-beam .hero__inner { gap: 20px; }
 .page.is-home-beam .hero__title {
   /* 낮은 화면에서도 카드 띠가 한 화면에 들어오도록 높이에도 맞춰 줄인다 */
-  font-size: clamp(36px, min(4.6vw, 7.4svh), 64px);
+  font-size: clamp(36px, min(4.6vw, 7.4svh) / var(--vz), 64px);
   font-weight: 700;
   line-height: 1.18;
   letter-spacing: -0.035em;
