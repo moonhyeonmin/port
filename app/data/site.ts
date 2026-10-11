@@ -12,7 +12,7 @@ export const site = {
     "브랜드와 UI로 시작해, 스타트업에서 제품을 처음부터 만들고, 보안 기업에서 AI 제품의 UX를",
     "설계해 왔습니다. 감각과 구조를 함께 디자인하는 프로덕트 디자이너 조수연입니다.",
   ],
-  heroTitle: ["보기 좋은 화면에,", "믿고 쓰는 경험으로."],
+  heroTitle: ["보기 좋은 화면에서,", "믿고 쓰는 경험으로."],
   email: "whtnska913@gmail.com",
   url: "https://port-five-peach-95.vercel.app",
 };
