@@ -197,7 +197,11 @@ export default function About() {
 
       <section className="container about-cta-wrap" aria-label="연락하기">
         <div className="about-cta">
-          <p className="about-cta__title">조수연입니다. 잘 부탁드립니다.</p>
+          <p className="about-cta__title">
+            조수연입니다.
+            <br />
+            잘 부탁드립니다.
+          </p>
           <div className="about-cta__actions">
             <a className="about-cta__btn is-primary" href={`mailto:${site.email}`}>
               이메일 보내기
