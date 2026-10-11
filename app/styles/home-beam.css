@@ -126,3 +126,6 @@
   .page.is-home-beam .card__title { font-size: 18px; }
   .home-beam { height: max(100svh, 720px); }
 }
+
+.page.is-home-beam .home-credits { color: rgb(225 232 255 / 0.5); }
+.page.is-home-beam .home-credits__role { color: rgb(225 232 255 / 0.78); }

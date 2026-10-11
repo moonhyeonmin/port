@@ -41,9 +41,28 @@ export default function Home() {
           ))}
         </section>
       )}
+
+      <section className="container home-credits" aria-labelledby="home-credits-title">
+        <h2 id="home-credits-title" className="home-credits__title">
+          TOOLS &amp; CREDITS
+        </h2>
+        <ul className="home-credits__list">
+          {credits.map(({ role, tool }) => (
+            <li key={role}>
+              <span className="home-credits__role">{role}</span> — {tool}
+            </li>
+          ))}
+        </ul>
+      </section>
     </div>
   );
 }
+
+const credits = [
+  { role: "UI/UX Design & Interaction", tool: "Figma" },
+  { role: "Web Development", tool: "Claude Code (AI-assisted)" },
+  { role: "Responsive Design & QA", tool: "Cross-device layout verification and design refinement" },
+];
 
 /** 프로젝트 카드 한 줄: 한 화면에 4장, 나머지는 가로 스크롤(양옆 화살표 버튼) */
 function CasesRow() {

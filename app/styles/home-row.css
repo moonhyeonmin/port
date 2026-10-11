@@ -127,3 +127,9 @@
 @media (min-width: 810px) and (max-width: 1279.98px) {
   .cases-scroll { --row-gap: 14px; --row-peek: 56px; }
 }
+
+/* 크레딧: 카드 줄 시작선에 맞춘다 */
+.home:has(.cases--row) .home-credits { max-width: var(--row-max); margin-top: -32px; }
+@media (max-width: 809.98px) {
+  .home:has(.cases--row) .home-credits { margin-top: -16px; padding-bottom: 48px; }
+}

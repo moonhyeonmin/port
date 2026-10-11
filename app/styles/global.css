@@ -2281,3 +2281,9 @@ img, video { display: block; max-width: 100%; }
   .footer__inner { grid-template-columns: 1fr 1fr; gap: 16px; }
   .footer__intro { grid-column: 1 / -1; }
 }
+
+/* 홈 카드 아래 작은 제작 도구·크레딧 */
+.home-credits { padding-bottom: 72px; font-size: 13px; line-height: 1.7; color: var(--color-muted); }
+.home-credits__title { margin-bottom: 8px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; }
+.home-credits__list { margin: 0; padding: 0; list-style: none; }
+.home-credits__role { color: var(--color-text); }
