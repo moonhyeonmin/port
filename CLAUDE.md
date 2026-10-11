@@ -177,13 +177,23 @@ Figma 프레임 이름은 `fireside_*` (제품명 Fireside). 흰 바탕, 강조�
 - 사용자 요청으로 Figma와 다르게 바꾼 것: Summary 회색 카드 3개는 모두 두 번째 카드(68%↓) 그라디언트를 쓴다 (Figma 3·4번 카드 그라디언트는 색 지점이 뒤섞여 대각선 줄무늬가 생김).
 - 디자인이 있는 페이지는 라우트에서 TOC나 Next 카드를 덧붙이지 않는다. Next Project도 09 섹션 디자인대로 그린다.
 
-### leaf 가상 식물키우기 (`/case-studies/leaf`, `app/case-studies/leaf.tsx`)
+### leaf 가상 식물키우기 (`/case-studies/leaf`, `app/case-studies/leaf.tsx`, `app/styles/leaf.css`)
 
-디자인(`design-src/leaf.svg`, 2160×63865)은 설치되지 않은 글꼴(Nexa, Nagoda 등)과 큰 사진이 섞인 긴 비주얼 페이지라 HTML로 다시 짜지 않고, Figma PNG(`leaf.png`, 1109 너비)를 1640px 높이 조각 20장으로 잘라 이어 붙였다(`public/projects/leaf/band-*.webp`). 조각마다 alt에 그 구간의 SVG 본문 문구를 넣었다. 너비 1109라 큰 화면에서는 약간 흐리므로, Figma에서 2배 PNG를 받으면 교체한다. 프로젝트 목록 마지막(5번째)이라 홈 카드 줄은 가로 스크롤(4장 보이고 화살표 버튼).
+사이드 프로젝트. 디자인은 `design-src/leaf.svg`(2160×63865, 글자 포함) + `leaf.png`이고, 레지스트리에서 `theme: "dark"`. 다른 케이스 스터디처럼 **요소 단위로 다시 만들었다**: 글자·도형·차트·표·칩은 HTML/CSS, 사진과 앱 목업만 SVG 원본을 브라우저에서 2배로 렌더링해 잘라낸 WebP(`public/projects/leaf/`)로 넣는다. 공통 `Case*` 컴포넌트는 쓰지 않고 파일 안의 전용 컴포넌트로 SVG 좌표를 그대로 옮긴다.
+
+- 좌표 방식: `.lf`가 `--u: min(100cqw / 2160, 1px)`. 섹션 `Sec`(디자인 시작 y `top`, 높이 `h` → `--h`), 이미지 `Img`(`x`,`y`,`w`,`h` 디자인 좌표), 글자 `Txt`(줄마다 `[x, 기준선 y, 정렬 l/c/r, 내용]`). 줄 상자 위치 = 기준선 − 줄높이/2 − 0.355 × 글자 크기(Pretendard).
+- 1100px 미만은 같은 요소를 위→아래 흐름으로 쌓고, 글자는 줄을 이어 붙인다(`--mfs` 등 모바일 크기). 가로로 긴 목업 줄(온보딩, My Page 폰 등)은 한 장 이미지나 가로 스크롤로 보여 준다.
+- 섹션(25개, 각 함수 위 주석에 디자인 y 구간): Hero, Overview, Background, Research, Survey(막대·원 차트 HTML/SVG), Competitor(표), Hypothesis, BrandIntro, ShadowLogo, LogoSystem, Packaging, Concept, AppIntro(온보딩·메인 홈), AddPlant, Today(칩), Growing, Healing, PotCustom, Diary, Voice(파형·녹음 물결), Analyze, Community, MyPage, Devices(사진), Screens(전체 화면 모음 + HTML "OVERVIEW" 라벨). 마지막은 디자인대로 Next Project 없이 푸터로 끝난다.
+- 내비 `leafNav`: Project / Overview / Research / Branding / Concept / Features / Screens (`also`로 하위 섹션 묶음).
+- 글꼴: 유료 글꼴 대체. 로고 글자(Nexa)는 커버에서 따낸 벡터 `Wordmark`, 클로버는 `Clover`(`app/case-studies/leaf-marks.tsx`, `public/icons/leaf-wordmark.svg`·`leaf-clover.svg`). 인용 부호는 Potta One, ✤는 Kaisei Decol(`root.tsx`에서 해당 글자만 text-subset으로 불러옴). 이미지로 렌더링한 부분의 Nagoda는 Jost 600으로 대체했다. 나머지 본문은 Pretendard.
+- 인터랙션: `.lf-r`가 `REVEAL_SELECTOR`에 있다(등장). 항목별 지연·방향은 인라인 `--from` 등과 `html.js .x.is-revealed.is-revealed.is-revealed` 규칙으로 덮어쓴다. 숫자는 `CountUp`.
+- 사용자 요청으로 Figma와 다르게 바꾼 것: 문구의 겹친 띄어쓰기를 한 칸으로, Community 라벨 "COMUNITY" → "COMMUNITY".
+- 주의: 칩처럼 안에 `Txt`(=`<p>`)를 넣는 래퍼는 `<div>`로 만든다(`<p>` 중첩은 hydration 오류).
+- 홈 카드 목록에서는 5번째(태그 "2023", "사이드 프로젝트"). 홈 카드 줄은 오른쪽 끝에 5번째 카드가 살짝 보이고 화살표로 넘긴다.
 
 ## About (`/about`, `app/routes/about.tsx`, `app/styles/about.css`)
 
-디자인은 `design-src/About@1x 1.png` (1440 프레임 4x PNG, SVG 없음 → 문구는 PNG를 보고 옮기고 크기는 실측). 콘텐츠 너비 1200. 사진은 `public/about/profile.webp` (증명사진을 475:592로 잘라냄). 상단 탭과 푸터는 사이트 공통 것을 쓴다(디자인 시안의 헤더·푸터와 다름). 디자인 글꼴이 Pretendard보다 약 7% 넓어 글자 크기를 실측 너비에 맞춰 키웠다.
+디자인은 `design-src/About@1x 1.png` (1440 프레임 4x PNG, SVG 없음 → 문구는 PNG를 보고 옮기고 크기는 실측). 콘텐츠 너비 1200. 사진은 `public/about/profile.webp` (`design-src/About_프로필사진_조수연.jpeg`에서 인물을 가운데 두고 475:592로 잘라냄). 상단 탭과 푸터는 사이트 공통 것을 쓴다(디자인 시안의 헤더·푸터와 다름). 디자인 글꼴이 Pretendard보다 약 7% 넓어 글자 크기를 실측 너비에 맞춰 키웠다.
 
 ## Resume (`/resume`, `app/routes/resume.tsx`, 스타일은 `about.css` 아래쪽)
 
