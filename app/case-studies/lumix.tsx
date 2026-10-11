@@ -310,7 +310,7 @@ export default function LumixCaseStudy({ index, nextSlug }: CaseStudyProps) {
           src: "/projects/lumix/landing-page.webp",
           width: 490,
           height: 1507,
-          alt: "Front ACE 랜딩 페이지 전체: 히어로 목업, 핵심 업무 가치 카드, 보안 섹션, 지원 AI 모델 그리드, CTA",
+          alt: "랜딩 페이지 전체: 히어로 목업, 핵심 업무 가치 카드, 보안 섹션, 지원 AI 모델 그리드, CTA",
         }}
         columns={["제품 요소", "랜딩 요소"]}
         rows={[
