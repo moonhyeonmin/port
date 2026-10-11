@@ -45,10 +45,30 @@
   padding-bottom: 120px;
   list-style: none;
 }
-.about-stat { height: 192px; padding: 44px 30px 0; background: var(--about-soft); border-radius: 20px; }
-.about-stat__value { font-size: 47px; font-weight: 800; line-height: 1; letter-spacing: -0.02em; color: var(--about-blue); }
-.about-stat__value small { margin-left: 2px; font-size: 24px; font-weight: 700; }
-.about-stat__caption { margin-top: 16px; font-size: 16px; line-height: 24px; color: var(--about-gray); }
+/* Ellm Summary 회색 카드(답변 대기 중 이탈률)와 같은 모양: 1440 화면에서 보이는 크기(디자인 2160 × 2/3) */
+.about-stat {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 192px;
+  padding: 40px 27px 27px;
+  overflow: hidden;
+  border-radius: 5px;
+  background-image: linear-gradient(135.626deg, rgb(245, 246, 248) 0%, rgb(218, 221, 227) 3%, rgb(245, 246, 248) 46%, rgb(255, 255, 255) 55%, rgb(245, 246, 248) 100%);
+}
+.about-stat__value {
+  display: flex;
+  align-items: center;
+  height: 52px;
+  margin-bottom: 13px;
+  font-size: 47px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.64px;
+  color: #191919;
+}
+.about-stat__value small { font-size: 0.5em; }
+.about-stat__caption { font-size: 18.5px; font-weight: 600; line-height: 26.5px; letter-spacing: -0.13px; color: #6d6d6d; }
 .about-stat__caption span { display: block; }
 
 /* 일하는 방식 */
@@ -116,7 +136,7 @@
   .about-intro__title { font-size: 44px; line-height: 1.2; }
   .about-intro__body { font-size: 16px; line-height: 1.8; }
   .about-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 64px; padding-bottom: 88px; }
-  .about-stat { height: auto; padding: 32px 26px; }
+  .about-stat { height: auto; min-height: 170px; padding: 32px 26px; }
   .about-work { padding-block: 88px; }
   .about-work__desc span, .about-journey__desc span { display: inline; }
   .about-work__desc span + span::before, .about-journey__desc span + span::before { content: " "; }
@@ -133,10 +153,9 @@
   .about-intro__body { margin-top: 20px; font-size: 15px; }
   .about-h2 { margin-top: 12px; font-size: 28px; }
   .about-stats { gap: 10px; margin-top: 48px; padding-bottom: 64px; }
-  .about-stat { padding: 24px 18px; border-radius: 16px; }
-  .about-stat__value { font-size: 36px; }
-  .about-stat__value small { font-size: 18px; }
-  .about-stat__caption { margin-top: 12px; font-size: 13px; line-height: 1.6; }
+  .about-stat { min-height: 150px; padding: 24px 18px; border-radius: 8px; }
+  .about-stat__value { height: auto; margin-bottom: 10px; font-size: 34px; letter-spacing: -0.02em; }
+  .about-stat__caption { font-size: 14px; line-height: 1.5; letter-spacing: 0; }
   .about-work { padding-block: 64px; }
   .about-work__cards { grid-template-columns: minmax(0, 1fr); margin-top: 28px; }
   .about-work__card { min-height: 0; padding: 28px 24px; border-radius: 16px; }
@@ -269,8 +288,8 @@
 @media (hover: hover) {
   .about-work__card { transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s, border-color 0.35s; }
   .about-work__card:hover { transform: translateY(-4px); border-color: #dfe3ea; box-shadow: 0 18px 40px rgb(15 23 42 / 0.07); }
-  .about-stat { transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.35s; }
-  .about-stat:hover { transform: translateY(-4px); background: #eff2f8; }
+  .about-stat { transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .about-stat:hover { transform: translateY(-4px); }
   .about-chip { transition: color 0.2s, border-color 0.2s, background-color 0.2s; }
   .about-chip:hover { color: var(--about-blue); border-color: rgb(31 79 232 / 0.35); background: rgb(31 79 232 / 0.04); }
   .about-intro__photo { transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.6s; }
