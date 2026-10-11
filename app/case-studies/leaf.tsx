@@ -1078,8 +1078,8 @@ function Community() {
     <Sec id="community" top={T} h={2931} className="lf-s4 lf-comm" label="Community Page">
       <Img top={T} x={0} y={T} w={2160} h={2931} src="/projects/leaf/s5-comm-bg.webp" className="lf-bgimg lf-s5bg" alt="커뮤니티 카드 모음: 음악, 사진, 질문 글" />
       <span className="lf-dot is-sm lf-r" style={{ "--x": 956, "--y": 51155 - T } as CSSProperties} aria-hidden />
-      {/* Figma 원문 그대로 "COMUNITY" (오타 의심: 사용자에게 알림) */}
-      <Txt top={T} fs={22.5} fw={700} color={G} className="lf-label" lines={[[989.2, 51164.4, "l", "COMUNITY PAGE"]]} />
+      {/* Figma 원문 "COMUNITY"는 오타라 사용자 요청으로 COMMUNITY로 고침 */}
+      <Txt top={T} fs={22.5} fw={700} color={G} className="lf-label" lines={[[989.2, 51164.4, "l", "COMMUNITY PAGE"]]} />
       <Txt
         top={T}
         fs={54}
