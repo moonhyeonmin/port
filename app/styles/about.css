@@ -156,3 +156,142 @@
   .about-cta__actions { flex-wrap: wrap; }
   .about-cta__btn { height: 50px; padding-inline: 22px; font-size: 15px; }
 }
+
+/* ─── Resume (design-src/Resume@1x 1.png) ─── */
+.resume { padding-bottom: 120px; }
+.resume-hero {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+  padding-block: 113px 61px;
+}
+.resume-hero__name { margin-top: 26px; font-family: var(--font-sans); font-size: 60px; font-weight: 800; line-height: 1.05; letter-spacing: -0.035em; }
+.resume-hero__name span { margin-left: 4px; font-family: var(--font-kr); font-size: 36px; font-weight: 700; letter-spacing: -0.02em; color: #5b6472; }
+.resume-hero__role { margin-top: 18px; font-family: var(--font-sans); font-size: 17px; font-weight: 500; color: #374151; }
+.resume-hero__links { display: flex; flex-wrap: wrap; gap: 6px 20px; margin-top: 12px; font-size: 15px; font-weight: 500; }
+.resume-hero__links a { transition: color 0.2s; }
+.resume-hero__links a:hover { color: var(--about-blue); }
+.resume-hero__pdf {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 10px;
+  height: 50px;
+  margin-bottom: 18px;
+  padding-inline: 26px;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  background: #0b1220;
+  border-radius: 999px;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.2s;
+}
+.resume-hero__pdf:hover { background: #1f2a3d; transform: translateY(-2px); }
+.resume-hero__pdf svg { transition: transform 0.25s; }
+.resume-hero__pdf:hover svg { transform: translateY(2px); }
+
+.resume-row {
+  display: grid;
+  grid-template-columns: 288px minmax(0, 1fr);
+  padding-block: 52px 53px;
+  border-top: 1px solid var(--about-line);
+}
+.resume-row:last-child { border-bottom: 1px solid var(--about-line); }
+.resume-row__label { padding-top: 2px; font-family: var(--font-sans); font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #4b5563; }
+.resume-summary { font-size: 22px; font-weight: 600; line-height: 40px; letter-spacing: -0.01em; }
+.resume-summary em { font-style: normal; color: var(--about-blue); }
+/* 첫 문장 뒤에서 줄을 바꾸고, 둘째 문장은 디자인 너비(약 870)에서 줄바꿈 */
+.resume-summary { max-width: none; }
+.resume-summary > span { display: block; }
+@media (max-width: 809.98px) { .resume-summary > span { display: inline; } }
+
+.resume-jobs { display: flex; flex-direction: column; gap: 53px; margin: 0; padding: 0; list-style: none; }
+.resume-job__head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+.resume-job__company { font-size: 25px; font-weight: 700; line-height: 1.4; }
+.resume-job__period { flex-shrink: 0; font-family: var(--font-sans); font-size: 15px; font-weight: 500; color: #4b5563; }
+.resume-job__role { margin-top: 6px; font-size: 16.7px; color: #374151; }
+.resume-job__lines { margin-top: 3px; font-size: 16px; line-height: 27px; color: #374151; }
+.resume-job__lines span { display: block; }
+.resume-job__bullets { display: flex; flex-direction: column; gap: 11.7px; margin: 20px 0 0; padding: 0; list-style: none; font-size: 17px; line-height: 25.5px; color: #1f2937; }
+.resume-job__bullets li { position: relative; padding-left: 18px; }
+.resume-job__bullets li::before { content: ""; position: absolute; top: 10px; left: 4px; width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+.resume-job__bullets strong { font-weight: 700; color: var(--about-ink); }
+
+.resume-projects { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 0; padding: 0; list-style: none; }
+.resume-project {
+  padding: 32px 26px 26px;
+  background: var(--about-soft);
+  border-radius: 20px;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s, background-color 0.35s;
+}
+.resume-project__type { font-size: 13px; font-weight: 700; color: var(--about-blue); }
+.resume-project__name { margin-top: 12px; font-family: var(--font-sans); font-size: 21px; font-weight: 700; }
+.resume-project__desc { margin-top: 10px; font-size: 16px; color: #374151; }
+
+.resume-skills { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px 24px; margin: 0; }
+.resume-skills dt { font-family: var(--font-sans); font-size: 16px; font-weight: 700; }
+.resume-skills dd { margin: 10px 0 0; font-size: 17px; color: #374151; }
+
+@media (max-width: 1023.98px) {
+  .resume-row { grid-template-columns: 180px minmax(0, 1fr); }
+  .resume-projects { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 809.98px) {
+  .resume { padding-bottom: 72px; }
+  .resume-hero { flex-direction: column; align-items: flex-start; padding-block: 56px 40px; }
+  .resume-hero__name { margin-top: 14px; font-size: 42px; }
+  .resume-hero__name span { font-size: 26px; }
+  .resume-hero__role { margin-top: 12px; font-size: 15px; }
+  .resume-hero__pdf { margin: 0; }
+  .resume-row { grid-template-columns: minmax(0, 1fr); gap: 16px; padding-block: 40px; }
+  .resume-summary { font-size: 17px; line-height: 1.75; }
+  .resume-jobs { gap: 40px; }
+  .resume-job__head { flex-direction: column; gap: 2px; }
+  .resume-job__company { font-size: 20px; }
+  .resume-job__bullets { font-size: 15px; line-height: 1.6; }
+  .resume-job__bullets li::before { top: 10px; }
+  .resume-skills { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+}
+
+/* 인쇄(Download PDF): 공통 탭·푸터·버튼은 숨긴다 */
+@media print {
+  .tabnav, .footer, .resume-hero__pdf { display: none !important; }
+  .resume { padding: 0; }
+  .resume-hero { padding-top: 0; }
+  .resume-row { break-inside: avoid; }
+  html.js .resume [class] { opacity: 1 !important; transform: none !important; }
+}
+
+/* ─── 인터랙션 (About·Resume) ─── */
+@media (hover: hover) {
+  .about-work__card { transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s, border-color 0.35s; }
+  .about-work__card:hover { transform: translateY(-4px); border-color: #dfe3ea; box-shadow: 0 18px 40px rgb(15 23 42 / 0.07); }
+  .about-stat { transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.35s; }
+  .about-stat:hover { transform: translateY(-4px); background: #eff2f8; }
+  .about-chip { transition: color 0.2s, border-color 0.2s, background-color 0.2s; }
+  .about-chip:hover { color: var(--about-blue); border-color: rgb(31 79 232 / 0.35); background: rgb(31 79 232 / 0.04); }
+  .about-intro__photo { transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.6s; }
+  .about-intro__photo:hover { transform: translateY(-4px); box-shadow: 0 24px 50px rgb(15 23 42 / 0.12); }
+  .about-cta__btn.is-primary, .about-cta__btn { transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.2s, color 0.2s; }
+  .about-cta__btn:hover { transform: translateY(-2px); }
+  .resume-project:hover { transform: translateY(-4px); background: #eff2f8; box-shadow: 0 16px 36px rgb(15 23 42 / 0.06); }
+}
+/* Journey 현재 단계: 화면에 들어오면 파란 선이 왼쪽부터 그려진다 */
+.about-journey__step { position: relative; }
+.about-journey__step.is-current { border-top-color: var(--about-line); }
+.about-journey__step.is-current::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--about-blue);
+  transform-origin: left;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .js .about-journey__step.is-current::before { transform: scaleX(0); transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) calc(var(--reveal-delay, 0ms) + 400ms); }
+  .js .about-journey__step.is-current.is-revealed::before { transform: scaleX(1); }
+}

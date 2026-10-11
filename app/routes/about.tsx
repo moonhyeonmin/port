@@ -2,6 +2,7 @@ import type { Route } from "./+types/about";
 import { Link } from "react-router";
 import { pageMeta } from "~/data/meta";
 import { site } from "~/data/site";
+import { CountUp } from "~/components/CountUp";
 import { useReveal } from "~/hooks/useReveal";
 
 export const meta: Route.MetaFunction = () =>
@@ -12,10 +13,10 @@ export const meta: Route.MetaFunction = () =>
   });
 
 // 디자인: design-src/About@1x 1.png (1440 프레임, 4x로 내보냄)
-const stats = [
-  { value: "7", caption: ["담당 제품 수", "보안 관제 시스템 포함"] },
-  { value: "4", unit: "회/년", caption: ["제품 시험으로", "도메인 학습"] },
-  { value: "3만+", caption: ["SNS 채널 팔로워", "블로그 4.2배 성장"] },
+const stats: { value: React.ReactNode; unit?: string; caption: string[] }[] = [
+  { value: <CountUp to={7} duration={1400} />, caption: ["담당 제품 수", "보안 관제 시스템 포함"] },
+  { value: <CountUp to={4} duration={1400} />, unit: "회/년", caption: ["제품 시험으로", "도메인 학습"] },
+  { value: <><CountUp to={3} duration={1400} />만+</>, caption: ["SNS 채널 팔로워", "블로그 4.2배 성장"] },
   { value: "특허", caption: ["스타트업 브랜드", "디자인 특허 등록"] },
 ];
 

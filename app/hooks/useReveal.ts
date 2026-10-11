@@ -7,6 +7,20 @@ import { useEffect } from "react";
 export const REVEAL_SELECTOR = [
   // 홈
   ".cases .card",
+  // About · Resume
+  ".about-intro__text > *",
+  ".about-intro__photo",
+  ".about-stat",
+  ".about .about-label",
+  ".about-h2",
+  ".about-work__card",
+  ".about-journey__step",
+  ".about-toolkit__row",
+  ".about-cta",
+  ".resume-hero > *",
+  ".resume-row",
+  ".resume-job",
+  ".resume-project",
   // 케이스 스터디
   ".case-page .case-eyebrow",
   ".case-page .case-h2",

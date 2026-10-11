@@ -181,6 +181,10 @@ Figma 프레임 이름은 `fireside_*` (제품명 Fireside). 흰 바탕, 강조�
 
 디자인은 `design-src/About@1x 1.png` (1440 프레임 4x PNG, SVG 없음 → 문구는 PNG를 보고 옮기고 크기는 실측). 콘텐츠 너비 1200. 사진은 `public/about/profile.webp` (증명사진을 475:592로 잘라냄). 상단 탭과 푸터는 사이트 공통 것을 쓴다(디자인 시안의 헤더·푸터와 다름). 디자인 글꼴이 Pretendard보다 약 7% 넓어 글자 크기를 실측 너비에 맞춰 키웠다.
 
+## Resume (`/resume`, `app/routes/resume.tsx`, 스타일은 `about.css` 아래쪽)
+
+디자인은 `design-src/Resume@1x 1.png` (About과 같은 방식). 왼쪽 라벨 열 288 + 내용 열. "Download PDF"는 PDF 파일이 없어 `window.print()`로 인쇄(PDF로 저장)를 연다(인쇄용 스타일로 탭·푸터·버튼 숨김). LinkedIn·GitHub는 주소가 없어 글자만, Education은 디자인 원문 자리표시자([학교명] 등) 그대로.
+
 ## 인터랙션
 
 과하지 않게, 화면에 들어올 때 한 번만 짧게 움직인다. `prefers-reduced-motion: reduce`이면 모두 끈다.
@@ -191,6 +195,8 @@ Figma 프레임 이름은 `fireside_*` (제품명 Fireside). 흰 바탕, 강조�
 - **숫자 카운트업**: `app/components/CountUp.tsx` (기본 2초). 미리 렌더링된 HTML에는 최종 숫자가 들어가고, 최종 숫자 폭으로 자리를 고정해 옆 글자가 흔들리지 않는다.
 - **상단 내비 알약**: `CaseNav`의 `.case-nav__indicator`가 현재 항목으로 미끄러지듯 이동한다.
 - **홈 카드 호버**: 카드 테두리는 그대로 두고 안의 이미지만 1.03배 확대한다.
+- **About·Resume**: 블록별 등장(Reveal), About 수치 카운트업, Journey 현재 단계 파란 선이 왼쪽부터 그려짐, 카드·알약·버튼 호버(살짝 떠오름/색 변화).
+- 주의: `TabNav`처럼 경로로 다르게 그리는 부분은 끝의 `/`를 무시해야 한다(로컬 serve가 `/about`을 `/about/`로 보내 hydration이 깨지고 `.js` 클래스가 사라져 등장 효과가 멈춘 적이 있음).
 - **홈 카드 한 줄 배치 (`features.homeRow`)**: 프로젝트 카드 4장을 히어로 아래 가로 한 줄로 둔다(모바일은 2열 2줄). 카드 너비는 히어로 아래 남은 높이에 맞춰 4장이 한 화면에 들어오게 정한다. 마우스를 올린(또는 키보드 포커스) 카드는 8px 떠오르며 푸른 빛 테두리가 생기고, 나머지 카드는 흐려진다(`app/styles/home-row.css`). `false`면 기존 2열 목록.
 - **홈 어두운 배경 (실험, `feature/home-beam` 브랜치)**: https://josu.framer.website 첫 화면을 참고한 어두운 남색 바탕 + 대각선 파란 빛줄기. 직접 만든 WebGL 셰이더(`app/components/HomeBeam.tsx`)이고, 원본과 같은 기법(사인파 난류로 좌표를 비틀고 Oklab 팔레트 #00001A→#2962FF→#0044FF로 칠함)과 같은 설정값(speed 0.25 — 원본 0.4보다 느리게, scale 0.6, turbAmp 0.6, turbFreq 0.1, iter 7, waveFreq 2, seed 648에서 GPU로 읽은 상수)으로 직접 작성해 원본과 같은 장면·속도로 일렁인다. 원본처럼 마우스에는 반응하지 않고, 위→아래 검은 그라디언트를 덮는다. 캔버스 높이는 원본처럼 화면 너비의 약 0.88배. 홈에서는 프로필 사진 자리(빈 원)를 숨긴다. 홈 글꼴은 Pretendard 하나로 통일하고 크기는 64/20/18/15/13 단계만 쓴다. 화면 밖·숨은 탭에서는 멈추고, 동작 줄이기 설정이면 정지 화면 한 장, WebGL이 없으면 CSS 그라디언트를 보여 준다.
   - 스타일은 `app/styles/home-beam.css`에 모았고 모두 `.page.is-home-beam` 아래에서만 적용된다 (`root.tsx`가 홈에서 이 클래스를 붙인다).

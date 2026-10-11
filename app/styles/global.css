@@ -2218,6 +2218,8 @@ img, video { display: block; max-width: 100%; }
 @media (prefers-reduced-motion: no-preference) {
   .js :is(
     .cases .card,
+    .about-intro__text > *, .about-intro__photo, .about-stat, .about .about-label, .about-h2, .about-work__card,
+    .about-journey__step, .about-toolkit__row, .about-cta, .resume-hero > *, .resume-row, .resume-job, .resume-project,
     .case-page .case-eyebrow, .case-page .case-h2, .case-hero__heading > *, .case-hero__tags, .case-hero__cover,
     .case-overview__item, .case-summary__row, .case-summary__card, .case-deep__subtitle,
     .case-why__bullets, .case-why__stat, .case-why__figure,
